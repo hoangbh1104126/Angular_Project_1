@@ -1,0 +1,37 @@
+h1 {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.navAM {
+  padding: 15px 30px;
+  font-size: xx-large;
+  background-color: royalblue;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition-duration: 0.5s;
+  display: block;
+  border-radius: 20%;
+}
+
+.navAM:hover {
+  background-color: yellow;
+  color: royalblue;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+
+tr.action {
+  visibility: collapse;
+}
+
+tr:hover + tr.action {
+  visibility: visible;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:underline;
+}

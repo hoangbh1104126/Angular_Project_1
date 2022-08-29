@@ -1,0 +1,43 @@
+<p>account-management works!</p>
+
+<h1>Account Management</h1>
+
+<hr />
+
+<table>
+  <thead>
+    <tr style="position: sticky; top:0; z-index: 999; background-color: #181A1B;">
+      <th>Number</th>
+      <th>Balance</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Hello</th>
+    </tr>
+  </thead>
+  <tbody>
+    <table *ngFor="let user of users; index as idx">
+      <tr>
+        <td>{{user.account_number}}</td>
+        <td>{{user.balance}}</td>
+        <td><a href="#">{{user.firstname}} {{user.lastname}}</a></td>
+        <td>{{user.age}}</td>
+        <td>{{user.gender}}</td>
+        <td>Hello</td>
+      </tr>
+      <tr >
+        <table>
+          <td>{{user.account_number}}</td>
+          <td>{{user.balance}}</td>
+          <td>{{user.firstname}} {{user.lastname}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.gender}}</td><td>{{user.account_number}}</td>
+          <td>{{user.balance}}</td>
+          <td>{{user.firstname}} {{user.lastname}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.gender}}</td>
+        </table>
+      </tr>
+    </table>
+  </tbody>
+</table>
