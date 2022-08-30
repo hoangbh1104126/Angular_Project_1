@@ -1,0 +1,11 @@
+<p>user-detail works!</p>
+<button><a href="#">Click</a></button>
+
+
+<div *ngIf="user$ | async as user else loadingTmpl">
+  <h1>{{ user.firstname }}</h1>
+  <p>{{ user.age }}</p>
+</div>
+<ng-template #loadingTmpl>
+  Loading...
+</ng-template>

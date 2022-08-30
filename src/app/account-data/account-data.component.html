@@ -1,0 +1,54 @@
+<p>account-data works!</p>
+
+<!--
+<div *ngIf="users$ | async as users">
+  <div *ngFor="let user of users">
+    <div>{{user.account_number}}</div>
+    <div>
+      <p>{{user.firstname}}</p>
+      <a [routerLink]="user.account_number.toString()">
+        Xem {{user.lastname}}
+      </a>
+    </div>
+  </div>
+</div>
+-->
+
+<div style="overflow-x:auto" *ngIf="users$ | async as users">
+
+
+<table class="table table-hover">
+  <thead>
+    <tr style="position: sticky; top:0; z-index: 999;">
+      <th>Number</th>
+      <th>Balance</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as idx">
+      <td>{{user.account_number}}</td>
+      <td>{{user.balance}}</td>
+      <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td>
+    </tr>
+    <!--
+    <tr >
+      <td>{{user.account_number}}</td>
+      <td>{{user.balance}}</td>
+      <td>{{user.firstname}} {{user.lastname}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td><td>{{user.account_number}}</td>
+      <td>{{user.balance}}</td>
+      <td>{{user.firstname}} {{user.lastname}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td>
+    </tr>
+    -->
+  </tbody>
+</table>
+</div>
+

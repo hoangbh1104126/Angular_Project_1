@@ -5,12 +5,16 @@ import { AccountManagementComponent } from './account-management/account-managem
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { AccountDataComponent } from './account-data/account-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    AccountManagementComponent
+    AccountManagementComponent,
+    UserDetailComponent,
+    AccountDataComponent
   ],
   imports: [
     BrowserModule,

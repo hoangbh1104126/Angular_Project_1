@@ -1,6 +1,18 @@
-# PrjAngular1
+# Project 1: Account Management
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+
+## Feature
+
+- Managemet account
+- Sort
+- etc
+
+## Some attribute
+- Font: ... ( ... )
+- Background source: ... ( ... )
+- Icon: [Management icon](https://pngtree.com/freepng/vector-management-icon_4171359.html)
+- Data: [accounts.json](src/accounts.json)
 
 ## Development server
 

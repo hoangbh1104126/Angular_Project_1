@@ -1,6 +1,8 @@
 h1 {
-  font-size: 5rem;
+  font-family: 'Cinzel';
   text-align: center;
+  font-size: 5rem;
+  color:aqua;
 }
 
 .navAM {
@@ -34,4 +36,9 @@ a {
 
 a:hover {
   text-decoration:underline;
+}
+
+.welcome {
+  background-image: url("../img/bw.jpg");
+  background-repeat: repeat-x;
 }
