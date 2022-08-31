@@ -1,11 +1,36 @@
-<p>user-detail works!</p>
-<button><a href="#">Click</a></button>
+
+<button><a routerLink="/account_management">Return</a></button>
 
 
 <div *ngIf="user$ | async as user else loadingTmpl">
-  <h1>{{ user.firstname }}</h1>
-  <p>{{ user.age }}</p>
+  <h1>#{{ user.account_number }}: {{ user.firstname }} {{ user.lastname }}</h1>
+
+  <table class="table table-light">
+    <thead>
+      <th colspan="2">{{user.lastname}}'s information:</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Balance: {{ user.balance }}</td>
+        <td>Age: {{ user.age }}</td>
+      </tr>
+      <tr>
+        <td>Gender: {{ user.gender }}</td>
+        <td>Address: {{ user.address }}</td>
+      </tr>
+      <tr>
+        <td>Employer: {{ user.employer }}</td>
+        <td>Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+      </tr>
+      <tr>
+        <td>City: {{ user.city }}</td>
+        <td>State: {{ user.state }}</td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
 <ng-template #loadingTmpl>
   Loading...
 </ng-template>
+

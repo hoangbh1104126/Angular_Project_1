@@ -1,4 +1,4 @@
-<p>account-data works!</p>
+
 
 <!--
 <div *ngIf="users$ | async as users">
@@ -14,12 +14,12 @@
 </div>
 -->
 
-<div style="overflow-x:auto" *ngIf="users$ | async as users">
-
-
+<div style="overflow-x:auto" *ngIf="users$ | async as users else nomore">
+<h3>User data</h3>
+<div class="dataTable">
 <table class="table table-hover">
   <thead>
-    <tr style="position: sticky; top:0; z-index: 999;">
+    <tr>
       <th>Number</th>
       <th>Balance</th>
       <th>Name</th>
@@ -31,7 +31,7 @@
     <tr *ngFor="let user of users; index as idx">
       <td>{{user.account_number}}</td>
       <td>{{user.balance}}</td>
-      <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
+      <td><a [routerLink]="user.firstname">{{user.firstname}} {{user.lastname}}</a></td>
       <td>{{user.age}}</td>
       <td>{{user.gender}}</td>
     </tr>
@@ -51,4 +51,10 @@
   </tbody>
 </table>
 </div>
+</div>
 
+<div class="ifNone">
+<ng-template #nomore>
+  No more user to preview
+</ng-template>
+</div>
