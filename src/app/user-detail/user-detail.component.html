@@ -1,11 +1,20 @@
-<p>user-detail works!</p>
-<button><a href="#">Click</a></button>
+
+<button><a routerLink="/account_management">Return</a></button>
 
 
 <div *ngIf="user$ | async as user else loadingTmpl">
-  <h1>{{ user.firstname }}</h1>
-  <p>{{ user.age }}</p>
+  <h1>{{ user.firstname }} {{ user.lastname }}</h1>
+  <p>Number: {{ user.account_number }}</p>
+  <p>Balance: {{ user.balance }}</p>
+  <p>Age: {{ user.age }}</p>
+  <p>Gender: {{ user.gender }}</p>
+  <p>Address: {{ user.address }}</p>
+  <p>Employer: {{ user.employer }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>City: {{ user.city }}</p>
+  <p>State: {{ user.state }}</p>
 </div>
 <ng-template #loadingTmpl>
   Loading...
 </ng-template>
+
