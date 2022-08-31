@@ -7,8 +7,27 @@ a:hover {
 }
 
 .titleAM{
+  margin: 32px;
+  width: 65%;
   font-family: 'Cinzel';
   text-align: center;
 }
 
+.TitleBar{
+  display: flex;
+}
 
+.menu {
+  width: 10%;
+  margin: 40px;
+}
+
+.home {
+  width: 15%;
+  margin: 40px;
+}
+
+.log {
+  width: 10%;
+  margin: 40px;
+}
