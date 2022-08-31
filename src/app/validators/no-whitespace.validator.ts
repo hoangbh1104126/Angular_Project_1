@@ -1,3 +1,4 @@
+
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
 export function NoWhitespaceValidator(): ValidatorFn {
@@ -11,4 +12,3 @@ export function NoWhitespaceValidator(): ValidatorFn {
     return isValid ? {} : { whitespace: "value is only whitespace" };
   };
 }
-
