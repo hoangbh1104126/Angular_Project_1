@@ -15,9 +15,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignInRfComponent } from './sign-in-rf/sign-in-rf.component';
+import { LogInComponent } from './log-in/log-in.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import { AccountDataTableComponent } from './account-data-table/account-data-table.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AccountDataComponent,
     AccountManagementComponent,
     UserDetailComponent,
-    SignInRfComponent
+    LogInComponent,
+    AccountDataTableComponent,
   ],
   imports: [
     FormsModule,
@@ -35,6 +41,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     BrowserAnimationsModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatTableModule,
+    MatIconModule,
+    MatProgressBarModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
