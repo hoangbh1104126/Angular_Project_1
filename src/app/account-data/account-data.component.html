@@ -1,23 +1,7 @@
-
-
-<!--
-<div *ngIf="users$ | async as users">
-  <div *ngFor="let user of users">
-    <div>{{user.account_number}}</div>
-    <div>
-      <p>{{user.firstname}}</p>
-      <a [routerLink]="user.account_number.toString()">
-        Xem {{user.lastname}}
-      </a>
-    </div>
-  </div>
-</div>
--->
 <h3>User data</h3>
 
-
 <hr />
-<div style="overflow-x:auto" *ngIf="users$ | async as users else noData">
+<div style="overflow-x:scroll" *ngIf="users$ | async as users else noData">
 <div class="dataTable">
 <table class="table table-hover">
   <thead>

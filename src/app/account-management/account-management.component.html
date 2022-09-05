@@ -1,10 +1,53 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="navigationPane" #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+    <h2 class="titleNav">Account Management</h2>
+    <hr />
+    <mat-list>
+      <mat-list-item>
+        <button class="navButton" mat-button onclick="location.href = '';">
+            <mat-icon>home</mat-icon>
+            Home
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="navButton" mat-button onclick="location.href = '';">
+            <mat-icon></mat-icon>
+            Home
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="navButton" mat-button onclick="location.href = '';">
+            <mat-icon>home</mat-icon>
+            Home
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
 
-<div class="TitleBar">
-  <i class="menu">Menu</i>
-  <h1 class="titleAM">Account Management</h1>
-  <a href="log-in" class="log">Log in</a>
-  <a href="#" class="home">Go to Home</a>
-</div>
-<hr />
+  <mat-sidenav-content>
+    <mat-toolbar class="TitleBar">
+      <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="titleAM">Account Management</h1>
+      <div class="log">
+        <button mat-button onclick="location.href = '/log-in';">
+            <mat-icon>account_box</mat-icon>
+            Log in
+        </button>
+      </div>
+      <div class="home">
+        <button mat-button onclick="location.href = '';">
+            <mat-icon>home</mat-icon>
+            Back to Home
+        </button>
+      </div>
+    </mat-toolbar>
+    <hr />
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-<router-outlet></router-outlet>
+
+
+
+
+

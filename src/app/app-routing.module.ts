@@ -35,7 +35,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'duma',
+    path: 'test',
     component: AccountDataTableComponent,
   },
 ];

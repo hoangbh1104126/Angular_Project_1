@@ -18,4 +18,7 @@ export class AccountManagementComponent implements OnInit {
 
   }
 
+  events: string[] = [];
+  opened!: boolean;
+
 }

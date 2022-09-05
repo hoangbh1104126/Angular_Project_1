@@ -1,48 +1,45 @@
 table {
-    width: 100%;
-  }
-  
-  tr.example-detail-row {
-    height: 0;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):hover {
-    background: whitesmoke;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):active {
-    background: #efefef;
-  }
-  
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .example-element-detail {
-    overflow: hidden;
-    display: flex;
-  }
-  
-  .example-element-diagram {
-    min-width: 80px;
-    border: 2px solid black;
-    padding: 8px;
-    font-weight: lighter;
-    margin: 8px 0;
-    height: 104px;
-  }
-  
-  .example-element-symbol {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
-  }
-  
-  .example-element-description {
-    padding: 16px;
-  }
-  
-  .example-element-description-attribution {
-    opacity: 0.5;
-  }
-  
+  font-family: 'Fauna One', serif;
+  font-size: 16px;
+  margin: 32px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Fauna One', serif;
+}
+
+div.dataTable {
+  overflow: auto;
+}
+
+div.dataTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+div.ifNone {
+  text-align: center;
+  font-size: xx-large;
+  color: blue;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.progress {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 10px;
+}

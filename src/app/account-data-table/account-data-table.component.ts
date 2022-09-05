@@ -1,32 +1,76 @@
-import {Component} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import usersData from 'src/accounts.json';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
-let Users : User[] = usersData;
-
-/**
- * @title Table with expandable rows
- */
 @Component({
-  selector: 'account-data-table',
-  styleUrls: ['account-data-table.component.scss'],
-  templateUrl: 'account-data-table.component.html',
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  selector: 'app-account-data',
+  templateUrl: './account-data-table.component.html',
+  styleUrls: ['./account-data-table.component.scss'],
 })
-export class AccountDataTableComponent {
-  dataSource = usersData;
-  columnsToDisplay = ['account_number', 'balance', 'firstname', 'lastname', 'age', 'gender'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement !: User | null;
-}
+export class AccountDataTableComponent implements OnInit {
 
-//, 'address', 'employer', 'email', 'city', 'state'
+  constructor(private _api: UserService) { }
+
+  Users : User[] = usersData;
+  UsersData = this.Users;
+
+  ngOnInit(){ }
+
+  filterAccount_number !: number;
+  filterBalance !: number;
+  filterName !: string;
+  filterAge !: number;
+  filterGender !: string;
+
+  filterUser(num : number){
+    this.UsersData = this.Users;
+    for(let i=1; i<=5; i++){
+      this.filterUser2(i);
+    }
+  }
+
+  filterUser2(num : number){
+    switch(num){
+      case 1: {
+        if(typeof(this.filterAccount_number) != undefined || this.filterAccount_number.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => {
+              return obj.account_number.toString().includes(this.filterAccount_number.toString());
+            }
+          );
+        } break;
+      }
+      case 2: {
+        if(typeof(this.filterBalance) != undefined||this.filterBalance.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.balance.toString().includes(this.filterBalance.toString());}
+          );
+        } break;
+      }
+      case 3: {
+        if(typeof(this.filterName) != undefined || this.filterName.length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return (obj.firstname + " " + obj.lastname).includes(this.filterName);}
+          );
+        } break;
+      }
+      case 4: {
+        if(typeof(this.filterAge) != undefined || this.filterAge.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.age.toString().includes(this.filterAge.toString());}
+          );
+        } break;
+      }
+      case 5: {
+        if(typeof(this.filterGender) != undefined || this.filterGender.length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.gender.toString().includes(this.filterGender);}
+          );
+        } break;
+      }
+    }
+  }
+}

@@ -17,11 +17,6 @@ import { checkPassStrong } from "../validators/pass-without-username.validator";
   styleUrls: ["./log-in.component.scss"]
 })
 export class LogInComponent implements OnInit {
-  // signInForm = new FormGroup({
-  //   username: new FormControl(''),
-  //   password: new FormControl(''),
-  //   rememberMe: new FormControl(false),
-  // });
   hide = true;
   signInForm !: FormGroup;
 
@@ -86,7 +81,7 @@ export class LogInComponent implements OnInit {
     if(!this.signInForm.get(attribute)?.hasError('maxlength') && !this.signInForm.get(attribute)?.hasError('required')){
       return attribute as string + " must be at least 6 characters";
     }
-    
+
     return "Unknown error!";
   }
 }

@@ -1,45 +1,35 @@
-<table mat-table
-       [dataSource]="dataSource" multiTemplateDataRows
-       class="mat-elevation-z8">
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-  </ng-container>
-  <ng-container matColumnDef="expand">
-    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+<h3>User data</h3>
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-      <div class="example-element-detail"
-           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <div class="example-element-diagram">
-          <div class="example-element-age"> {{element.age}} </div>
-          <div class="example-element-name"> {{element.firstname} {{element.lastname} </div>
-          <div class="example-element-account_number"> {{element.account_number} </div>
-          <div class="example-element-balance"> {{element.balance} </div>
-        </div>
-        <div class="example-element-description">
-          {{element.gender}}
-          <span class="example-element-description-attribution"> -- Wikipedia </span>
-        </div>
-      </div>
-    </td>
-  </ng-container>
+<hr />
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-      class="example-element-row"
-      [class.example-expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element">
-  </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+<div class="dataTable">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Balance</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+    </tr>
+    <tr>
+      <td><input type="text" class="search" [(ngModel)]="filterAccount_number" (change)="filterUser(1)"/></td>
+      <td><input type="text" class="search" [(ngModel)]="filterBalance" (change)="filterUser(2)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterName" (change)="filterUser(3)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterAge" (change)="filterUser(4)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterGender" (change)="filterUser(5)" /></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of UsersData; index as idx">
+      <td>{{user.account_number}}</td>
+      <td>{{user.balance}}</td>
+      <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
+      <td>{{user.age}}</td>
+      <td>{{user.gender}}</td>
+    </tr>
+  </tbody>
 </table>
+</div>
+
 
