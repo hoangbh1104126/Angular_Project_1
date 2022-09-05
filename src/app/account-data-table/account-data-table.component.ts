@@ -26,13 +26,6 @@ export class AccountDataTableComponent implements OnInit {
   filterGender !: string;
 
   filterUser(num : number){
-    this.UsersData = this.Users;
-    for(let i=1; i<=5; i++){
-      this.filterUser2(i);
-    }
-  }
-
-  filterUser2(num : number){
     switch(num){
       case 1: {
         if(typeof(this.filterAccount_number) != undefined || this.filterAccount_number.toString().length != 0){
@@ -73,4 +66,27 @@ export class AccountDataTableComponent implements OnInit {
       }
     }
   }
+
+  filterUser2(){
+    this.UsersData = this.Users.filter(
+      (obj) => {
+        if(typeof(this.filterAccount_number) != undefined || this.filterAccount_number.toString().length != 0){
+          obj.account_number.toString().includes(this.filterAccount_number.toString());
+        }
+        if(typeof(this.filterBalance) != undefined||this.filterBalance.toString().length != 0){
+          obj.balance.toString().includes(this.filterBalance.toString());
+        }
+        if(typeof(this.filterName) != undefined || this.filterName.length != 0){
+          (obj.firstname + " " + obj.lastname).includes(this.filterName);
+        }
+        if(typeof(this.filterAge) != undefined || this.filterAge.toString().length != 0){
+          obj.age.toString().includes(this.filterAge.toString());
+        }
+        if(typeof(this.filterGender) != undefined || this.filterGender.length != 0){
+          obj.gender.toString().includes(this.filterGender);
+        }
+      }
+    )
+  }
+
 }
