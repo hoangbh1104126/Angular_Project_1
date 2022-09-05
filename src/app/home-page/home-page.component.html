@@ -1,40 +1,30 @@
 
 <div class="welcome">
-<h1>Account Management</h1>
-<!--
-  Title hover morph transition:
-  https://groups.google.com/g/angular/c/lRUdGQ6zkWw?pli=1
--->
-
-
-<hr />
-
-<button class="navAM" routerLink="account_management">
-  Next
-</button>
-
+  <div class="none"></div>
+  <div class="showNext">
+    <h1 class="title">Account Management</h1>
+    <!--
+      Title hover morph transition:
+      https://groups.google.com/g/angular/c/lRUdGQ6zkWw?pli=1
+    -->
+    <div class="navAM">
+      <button class="btn-101" routerLink="account_management">
+        Next
+        <svg>
+          <defs>
+            <filter id="glow">
+              <fegaussianblur result="coloredBlur" stddeviation="5"></fegaussianblur>
+              <femerge>
+                <femergenode in="coloredBlur"></femergenode>
+                <femergenode in="coloredBlur"></femergenode>
+                <femergenode in="coloredBlur"></femergenode>
+                <femergenode in="SourceGraphic"></femergenode>
+              </femerge>
+            </filter>
+          </defs>
+          <rect />
+        </svg>
+      </button>
+    </div>
+  </div>
 </div>
-
-<hr />
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Airport</th>
-      <th width="150px">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>JFK</td>
-      <td>234</td>
-    </tr>
-    <tr class="action">
-      <td colspan="2">flight leaves on 13:20 Take the train from ABC</td>
-    </tr>
-    <tr>
-      <td>LAX</td>
-      <td>104</td>
-    </tr>
-  </tbody>
-</table>

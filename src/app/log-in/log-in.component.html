@@ -1,0 +1,46 @@
+<div class="container">
+	<mat-card class="example-card">
+		<hr />
+		<mat-card-header class="card-head">
+			<div mat-card-avatar class="example-header-image"></div>
+			<mat-card-title>Guest</mat-card-title>
+			<mat-card-subtitle>Guest permissions</mat-card-subtitle>
+		</mat-card-header>
+		<hr />
+		<mat-card-content>
+			<form class="sign-in-form" [formGroup]="signInForm" autocomplete="off" (ngSubmit)="onSubmit()">
+				<h2>Log in</h2>
+				<div class="row-control">
+					<mat-form-field appearance="outline" hintLabel="Enter username">
+						<mat-label>Username</mat-label>
+						<input matInput placeholder="Username" formControlName="username" #username>
+						<mat-hint align="end">{{username.value.length || 0}}/20</mat-hint>
+						<mat-error *ngIf="signInForm.get('username')?.invalid">{{getErrorMessage('username')}}</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="row-control">
+					<mat-form-field appearance="outline" hintLabel="Enter password">
+						<mat-label>Password</mat-label>
+						<input type="password" matInput placeholder="Password" formControlName="password" #password>
+						<mat-hint align="end">{{password.value.length || 0}}/20</mat-hint>
+						<mat-error *ngIf="signInForm.get('password')?.invalid">{{getErrorMessage('password')}}</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="row-control">
+					<mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
+				</div>
+				<div>
+					<button class="sign" mat-raised-button color="primary" type="submit" [disabled]="signInForm.invalid" (click)="comeback()">
+						Sign in
+					</button>
+				</div>
+			</form>
+		</mat-card-content>
+		<hr />
+		<mat-card-actions align="end">
+			<button mat-raised-button color="primary" onclick="location.href = 'account_management';">Register</button>
+			<button mat-raised-button color="primary" onclick="location.href = 'account_management';">Continue as Guest</button>
+		</mat-card-actions>
+		<hr />
+	</mat-card>
+</div>

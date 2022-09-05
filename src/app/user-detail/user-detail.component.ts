@@ -14,8 +14,8 @@ export class UserDetailComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private _api: UserService) { }
 
   ngOnInit(): void {
-    let firstname = this._route.snapshot.paramMap.get('firstname');
-    this.user$ = this._api.getUserByNumber(firstname as string);
+    let account_number = this._route.snapshot.paramMap.get('account_number');
+    this.user$ = this._api.getUserByNumber(account_number as string);
   }
 
 }

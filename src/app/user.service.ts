@@ -17,8 +17,8 @@ export class UserService {
     return of(Users).pipe(delay(0));
   }
 
-  getUserByNumber(firstname: string) : Observable<User>{
-    let user = Users.find(x => x.firstname === firstname)
+  getUserByNumber(account_number: string) : Observable<User>{
+    let user = Users.find(x => x.account_number.toString() === account_number)
     return of(user as User).pipe(delay(0));
   }
 

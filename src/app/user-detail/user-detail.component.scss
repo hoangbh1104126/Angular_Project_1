@@ -11,3 +11,23 @@ table {
 th td {
   padding: 50px;
 }
+
+h3 {
+  text-align: center;
+  font-family: 'Fauna One', serif;
+} 
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.progress {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 10px;
+}

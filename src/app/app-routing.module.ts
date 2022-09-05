@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountDataTableComponent } from './account-data-table/account-data-table.component';
 import { AccountDataComponent } from './account-data/account-data.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { SignInRfComponent } from './sign-in-rf/sign-in-rf.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 import { UserDetailComponent } from './user-detail/user-detail.component';
 
@@ -13,7 +14,7 @@ const routes: Routes = [
     component: AccountManagementComponent,
     children: [
       {
-        path: ':firstname',
+        path: ':account_number',
         component: UserDetailComponent,
       },
       {
@@ -29,11 +30,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: "sign-in-rf",
-    loadChildren: () => import('./sign-in-rf/sign-in-rf.module').then(m => m.SignInRfModule),
+    path: "log-in",
+    loadChildren: () => import('./log-in/log-in.module').then(m => m.LogInModule),
 
   },
-
+  {
+    path: 'duma',
+    component: AccountDataTableComponent,
+  },
 ];
 
 @NgModule({

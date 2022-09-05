@@ -1,0 +1,42 @@
+
+.sign:active:hover {
+  color: aqua;
+  opacity: 0.8;
+}
+
+.example-card {
+  max-width: 400px;
+  background-color: rgb(248, 228, 231);
+  margin: 50px auto;
+}
+
+.example-header-image {
+  background-image: url('../img/unknown_avatar.png');
+  background-size: cover;
+}
+
+.card-head {
+  margin: 20px 0 0 0; 
+}
+
+h2 {
+  color: blue;
+  font-family: 'Fauna One', serif;
+  text-align: center;
+}
+
+.row-control {
+  width: 95%;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.sign {
+  margin: 10px auto;
+  width: 50%;
+  display: block;
+}
