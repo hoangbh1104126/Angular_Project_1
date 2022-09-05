@@ -13,9 +13,11 @@
   </div>
 </div>
 -->
-
-<div style="overflow-x:auto" *ngIf="users$ | async as users else nomore">
 <h3>User data</h3>
+
+
+<hr />
+<div style="overflow-x:auto" *ngIf="users$ | async as users else noData">
 <div class="dataTable">
 <table class="table table-hover">
   <thead>
@@ -26,35 +28,28 @@
       <th>Age</th>
       <th>Gender</th>
     </tr>
+    <tr>
+      <td><input type="text" class="search" [(ngModel)]="filterUser.account_number" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterUser.balance" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterUser.firstname" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterUser.age" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterUser.gender" /></td>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users; index as idx">
       <td>{{user.account_number}}</td>
       <td>{{user.balance}}</td>
-      <td><a [routerLink]="user.firstname">{{user.firstname}} {{user.lastname}}</a></td>
+      <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
       <td>{{user.age}}</td>
       <td>{{user.gender}}</td>
     </tr>
-    <!--
-    <tr >
-      <td>{{user.account_number}}</td>
-      <td>{{user.balance}}</td>
-      <td>{{user.firstname}} {{user.lastname}}</td>
-      <td>{{user.age}}</td>
-      <td>{{user.gender}}</td><td>{{user.account_number}}</td>
-      <td>{{user.balance}}</td>
-      <td>{{user.firstname}} {{user.lastname}}</td>
-      <td>{{user.age}}</td>
-      <td>{{user.gender}}</td>
-    </tr>
-    -->
   </tbody>
 </table>
 </div>
 </div>
 
-<div class="ifNone">
-<ng-template #nomore>
-  No more user to preview
+<ng-template class="ifNone" #noData>
+  <h3 class="loadingText">Loading ...</h3>
+  <mat-progress-bar mode="indeterminate" class="progress"></mat-progress-bar>
 </ng-template>
-</div>
