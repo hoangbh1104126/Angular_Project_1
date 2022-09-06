@@ -8,8 +8,33 @@ import {
   Validators
 } from "@angular/forms";
 import { Observable, of } from "rxjs";
+import { User } from "../user";
+import { AdminAccount, UserAccount } from "../user-account";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
-import { checkPassStrong } from "../validators/pass-without-username.validator";
+import usersData from 'src/accounts.json';
+
+let users : User[] = usersData;
+let userAccount : UserAccount[] = [];
+
+for(var user of users){
+  userAccount.push(
+    {
+      username : user.firstname + user.lastname,
+      password : user.lastname + user.firstname + "@123",
+      role : "User",
+    }
+  )
+}
+
+let adminAccount : AdminAccount[] = [
+  {
+    username : "admin123",
+    password : "nimda@123",
+    role : "Admin",
+  }
+];
+
+userAccount = userAccount.concat(adminAccount);
 
 @Component({
   selector: "app-log-in",
@@ -17,10 +42,14 @@ import { checkPassStrong } from "../validators/pass-without-username.validator";
   styleUrls: ["./log-in.component.scss"]
 })
 export class LogInComponent implements OnInit {
+  userAccount = userAccount;
   hide = true;
   signInForm !: FormGroup;
+  role : string;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.role = "Guest";
+  }
 
   ngOnInit(): void {
     this.signInForm = this.fb.group({
@@ -41,13 +70,13 @@ export class LogInComponent implements OnInit {
           NoWhitespaceValidator(),
           Validators.minLength(6),
           Validators.maxLength(20),
-          Validators.pattern(/^(?=.*[!@#$%^&*]+)[a-z0-9!@#$%^&*]/),
+          Validators.pattern(/^(?=.*[!@#$%^&*]+)[A-Za-z0-9!@#$%^&*]/),
         ])
       ],
       rememberMe: false,
     },
     {
-      //validators: checkPassStrong("username", "password"),
+      validators: this.checkPassword("username", "password"),
     });
 
     new FormControl("", Validators.required, this.isUserNameDuplicated);
@@ -63,8 +92,12 @@ export class LogInComponent implements OnInit {
   }
 
   comeback(){
-    alert("Success! \nReturn to data user page ...");
-    window.location.href="account_management";
+    if(this.checkCorrect(this.signInForm.get('username')?.value, this.signInForm.get('password')?.value)){
+      alert("Success! \nYou are login as" + this.signInForm.get('username')?.value +" = " + this.role + "\nReturn to data user page ...");
+      window.location.href="account_management";
+    } else {
+      alert("Cannot find account in database!\nTry again");
+    }
   }
 
 
@@ -81,7 +114,24 @@ export class LogInComponent implements OnInit {
     if(!this.signInForm.get(attribute)?.hasError('maxlength') && !this.signInForm.get(attribute)?.hasError('required')){
       return attribute as string + " must be at least 6 characters";
     }
-
     return "Unknown error!";
+  }
+
+  checkPassword = (username: string, password: string) => {
+    return function(formGroup: FormGroup) {
+      const { value: usernameValue } = formGroup.get(username) as AbstractControl;
+      const { value: passwordValue } = formGroup.get(password) as AbstractControl;
+      if(passwordValue == "" || usernameValue == "" || passwordValue == null || usernameValue == null) return null;
+      return passwordValue.includes(usernameValue) ? { valueNotMatch: { usernameValue, passwordValue } } : null;
+    };
+  };
+
+  checkCorrect(username: string, password: string){
+    return userAccount.some(element => {
+      if(element.username == username && element.password == password){
+        this.role = element.role;
+        return true;
+      } return false;
+    });
   }
 }

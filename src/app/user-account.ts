@@ -4,7 +4,7 @@ import { User } from './user';
 export interface UserAccount {
   username : string;
   password : string;
-  role : "A" | "U"; // Admin or User
+  role : string;
   last_active ?: Date;
 }
 
@@ -32,3 +32,5 @@ let adminAccount : AdminAccount[] = [
     role : "A",
   }
 ];
+
+userAccount = userAccount.concat(adminAccount);
