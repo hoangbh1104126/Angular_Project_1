@@ -1,7 +1,7 @@
 <h3>User data</h3>
 
 <hr />
-<div style="overflow-x:scroll" *ngIf="users$ | async as users else noData">
+
 <div class="dataTable">
 <table class="table table-hover">
   <thead>
@@ -13,15 +13,15 @@
       <th>Gender</th>
     </tr>
     <tr>
-      <td><input type="text" class="search" [(ngModel)]="filterUser.account_number" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterUser.balance" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterUser.firstname" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterUser.age" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterUser.gender" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterAccount_number" (change)="filterUser(1)"/></td>
+      <td><input type="text" class="search" [(ngModel)]="filterBalance" (change)="filterUser(2)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterName" (change)="filterUser(3)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterAge" (change)="filterUser(4)" /></td>
+      <td><input type="text" class="search" [(ngModel)]="filterGender" (change)="filterUser(5)" /></td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users; index as idx">
+    <tr *ngFor="let user of UsersData; index as idx">
       <td>{{user.account_number}}</td>
       <td>{{user.balance}}</td>
       <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
@@ -31,9 +31,5 @@
   </tbody>
 </table>
 </div>
-</div>
 
-<ng-template class="ifNone" #noData>
-  <h3 class="loadingText">Loading ...</h3>
-  <mat-progress-bar mode="indeterminate" class="progress"></mat-progress-bar>
-</ng-template>
+

@@ -15,7 +15,8 @@ export interface User{
 export interface filterUser{
   account_number ?: number;
   balance ?: number;
-  name ?: string;
+  firstname ?: string;
+  lastname ?: string;
   age ?: number
   gender ?: string;
   address ?: string;

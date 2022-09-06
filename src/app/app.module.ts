@@ -21,7 +21,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { AccountDataTableComponent } from './account-data-table/account-data-table.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -36,7 +35,6 @@ import { MatDividerModule } from '@angular/material/divider';
     AccountManagementComponent,
     UserDetailComponent,
     LogInComponent,
-    AccountDataTableComponent,
   ],
   imports: [
     FormsModule,

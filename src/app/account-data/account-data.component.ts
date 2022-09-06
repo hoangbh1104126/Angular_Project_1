@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import usersData from 'src/accounts.json';
-import { User } from '../user';
+import { filterUser, User } from '../user';
 import { UserService } from '../user.service';
-
-let Users : User[] = usersData;
 
 @Component({
   selector: 'app-account-data',
@@ -13,24 +11,59 @@ let Users : User[] = usersData;
   styleUrls: ['./account-data.component.scss'],
 })
 export class AccountDataComponent implements OnInit {
-  users$ !: Observable<User[]>;
+
   constructor(private _api: UserService) { }
 
-  ngOnInit(){
-    this.users$ = this._api.getUsers();
-  }
+  Users : User[] = usersData;
+  UsersData = this.Users;
 
-  filterUser : User = {
-    account_number: NaN,
-    balance : NaN,
-    firstname : "",
-    lastname : "",
-    age : NaN,
-    gender : "",
-    address : "",
-    employer : "",
-    email : "",
-    city : "",
-    state : "",
+  ngOnInit(){ }
+
+  filterAccount_number !: number;
+  filterBalance !: number;
+  filterName !: string;
+  filterAge !: number;
+  filterGender !: string;
+
+  filterUser(num : number){
+    switch(num){
+      case 1: {
+        if(typeof(this.filterAccount_number) != undefined || this.filterAccount_number.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => {
+              return obj.account_number.toString().includes(this.filterAccount_number.toString());
+            }
+          );
+        } break;
+      }
+      case 2: {
+        if(typeof(this.filterBalance) != undefined||this.filterBalance.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.balance.toString().includes(this.filterBalance.toString());}
+          );
+        } break;
+      }
+      case 3: {
+        if(typeof(this.filterName) != undefined || this.filterName.length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return (obj.firstname + " " + obj.lastname).includes(this.filterName);}
+          );
+        } break;
+      }
+      case 4: {
+        if(typeof(this.filterAge) != undefined || this.filterAge.toString().length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.age.toString().includes(this.filterAge.toString());}
+          );
+        } break;
+      }
+      case 5: {
+        if(typeof(this.filterGender) != undefined || this.filterGender.length != 0){
+          this.UsersData = this.UsersData.filter(
+            (obj) => { return obj.gender.toString().includes(this.filterGender);}
+          );
+        } break;
+      }
+    }
   }
 }
