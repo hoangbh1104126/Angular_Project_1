@@ -13,6 +13,13 @@ import { AdminAccount, UserAccount } from "../user-account";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
 import usersData from 'src/accounts.json';
 
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+
+
 let users : User[] = usersData;
 let userAccount : UserAccount[] = [];
 
@@ -42,12 +49,13 @@ userAccount = userAccount.concat(adminAccount);
   styleUrls: ["./log-in.component.scss"]
 })
 export class LogInComponent implements OnInit {
+  check: boolean = true;
   userAccount = userAccount;
   hide = true;
   signInForm !: FormGroup;
   role : string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) {
     this.role = "Guest";
   }
 
@@ -92,14 +100,25 @@ export class LogInComponent implements OnInit {
   }
 
   comeback(){
+    let check = true;
     if(this.checkCorrect(this.signInForm.get('username')?.value, this.signInForm.get('password')?.value)){
-      alert("Success! \nYou are login as" + this.signInForm.get('username')?.value +" = " + this.role + "\nReturn to data user page ...");
-      window.location.href="account_management";
+      this._snackBar.open("Success! \nYou are login as " + this.signInForm.get('username')?.value +" = " + this.role, "Return", {
+        horizontalPosition: "center",
+        verticalPosition: "top",
+        duration: 3000,
+      });
+      setTimeout(() => {
+        window.location.href="account_management";
+      }, 3500);
+
     } else {
-      alert("Cannot find account in database!\nTry again");
+      this._snackBar.open("Cannot find account in database!", "Try again", {
+        horizontalPosition: "center",
+        verticalPosition: "top",
+        duration: 3000,
+      });
     }
   }
-
 
   getErrorMessage(attribute : any) : string{
     if(this.signInForm.get(attribute)?.hasError('required')){

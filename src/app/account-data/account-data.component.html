@@ -1,16 +1,46 @@
-<h3>User data</h3>
+<h2>User data</h2>
 
 <hr />
 
-<div class="dataTable">
+<div class="feature">
+  <div>
+    <button mat-button [matMenuTriggerFor]="belowMenu1">
+      <mat-icon>group_add</mat-icon>
+      Add user
+    </button>
+    <mat-menu #belowMenu1="matMenu" yPosition="below">
+      <button mat-menu-item>Custom user</button>
+      <button mat-menu-item>Random user</button>
+    </mat-menu>
+  </div>
+  <div>
+    <button mat-button onclick="location.href = '/log-in';">
+      <mat-icon>delete</mat-icon>
+      Delete selected user
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="belowMenu2">
+      <mat-icon>view_list</mat-icon>
+      Display
+    </button>
+    <mat-menu #belowMenu2="matMenu" yPosition="below">
+      <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+      <mat-checkbox class="example-margin">Disabled</mat-checkbox>
+    </mat-menu>
+  </div>
+</div>
+<hr />
+
+<div matSort (matSortChange)="sortData($event)">
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Balance</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Gender</th>
+      <th mat-sort-header="account_number">Number</th>
+      <th mat-sort-header="balance">Balance</th>
+      <th mat-sort-header="name">Name</th>
+      <th mat-sort-header="age">Age</th>
+      <th mat-sort-header="gender">Gender</th>
     </tr>
     <tr>
       <td><input type="text" class="search" [(ngModel)]="filterAccount_number" (change)="filterUser(1)"/></td>
@@ -21,7 +51,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of UsersData; index as idx">
+    <tr *ngFor="let user of sortedData; index as idx" >
       <td>{{user.account_number}}</td>
       <td>{{user.balance}}</td>
       <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
@@ -29,7 +59,18 @@
       <td>{{user.gender}}</td>
     </tr>
   </tbody>
+  <tfoot>
+    <td colspan="100%" *ngIf="val==0" class="noUser">
+      There are no user left.
+    </td>
+  </tfoot>
 </table>
 </div>
 
 
+<!--
+<div class="ifNone">
+  <h3>Loading ...</h3>
+  <mat-progress-bar mode="indeterminate" class="progress"></mat-progress-bar>
+</div>
+-->

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountDataTableComponent } from './account-data-table/account-data-table.component';
 import { AccountDataComponent } from './account-data/account-data.component';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -33,10 +32,6 @@ const routes: Routes = [
     path: "log-in",
     loadChildren: () => import('./log-in/log-in.module').then(m => m.LogInModule),
 
-  },
-  {
-    path: 'test',
-    component: AccountDataTableComponent,
   },
 ];
 

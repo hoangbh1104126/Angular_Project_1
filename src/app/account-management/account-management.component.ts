@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import usersData from 'src/accounts.json';
 import { User } from '../user';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 
 let Users : User[] = usersData;
@@ -12,8 +17,6 @@ let Users : User[] = usersData;
 })
 export class AccountManagementComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(){
 
   }
@@ -21,4 +24,15 @@ export class AccountManagementComponent implements OnInit {
   events: string[] = [];
   opened!: boolean;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  constructor(private _snackBar: MatSnackBar) {}
+
+  openSnackBar() {
+    this._snackBar.open('Hello !!', 'Bye', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
 }

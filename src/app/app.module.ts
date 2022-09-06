@@ -26,6 +26,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterModule,
     BrowserAnimationsModule,
     BrowserAnimationsModule,
+    MatSortModule,
+    MatSnackBarModule,
     MatDividerModule,
+    MatMenuModule,
     MatListModule,
     MatToolbarModule,
     MatSidenavModule,

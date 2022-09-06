@@ -4,19 +4,19 @@
     <hr />
     <mat-list>
       <mat-list-item>
-        <button class="navButton" mat-button onclick="location.href = '';">
+        <button class="example-menu-item" mat-button onclick="location.href = '';">
             <mat-icon>home</mat-icon>
             Home
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="navButton" mat-button onclick="location.href = '';">
-            <mat-icon></mat-icon>
-            Home
+        <button class="example-menu-item" mat-stroked-button (click)="openSnackBar()" aria-label="Show an example snack-bar">
+            <mat-icon>tag_faces</mat-icon>
+            Say hello!
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="navButton" mat-button onclick="location.href = '';">
+        <button class="example-menu-item" mat-button onclick="location.href = '';">
             <mat-icon>home</mat-icon>
             Home
         </button>

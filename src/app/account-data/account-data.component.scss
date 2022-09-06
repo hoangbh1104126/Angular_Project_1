@@ -8,9 +8,18 @@ table {
   position: relative;
 }
 
-h3 {
+.feature {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+h2 {
   text-align: center;
   font-family: 'Fauna One', serif;
+  font-size: x-large;
+  color: royalblue;
+  margin: 30px;
 }
 
 div.dataTable {
@@ -42,4 +51,10 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   height: 10px;
+}
+
+.noUser {
+  text-align: center;
+  padding: 15px;
+  font-size: large;
 }
