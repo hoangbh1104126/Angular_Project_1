@@ -1,0 +1,92 @@
+<h1 mat-dialog-title>Add new account</h1>
+<div mat-dialog-content>
+  <form class="sign-in-form" [formGroup]="signInForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <h2>Information</h2>
+    <div class="row-control">
+        <mat-form-field appearance="outline">
+            <mat-label>Account number</mat-label>
+            <mat-hint align="end"><b>Cannot change</b></mat-hint>
+            <input matInput disabled [value]="numberUser">
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter balance">
+            <mat-label>Balance</mat-label>
+            <input type="number" matInput placeholder="Balance" formControlName="balance" #balance>
+            <mat-hint align="end">Required <b>*</b></mat-hint>
+            <mat-error *ngIf="signInForm.get('balance')?.invalid">{{getErrorMessage('balance')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter firstname">
+            <mat-label>Firstname</mat-label>
+            <input matInput placeholder="Firstname" formControlName="firstname" #firstname>
+            <mat-hint align="end">Required <b>*</b></mat-hint>
+            <mat-error *ngIf="signInForm.get('firstname')?.invalid">{{getErrorMessage('firstname')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter lastname">
+            <mat-label>Lastname</mat-label>
+            <input matInput placeholder="Lastname" formControlName="lastname" #lastname>
+            <mat-hint align="end">Required <b>*</b></mat-hint>
+            <mat-error *ngIf="signInForm.get('lastname')?.invalid">{{getErrorMessage('lastname')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter age">
+            <mat-label>Age</mat-label>
+            <input type="number" matInput placeholder="Age" formControlName="age" #age>
+            <mat-hint align="end">Required <b>*</b></mat-hint>
+            <mat-error *ngIf="signInForm.get('age')?.invalid">{{getErrorMessage('age')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter gender">
+            <mat-label>Gender</mat-label>
+            <input matInput placeholder="Gender" formControlName="gender" #gender>
+            <mat-error *ngIf="signInForm.get('gender')?.invalid">{{getErrorMessage('gender')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter address">
+            <mat-label>Address</mat-label>
+            <input type="number" matInput placeholder="Address" formControlName="address" #address>
+            <mat-error *ngIf="signInForm.get('address')?.invalid">{{getErrorMessage('address')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter employer">
+            <mat-label>Employer</mat-label>
+            <input type="number" matInput placeholder="Employer" formControlName="employer" #employer>
+            <mat-error *ngIf="signInForm.get('employer')?.invalid">{{getErrorMessage('employer')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter email">
+            <mat-label>Email</mat-label>
+            <input type="number" matInput placeholder="Email" formControlName="email" #email>
+            <mat-error *ngIf="signInForm.get('email')?.invalid">{{getErrorMessage('email')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter city">
+            <mat-label>City</mat-label>
+            <input type="number" matInput placeholder="City" formControlName="city" #city>
+            <mat-error *ngIf="signInForm.get('city')?.invalid">{{getErrorMessage('city')}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-control">
+        <mat-form-field appearance="outline" hintLabel="Enter state">
+            <mat-label>State</mat-label>
+            <input type="number" matInput placeholder="State" formControlName="state" #state>
+            <mat-error *ngIf="signInForm.get('state')?.invalid">{{getErrorMessage('state')}}</mat-error>
+        </mat-form-field>
+    </div>
+</form>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="signInForm.invalid" (click)="comeback()">Create</button>
+</div>

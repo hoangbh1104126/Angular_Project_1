@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
@@ -9,84 +10,105 @@ import {
 } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import { User } from "../user";
-import { AdminAccount, UserAccount } from "../user-account";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
 import usersData from 'src/accounts.json';
 
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-
-
 let users : User[] = usersData;
-let userAccount : UserAccount[] = [];
-
-for(var user of users){
-  userAccount.push(
-    {
-      username : user.firstname + user.lastname,
-      password : user.lastname + user.firstname + "@123",
-      role : "User",
-    }
-  )
-}
-
-let adminAccount : AdminAccount[] = [
-  {
-    username : "admin123",
-    password : "nimda@123",
-    role : "Admin",
-  }
-];
-
-userAccount = userAccount.concat(adminAccount);
+let numberUser = Math.max(...users.map(o => o.account_number));
 
 @Component({
-  selector: "app-log-in",
-  templateUrl: "./log-in.component.html",
-  styleUrls: ["./log-in.component.scss"]
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class AddUserComponent implements OnInit {
+
   check: boolean = true;
-  userAccount = userAccount;
   hide = true;
   signInForm !: FormGroup;
   role : string;
   onLog : boolean = true;
+  numberUser = numberUser + 2;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddUserComponent>) {
     this.role = "Guest";
   }
 
   ngOnInit(): void {
     this.signInForm = this.fb.group({
-      username: [
+      balance: [
         "",
         Validators.compose([
           Validators.required,
-          NoWhitespaceValidator(),
-          Validators.minLength(6),
+          Validators.pattern(/^[0-9]/),
+        ])
+      ],
+      firstname: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.pattern(/^[A-Za-z0-9]/),
+        ])
+      ],
+      lastname: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.pattern(/^[A-Za-z0-9]/),
+        ])
+      ],
+      age: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/^[0-9]/),
+        ])
+      ],
+      gender: [
+        "",
+        Validators.compose([
+          Validators.pattern(/^[FM]/),
+        ])
+      ],
+      address: [
+        "",
+        Validators.compose([
+          Validators.maxLength(30),
+          Validators.pattern(/^[A-Za-z0-9_\. ]/),
+        ])
+      ],
+      employer: [
+        "",
+        Validators.compose([
           Validators.maxLength(20),
           Validators.pattern(/^[A-Za-z0-9_\.]/),
         ])
       ],
-      password: [
+      email: [
         "",
         Validators.compose([
-          Validators.required,
-          NoWhitespaceValidator(),
-          Validators.minLength(6),
-          Validators.maxLength(20),
-          Validators.pattern(/^(?=.*[!@#$%^&*]+)[A-Za-z0-9!@#$%^&*]/),
+          Validators.maxLength(30),
+          Validators.email,
         ])
       ],
-      rememberMe: false,
+      city: [
+        "",
+        Validators.compose([
+          Validators.maxLength(20),
+          Validators.pattern(/^[A-Za-z0-9_\. ]/),
+        ])
+      ],
+      state: [
+        "",
+        Validators.compose([
+          Validators.maxLength(20),
+          Validators.pattern(/^[A-Za-z0-9_\. ]/),
+        ])
+      ],
     },
-    {
-      validators: this.checkPassword("username", "password"),
-    });
+    );
 
     new FormControl("", Validators.required, this.isUserNameDuplicated);
   }
@@ -101,25 +123,7 @@ export class LogInComponent implements OnInit {
   }
 
   comeback(){
-    let check = true;
-    if(this.checkCorrect(this.signInForm.get('username')?.value, this.signInForm.get('password')?.value)){
-      this._snackBar.open("Success! \nYou are login as " + this.signInForm.get('username')?.value +" = " + this.role, "Return", {
-        horizontalPosition: "center",
-        verticalPosition: "top",
-        duration: 2500,
-      });
-      this.onLog = false;
-      setTimeout(() => {
-        window.location.href="account_management";
-      }, 3000);
-
-    } else {
-      this._snackBar.open("Cannot find account in database!", "Try again", {
-        horizontalPosition: "center",
-        verticalPosition: "top",
-        duration: 3000,
-      });
-    }
+    
   }
 
   getErrorMessage(attribute : any) : string{
@@ -146,13 +150,4 @@ export class LogInComponent implements OnInit {
       return passwordValue.includes(usernameValue) ? { valueNotMatch: { usernameValue, passwordValue } } : null;
     };
   };
-
-  checkCorrect(username: string, password: string){
-    return userAccount.some(element => {
-      if(element.username == username && element.password == password){
-        this.role = element.role;
-        return true;
-      } return false;
-    });
-  }
 }

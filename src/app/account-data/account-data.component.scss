@@ -58,3 +58,42 @@ a:hover {
   padding: 15px;
   font-size: large;
 }
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.user-feature {
+  padding-top: 65px;
+}
+
+table {
+  width: 80%;
+}
+
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-bottom: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  font-weight: bold;
+  background-color: whitesmoke;
+}
+
+
+.mat-form-field {
+  font-size: 20px;
+  width: 80%;
+  margin: 30px auto;
+  display: block;
+}
+
+.selectDisplay {
+  padding-top: 5px;
+  font-size: 16px;
+  width: 200px;
+}

@@ -1,5 +1,13 @@
 <div class="space"></div>
-<div class="container">
+
+<div class="ifNone" *ngIf="!onLog">
+	<div class="space"></div>
+	<mat-spinner class="progress"></mat-spinner>
+	<h1>Loading ...</h1>
+</div>
+
+
+<div class="container" *ngIf="onLog">
 	<mat-card class="example-card">
 		<hr />
 		<mat-card-header class="card-head">

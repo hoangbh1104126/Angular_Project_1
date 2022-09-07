@@ -7,7 +7,6 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
-
 let Users : User[] = usersData;
 
 @Component({

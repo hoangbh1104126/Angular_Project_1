@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
+
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 import usersData from 'src/accounts.json';
 import { filterUser, User } from '../user';
 import { UserService } from '../user.service';
 import {Sort} from '@angular/material/sort';
+import { FormControl } from '@angular/forms';
+import { AddUserComponent } from '../add-user/add-user.component';
+
 
 @Component({
   selector: 'app-account-data',
@@ -16,8 +25,17 @@ export class AccountDataComponent implements OnInit {
   sortedData: User[];
   show : boolean = false;
 
-  constructor(private _api: UserService) {
+  constructor(private _api: UserService, public dialog: MatDialog) {
     this.sortedData = this.UsersData.slice();
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddUserComponent, {
+      width: '80%',
+      height: '70%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   Users : User[] = usersData;
@@ -100,6 +118,54 @@ export class AccountDataComponent implements OnInit {
       }
     });
   }
+
+  display = new FormControl('');
+
+  displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
+  onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
+
+
+
+  displayedColumns: string[] = this.onDisplayList;
+  dataSource = new MatTableDataSource<User>(this.UsersData);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  selection = new SelectionModel<User>(true, []);
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: User): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.account_number + 1}`;
+  }
+
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

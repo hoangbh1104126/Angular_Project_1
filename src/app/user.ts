@@ -5,11 +5,11 @@ export interface User{
   lastname : string;
   age : number
   gender : string;
-  address : string;
-  employer : string;
-  email : string;
-  city : string;
-  state : string;
+  address ?: string;
+  employer ?: string;
+  email ?: string;
+  city ?: string;
+  state ?: string;
 }
 
 export interface filterUser{
