@@ -69,6 +69,7 @@ export class AddUserComponent implements OnInit {
       gender: [
         "",
         Validators.compose([
+          Validators.required,
           Validators.pattern(/^[FM]/),
         ])
       ],
@@ -123,7 +124,7 @@ export class AddUserComponent implements OnInit {
   }
 
   comeback(){
-    
+
   }
 
   getErrorMessage(attribute : any) : string{

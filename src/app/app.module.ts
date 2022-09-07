@@ -35,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddUserComponent } from './add-user/add-user.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CorrectStringPipe } from './correct-string.pipe';
 
 @NgModule({
   declarations: [
@@ -45,13 +46,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UserDetailComponent,
     LogInComponent,
     AddUserComponent,
+    CorrectStringPipe,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    BrowserAnimationsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
