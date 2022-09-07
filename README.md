@@ -9,8 +9,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - etc
 
 ## Some attribute
-- Font: ... ( ... )
-- Background source: ... ( ... )
+- Font: [Fauna One](https://fonts.google.com/specimen/Fauna+One?query=Fauna+One) & [Cinzel](https://fonts.google.com/specimen/Cinzel?query=Cinzel)
+- Background source: [Some picture in google](https://google.com)
 - Icon: [Management icon](https://pngtree.com/freepng/vector-management-icon_4171359.html)
 - Data: [accounts.json](src/accounts.json)
 

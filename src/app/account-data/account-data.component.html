@@ -37,14 +37,15 @@
 <hr />
 
 
-<div class="mat-elevation-z8">
+<div>
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="dataSource">
+</div>
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
-    <!-- Checkbox Column -->
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? toggleAllRows() : null"
@@ -62,32 +63,37 @@
     </td>
   </ng-container>
 
-    <ng-container matColumnDef="account_number">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
+    <ng-container matColumnDef="account_number" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by account_number"> No. </th>
+      <th><input type="text" class="search" [(ngModel)]="filterAccount_number" (change)="filterUser(1)"/></th>
       <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
     </ng-container>
 
     <ng-container matColumnDef="balance">
-      <th mat-header-cell *matHeaderCellDef> Balance </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by balance"> Balance </th>
+      <th><input type="text" class="search" [(ngModel)]="filterBalance" (change)="filterUser(2)" /></th>
       <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="firstname">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+    <ng-container matColumnDef="firstname" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+      <th><input type="text" class="search" [(ngModel)]="filterName" (change)="filterUser(3)" /></th>
+      <td mat-cell *matCellDef="let element"><a [routerLink]="element.account_number.toString()">{{element.firstname}} {{element.lastname}}</a></td>
     </ng-container>
 
     <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age"> Age </th>
+      <th><input type="text" class="search" [(ngModel)]="filterAge" (change)="filterUser(4)" /></th>
       <td mat-cell *matCellDef="let element"> {{element.age}} </td>
     </ng-container>
 
     <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender"> Gender </th>
+      <th><input type="text" class="search" [(ngModel)]="filterGender" (change)="filterUser(5)" /></th>
       <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
@@ -95,11 +101,11 @@
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">
   </mat-paginator>
-</div>
+</section>
 
 <hr />
 
-
+<!--
 <div matSort (matSortChange)="sortData($event)">
 <table class="table table-hover">
   <thead>
@@ -138,7 +144,7 @@
                 aria-label="Select page of periodic elements">
 </mat-paginator>
 </div>
-
+-->
 
 <!--
 <div class="ifNone">

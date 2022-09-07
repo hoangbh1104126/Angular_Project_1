@@ -68,9 +68,6 @@ a:hover {
   padding-top: 65px;
 }
 
-table {
-  width: 80%;
-}
 
 
 .mat-row .mat-cell {
@@ -96,4 +93,13 @@ table {
   padding-top: 5px;
   font-size: 16px;
   width: 200px;
+}
+
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
 }

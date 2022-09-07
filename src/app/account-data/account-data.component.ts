@@ -5,12 +5,14 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {MatSort, Sort} from '@angular/material/sort';
+
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 import usersData from 'src/accounts.json';
 import { filterUser, User } from '../user';
 import { UserService } from '../user.service';
-import {Sort} from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { AddUserComponent } from '../add-user/add-user.component';
 
@@ -25,7 +27,7 @@ export class AccountDataComponent implements OnInit {
   sortedData: User[];
   show : boolean = false;
 
-  constructor(private _api: UserService, public dialog: MatDialog) {
+  constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer) {
     this.sortedData = this.UsersData.slice();
   }
 
@@ -133,6 +135,7 @@ export class AccountDataComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -166,6 +169,18 @@ export class AccountDataComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.account_number + 1}`;
   }
 
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
