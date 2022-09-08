@@ -10,32 +10,12 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
-import { MatTabsModule } from '@angular/material/tabs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSortModule } from '@angular/material/sort';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddUserComponent } from './add-user/add-user.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { CorrectStringPipe } from './correct-string.pipe';
+import { AppMaterialModule } from './app.material.module';
 
 @NgModule({
   declarations: [
@@ -54,30 +34,9 @@ import { CorrectStringPipe } from './correct-string.pipe';
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatSortModule,
-    MatSnackBarModule,
-    MatDividerModule,
-    MatMenuModule,
-    MatListModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatTableModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatTabsModule,
     ReactiveFormsModule,
     NgbModule,
+    AppMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
