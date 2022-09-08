@@ -46,6 +46,10 @@ export class AccountDataComponent implements OnInit {
 
   ngOnInit(){ }
 
+  selection = new SelectionModel<User>(true, []);
+
+  /*
+
   filterAccount_number !: number;
   filterBalance !: number;
   filterName !: string;
@@ -95,6 +99,8 @@ export class AccountDataComponent implements OnInit {
     this.val = this.sortedData.length;
   }
 
+  */
+
   sortData(sort: Sort) {
     const data = this.sortedData.slice();
     if (!sort.active || sort.direction === '') {
@@ -126,10 +132,11 @@ export class AccountDataComponent implements OnInit {
   displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
   onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
 
+  test : string[] = ["select"];
 
 
-  displayedColumns: string[] = this.onDisplayList;
-  dataSource = new MatTableDataSource<User>(this.UsersData);
+  displayedColumns: string[] = this.test.concat(this.onDisplayList);
+  dataSource = new MatTableDataSource<User>(this.Users);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -143,15 +150,12 @@ export class AccountDataComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  selection = new SelectionModel<User>(true, []);
-
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -161,19 +165,16 @@ export class AccountDataComponent implements OnInit {
     this.selection.select(...this.dataSource.data);
   }
 
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: User): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.account_number + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.account_number}`;
   }
 
 
   @ViewChild(MatSort) sort!: MatSort;
 
-
-  /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -181,6 +182,45 @@ export class AccountDataComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+
+  newUser!: User;
+
+  minBalance = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.balance }));
+  maxBalance = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.balance }));;
+  minAge = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
+  maxAge = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
+
+  addRandomUser(){
+    this.newUser =
+    {
+      "account_number": Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1,
+      "balance": Math.floor(Math.random() * (this.maxBalance - this.minBalance) + this.minBalance),
+      "firstname": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "lastname": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "age": Math.floor(Math.random() * (this.maxAge - this.minAge) + this.minAge),
+      "gender": "M",
+      "address": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "employer": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "email": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "city": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "state": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+    }
+
+    this.dataSource.data.push(this.newUser);
+  }
+
+  randomString(length : number) {
+    var result           = '';
+    var characters       = 'abcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() *
+      charactersLength));
+   }
+   return result.charAt(0).toUpperCase() + result.slice(1);
+}
+
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

@@ -25,7 +25,7 @@ export class AddUserComponent implements OnInit {
 
   check: boolean = true;
   hide = true;
-  signInForm !: FormGroup;
+  addUserForm !: FormGroup;
   role : string;
   onLog : boolean = true;
   numberUser = numberUser + 2;
@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.signInForm = this.fb.group({
+    this.addUserForm = this.fb.group({
       balance: [
         "",
         Validators.compose([
@@ -116,7 +116,7 @@ export class AddUserComponent implements OnInit {
 
 
   onSubmit(): void {
-    console.log(this.signInForm);
+    console.log(this.addUserForm);
   }
 
   isUserNameDuplicated(control: AbstractControl): Observable<ValidationErrors> {
@@ -128,16 +128,16 @@ export class AddUserComponent implements OnInit {
   }
 
   getErrorMessage(attribute : any) : string{
-    if(this.signInForm.get(attribute)?.hasError('required')){
+    if(this.addUserForm.get(attribute)?.hasError('required')){
       return "You must enter a value!";
     }
-    if(this.signInForm.get(attribute)?.hasError('pattern') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(this.addUserForm.get(attribute)?.hasError('pattern') && !this.addUserForm.get(attribute)?.hasError('required')){
       return "Incorrect input type!";
     }
-    if(!this.signInForm.get(attribute)?.hasError('minlength') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(!this.addUserForm.get(attribute)?.hasError('minlength') && !this.addUserForm.get(attribute)?.hasError('required')){
       return attribute as string + " can be max 20 characters";
     }
-    if(!this.signInForm.get(attribute)?.hasError('maxlength') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(!this.addUserForm.get(attribute)?.hasError('maxlength') && !this.addUserForm.get(attribute)?.hasError('required')){
       return attribute as string + " must be at least 6 characters";
     }
     return "Unknown error!";

@@ -24,6 +24,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -51,7 +53,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatDividerModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -78,7 +82,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatDividerModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule,
+    MatExpansionModule
   ],
 })
 export class AppMaterialModule { }
