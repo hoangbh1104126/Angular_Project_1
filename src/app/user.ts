@@ -10,6 +10,7 @@ export interface User{
   email ?: string;
   city ?: string;
   state ?: string;
+  new ?: boolean;
 }
 
 export interface filterUser{

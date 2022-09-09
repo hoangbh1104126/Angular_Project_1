@@ -14,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './add-user/add-user.component';
-import { CorrectStringPipe } from './correct-string.pipe';
 import { AppMaterialModule } from './app.material.module';
+import { GenderPipe } from './gender.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { AppMaterialModule } from './app.material.module';
     UserDetailComponent,
     LogInComponent,
     AddUserComponent,
-    CorrectStringPipe,
+    GenderPipe,
   ],
   imports: [
     FormsModule,

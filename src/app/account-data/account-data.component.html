@@ -24,7 +24,7 @@
     </mat-menu>
   </div>
   <div>
-    <mat-form-field appearance="standard" class="selectDisplay">
+    <mat-form-field class="selectDisplay">
       <mat-label>Display</mat-label>
       <mat-select [formControl]="display" multiple [(ngModel)]="onDisplayList">
         <mat-select-trigger>
@@ -74,7 +74,7 @@
 
     <ng-container matColumnDef="balance">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by balance" matTooltip="Sort by Balance" matTooltipPosition="above"> Balance </th>
-      <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
     </ng-container>
 
     <ng-container matColumnDef="firstname" sticky>
@@ -89,7 +89,13 @@
 
     <ng-container matColumnDef="gender">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender" matTooltip="Sort by Gender" matTooltipPosition="above"> Gender </th>
-      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+          <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
+            {{element.gender | gender }}
+          </mat-chip>
+        </mat-chip-list>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -103,51 +109,3 @@
 </section>
 
 <hr />
-
-<!--
-<div matSort (matSortChange)="sortData($event)">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th mat-sort-header="account_number">Number</th>
-      <th mat-sort-header="balance">Balance</th>
-      <th mat-sort-header="name">Name</th>
-      <th mat-sort-header="age">Age</th>
-      <th mat-sort-header="gender">Gender</th>
-    </tr>
-    <tr>
-      <td><input type="text" class="search" [(ngModel)]="filterAccount_number" (change)="filterUser(1)"/></td>
-      <td><input type="text" class="search" [(ngModel)]="filterBalance" (change)="filterUser(2)" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterName" (change)="filterUser(3)" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterAge" (change)="filterUser(4)" /></td>
-      <td><input type="text" class="search" [(ngModel)]="filterGender" (change)="filterUser(5)" /></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of sortedData; index as idx" >
-      <td>{{user.account_number}}</td>
-      <td>{{user.balance}}</td>
-      <td><a [routerLink]="user.account_number.toString()">{{user.firstname}} {{user.lastname}}</a></td>
-      <td>{{user.age}}</td>
-      <td>{{user.gender}}</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <td colspan="100%" *ngIf="val==0" class="noUser">
-      There are no user left.
-    </td>
-  </tfoot>
-</table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                showFirstLastButtons
-                aria-label="Select page of periodic elements">
-</mat-paginator>
-</div>
--->
-
-<!--
-<div class="ifNone">
-  <h3>Loading ...</h3>
-  <mat-progress-bar mode="indeterminate" class="progress"></mat-progress-bar>
-</div>
--->

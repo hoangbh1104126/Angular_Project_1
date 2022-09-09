@@ -16,6 +16,12 @@ import { UserService } from '../user.service';
 import { FormControl } from '@angular/forms';
 import { AddUserComponent } from '../add-user/add-user.component';
 
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-account-data',
@@ -27,7 +33,7 @@ export class AccountDataComponent implements OnInit {
   sortedData: User[];
   show : boolean = false;
 
-  constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private _snackBar: MatSnackBar) {
     this.sortedData = this.UsersData.slice();
   }
 
@@ -47,59 +53,6 @@ export class AccountDataComponent implements OnInit {
   ngOnInit(){ }
 
   selection = new SelectionModel<User>(true, []);
-
-  /*
-
-  filterAccount_number !: number;
-  filterBalance !: number;
-  filterName !: string;
-  filterAge !: number;
-  filterGender !: string;
-
-  filterUser(num : number){
-    switch(num){
-      case 1: {
-        if(typeof(this.filterAccount_number) != undefined || this.filterAccount_number.toString().length != 0){
-          this.sortedData = this.sortedData.filter(
-            (obj) => {
-              return obj.account_number.toString().includes(this.filterAccount_number.toString());
-            }
-          );
-        } break;
-      }
-      case 2: {
-        if(typeof(this.filterBalance) != undefined||this.filterBalance.toString().length != 0){
-          this.sortedData = this.sortedData.filter(
-            (obj) => { return obj.balance.toString().includes(this.filterBalance.toString());}
-          );
-        } break;
-      }
-      case 3: {
-        if(typeof(this.filterName) != undefined || this.filterName.length != 0){
-          this.sortedData = this.sortedData.filter(
-            (obj) => { return (obj.firstname + " " + obj.lastname).includes(this.filterName);}
-          );
-        } break;
-      }
-      case 4: {
-        if(typeof(this.filterAge) != undefined || this.filterAge.toString().length != 0){
-          this.sortedData = this.sortedData.filter(
-            (obj) => { return obj.age.toString().includes(this.filterAge.toString());}
-          );
-        } break;
-      }
-      case 5: {
-        if(typeof(this.filterGender) != undefined || this.filterGender.length != 0){
-          this.sortedData = this.sortedData.filter(
-            (obj) => { return obj.gender.toString().includes(this.filterGender);}
-          );
-        } break;
-      }
-    }
-    this.val = this.sortedData.length;
-  }
-
-  */
 
   sortData(sort: Sort) {
     const data = this.sortedData.slice();
@@ -196,18 +149,24 @@ export class AccountDataComponent implements OnInit {
     {
       "account_number": Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1,
       "balance": Math.floor(Math.random() * (this.maxBalance - this.minBalance) + this.minBalance),
-      "firstname": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
-      "lastname": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "firstname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
+      "lastname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "age": Math.floor(Math.random() * (this.maxAge - this.minAge) + this.minAge),
-      "gender": "M",
+      "gender": "ML".charAt(Math.floor(Math.random()*2)),
       "address": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
-      "employer": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
-      "email": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
-      "city": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
-      "state": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
+      "employer": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
+      "email": this.randomString(Math.floor(Math.random() * (12 - 6) + 6)) + "@" + this.randomString(Math.floor(Math.random() + 5)) + "." + this.randomString(Math.floor(3)) ,
+      "city": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
+      "state": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
+      "new": true,
     }
 
     this.dataSource.data.push(this.newUser);
+    this._snackBar.open("Add user #" + this.newUser.account_number + ": " + this.newUser.firstname + " " + this.newUser.lastname + "!", "Continue", {
+      horizontalPosition: "center",
+      verticalPosition: "top",
+      duration: 2500,
+    });
   }
 
   randomString(length : number) {
@@ -219,7 +178,20 @@ export class AccountDataComponent implements OnInit {
       charactersLength));
    }
    return result.charAt(0).toUpperCase() + result.slice(1);
-}
+  }
+
+  styleGender(element : User): Object {
+    if (element.gender == "M"){
+        return {
+          'background-color': '#e8fff3',
+          'color': '#95cf89'
+        }
+    }
+    return {
+      'background-color': '#fff5f8',
+      'color': '#f27d9d'
+    }
+  }
 
 }
 

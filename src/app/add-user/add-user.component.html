@@ -17,7 +17,7 @@
             </mat-label>
             <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -27,7 +27,7 @@
             </mat-label>
             <input matInput placeholder="Firstname" formControlName="firstname" #firstname required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('firstname')?.invalid">{{getErrorMessage('firstname') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('firstname')?.invalid">{{getErrorMessage('firstname') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -37,7 +37,7 @@
             </mat-label>
             <input matInput placeholder="Lastname" formControlName="lastname" #lastname required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('lastname')?.invalid">{{getErrorMessage('lastname') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('lastname')?.invalid">{{getErrorMessage('lastname') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -47,7 +47,7 @@
             </mat-label>
             <input type="number" matInput placeholder="Age" formControlName="age" #age required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('age')?.invalid">{{getErrorMessage('age') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -60,42 +60,42 @@
               <mat-option value="F">F</mat-option>
             </mat-select>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('gender')?.invalid">{{getErrorMessage('gender') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('gender')?.invalid">{{getErrorMessage('gender') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter address">
             <mat-label>Address</mat-label>
             <input type="number" matInput placeholder="Address" formControlName="address" #address>
-            <mat-error *ngIf="addUserForm.get('address')?.invalid">{{getErrorMessage('address') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('address')?.invalid">{{getErrorMessage('address') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter employer">
             <mat-label>Employer</mat-label>
             <input type="number" matInput placeholder="Employer" formControlName="employer" #employer>
-            <mat-error *ngIf="addUserForm.get('employer')?.invalid">{{getErrorMessage('employer') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('employer')?.invalid">{{getErrorMessage('employer') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter email">
             <mat-label>Email</mat-label>
             <input type="number" matInput placeholder="Email" formControlName="email" #email>
-            <mat-error *ngIf="addUserForm.get('email')?.invalid">{{getErrorMessage('email') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('email')?.invalid">{{getErrorMessage('email') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter city">
             <mat-label>City</mat-label>
             <input type="number" matInput placeholder="City" formControlName="city" #city>
-            <mat-error *ngIf="addUserForm.get('city')?.invalid">{{getErrorMessage('city') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('city')?.invalid">{{getErrorMessage('city') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter state">
             <mat-label>State</mat-label>
             <input type="number" matInput placeholder="State" formControlName="state" #state>
-            <mat-error *ngIf="addUserForm.get('state')?.invalid">{{getErrorMessage('state') | correctString}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('state')?.invalid">{{getErrorMessage('state') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
   </form>
