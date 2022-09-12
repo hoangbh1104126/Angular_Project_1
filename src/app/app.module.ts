@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AppMaterialModule } from './app.material.module';
 import { GenderPipe } from './gender.pipe';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GenderPipe } from './gender.pipe';
     LogInComponent,
     AddUserComponent,
     GenderPipe,
+    EditUserComponent,
   ],
   imports: [
     FormsModule,

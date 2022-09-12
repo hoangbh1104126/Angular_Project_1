@@ -21,6 +21,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 
 @Component({
@@ -32,12 +33,15 @@ export class AccountDataComponent implements OnInit {
 
   sortedData: User[];
   show : boolean = false;
+  menuOpened : boolean = false;
+  userShowMenu !: number;
 
   constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private _snackBar: MatSnackBar) {
     this.sortedData = this.UsersData.slice();
+  }
 
-    this.dataSource.data = this.UsersData;
-    this.dataSource.filterPredicate = this.createFilter();
+  ngOnInit(): void {
+
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -52,71 +56,6 @@ export class AccountDataComponent implements OnInit {
   Users : User[] = usersData;
   UsersData = this.Users;
   val = this.UsersData.length;
-
-  
-  account_numberFilter = new FormControl('');
-  balanceFilter = new FormControl('');
-  nameFilter = new FormControl('');
-  ageFilter = new FormControl('');
-  genderFilter = new FormControl('');
-  columnsToDisplay = ['account_number', 'balance', 'firstname', 'age', 'gender'];
-  filterValues = {
-    account_number: '',
-    balance: '',
-    name: '',
-    age: '',
-    gender: '',
-  };
-
-  ngOnInit(){ 
-    this.account_numberFilter.valueChanges
-      .subscribe(
-        account_number => {
-          this.filterValues.account_number != account_number;
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.balanceFilter.valueChanges
-      .subscribe(
-        balance => {
-          this.filterValues.balance != balance;
-          this.dataSource.filter != JSON.stringify(this.filterValues);
-        }
-      )
-    this.nameFilter.valueChanges
-      .subscribe(
-        name => {
-          this.filterValues.name != name;
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.ageFilter.valueChanges
-      .subscribe(
-        age => {
-          this.filterValues.age != age;
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-    this.genderFilter.valueChanges
-      .subscribe(
-        gender => {
-          this.filterValues.gender != gender;
-          this.dataSource.filter = JSON.stringify(this.filterValues);
-        }
-      )
-  }
-
-  createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data : any, filter : string): boolean {
-      let searchTerms = JSON.parse(filter);
-      return data.account_number.toLowerCase().indexOf(searchTerms.account_number) !== -1
-        && data.balance.toString().toLowerCase().indexOf(searchTerms.balance) !== -1
-        && data.name.toLowerCase().indexOf(searchTerms.name) !== -1
-        && data.age.toLowerCase().indexOf(searchTerms.age) !== -1
-        && data.gender.toLowerCase().indexOf(searchTerms.age) !== -1;
-    }
-    return filterFunction;
-  }
 
   selection = new SelectionModel<User>(true, []);
 
@@ -259,7 +198,7 @@ export class AccountDataComponent implements OnInit {
     }
   }
 
-  userSelected : number[] = []; 
+  userSelected : number[] = [];
 
   selectRow($event : any, dataSource ?: User) {
     // console.log($event.checked);
@@ -274,6 +213,19 @@ export class AccountDataComponent implements OnInit {
 
   deleteSelectedUser() {
     this.dataSource.disconnect
+  }
+
+  editUser(number : number, enterAnimationDuration: string, exitAnimationDuration: string) {
+    this.dialog.open(EditUserComponent, {
+      width: '80%',
+      height: '70%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  removeUser(number : number) {
+
   }
 
 }

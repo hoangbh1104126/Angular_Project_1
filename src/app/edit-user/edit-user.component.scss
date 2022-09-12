@@ -1,0 +1,33 @@
+
+.space {
+  height: 15%;
+}
+
+h1, h2 {
+  color: blue;
+  font-family: 'Fauna One', serif;
+  text-align: center;
+}
+
+.row-control {
+  width: 95%;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin: 10px auto;
+}
+
+h1 {
+  padding: 30px;
+}
+
+mat-icon {
+  vertical-align: middle;
+}
+
+.add-user-form {
+  max-height: 480px;
+}
+

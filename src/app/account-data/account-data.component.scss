@@ -52,8 +52,9 @@ a:hover {
 .mat-row:hover .mat-cell {
   border-top: solid 1.5px currentColor;
   border-bottom: solid 1.5px currentColor;
-  font-weight: bold;
-  background-color: whitesmoke;
+  font-style: italic;
+  font-weight: bolder;
+  background-color: #FFFACD;
 }
 
 .mat-form-field {
@@ -79,15 +80,30 @@ a:hover {
   font-weight: bold;
 }
 
-.chipEdit {
+.chipAction {
   max-width: 100px;
-  color: #4545d2;
-  background-color: #ADDFFF;
+  color: currentColor;
+  background-color: #f5f8fa;
   justify-content: center;
   //font-weight: bolder;
   border-radius: 10px;
+  display: flex;
+}
+
+.chipAction:hover {
+  color: #156fc4;
 }
 
 .filter {
   display: block;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+  background-color: #FAFAD2;
+  border: none;
+}
+
+th {
+  font-weight: bold;
 }
