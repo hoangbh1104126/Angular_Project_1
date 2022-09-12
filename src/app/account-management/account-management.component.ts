@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import usersData from 'src/accounts.json';
-import { User } from '../user';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-
-let Users : User[] = usersData;
 
 @Component({
   selector: 'app-account-management',

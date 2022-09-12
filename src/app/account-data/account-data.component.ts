@@ -11,7 +11,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 import usersData from 'src/accounts.json';
-import { filterUser, User } from '../user';
+import { User } from '../user';
 import { UserService } from '../user.service';
 import { FormControl } from '@angular/forms';
 import { AddUserComponent } from '../add-user/add-user.component';
@@ -35,6 +35,9 @@ export class AccountDataComponent implements OnInit {
 
   constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private _snackBar: MatSnackBar) {
     this.sortedData = this.UsersData.slice();
+
+    this.dataSource.data = this.UsersData;
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -50,7 +53,70 @@ export class AccountDataComponent implements OnInit {
   UsersData = this.Users;
   val = this.UsersData.length;
 
-  ngOnInit(){ }
+  
+  account_numberFilter = new FormControl('');
+  balanceFilter = new FormControl('');
+  nameFilter = new FormControl('');
+  ageFilter = new FormControl('');
+  genderFilter = new FormControl('');
+  columnsToDisplay = ['account_number', 'balance', 'firstname', 'age', 'gender'];
+  filterValues = {
+    account_number: '',
+    balance: '',
+    name: '',
+    age: '',
+    gender: '',
+  };
+
+  ngOnInit(){ 
+    this.account_numberFilter.valueChanges
+      .subscribe(
+        account_number => {
+          this.filterValues.account_number != account_number;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.balanceFilter.valueChanges
+      .subscribe(
+        balance => {
+          this.filterValues.balance != balance;
+          this.dataSource.filter != JSON.stringify(this.filterValues);
+        }
+      )
+    this.nameFilter.valueChanges
+      .subscribe(
+        name => {
+          this.filterValues.name != name;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.ageFilter.valueChanges
+      .subscribe(
+        age => {
+          this.filterValues.age != age;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.genderFilter.valueChanges
+      .subscribe(
+        gender => {
+          this.filterValues.gender != gender;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data : any, filter : string): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.account_number.toLowerCase().indexOf(searchTerms.account_number) !== -1
+        && data.balance.toString().toLowerCase().indexOf(searchTerms.balance) !== -1
+        && data.name.toLowerCase().indexOf(searchTerms.name) !== -1
+        && data.age.toLowerCase().indexOf(searchTerms.age) !== -1
+        && data.gender.toLowerCase().indexOf(searchTerms.age) !== -1;
+    }
+    return filterFunction;
+  }
 
   selection = new SelectionModel<User>(true, []);
 
@@ -85,10 +151,12 @@ export class AccountDataComponent implements OnInit {
   displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
   onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
 
-  test : string[] = ["select"];
+  slt : string[] = ["select"];
+  edt : string[] = ["edit"];
 
+  displayedCol = this.onDisplayList.concat(this.edt);
 
-  displayedColumns: string[] = this.test.concat(this.onDisplayList);
+  displayedColumns: string[] = this.slt.concat(this.displayedCol);
   dataSource = new MatTableDataSource<User>(this.Users);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -125,7 +193,6 @@ export class AccountDataComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.account_number}`;
   }
 
-
   @ViewChild(MatSort) sort!: MatSort;
 
   announceSortChange(sortState: Sort) {
@@ -135,7 +202,6 @@ export class AccountDataComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
 
   newUser!: User;
 
@@ -152,7 +218,7 @@ export class AccountDataComponent implements OnInit {
       "firstname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "lastname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "age": Math.floor(Math.random() * (this.maxAge - this.minAge) + this.minAge),
-      "gender": "ML".charAt(Math.floor(Math.random()*2)),
+      "gender": "MF".charAt(Math.floor(Math.random()*2)),
       "address": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
       "employer": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "email": this.randomString(Math.floor(Math.random() * (12 - 6) + 6)) + "@" + this.randomString(Math.floor(Math.random() + 5)) + "." + this.randomString(Math.floor(3)) ,
@@ -191,6 +257,23 @@ export class AccountDataComponent implements OnInit {
       'background-color': '#fff5f8',
       'color': '#f27d9d'
     }
+  }
+
+  userSelected : number[] = []; 
+
+  selectRow($event : any, dataSource ?: User) {
+    // console.log($event.checked);
+    if ($event.checked) {
+      this.userSelected.push(dataSource!.account_number);
+      console.log("ss" + dataSource!.account_number);
+    } else {
+      this.userSelected = this.userSelected.filter((o) => o != dataSource!.account_number);
+      console.log("dm" + dataSource!.account_number);
+    }
+  }
+
+  deleteSelectedUser() {
+    this.dataSource.disconnect
   }
 
 }

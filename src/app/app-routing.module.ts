@@ -1,26 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountDataComponent } from './account-data/account-data.component';
-import { AccountManagementComponent } from './account-management/account-management.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { LogInComponent } from './log-in/log-in.component';
+import { PreloadAllModules } from '@angular/router';
 
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: 'account_management',
-    component: AccountManagementComponent,
-    children: [
-      {
-        path: ':account_number',
-        component: UserDetailComponent,
-      },
-      {
-        path: '',
-        component: AccountDataComponent,
-      }
-    ]
+    loadChildren: () => import('./account-management/account-management.module').then((m) => m.AccountManagementModule),
   },
   {
     path: '',
@@ -35,7 +22,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(
+    routes,
+    {
+      preloadingStrategy: PreloadAllModules
+    }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -61,6 +61,7 @@
     <td mat-cell *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
+                    (change)="$event ? selectRow($event, row) : null"
                     [checked]="selection.isSelected(row)"
                     [aria-label]="checkboxLabel(row)">
       </mat-checkbox>
@@ -68,33 +69,77 @@
   </ng-container>
 
     <ng-container matColumnDef="account_number" sticky>
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by account_number" matTooltip="Sort by #No" matTooltipPosition="above"> No. </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by account_number" matTooltip="Sort by #No" matTooltipPosition="above">
+        No. 
+        <hr />
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="account_numberFilter">
+        </mat-form-field>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
     </ng-container>
 
     <ng-container matColumnDef="balance">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by balance" matTooltip="Sort by Balance" matTooltipPosition="above"> Balance </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by balance" matTooltip="Sort by Balance" matTooltipPosition="above"> 
+        Balance
+        <hr />
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="balanceFilter">
+        </mat-form-field>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
     </ng-container>
 
     <ng-container matColumnDef="firstname" sticky>
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" matTooltip="Sort by Name" matTooltipPosition="above"> Name </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" matTooltip="Sort by Name" matTooltipPosition="above">
+        Name
+        <hr />
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="nameFilter">
+        </mat-form-field>
+      </th>
       <td mat-cell *matCellDef="let element"><a [routerLink]="element.account_number.toString()">{{element.firstname}} {{element.lastname}}</a></td>
     </ng-container>
 
     <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age" matTooltip="Sort by Age" matTooltipPosition="above"> Age </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age" matTooltip="Sort by Age" matTooltipPosition="above">
+        Age
+        <hr />
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="ageFilter">
+        </mat-form-field>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.age}} </td>
     </ng-container>
 
     <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender" matTooltip="Sort by Gender" matTooltipPosition="above"> Gender </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender" matTooltip="Sort by Gender" matTooltipPosition="above">
+        Gender
+        <hr />
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Search</mat-label>
+          <input matInput [formControl]="genderFilter">
+        </mat-form-field>
+      </th>
       <td mat-cell *matCellDef="let element">
         <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
           <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
             {{element.gender | gender }}
           </mat-chip>
         </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-stroked-button class="chipEdit" (click)="$event.stopPropagation()">
+          Edit
+        </button>
       </td>
     </ng-container>
 

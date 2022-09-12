@@ -75,7 +75,19 @@ a:hover {
 
 .chipGender {
   max-width: 100px;
-  color: white;
   justify-content: center;
   font-weight: bold;
+}
+
+.chipEdit {
+  max-width: 100px;
+  color: #4545d2;
+  background-color: #ADDFFF;
+  justify-content: center;
+  //font-weight: bolder;
+  border-radius: 10px;
+}
+
+.filter {
+  display: block;
 }
