@@ -201,6 +201,7 @@ export class AccountDataComponent implements OnInit {
   userSelected : number[] = [];
 
   selectRow($event : any, dataSource ?: User) {
+    this.selection.toggle(dataSource!); //? Not console.log
     // console.log($event.checked);
     if ($event.checked) {
       this.userSelected.push(dataSource!.account_number);
@@ -212,7 +213,8 @@ export class AccountDataComponent implements OnInit {
   }
 
   deleteSelectedUser() {
-    this.dataSource.disconnect
+    console.log(this.userSelected);
+    this.userSelected.forEach(user => this.deleteUser(user));
   }
 
   editUser(number : number, enterAnimationDuration: string, exitAnimationDuration: string) {
@@ -224,7 +226,11 @@ export class AccountDataComponent implements OnInit {
     });
   }
 
-  removeUser(number : number) {
+  deleteUser(number : number) {
+    this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number)
+  }
+
+  deleteNewUser(){
 
   }
 

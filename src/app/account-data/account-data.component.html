@@ -19,8 +19,8 @@
       Delete user
     </button>
     <mat-menu #belowMenu2="matMenu" yPosition="below">
-      <button mat-menu-item>Selected user</button>
-      <button mat-menu-item>All new user</button>
+      <button mat-menu-item (click)="deleteSelectedUser()">Selected user</button>
+      <button mat-menu-item (click)="deleteNewUser()">All new user</button>
     </mat-menu>
   </div>
   <div>
@@ -59,6 +59,7 @@
       </mat-checkbox>
     </th>
     <td mat-cell *matCellDef="let row">
+      <!--First Change ???-->
       <mat-checkbox (click)="$event.stopPropagation()"
                     (change)="$event ? selection.toggle(row) : null"
                     (change)="$event ? selectRow($event, row) : null"
@@ -111,7 +112,7 @@
         <mat-menu #belowMenu3="matMenu" yPosition="below">
           <ng-template matMenuContent let-account_number="account_number">
             <button mat-menu-item (click)="editUser(account_number, '1000ms', '500ms')"> Edit user #{{account_number}} </button>
-            <button mat-menu-item (click)="removeUser(account_number)"> Remove user </button>
+            <button mat-menu-item (click)="deleteUser(account_number)"> Remove user </button>
           </ng-template>
         </mat-menu>
       </td>
