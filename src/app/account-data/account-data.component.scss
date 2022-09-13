@@ -8,6 +8,12 @@ table {
   position: relative;
 }
 
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}
+
 .feature {
   text-align: center;
   display: flex;
@@ -70,14 +76,25 @@ a:hover {
 }
 
 .example-container {
+  position: relative;
   height: 450px;
+  resize: vertical;
   overflow: auto;
+  min-height: 350px;
+  max-height: 650px;
 }
 
 .chipGender {
   max-width: 100px;
   justify-content: center;
   font-weight: bold;
+}
+
+.newChipUser {
+  justify-content: center;
+  font-weight: bold;
+  background-color: #e6ccff;
+  color: #9933ff;
 }
 
 .chipAction {

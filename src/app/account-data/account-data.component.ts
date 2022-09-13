@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import {AfterViewInit, ViewChild} from '@angular/core';
+
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
@@ -8,20 +8,21 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-
 import usersData from 'src/accounts.json';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { FormControl } from '@angular/forms';
-import { AddUserComponent } from '../add-user/add-user.component';
 
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 @Component({
@@ -36,7 +37,12 @@ export class AccountDataComponent implements OnInit {
   menuOpened : boolean = false;
   userShowMenu !: number;
 
-  constructor(private _api: UserService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private _snackBar: MatSnackBar) {
+  constructor(
+    private _api: UserService,
+    public dialog: MatDialog,
+    private _liveAnnouncer: LiveAnnouncer,
+    private _snackBar: MatSnackBar,
+  ) {
     this.sortedData = this.UsersData.slice();
   }
 
@@ -44,12 +50,43 @@ export class AccountDataComponent implements OnInit {
 
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(AddUserComponent, {
+  refresh() {
+    this.userTotal = this.userTotal;
+    this.dataSource.data = this.dataSource.data;
+  }
+
+  dialogRef !: DialogRef;
+  editedUser !: User;
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, type: string, number ?: number): void {
+    this.editedUser != undefined;
+    if(type == "add"){
+      const dialogRef = this.dialog.open(AddUserComponent, {
+        width: '80%',
+        height: '70%',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: number,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.editedUser = result;
+        this.dataSource.data.push(this.editedUser);
+      });
+      return;
+    }
+
+    let dataEdit : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
+
+    const dialogRef = this.dialog.open(EditUserComponent, {
       width: '80%',
       height: '70%',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: dataEdit,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.editedUser = result;
+      this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
     });
   }
 
@@ -98,6 +135,8 @@ export class AccountDataComponent implements OnInit {
   displayedColumns: string[] = this.slt.concat(this.displayedCol);
   dataSource = new MatTableDataSource<User>(this.Users);
 
+  userTotal : number = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -119,9 +158,10 @@ export class AccountDataComponent implements OnInit {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
+      this.userSelected.splice(0);
       return;
     }
-
+    this.dataSource.data.forEach((user) => this.userSelected.push(user.account_number));
     this.selection.select(...this.dataSource.data);
   }
 
@@ -142,6 +182,11 @@ export class AccountDataComponent implements OnInit {
     }
   }
 
+  addCustomUser() {
+    this.openDialog("1000ms", "500ms", "add", this.userTotal);
+    this.refresh();
+  }
+
   newUser!: User;
 
   minBalance = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.balance }));
@@ -152,7 +197,7 @@ export class AccountDataComponent implements OnInit {
   addRandomUser(){
     this.newUser =
     {
-      "account_number": Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1,
+      "account_number": this.userTotal,
       "balance": Math.floor(Math.random() * (this.maxBalance - this.minBalance) + this.minBalance),
       "firstname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "lastname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
@@ -172,6 +217,8 @@ export class AccountDataComponent implements OnInit {
       verticalPosition: "top",
       duration: 2500,
     });
+    this.userTotal = this.userTotal + 1;
+    this.refresh();
   }
 
   randomString(length : number) {
@@ -200,38 +247,45 @@ export class AccountDataComponent implements OnInit {
 
   userSelected : number[] = [];
 
-  selectRow($event : any, dataSource ?: User) {
-    this.selection.toggle(dataSource!); //? Not console.log
-    // console.log($event.checked);
-    if ($event.checked) {
+  selectRow(dataSource ?: User) {
+    this.selection.toggle(dataSource!);
+    if (!this.userSelected.includes(dataSource!.account_number)) {
       this.userSelected.push(dataSource!.account_number);
-      console.log("ss" + dataSource!.account_number);
     } else {
       this.userSelected = this.userSelected.filter((o) => o != dataSource!.account_number);
-      console.log("dm" + dataSource!.account_number);
     }
   }
 
   deleteSelectedUser() {
-    console.log(this.userSelected);
+    this._snackBar.open("Delete " + this.userSelected.length + " user!", "Continue", {
+      horizontalPosition: "center",
+      verticalPosition: "top",
+      duration: 2500,
+    });
     this.userSelected.forEach(user => this.deleteUser(user));
+    this.userSelected.splice(0);
+    this.selection.clear();
+    this.refresh();
   }
 
-  editUser(number : number, enterAnimationDuration: string, exitAnimationDuration: string) {
-    this.dialog.open(EditUserComponent, {
-      width: '80%',
-      height: '70%',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
+  editUser(number : number) {
+    this.openDialog("1000ms", "500ms", "edit", number);
+    this.refresh();
   }
 
   deleteUser(number : number) {
-    this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number)
+    this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
+    this.refresh();
   }
 
   deleteNewUser(){
-
+    this._snackBar.open("Delete all new user!", "Continue", {
+      horizontalPosition: "center",
+      verticalPosition: "top",
+      duration: 2500,
+    });
+    this.dataSource.data = this.dataSource.data.filter((user) => !user.new);
+    this.refresh();
   }
 
 }

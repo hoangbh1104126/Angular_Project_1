@@ -52,7 +52,7 @@ export class LogInComponent implements OnInit {
   check: boolean = true;
   userAccount = userAccount;
   hide = true;
-  signInForm !: FormGroup;
+  logInForm !: FormGroup;
   role : string;
   onLog : boolean = true;
 
@@ -61,7 +61,7 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.signInForm = this.fb.group({
+    this.logInForm = this.fb.group({
       username: [
         "",
         Validators.compose([
@@ -91,27 +91,22 @@ export class LogInComponent implements OnInit {
     new FormControl("", Validators.required, this.isUserNameDuplicated);
   }
 
-
-  onSubmit(): void {
-    console.log(this.signInForm);
-  }
-
   isUserNameDuplicated(control: AbstractControl): Observable<ValidationErrors> {
     return of({});
   }
 
   comeback(){
     let check = true;
-    if(this.checkCorrect(this.signInForm.get('username')?.value, this.signInForm.get('password')?.value)){
-      this._snackBar.open("Success! \nYou are login as " + this.signInForm.get('username')?.value +" = " + this.role, "Return", {
+    if(this.checkCorrect(this.logInForm.get('username')?.value, this.logInForm.get('password')?.value)){
+      this._snackBar.open("Success! \nYou are login as " + this.logInForm.get('username')?.value +" = " + this.role, "Return", {
         horizontalPosition: "center",
         verticalPosition: "top",
-        duration: 2500,
+        duration: 1250,
       });
       this.onLog = false;
       setTimeout(() => {
         window.location.href="account_management";
-      }, 3000);
+      }, 500);
 
     } else {
       this._snackBar.open("Cannot find account in database!", "Try again", {
@@ -123,16 +118,16 @@ export class LogInComponent implements OnInit {
   }
 
   getErrorMessage(attribute : any) : string{
-    if(this.signInForm.get(attribute)?.hasError('required')){
+    if(this.logInForm.get(attribute)?.hasError('required')){
       return "You must enter a value!";
     }
-    if(this.signInForm.get(attribute)?.hasError('pattern') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(this.logInForm.get(attribute)?.hasError('pattern') && !this.logInForm.get(attribute)?.hasError('required')){
       return "Incorrect input type!";
     }
-    if(!this.signInForm.get(attribute)?.hasError('minlength') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(!this.logInForm.get(attribute)?.hasError('minlength') && !this.logInForm.get(attribute)?.hasError('required')){
       return attribute as string + " can be max 20 characters";
     }
-    if(!this.signInForm.get(attribute)?.hasError('maxlength') && !this.signInForm.get(attribute)?.hasError('required')){
+    if(!this.logInForm.get(attribute)?.hasError('maxlength') && !this.logInForm.get(attribute)?.hasError('required')){
       return attribute as string + " must be at least 6 characters";
     }
     return "Unknown error!";

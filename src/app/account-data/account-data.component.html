@@ -9,7 +9,7 @@
       Add user
     </button>
     <mat-menu #belowMenu1="matMenu" yPosition="below">
-      <button mat-menu-item (click)="openDialog('1000ms', '500ms')">Custom user</button>
+      <button mat-menu-item (click)="addCustomUser()">Custom user</button>
       <button mat-menu-item (click)="addRandomUser()">Random user</button>
     </mat-menu>
   </div>
@@ -61,8 +61,7 @@
     <td mat-cell *matCellDef="let row">
       <!--First Change ???-->
       <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    (change)="$event ? selectRow($event, row) : null"
+                    (change)="$event ? selectRow(row) : null"
                     [checked]="selection.isSelected(row)"
                     [aria-label]="checkboxLabel(row)">
       </mat-checkbox>
@@ -81,7 +80,12 @@
 
     <ng-container matColumnDef="firstname" sticky>
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" matTooltip="Sort by Name" matTooltipPosition="above"> Name </th>
-      <td mat-cell *matCellDef="let element"><a [routerLink]="element.account_number.toString()">{{element.firstname}} {{element.lastname}}</a></td>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="element.account_number.toString()">
+          {{element.firstname}} {{element.lastname}}
+        </a>
+        <mat-chip *ngIf="element.new" class="newChipUser">new</mat-chip>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="age">
@@ -111,7 +115,7 @@
         </button>
         <mat-menu #belowMenu3="matMenu" yPosition="below">
           <ng-template matMenuContent let-account_number="account_number">
-            <button mat-menu-item (click)="editUser(account_number, '1000ms', '500ms')"> Edit user #{{account_number}} </button>
+            <button mat-menu-item (click)="editUser(account_number)"> Edit user #{{account_number}} </button>
             <button mat-menu-item (click)="deleteUser(account_number)"> Remove user </button>
           </ng-template>
         </mat-menu>
@@ -119,13 +123,14 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="$event ? selectRow(row) : null"
     [class.demo-row-is-clicked]="selection.isSelected(row)"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                  showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+                 aria-label="Select page of periodic elements"
+                 class="mat-paginator-sticky">
   </mat-paginator>
 </section>
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   AbstractControl,
   FormControl,
@@ -11,10 +11,8 @@ import {
 import { Observable, of } from "rxjs";
 import { User } from "../user";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
-import usersData from 'src/accounts.json';
 
-let users : User[] = usersData;
-let numberUser = Math.max(...users.map(o => o.account_number));
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-add-user',
@@ -28,9 +26,14 @@ export class AddUserComponent implements OnInit {
   addUserForm !: FormGroup;
   role : string;
   onLog : boolean = true;
-  numberUser = numberUser + 2;
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddUserComponent>) {
+  addUser !: User;
+
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<AddUserComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: number,
+  ) {
     this.role = "Guest";
   }
 
@@ -114,17 +117,28 @@ export class AddUserComponent implements OnInit {
     new FormControl("", Validators.required, this.isUserNameDuplicated);
   }
 
-
-  onSubmit(): void {
-    console.log(this.addUserForm);
-  }
-
   isUserNameDuplicated(control: AbstractControl): Observable<ValidationErrors> {
     return of({});
   }
 
   comeback(){
 
+  }
+
+  change(){
+    this.addUser = {
+      "account_number": this.data,
+      "balance": this.addUserForm.get('balance')?.value,
+      "firstname": this.addUserForm.get('firstname')?.value,
+      "lastname": this.addUserForm.get('lastname')?.value,
+      "age": this.addUserForm.get('age')?.value,
+      "gender": this.addUserForm.get('gender')?.value,
+      "address": this.addUserForm.get('address')?.value,
+      "employer": this.addUserForm.get('employer')?.value,
+      "email": this.addUserForm.get('email')?.value,
+      "city": this.addUserForm.get('city')?.value,
+      "state": this.addUserForm.get('state')?.value,
+    };
   }
 
   getErrorMessage(attribute : any) : string{

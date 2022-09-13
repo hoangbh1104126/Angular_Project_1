@@ -1,13 +1,13 @@
 <h1 mat-dialog-title>Edit user #?</h1>
 
 <div mat-dialog-content>
-  <form class="add-user-form" [formGroup]="addUserForm" autocomplete="off" (ngSubmit)="onSubmit()">
+  <form class="add-user-form" [formGroup]="editUserForm" autocomplete="off" (change)="change()">
     <h2>Information</h2>
     <div class="row-control">
         <mat-form-field appearance="outline">
             <mat-label>Account number</mat-label>
             <mat-hint align="end"><b>Cannot change</b></mat-hint>
-            <input matInput disabled [value]="numberUser">
+            <input matInput disabled [value]="editUser.account_number">
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -17,7 +17,7 @@
             </mat-label>
             <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | titlecase}}</mat-error>
+            <mat-error *ngIf="editUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -27,7 +27,7 @@
             </mat-label>
             <input matInput placeholder="Firstname" formControlName="firstname" #firstname required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('firstname')?.invalid">{{getErrorMessage('firstname') | titlecase}}</mat-error>
+            <mat-error *ngIf="editUserForm.get('firstname')?.invalid">{{getErrorMessage('firstname') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -37,7 +37,7 @@
             </mat-label>
             <input matInput placeholder="Lastname" formControlName="lastname" #lastname required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('lastname')?.invalid">{{getErrorMessage('lastname') | titlecase}}</mat-error>
+            <mat-error *ngIf="editUserForm.get('lastname')?.invalid">{{getErrorMessage('lastname') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -47,7 +47,7 @@
             </mat-label>
             <input type="number" matInput placeholder="Age" formControlName="age" #age required>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
+            <mat-error *ngIf="editUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -60,48 +60,51 @@
               <mat-option value="F">F</mat-option>
             </mat-select>
             <mat-hint align="end">Required <b>*</b></mat-hint>
-            <mat-error *ngIf="addUserForm.get('gender')?.invalid">{{getErrorMessage('gender') | titlecase}}</mat-error>
+            <mat-error *ngIf="editUserForm.get('gender')?.invalid">{{getErrorMessage('gender') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter address">
             <mat-label>Address</mat-label>
-            <input type="number" matInput placeholder="Address" formControlName="address" #address>
-            <mat-error *ngIf="addUserForm.get('address')?.invalid">{{getErrorMessage('address') | titlecase}}</mat-error>
+            <input type="text" matInput placeholder="Address" formControlName="address" #address>
+            <mat-error *ngIf="editUserForm.get('address')?.invalid">{{getErrorMessage('address') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter employer">
             <mat-label>Employer</mat-label>
-            <input type="number" matInput placeholder="Employer" formControlName="employer" #employer>
-            <mat-error *ngIf="addUserForm.get('employer')?.invalid">{{getErrorMessage('employer') | titlecase}}</mat-error>
+            <input type="text" matInput placeholder="Employer" formControlName="employer" #employer>
+            <mat-error *ngIf="editUserForm.get('employer')?.invalid">{{getErrorMessage('employer') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter email">
             <mat-label>Email</mat-label>
-            <input type="number" matInput placeholder="Email" formControlName="email" #email>
-            <mat-error *ngIf="addUserForm.get('email')?.invalid">{{getErrorMessage('email') | titlecase}}</mat-error>
+            <input type="email" matInput placeholder="Email" formControlName="email" #email>
+            <mat-error *ngIf="editUserForm.get('email')?.hasError">Incorrect email</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter city">
             <mat-label>City</mat-label>
-            <input type="number" matInput placeholder="City" formControlName="city" #city>
-            <mat-error *ngIf="addUserForm.get('city')?.invalid">{{getErrorMessage('city') | titlecase}}</mat-error>
+            <input type="text" matInput placeholder="City" formControlName="city" #city>
+            <mat-error *ngIf="editUserForm.get('city')?.invalid">{{getErrorMessage('city') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
         <mat-form-field appearance="outline" hintLabel="Enter state">
             <mat-label>State</mat-label>
-            <input type="number" matInput placeholder="State" formControlName="state" #state>
-            <mat-error *ngIf="addUserForm.get('state')?.invalid">{{getErrorMessage('state') | titlecase}}</mat-error>
+            <input type="text" matInput placeholder="State" formControlName="state" #state>
+            <mat-error *ngIf="editUserForm.get('state')?.invalid">{{getErrorMessage('state') | titlecase}}</mat-error>
         </mat-form-field>
     </div>
   </form>
 </div>
 
+<!--
+<pre> {{ editedUser | json }}</pre>
+-->
 <div mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="comeback()">Create</button>
+    <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="editUserForm.invalid">Change</button>
 </div>
