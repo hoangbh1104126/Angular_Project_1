@@ -21,3 +21,4 @@ Change log:
 - Table update: add select user checkbox, resize table, sticky footer (pagination), highlight selected row (user), design user property.
 - Update feature: Add user (random & custom), remove user (new user & selected user), add action button for each user (remove or edit user).
 - Performance Optimization: update lazy load for some module.
+- Design: UserDetailPage.
