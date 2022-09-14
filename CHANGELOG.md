@@ -23,3 +23,7 @@ Change log:
 - Performance Optimization: update lazy load for some module.
 - Design: UserDetailPage.
 - Add something to navigation bar.
+
+## Week 4
+
+- Complete login feature (login by account)
