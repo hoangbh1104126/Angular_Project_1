@@ -19,6 +19,7 @@ Change log:
 ## Week 3
 
 - Table update: add select user checkbox, resize table, sticky footer (pagination), highlight selected row (user), design user property.
-- Update feature: Add user (random & custom), remove user (new user & selected user), add action button for each user (remove or edit user).
+- Update feature: Add user (random & custom), remove user (new user & selected user), add action button for each user (remove or edit user), display columns on table by select.
 - Performance Optimization: update lazy load for some module.
 - Design: UserDetailPage.
+- Add something to navigation bar.
