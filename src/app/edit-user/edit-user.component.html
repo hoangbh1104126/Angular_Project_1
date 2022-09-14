@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Edit user #?</h1>
+<h1 mat-dialog-title style="padding: 10px;">Edit user #{{data.account_number}}</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content style="height: 75%;">
   <form class="add-user-form" [formGroup]="editUserForm" autocomplete="off" (change)="change()">
     <h2>Information</h2>
     <div class="row-control">

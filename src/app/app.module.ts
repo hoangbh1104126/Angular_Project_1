@@ -17,6 +17,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AppMaterialModule } from './app.material.module';
 import { GenderPipe } from './gender.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { NoValuePipe } from './no-value.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AddUserComponent,
     GenderPipe,
     EditUserComponent,
+    NoValuePipe,
+    PageNotFoundComponent,
   ],
   imports: [
     FormsModule,

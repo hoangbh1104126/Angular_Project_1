@@ -10,7 +10,7 @@
     </button>
     <mat-menu #belowMenu1="matMenu" yPosition="below">
       <button mat-menu-item (click)="addCustomUser()">Custom user</button>
-      <button mat-menu-item (click)="addRandomUser()">Random user</button>
+      <button mat-menu-item (click)="addRandomUser(true)">Random user</button>
     </mat-menu>
   </div>
   <div class="user-feature">
@@ -26,20 +26,29 @@
   <div>
     <mat-form-field class="selectDisplay">
       <mat-label>Display</mat-label>
-      <mat-select [formControl]="display" multiple [(ngModel)]="onDisplayList">
+      <mat-select [formControl]="display" multiple [(ngModel)]="onDisplayList" (selectionChange)="refreshDisplayColumns()">
         <mat-select-trigger>
-          {{display.value?.[0] || ''}}
+          {{display.value?.[0] || '' | titlecase}}
           <span *ngIf="(display.value?.length || 0) > 1" class="example-additional-selection">
             (+{{(display.value?.length || 0) - 1}} {{display.value?.length === 2 ? 'other' : 'others'}})
           </span>
         </mat-select-trigger>
-        <mat-option *ngFor="let item of displayList" [value]="item">{{item}}</mat-option>
+        <mat-option 
+          *ngFor="let item of displayList" 
+          [value]="item" 
+          [disabled]="item == 'name'" 
+          matTooltip="Name cannot be hide from the table"
+          matTooltipPosition="left"
+          matTooltipHideDelay="250"
+          [matTooltipDisabled]="item != 'name'"
+        >
+          {{item | titlecase}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 </div>
 <hr />
-
 
 <div>
   <mat-form-field appearance="standard">
@@ -68,17 +77,17 @@
     </td>
   </ng-container>
 
-    <ng-container matColumnDef="account_number" sticky>
+    <ng-container matColumnDef="account_number" sticky *ngIf="displayedColumns.includes('account_number')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by account_number" matTooltip="Sort by #No" matTooltipPosition="above"> No. </th>
       <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="balance">
+    <ng-container matColumnDef="balance"  *ngIf="displayedColumns.includes('balance')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by balance" matTooltip="Sort by Balance" matTooltipPosition="above"> Balance </th>
       <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="firstname" sticky>
+    <ng-container matColumnDef="name" sticky *ngIf="displayedColumns.includes('name')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" matTooltip="Sort by Name" matTooltipPosition="above"> Name </th>
       <td mat-cell *matCellDef="let element">
         <a [routerLink]="element.account_number.toString()">
@@ -88,12 +97,12 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="age">
+    <ng-container matColumnDef="age" *ngIf="displayedColumns.includes('age')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age" matTooltip="Sort by Age" matTooltipPosition="above"> Age </th>
       <td mat-cell *matCellDef="let element"> {{element.age}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="gender">
+    <ng-container matColumnDef="gender" *ngIf="displayedColumns.includes('gender')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender" matTooltip="Sort by Gender" matTooltipPosition="above"> Gender </th>
       <td mat-cell *matCellDef="let element">
         <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
@@ -102,6 +111,31 @@
           </mat-chip>
         </mat-chip-list>
       </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address" *ngIf="displayedColumns.includes('address')">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address" matTooltip="Sort by Address" matTooltipPosition="above"> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employer" *ngIf="displayedColumns.includes('employer')">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by employer" matTooltip="Sort by employer" matTooltipPosition="above"> Employer </th>
+      <td mat-cell *matCellDef="let element"> {{element.employer | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email" *ngIf="displayedColumns.includes('email')">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email" matTooltip="Sort by email" matTooltipPosition="above"> mail </th>
+      <td mat-cell *matCellDef="let element"> {{element.email | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city" *ngIf="displayedColumns.includes('city')">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city" matTooltip="Sort by city" matTooltipPosition="above"> City </th>
+      <td mat-cell *matCellDef="let element"> {{element.city | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state" *ngIf="displayedColumns.includes('state')">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by state" matTooltip="Sort by state" matTooltipPosition="above"> State </th>
+      <td mat-cell *matCellDef="let element"> {{element.state | noValue}} </td>
     </ng-container>
 
     <ng-container matColumnDef="edit">

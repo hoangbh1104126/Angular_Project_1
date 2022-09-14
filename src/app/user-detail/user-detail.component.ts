@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
+
   user$ !: Observable<User>;
   constructor(private _route: ActivatedRoute, private _api: UserService) { }
 
@@ -18,4 +19,16 @@ export class UserDetailComponent implements OnInit {
     this.user$ = this._api.getUserByNumber(account_number as string);
   }
 
+  styleGender(element : User): Object {
+    if (element.gender == "M"){
+        return {
+          'background-color': '#e8fff3',
+          'color': '#95cf89'
+        }
+    }
+    return {
+      'background-color': '#fff5f8',
+      'color': '#f27d9d'
+    }
+  }
 }

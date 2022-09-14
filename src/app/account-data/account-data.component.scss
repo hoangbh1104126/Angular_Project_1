@@ -123,4 +123,9 @@ a:hover {
 
 th {
   font-weight: bold;
+  cursor: pointer;
+}
+
+th:hover {
+  color: royalblue;
 }

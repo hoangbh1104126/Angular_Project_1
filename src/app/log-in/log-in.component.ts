@@ -18,7 +18,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-
+import { Router } from "@angular/router";
 
 let users : User[] = usersData;
 let userAccount : UserAccount[] = [];
@@ -26,6 +26,7 @@ let userAccount : UserAccount[] = [];
 for(var user of users){
   userAccount.push(
     {
+      id: user.account_number,
       username : user.firstname + user.lastname,
       password : user.lastname + user.firstname + "@123",
       role : "User",
@@ -35,6 +36,7 @@ for(var user of users){
 
 let adminAccount : AdminAccount[] = [
   {
+    id: -1,
     username : "admin123",
     password : "nimda@123",
     role : "Admin",
@@ -56,7 +58,11 @@ export class LogInComponent implements OnInit {
   role : string;
   onLog : boolean = true;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder, 
+    private _snackBar: MatSnackBar,
+    public router: Router,
+  ) {
     this.role = "Guest";
   }
 
@@ -105,7 +111,7 @@ export class LogInComponent implements OnInit {
       });
       this.onLog = false;
       setTimeout(() => {
-        window.location.href="account_management";
+        this.router.navigateByUrl('/account_management'); /*, { state: { hello: 'world' } }*/
       }, 500);
 
     } else {

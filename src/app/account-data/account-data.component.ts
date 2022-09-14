@@ -61,16 +61,24 @@ export class AccountDataComponent implements OnInit {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, type: string, number ?: number): void {
     this.editedUser != undefined;
     if(type == "add"){
+      this.addRandomUser(false);
+      let randomUser : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
       const dialogRef = this.dialog.open(AddUserComponent, {
         width: '80%',
         height: '70%',
         enterAnimationDuration,
         exitAnimationDuration,
-        data: number,
+        data: randomUser,
       });
       dialogRef.afterClosed().subscribe(result => {
+        if(result !== undefined){
         this.editedUser = result;
-        this.dataSource.data.push(this.editedUser);
+        this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
+        this.refresh();
+        } else {
+          this.dataSource.data = this.dataSource.data.filter((user) => user.account_number != number);
+          this.userTotal = this.userTotal - 1;
+        }
       });
       return;
     }
@@ -85,9 +93,10 @@ export class AccountDataComponent implements OnInit {
       data: dataEdit,
     });
     dialogRef.afterClosed().subscribe(result => {
+      if(result !== undefined){
       this.editedUser = result;
       this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
-    });
+    }});
   }
 
   Users : User[] = usersData;
@@ -116,6 +125,16 @@ export class AccountDataComponent implements OnInit {
           return compare(a.age, b.age, isAsc);
         case 'gender':
           return compare(a.gender, b.gender, isAsc);
+        case 'address':
+          return compare(a.address as string, b.address as string, isAsc);
+        case 'employer':
+          return compare(a.employer as string, b.gender as string, isAsc);
+        case 'email':
+          return compare(a.email as string, b.email as string, isAsc);
+        case 'city':
+          return compare(a.city as string, b.city as string, isAsc);
+        case 'state':
+          return compare(a.state as string, b.state as string, isAsc);
         default:
           return 0;
       }
@@ -124,8 +143,8 @@ export class AccountDataComponent implements OnInit {
 
   display = new FormControl('');
 
-  displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
-  onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
+  displayList: string[] = ['account_number', 'balance', 'name', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
+  onDisplayList: string[] = ['account_number', 'balance', 'name', 'age', 'gender'];
 
   slt : string[] = ["select"];
   edt : string[] = ["edit"];
@@ -134,6 +153,12 @@ export class AccountDataComponent implements OnInit {
 
   displayedColumns: string[] = this.slt.concat(this.displayedCol);
   dataSource = new MatTableDataSource<User>(this.Users);
+
+  refreshDisplayColumns(){
+    this.displayedCol = this.onDisplayList.concat(this.edt);
+    this.displayedColumns = this.slt.concat(this.displayedCol);
+    this.refresh();
+  }
 
   userTotal : number = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1;
 
@@ -145,8 +170,8 @@ export class AccountDataComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
   isAllSelected() {
@@ -183,8 +208,7 @@ export class AccountDataComponent implements OnInit {
   }
 
   addCustomUser() {
-    this.openDialog("1000ms", "500ms", "add", this.userTotal);
-    this.refresh();
+    this.openDialog("500ms", "500ms", "add", this.userTotal);
   }
 
   newUser!: User;
@@ -194,7 +218,7 @@ export class AccountDataComponent implements OnInit {
   minAge = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
   maxAge = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
 
-  addRandomUser(){
+  addRandomUser(showNoti : boolean){
     this.newUser =
     {
       "account_number": this.userTotal,
@@ -212,13 +236,15 @@ export class AccountDataComponent implements OnInit {
     }
 
     this.dataSource.data.push(this.newUser);
-    this._snackBar.open("Add user #" + this.newUser.account_number + ": " + this.newUser.firstname + " " + this.newUser.lastname + "!", "Continue", {
-      horizontalPosition: "center",
-      verticalPosition: "top",
-      duration: 2500,
-    });
     this.userTotal = this.userTotal + 1;
-    this.refresh();
+    if(showNoti){
+      this._snackBar.open("Add user #" + this.newUser.account_number + ": " + this.newUser.firstname + " " + this.newUser.lastname + "!", "Continue", {
+        horizontalPosition: "center",
+        verticalPosition: "top",
+        duration: 2500,
+      });
+      this.refresh();
+    }
   }
 
   randomString(length : number) {
@@ -269,7 +295,7 @@ export class AccountDataComponent implements OnInit {
   }
 
   editUser(number : number) {
-    this.openDialog("1000ms", "500ms", "edit", number);
+    this.openDialog("550ms", "500ms", "edit", number);
     this.refresh();
   }
 

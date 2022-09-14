@@ -2,6 +2,7 @@ import usersData from 'src/accounts.json';
 import { User } from './user';
 
 export interface UserAccount {
+  id: number;
   username : string;
   password : string;
   role : string;
@@ -18,6 +19,7 @@ let userAccount : UserAccount[] = [];
 for(var user of users){
   userAccount.push(
     {
+      id : user.account_number,
       username : user.firstname + user.lastname,
       password : user.firstname + user.lastname + "@123",
       role : "U",
@@ -27,6 +29,7 @@ for(var user of users){
 
 let adminAccount : AdminAccount[] = [
   {
+    id: -1,
     username : "admin",
     password : "admin@123",
     role : "A",

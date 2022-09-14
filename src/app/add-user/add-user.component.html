@@ -1,13 +1,13 @@
-<h1 mat-dialog-title>Add new account</h1>
+<h1 mat-dialog-title style="padding: 10px;">Add new user #{{data.account_number}}</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content style="height: 75%;">
   <form class="add-user-form" [formGroup]="addUserForm" autocomplete="off" (change)="change()">
     <h2>Information</h2>
     <div class="row-control">
         <mat-form-field appearance="outline">
             <mat-label>Account number</mat-label>
             <mat-hint align="end"><b>Cannot change</b></mat-hint>
-            <input matInput disabled [value]="data">
+            <input matInput disabled [value]="data.account_number">
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -81,7 +81,7 @@
         <mat-form-field appearance="outline" hintLabel="Enter email">
             <mat-label>Email</mat-label>
             <input type="email" matInput placeholder="Email" formControlName="email" #email>
-            <mat-error *ngIf="addUserForm.get('email')?.invalid">{{getErrorMessage('email') | titlecase}}</mat-error>
+            <mat-error *ngIf="addUserForm.get('email')?.hasError">Incorrect email</mat-error>
         </mat-form-field>
     </div>
     <div class="row-control">
@@ -103,5 +103,5 @@
 
 <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="comeback()">Create</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="comeback()">Create</button>
 </div>

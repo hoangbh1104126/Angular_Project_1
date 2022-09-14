@@ -24,7 +24,6 @@ export class AddUserComponent implements OnInit {
   check: boolean = true;
   hide = true;
   addUserForm !: FormGroup;
-  role : string;
   onLog : boolean = true;
 
   addUser !: User;
@@ -32,10 +31,8 @@ export class AddUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
-  ) {
-    this.role = "Guest";
-  }
+    @Inject(MAT_DIALOG_DATA) public data: User,
+  ) { }
 
   ngOnInit(): void {
     this.addUserForm = this.fb.group({
@@ -127,18 +124,20 @@ export class AddUserComponent implements OnInit {
 
   change(){
     this.addUser = {
-      "account_number": this.data,
+      "account_number": this.data.account_number,
       "balance": this.addUserForm.get('balance')?.value,
       "firstname": this.addUserForm.get('firstname')?.value,
       "lastname": this.addUserForm.get('lastname')?.value,
       "age": this.addUserForm.get('age')?.value,
       "gender": this.addUserForm.get('gender')?.value,
-      "address": this.addUserForm.get('address')?.value,
-      "employer": this.addUserForm.get('employer')?.value,
-      "email": this.addUserForm.get('email')?.value,
-      "city": this.addUserForm.get('city')?.value,
-      "state": this.addUserForm.get('state')?.value,
+      "address": this.addUserForm.get('address')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
+      "employer": this.addUserForm.get('employer')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
+      "email": this.addUserForm.get('email')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
+      "city": this.addUserForm.get('city')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
+      "state": this.addUserForm.get('state')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
+      "new": true,
     };
+    this.data = this.addUser;
   }
 
   getErrorMessage(attribute : any) : string{

@@ -4,22 +4,40 @@
     <hr />
     <mat-list>
       <mat-list-item>
-        <button class="example-menu-item" mat-stroked-button onclick="location.href = '';">
+        <button class="example-menu-item" mat-raised-button onclick="location.href = '';">
             <mat-icon>home</mat-icon>
             Home
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-stroked-button (click)="openSnackBar()" aria-label="Show an example snack-bar">
+        <button
+          class="example-menu-item" 
+          mat-raised-button 
+          (click)="openSnackBar('Hello!', 'Bye')" 
+          aria-label="Show an example snack-bar"
+        >
             <mat-icon>tag_faces</mat-icon>
-            Say hello!
+            <span> Say hello! &nbsp;</span>
+            <span [matBadge]="sayHelloTime" matBadgeColor="warn" *ngIf="sayHelloTime != 0">&nbsp;</span>
+        </button>
+      </mat-list-item>  
+      <mat-list-item>
+        <button class="example-menu-item" mat-raised-button>
+            <mat-icon>help_ouline</mat-icon>
+            Do something
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-strocked-button onclick="location.href = '';">
-            <mat-icon>home</mat-icon>
-            Home
-        </button>
+        <mat-list>
+          <div mat-subheader>Folders</div>
+            <mat-list-item *ngFor="let folder of folders; index as idx" (click)="openFolder(idx)">
+              <mat-icon mat-list-icon *ngIf="!folder.open">folder</mat-icon>
+              <mat-icon mat-list-icon *ngIf="folder.open">folder_open</mat-icon>
+              <div mat-line>{{ folder.name }}</div>
+              <div mat-line>{{ folder.create | date}}</div>
+            </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
