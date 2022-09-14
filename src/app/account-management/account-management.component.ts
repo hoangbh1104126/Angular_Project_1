@@ -4,6 +4,9 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { ActivatedRoute, Navigation, Router } from '@angular/router';
+import { User } from '../user';
+import usersData from 'src/accounts.json';
 
 @Component({
   selector: 'app-account-management',
@@ -12,13 +15,12 @@ import {
 })
 export class AccountManagementComponent implements OnInit {
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
-  events: string[] = [];
   opened!: boolean;
   sayHelloTime : number = 0;
+
+  userData : User[] = usersData;
 
   folders: Folder[] = [
     {
@@ -46,8 +48,13 @@ export class AccountManagementComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
-    private _snackBar: MatSnackBar, 
+    private _snackBar: MatSnackBar,
+    private router: Router,
   ) {}
+
+  test = (this.router.getCurrentNavigation() as Navigation).extras.state;
+  isLoggedIn: boolean = this.test == undefined ? false : true;
+  userLoggedIn: User | undefined = this.userData.find((obj) => obj.account_number == 1);
 
   openSnackBar(msg: string, close: string) {
     this.sayHelloTime = this.sayHelloTime + 1;

@@ -33,10 +33,10 @@
             (+{{(display.value?.length || 0) - 1}} {{display.value?.length === 2 ? 'other' : 'others'}})
           </span>
         </mat-select-trigger>
-        <mat-option 
-          *ngFor="let item of displayList" 
-          [value]="item" 
-          [disabled]="item == 'name'" 
+        <mat-option
+          *ngFor="let item of displayList"
+          [value]="item"
+          [disabled]="item == 'name'"
           matTooltip="Name cannot be hide from the table"
           matTooltipPosition="left"
           matTooltipHideDelay="250"
@@ -149,7 +149,7 @@
         </button>
         <mat-menu #belowMenu3="matMenu" yPosition="below">
           <ng-template matMenuContent let-account_number="account_number">
-            <button mat-menu-item (click)="editUser(account_number)"> Edit user #{{account_number}} </button>
+            <button mat-menu-item (click)="editUser(account_number)"> Edit user </button>
             <button mat-menu-item (click)="deleteUser(account_number)"> Remove user </button>
           </ng-template>
         </mat-menu>

@@ -58,8 +58,10 @@ export class LogInComponent implements OnInit {
   role : string;
   onLog : boolean = true;
 
+  userLogged!: string;
+
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     public router: Router,
   ) {
@@ -111,7 +113,9 @@ export class LogInComponent implements OnInit {
       });
       this.onLog = false;
       setTimeout(() => {
-        this.router.navigateByUrl('/account_management'); /*, { state: { hello: 'world' } }*/
+        this.router.navigateByUrl('/account_management', {
+          state: { user: this.userLogged }
+        });
       }, 500);
 
     } else {
@@ -152,6 +156,7 @@ export class LogInComponent implements OnInit {
     return userAccount.some(element => {
       if(element.username == username && element.password == password){
         this.role = element.role;
+        this.userLogged = element.id.toString();
         return true;
       } return false;
     });
