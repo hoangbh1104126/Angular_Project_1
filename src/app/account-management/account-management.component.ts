@@ -50,11 +50,21 @@ export class AccountManagementComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     private router: Router,
-  ) {}
+  ) { }
 
   test = (this.router.getCurrentNavigation() as Navigation).extras.state;
-  isLoggedIn: boolean = this.test == undefined ? false : true;
-  userLoggedIn: User | undefined = this.userData.find((obj) => obj.account_number == 1);
+  isLoggedIn: boolean = this.test == undefined || this.test == null? false : true;
+  userLoggedInNumber = JSON.stringify(this.test);
+  userLoggedIn : User | undefined = this.getUserIdFromJSONString(this.userLoggedInNumber);
+
+  getUserIdFromJSONString(str: string) : User | undefined{
+    if(str == undefined || str.length == 0){
+      return undefined;
+    }
+    let numStr : string[] = str.split('\"');
+    const id = Number(numStr[3]);
+    return this.userData.find((obj) => obj.account_number == id);
+  }
 
   openSnackBar(msg: string, close: string) {
     this.sayHelloTime = this.sayHelloTime + 1;
@@ -68,6 +78,15 @@ export class AccountManagementComponent implements OnInit {
     this.folders[number].open = !this.folders[number].open;
     let str = this.folders[number].open ? "Open" : "Close";
     this.openSnackBar(str +" folder: " + this.folders[number].name + "!","Ok")
+  }
+
+  viewUserDetails(){
+    this.router.navigateByUrl('/account_management/' + this.userLoggedIn?.account_number);
+  }
+
+  signOut(){
+    this.openSnackBar("Logged out!", "Ok")
+    this.router.navigateByUrl('/log-in');
   }
 }
 

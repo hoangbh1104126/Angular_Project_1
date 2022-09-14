@@ -47,16 +47,20 @@
       <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
-        <div>
+        <div *ngIf="!isLoggedIn">
           <button mat-button onclick="location.href = '/log-in';">
               <mat-icon>account_box</mat-icon>
               Log in
           </button>
         </div>
-        <div *ngIf="!isLoggedIn">
-          <mat-menu mat-button onclick="location.href = '/log-in';">
+        <div *ngIf="isLoggedIn">
+          <button mat-button [matMenuTriggerFor]="belowMenu">
             <mat-icon>account_box</mat-icon>
-              User: ...
+              {{userLoggedIn!.firstname}} {{userLoggedIn!.lastname}}
+          </button>
+          <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item (click)="signOut()">Sign out</button>
+            <button mat-menu-item (click)="viewUserDetails()">View user details</button>
           </mat-menu>
         </div>
       </div>
@@ -67,8 +71,6 @@
         </button>
       </div>
     </mat-toolbar>
-    <hr />
-      <pre>{{test | json}}</pre>
     <hr />
     <router-outlet></router-outlet>
   </mat-sidenav-content>
