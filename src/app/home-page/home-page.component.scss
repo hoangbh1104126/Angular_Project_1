@@ -1,33 +1,65 @@
 .welcome {
   margin: 0;
   height: 100%;
-  background-image: url("../img/galaxy.gif");
+  background-image: url("../img/management.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  pointer-events: none;
+  transition: all 500ms;
+}
+
+.welcome::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0);
+  -webkit-transition: background-color 650ms linear;
+  -ms-transition: background-color 650ms linear;
+  transition: background-color 650ms linear;
+}
+
+.welcome:hover::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0.5);
+  -webkit-transition: background-color 650ms linear;
+  -ms-transition: background-color 650ms linear;
+  transition: background-color 650ms linear;
 }
 
 .none {
-  height: 40%;
+  height: 15%;
 }
 
 .showNext {
+  position:unset;
   height: 45%;
   width: 80%;
-  margin: 0 auto;
+  margin: 15% auto;
+  pointer-events: auto;
+  transition: all 500ms;
 }
 
 h1 {
   height: 65%;
   margin: 32px auto;
   line-height: 1.5;
+  letter-spacing: 10px;
   opacity: 50%;
   max-width: max-content;
   vertical-align: bottom;
   font-family: 'Cinzel';
   text-align: center;
   font-size: 50px;
-  color:aqua;
+  color:rgb(2, 90, 253);
   transition: all 500ms;
 }
 
@@ -35,14 +67,21 @@ h1 {
   cursor: default;
   margin: 0 auto;
   opacity: 100%;
-  color: aquamarine;
   font-size: 75px;
   font-size-adjust: 20px;
-  letter-spacing: 10px;
+  letter-spacing: 20px;
+  color: aqua;
+  -webkit-filter: brightness(100%);
+  filter: brightness(100%);
 }
 
 .showNext:hover .title + .navAM {
   visibility: visible;
+  transition: all 500ms;
+}
+
+.showNext:hover {
+  margin: 12% auto;
   transition: all 500ms;
 }
 
@@ -109,27 +148,28 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   opacity: 50%;
-  --thickness: 0.3rem;
+  --thickness: 0.5rem;
   --roundness: 1.2rem;
-  --color: #eff6ff;
+  --color: white;
   --opacity: 0.6;
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   background: none;
-  background: hsla(0, 0%, 100%, 0.2);
+  background: rgba(255, 255, 255, 0.33);
   border: none;
   border-radius: var(--roundness);
   color: var(--color);
   cursor: pointer;
   display: block;
   font-family: Poppins, "sans-serif";
-  font-size: 1rem;
+  font-size: 1.75rem;
   font-weight: 500;
   padding: 0.8rem 3rem;
   position: relative;
 }
 .btn-101:hover {
-  background: hsla(0, 0%, 100%, 0.3);
+  --color: aqua;
+  background: rgba(87, 87, 87, 0.125);
   filter: brightness(1.2);
   opacity: 100%;
 }
@@ -179,5 +219,3 @@ a:hover {
     stroke-dashoffset: 370%;
   }
 }
-
-

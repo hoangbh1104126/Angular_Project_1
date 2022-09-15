@@ -115,7 +115,7 @@ export class AccountDataComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'account_number':
+        case 'user id':
           return compare(a.account_number, b.account_number, isAsc);
         case 'balance':
           return compare(a.balance, b.balance, isAsc);
@@ -143,8 +143,8 @@ export class AccountDataComponent implements OnInit {
 
   display = new FormControl('');
 
-  displayList: string[] = ['account_number', 'balance', 'name', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
-  onDisplayList: string[] = ['account_number', 'balance', 'name', 'age', 'gender'];
+  displayList: string[] = ['user id', 'balance', 'name', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
+  onDisplayList: string[] = ['user id', 'balance', 'name', 'age', 'gender'];
 
   slt : string[] = ["select"];
   edt : string[] = ["edit"];

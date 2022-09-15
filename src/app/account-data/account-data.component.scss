@@ -129,3 +129,20 @@ th {
 th:hover {
   color: royalblue;
 }
+
+.display-panel.mat-select-panel {
+  column-count: 2;
+  column-width: 250px;
+
+}
+
+.selection-display{
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+
+::ng-deep .mat-option-pseudo-checkbox{
+  display: inline-flex;
+  margin-bottom: 40px;
+}
