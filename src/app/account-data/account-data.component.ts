@@ -24,7 +24,6 @@ import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { DialogRef } from '@angular/cdk/dialog';
 
-
 @Component({
   selector: 'app-account-data',
   templateUrl: './account-data.component.html',
