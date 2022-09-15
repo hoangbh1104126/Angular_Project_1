@@ -26,4 +26,6 @@ Change log:
 
 ## Week 4
 
-- Complete login feature (login by account)
+- Complete login feature (login by account).
+- Design Home Page.
+- Select display field -> 2 row (no scroll).
