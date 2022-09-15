@@ -114,6 +114,7 @@ a:hover {
   border: 0 solid;
   box-sizing: border-box;
 }
+
 .btn-101 {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: button;
@@ -132,18 +133,23 @@ a:hover {
   padding: 0;
   text-transform: uppercase;
 }
+
 .btn-101:disabled {
   cursor: default;
 }
+
 .btn-101:-moz-focusring {
   outline: auto;
 }
+
 .btn-101 svg {
   vertical-align: middle;
 }
+
 .btn-101 [hidden] {
   display: none;
 }
+
 .btn-101 {
   margin-left: auto;
   margin-right: auto;
@@ -167,16 +173,19 @@ a:hover {
   padding: 0.8rem 3rem;
   position: relative;
 }
+
 .btn-101:hover {
   --color: aqua;
   background: rgba(87, 87, 87, 0.125);
   filter: brightness(1.2);
   opacity: 100%;
 }
+
 .btn-101:active {
   --opacity: 0;
   background: hsla(0, 0%, 100%, 0.1);
 }
+
 .btn-101 svg {
   border-radius: var(--roundness);
   display: block;
@@ -187,6 +196,7 @@ a:hover {
   top: 0;
   width: 100%;
 }
+
 .btn-101 rect {
   fill: none;
   stroke: var(--color);
@@ -204,16 +214,19 @@ a:hover {
   transition: opacity 0.2s;
   width: 100%;
 }
+
 .btn-101:hover rect {
   -webkit-animation-play-state: running;
   animation-play-state: running;
   opacity: var(--opacity);
 }
+
 @-webkit-keyframes snake {
   to {
     stroke-dashoffset: 370%;
   }
 }
+
 @keyframes snake {
   to {
     stroke-dashoffset: 370%;
