@@ -304,7 +304,7 @@ export class AccountDataComponent implements OnInit {
           verticalPosition: "top",
           duration: 2500,
         });
-        this.userSelected.forEach(user => this.deleteUser(user));
+        this.userSelected.forEach(user => this.deleteUser(user, true));
         this.userSelected.splice(0);
         this.selection.clear();
         this.refresh();
@@ -317,7 +317,12 @@ export class AccountDataComponent implements OnInit {
     this.refresh();
   }
 
-  deleteUser(number : number) {
+  deleteUser(number: number, mulUser: boolean) {
+    if(mulUser){
+      this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
+      this.refresh();
+      return ;
+    }
     const message = `Are you sure you want to do delete this user?`;
     const dialogData = new ConfirmDialogModel("Delete single user", message);
     const dialogRef = this.dialog.open(ConfirmComponent, {

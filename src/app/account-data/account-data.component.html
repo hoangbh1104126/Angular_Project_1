@@ -149,7 +149,7 @@
         <mat-menu #belowMenu3="matMenu" yPosition="below">
           <ng-template matMenuContent let-account_number="account_number">
             <button mat-menu-item (click)="editUser(account_number)"> Edit user </button>
-            <button mat-menu-item (click)="deleteUser(account_number)"> Remove user </button>
+            <button mat-menu-item (click)="deleteUser(account_number, false)"> Remove user </button>
           </ng-template>
         </mat-menu>
       </td>
