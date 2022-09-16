@@ -17,35 +17,12 @@ export class AccountManagementComponent implements OnInit {
 
   ngOnInit() { }
 
-  opened!: boolean;
-  sayHelloTime : number = 0;
-
   userData : User[] = usersData;
-
-  folders: Folder[] = [
-    {
-      name: 'New Folder',
-      create: new Date('9/1/16'),
-      open: false,
-    },
-    {
-      name: 'Folder',
-      create: new Date('8/17/16'),
-      open: false,
-      child: [
-        { name: 'Folder', create: new Date('8/23/16'), open: false, },
-        { name: 'Folder', create: new Date('8/31/16'), open: false, },
-      ],
-    },
-    {
-      name: 'New Folder (2)',
-      create: new Date('7/28/16'),
-      open: false,
-    },
-  ];
-
+  opened !: boolean;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  modeNavigation: any = "over";
+  backdropNavigation: boolean = true;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -67,17 +44,10 @@ export class AccountManagementComponent implements OnInit {
   }
 
   openSnackBar(msg: string, close: string) {
-    this.sayHelloTime = this.sayHelloTime + 1;
     this._snackBar.open(msg, close, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
-  }
-
-  openFolder(number : number){
-    this.folders[number].open = !this.folders[number].open;
-    let str = this.folders[number].open ? "Open" : "Close";
-    this.openSnackBar(str +" folder: " + this.folders[number].name + "!","Ok")
   }
 
   viewUserDetails(){
@@ -88,11 +58,15 @@ export class AccountManagementComponent implements OnInit {
     this.openSnackBar("Logged out!", "Ok")
     this.router.navigateByUrl('/log-in');
   }
-}
 
-export interface Folder {
-  name: string;
-  create: Date;
-  open: boolean;
-  child?: Folder[];
+  goToPage(str: string){
+    this.router.navigateByUrl("/account_management" + str);
+    if(str === "/dashboard"){
+      this.modeNavigation = "push";
+      this.backdropNavigation = false;
+    } else {
+      this.modeNavigation = "over";
+      this.backdropNavigation = true;
+    }
+  }
 }

@@ -80,6 +80,7 @@ mat-icon {
 }
 
 .example-menu-item {
+  font-size: 17px;
   background-color: transparent;
   cursor: pointer;
   border: none;
@@ -87,18 +88,26 @@ mat-icon {
   user-select: none;
   min-width: 64px;
   line-height: 36px;
-  padding: 0 16px;
 
   display: flex;
   align-items: center;
   flex-direction: row;
   flex: 1;
+  color: currentColor;
+  background: none;
+  transition-duration: 350ms;
 }
 
 .example-menu-item:hover {
-  background-color: rgb(208, 208, 208);
+  color: white;
+  background: linear-gradient(to right, #ad92f2 0%, #71c5ec 100%);
+  transition-duration: 350ms;
 }
 
-.example-menu-item:active {
-  background-color: rgb(170, 170, 170);
+.text-nav {
+  padding: 0 15px;
+}
+
+.header-nav {
+  font-weight: bold;
 }

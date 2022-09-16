@@ -1,50 +1,64 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav class="navigationPane" #sidenav mode="over" [(opened)]="opened">
+<mat-drawer-container class="example-container" [hasBackdrop]="backdropNavigation">
+  <mat-drawer class="navigationPane" #drawer [mode]="modeNavigation" [(opened)]="opened">
     <h2 class="titleNav">Account Management</h2>
     <hr />
     <mat-list>
+      <div mat-subheader class="header-nav">Tools</div>
       <mat-list-item>
-        <button class="example-menu-item" mat-raised-button onclick="location.href = '';">
-            <mat-icon>home</mat-icon>
-            Home
+        <button class="example-menu-item" mat-button color="primary"  (click)="goToPage('/dashboard')">
+            <mat-icon>dashboard</mat-icon>
+            <span class="text-nav">Dashboard</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button
-          class="example-menu-item"
-          mat-raised-button
-          (click)="openSnackBar('Hello!', 'Bye')"
-          aria-label="Show an example snack-bar"
-        >
-            <mat-icon>tag_faces</mat-icon>
-            <span> Say hello! &nbsp;</span>
-            <span [matBadge]="sayHelloTime" matBadgeColor="warn" *ngIf="sayHelloTime != 0">&nbsp;</span>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>people</mat-icon>
+            <span class="text-nav">People</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-raised-button>
-            <mat-icon>help_ouline</mat-icon>
-            Do something
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/account')">
+            <mat-icon>business</mat-icon>
+            <span class="text-nav">Bussiness</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <mat-list>
-          <div mat-subheader>Folders</div>
-            <mat-list-item *ngFor="let folder of folders; index as idx" (click)="openFolder(idx)">
-              <mat-icon mat-list-icon *ngIf="!folder.open">folder</mat-icon>
-              <mat-icon mat-list-icon *ngIf="folder.open">folder_open</mat-icon>
-              <div mat-line>{{ folder.name }}</div>
-              <div mat-line>{{ folder.create | date}}</div>
-            </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>bar_chart</mat-icon>
+            <span class="text-nav">Statistics</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>folder_special</mat-icon>
+            <span class="text-nav">Documents</span>
+        </button>
+      </mat-list-item>
+      <div mat-subheader class="header-nav">Other</div>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>forum</mat-icon>
+            <span class="text-nav">Chat</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>live_help</mat-icon>
+            <span class="text-nav">Support</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary">
+            <mat-icon>map</mat-icon>
+            <span class="text-nav">Map</span>
+        </button>
       </mat-list-item>
     </mat-list>
-  </mat-sidenav>
+  </mat-drawer>
 
-  <mat-sidenav-content>
+  <mat-drawer-content>
     <mat-toolbar class="TitleBar">
-      <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
         <div *ngIf="!isLoggedIn">
@@ -73,8 +87,8 @@
     </mat-toolbar>
     <hr />
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer-content>
+</mat-drawer-container>
 
 
 

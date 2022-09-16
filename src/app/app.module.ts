@@ -19,6 +19,9 @@ import { GenderPipe } from './gender.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NoValuePipe } from './no-value.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { CheckPipe } from './check.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EditUserComponent,
     NoValuePipe,
     PageNotFoundComponent,
+    DashboardComponent,
+    ConfirmComponent,
+    CheckPipe,
   ],
   imports: [
     FormsModule,

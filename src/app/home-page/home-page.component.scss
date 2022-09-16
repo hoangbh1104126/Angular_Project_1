@@ -172,18 +172,22 @@ a:hover {
   font-weight: 500;
   padding: 0.8rem 3rem;
   position: relative;
+  letter-spacing: 3px;
+  transition-duration: 1500ms;
 }
 
 .btn-101:hover {
-  --color: aqua;
-  background: rgba(87, 87, 87, 0.125);
+  --color: rgb(22, 66, 196);
+  background: linear-gradient(to top left, #ad92f2 -15%, #71c5ec 100%);
   filter: brightness(1.2);
+  transition-duration: 1500ms;
   opacity: 100%;
+  letter-spacing: 3px;
 }
 
 .btn-101:active {
   --opacity: 0;
-  background: hsla(0, 0%, 100%, 0.1);
+  background: linear-gradient(to top left, #ad92f2 -15%, #71c5ec 100%);
 }
 
 .btn-101 svg {
