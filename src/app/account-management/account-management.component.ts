@@ -17,40 +17,20 @@ export class AccountManagementComponent implements OnInit {
 
   ngOnInit() { }
 
-  opened!: boolean;
-  sayHelloTime : number = 0;
-
   userData : User[] = usersData;
-
-  folders: Folder[] = [
-    {
-      name: 'New Folder',
-      create: new Date('9/1/16'),
-      open: false,
-    },
-    {
-      name: 'Folder',
-      create: new Date('8/17/16'),
-      open: false,
-      child: [
-        { name: 'Folder', create: new Date('8/23/16'), open: false, },
-        { name: 'Folder', create: new Date('8/31/16'), open: false, },
-      ],
-    },
-    {
-      name: 'New Folder (2)',
-      create: new Date('7/28/16'),
-      open: false,
-    },
-  ];
-
+  opened : boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  modeNavigation: any = "side";
+  backdropNavigation: boolean = false;
+  link !: string;
 
   constructor(
     private _snackBar: MatSnackBar,
     private router: Router,
-  ) { }
+  ) { 
+    this.link = this.router.url;
+  }
 
   test = (this.router.getCurrentNavigation() as Navigation).extras.state;
   isLoggedIn: boolean = this.test == undefined || this.test == null? false : true;
@@ -67,17 +47,10 @@ export class AccountManagementComponent implements OnInit {
   }
 
   openSnackBar(msg: string, close: string) {
-    this.sayHelloTime = this.sayHelloTime + 1;
     this._snackBar.open(msg, close, {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
-  }
-
-  openFolder(number : number){
-    this.folders[number].open = !this.folders[number].open;
-    let str = this.folders[number].open ? "Open" : "Close";
-    this.openSnackBar(str +" folder: " + this.folders[number].name + "!","Ok")
   }
 
   viewUserDetails(){
@@ -88,11 +61,37 @@ export class AccountManagementComponent implements OnInit {
     this.openSnackBar("Logged out!", "Ok")
     this.router.navigateByUrl('/log-in');
   }
-}
 
-export interface Folder {
-  name: string;
-  create: Date;
-  open: boolean;
-  child?: Folder[];
+  goToPage(str: string){
+    if(str.includes('business')){
+      this.router.navigateByUrl("/loading");
+    }
+    else {this.router.navigateByUrl("/account_management" + str);}
+    this.link = "/account_management" + str;
+  }
+
+  onDisplay(str: string): Object{
+    if(this.link.includes(str)){
+      return {
+        'font-weight': 'bold',
+        'color': 'whitesmoke',
+      }
+    } return {}
+  }
+
+  bar1: Object = {'transform': 'translate(0, 10px) rotate(-45deg)'};
+  bar2: Object = {'opacity': '0'};
+  bar3: Object = {'transform': 'translate(0, -10px) rotate(45deg)'};
+
+  openMenu() {
+    if(!this.opened){
+      this.bar1 = {'transform': 'translate(0, 9.5px) rotate(-45deg)'};
+      this.bar2 = {'opacity': '0'};
+      this.bar3 = {'transform': 'translate(0, -9.5px) rotate(45deg)'};
+    } else {
+      this.bar1 = {};
+      this.bar2 = {};
+      this.bar3 = {};
+    }
+  }
 }

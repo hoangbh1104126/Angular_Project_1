@@ -19,6 +19,12 @@ import { GenderPipe } from './gender.pipe';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NoValuePipe } from './no-value.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { CheckPipe } from './check.pipe';
+import { LoadingComponent } from './loading/loading.component';
+import { PeopleComponent } from './people/people.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EditUserComponent,
     NoValuePipe,
     PageNotFoundComponent,
+    DashboardComponent,
+    ConfirmComponent,
+    CheckPipe,
+    LoadingComponent,
+    PeopleComponent,
+    StatisticsComponent,
   ],
   imports: [
     FormsModule,

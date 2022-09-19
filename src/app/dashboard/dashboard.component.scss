@@ -1,0 +1,93 @@
+mat-grid-tile {
+  //border: 1px solid aqua;
+  border-radius: 20px;
+}
+
+.item-dash {
+  background-color: #f5f8fa;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dashboard {
+    margin: 8px 0 50px;
+}
+
+h1, h2 {
+    font-family: Fauna One;
+    color: royalblue;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.custom-hr {
+    width: 80%;
+    border: 5px outset royalblue;
+    margin: auto;
+}
+
+hr.custom-hr {
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: royalblue;
+    border-width: 3px 0 0 0;
+    border-radius: 20px;
+}
+hr.custom-hr:before { /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.img1 {
+    background-image: url('../img/test_screenshot.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    height: 200px;
+}
+
+#user{
+  background-color: #87a4fc;
+  color: white;
+}
+.user-count {
+  margin: 5px;
+  padding: 5px;
+}
+.user-number {
+  font-size: 30px;
+}
+.att-number {
+  margin-top: 0;
+  font-size: 20px;
+  color: #bfcefa;
+}
+.user-active{
+  width: 80%;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: royalblue;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
+}

@@ -23,6 +23,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { DialogRef } from '@angular/cdk/dialog';
+import { Router } from '@angular/router';
+import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-account-data',
@@ -41,6 +43,7 @@ export class AccountDataComponent implements OnInit {
     public dialog: MatDialog,
     private _liveAnnouncer: LiveAnnouncer,
     private _snackBar: MatSnackBar,
+    public router: Router,
   ) {
     this.sortedData = this.UsersData.slice();
   }
@@ -114,11 +117,11 @@ export class AccountDataComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'user id':
+        case 'account_number':
           return compare(a.account_number, b.account_number, isAsc);
         case 'balance':
           return compare(a.balance, b.balance, isAsc);
-        case 'name':
+        case 'firstname':
           return compare(a.firstname + " " + a.lastname, b.firstname + " " + b.lastname, isAsc);
         case 'age':
           return compare(a.age, b.age, isAsc);
@@ -142,8 +145,8 @@ export class AccountDataComponent implements OnInit {
 
   display = new FormControl('');
 
-  displayList: string[] = ['user id', 'balance', 'name', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
-  onDisplayList: string[] = ['user id', 'balance', 'name', 'age', 'gender'];
+  displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
+  onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
 
   slt : string[] = ["select"];
   edt : string[] = ["edit"];
@@ -282,15 +285,31 @@ export class AccountDataComponent implements OnInit {
   }
 
   deleteSelectedUser() {
-    this._snackBar.open("Delete " + this.userSelected.length + " user!", "Continue", {
-      horizontalPosition: "center",
-      verticalPosition: "top",
-      duration: 2500,
+    const message = `Are you sure you want delete these user?`;
+    const dialogData = new ConfirmDialogModel("Delete selected user", message);
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData,
+      panelClass: ['animate__animated','animate__slideInDown'] //Angular Animation
     });
-    this.userSelected.forEach(user => this.deleteUser(user));
-    this.userSelected.splice(0);
-    this.selection.clear();
-    this.refresh();
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this._snackBar.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        this._snackBar.open("Delete " + this.userSelected.length + " user!", "Continue", {
+          horizontalPosition: "center",
+          verticalPosition: "top",
+          duration: 2500,
+        });
+        this.userSelected.forEach(user => this.deleteUser(user, true));
+        this.userSelected.splice(0);
+        this.selection.clear();
+        this.refresh();
+      }
+    });
   }
 
   editUser(number : number) {
@@ -298,19 +317,71 @@ export class AccountDataComponent implements OnInit {
     this.refresh();
   }
 
-  deleteUser(number : number) {
-    this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
-    this.refresh();
+  deleteUser(number: number, mulUser: boolean) {
+    if(mulUser){
+      this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
+      this.refresh();
+      return ;
+    }
+    const message = `Are you sure you want to do delete this user?`;
+    const dialogData = new ConfirmDialogModel("Delete single user", message);
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData,
+      panelClass: ['animate__animated','animate__slideInDown'] //Angular Animation
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this._snackBar.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        this._snackBar.open("Delete user #" + number.toString() + "!", "Continue", {
+          horizontalPosition: "center",
+          verticalPosition: "top",
+          duration: 2500,
+        });
+        this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
+        this.refresh();
+      }
+    });
   }
 
+  result: boolean = false;
+
   deleteNewUser(){
-    this._snackBar.open("Delete all new user!", "Continue", {
-      horizontalPosition: "center",
-      verticalPosition: "top",
-      duration: 2500,
+    const message = `Are you sure you want to delete all new user?`;
+    const dialogData = new ConfirmDialogModel("Delete new user", message);
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData,
+      panelClass: ['animate__animated','animate__slideInDown'] //Angular Animation
     });
-    this.dataSource.data = this.dataSource.data.filter((user) => !user.new);
-    this.refresh();
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this._snackBar.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        this._snackBar.open("Delete all new user!", "Continue", {
+          horizontalPosition: "center",
+          verticalPosition: "top",
+          duration: 2500,
+        });
+        this.dataSource.data = this.dataSource.data.filter((user) => !user.new);
+        this.refresh();
+      }
+    });
+  }
+
+  viewUserDetails(number: number){
+    let link = "/account_management/user/" + number.toString();
+    let userDetails: User | undefined = this.dataSource.data.find((user) => user.account_number == number);
+    this.router.navigateByUrl(link, {
+      state: { user: userDetails }
+    });
   }
 
 }

@@ -1,0 +1,102 @@
+<h1>Account Management</h1>
+<h2><a href="#">Home</a> > <a>Dashboard</a></h2>
+
+<hr class="custom-hr"/>
+
+<mat-grid-list cols="8" rowHeight="4:3" [gutterSize]="'50px'" class="dashboard">
+  <mat-grid-tile colspan="2" rowspan="2" id="user" class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class="user-number">1000+</mat-grid-tile>
+      <mat-grid-tile class="user-number">0</mat-grid-tile>
+      <mat-grid-tile class="att-number">User</mat-grid-tile>
+      <mat-grid-tile class="att-number">New User</mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
+      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class="user-number" colspan="2">{{123456 | currency}}</mat-grid-tile>
+      <mat-grid-tile class="att-number" colspan="2">Total balance</mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
+      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="4" class="item-dash">3a</mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class="user-number">369</mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class="att-number">Professionals</mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">Today's Heroes</mat-grid-tile>
+      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class="user-number">About us</mat-grid-tile>
+      <mat-grid-tile>...</mat-grid-tile>
+      <mat-grid-tile>Facebook</mat-grid-tile>
+      <mat-grid-tile>...</mat-grid-tile>
+      <mat-grid-tile>Twitter</mat-grid-tile>
+      <mat-grid-tile>...</mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imperdiet lacus. Praesent eu vehicula magna.</mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="2" rowHeight="4:3" [gutterSize]="'50px'" class="dashboard">
+    <mat-grid-tile class="item-dash">
+        <mat-card class="example-card">
+
+          <!--
+          <img mat-card-image src="../img/bw.jpg" alt="Photo of test">
+          -->
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>About us</mat-card-title>
+            <mat-card-subtitle>A.M</mat-card-subtitle>
+          </mat-card-header>
+          <div class="img1" alt="test">1</div>
+          <mat-card-content>
+            <p>
+              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+              bred for hunting.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="item-dash"><a href="https://css-tricks.com/how-to-create-neon-text-with-css/">Neon Text</a></mat-grid-tile>
+    <mat-grid-tile class="item-dash"><a href="https://www.w3schools.com/colors/colors_gradient.asp">Gradient color</a></mat-grid-tile>
+    <mat-grid-tile class="item-dash"><a href="https://codepen.io/muratbenli/pen/yLOYmgj">Fake loading</a></mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="4" rowHeight="4:3" [gutterSize]="'50px'" class="dashboard">
+  <mat-grid-tile colspan="3" rowspan="2" class="item-dash">1a</mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2" class="item-dash">2a</mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2" class="item-dash">4a</mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="2" class="item-dash">5a</mat-grid-tile>
+</mat-grid-list>
