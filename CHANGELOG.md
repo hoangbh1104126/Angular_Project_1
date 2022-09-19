@@ -30,3 +30,7 @@ Change log:
 - Design: Home Page, navigation bar, etc.
 - Select display field -> 2 row (no scroll).
 - Add: Dashboard, loading, 404 page; confirm dialog.
+
+`npm install apexcharts ng-apexcharts --save `
+
+[install apexcharts](https://apexcharts.com/docs/angular-charts/)

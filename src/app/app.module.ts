@@ -25,6 +25,7 @@ import { CheckPipe } from './check.pipe';
 import { LoadingComponent } from './loading/loading.component';
 import { PeopleComponent } from './people/people.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
     ReactiveFormsModule,
     NgbModule,
     AppMaterialModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

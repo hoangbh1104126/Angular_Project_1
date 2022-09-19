@@ -23,15 +23,16 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   border-radius: 20px;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: Fauna One;
   color: royalblue;
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
 
-h2 {
-  margin-bottom: 25px;
+h2, h3 {
+  text-align: center;
+  margin: 25px auto 25px;
 }
 
 a {
@@ -83,4 +84,9 @@ table {
 }
 :host ::ng-deep .mat-tab-body-wrapper {
   flex: 1 1 auto;
+}
+
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
 }
