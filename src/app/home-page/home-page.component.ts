@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  displayText = "A.M";
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  change(){
+    this.displayText == "A.M"? this.displayText = "Account Management" : this.displayText = "A.M";
+  }
 }

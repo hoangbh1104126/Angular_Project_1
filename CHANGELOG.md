@@ -27,5 +27,6 @@ Change log:
 ## Week 4
 
 - Complete login feature (login by account).
-- Design Home Page.
+- Design: Home Page, navigation bar, etc.
 - Select display field -> 2 row (no scroll).
+- Add: Dashboard, loading, 404 page; confirm dialog.

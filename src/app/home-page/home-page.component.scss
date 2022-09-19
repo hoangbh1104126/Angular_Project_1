@@ -73,6 +73,7 @@ h1 {
   color: aqua;
   -webkit-filter: brightness(100%);
   filter: brightness(100%);
+  transition-duration: 500ms;
 }
 
 .showNext:hover .title + .navAM {
@@ -178,6 +179,15 @@ a:hover {
 
 .btn-101:hover {
   --color: rgb(22, 66, 196);
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+    0 0 151px #0fa;
   background: linear-gradient(to top left, #ad92f2 -15%, #71c5ec 100%);
   filter: brightness(1.2);
   transition-duration: 1500ms;

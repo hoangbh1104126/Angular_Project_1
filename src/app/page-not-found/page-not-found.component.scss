@@ -1,0 +1,115 @@
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wallpaper {
+  margin: 0;
+  height: 100%;
+  background-image: url("http://www.supah.it/dribbble/008/008.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.wallpaper::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/*--------------------
+Page
+--------------------*/
+.page {
+  @include center;
+  width: 800px;
+  height: 600px;
+  z-index: 1;
+  font-family: Roboto, sans-serif;
+  background: #0D0C1E;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+}
+
+/*--------------------
+Content
+--------------------*/
+.content {
+  text-align: center;
+  padding-top: 170px;
+  color: #CDD4DE;
+  
+  h1 {
+    letter-spacing: 15px;
+    font-weight: 900;
+    font-size: 165px;
+    line-height: 1;
+    margin-bottom: -10px;
+    opacity: 0.6;
+    text-shadow:
+      0 0 4px #fff,
+      0 0 4px #fff,
+  }
+  
+  h2 {
+    margin-top: 16px;
+    font-weight: 700;
+    font-size: 34px;
+    margin-bottom: 6px;
+    opacity: 0.9;
+  }
+  
+  p {
+    margin-top: 12px;
+    color:#0D0C1E;
+    font-weight: 500;
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 140px;
+  }
+  
+  a {
+    color: whitesmoke;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 12px;
+    text-transform: uppercase;
+    border: 1px solid #CDD4DE;
+    padding: 8px 14px;
+    border-radius: 4px;
+    opacity: 0.4;
+    background: none;
+    transition-duration: 750ms;
+  }
+
+  a:hover {
+    transition-duration: 500ms;
+    background: linear-gradient(to bottom right, #d9dce5 0%, #111326 110%);
+    opacity: 0.85;
+    font-weight: bold;
+  }
+}
+
+
+/*--------------------
+Image
+--------------------*/
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  transform: scale(1.1);
+}

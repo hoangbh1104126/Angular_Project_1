@@ -4,7 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 @Component({
   selector: 'app-confirm-dialog',
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css']
+  styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
   title: string;

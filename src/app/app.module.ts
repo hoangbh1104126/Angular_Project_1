@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { CheckPipe } from './check.pipe';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CheckPipe } from './check.pipe';
     DashboardComponent,
     ConfirmComponent,
     CheckPipe,
+    LoadingComponent,
   ],
   imports: [
     FormsModule,

@@ -56,7 +56,6 @@ export class LogInComponent implements OnInit {
   hide = true;
   logInForm !: FormGroup;
   role : string;
-  onLog : boolean = true;
 
   userLogged!: string;
 
@@ -111,9 +110,8 @@ export class LogInComponent implements OnInit {
         verticalPosition: "top",
         duration: 1250,
       });
-      this.onLog = false;
       setTimeout(() => {
-        this.router.navigateByUrl('/account_management', {
+        this.router.navigateByUrl('/loading', {
           state: { user: this.userLogged }
         });
       }, 500);

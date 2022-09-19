@@ -18,16 +18,19 @@ export class AccountManagementComponent implements OnInit {
   ngOnInit() { }
 
   userData : User[] = usersData;
-  opened !: boolean;
+  opened : boolean = true;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  modeNavigation: any = "over";
-  backdropNavigation: boolean = true;
+  modeNavigation: any = "side";
+  backdropNavigation: boolean = false;
+  link !: string;
 
   constructor(
     private _snackBar: MatSnackBar,
     private router: Router,
-  ) { }
+  ) { 
+    this.link = this.router.url;
+  }
 
   test = (this.router.getCurrentNavigation() as Navigation).extras.state;
   isLoggedIn: boolean = this.test == undefined || this.test == null? false : true;
@@ -60,13 +63,35 @@ export class AccountManagementComponent implements OnInit {
   }
 
   goToPage(str: string){
-    this.router.navigateByUrl("/account_management" + str);
-    if(str === "/dashboard"){
-      this.modeNavigation = "push";
-      this.backdropNavigation = false;
+    if(str.includes('business')){
+      this.router.navigateByUrl("/loading");
+    }
+    else {this.router.navigateByUrl("/account_management" + str);}
+    this.link = "/account_management" + str;
+  }
+
+  onDisplay(str: string): Object{
+    if(this.link.includes(str)){
+      return {
+        'font-weight': 'bold',
+        'color': 'whitesmoke',
+      }
+    } return {}
+  }
+
+  bar1: Object = {'transform': 'translate(0, 10px) rotate(-45deg)'};
+  bar2: Object = {'opacity': '0'};
+  bar3: Object = {'transform': 'translate(0, -10px) rotate(45deg)'};
+
+  openMenu() {
+    if(!this.opened){
+      this.bar1 = {'transform': 'translate(0, 9.5px) rotate(-45deg)'};
+      this.bar2 = {'opacity': '0'};
+      this.bar3 = {'transform': 'translate(0, -9.5px) rotate(45deg)'};
     } else {
-      this.modeNavigation = "over";
-      this.backdropNavigation = true;
+      this.bar1 = {};
+      this.bar2 = {};
+      this.bar3 = {};
     }
   }
 }

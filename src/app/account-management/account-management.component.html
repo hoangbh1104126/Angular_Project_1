@@ -1,54 +1,54 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="backdropNavigation">
+<mat-drawer-container class="example-container" [hasBackdrop]="backdropNavigation" autosize>
   <mat-drawer class="navigationPane" #drawer [mode]="modeNavigation" [(opened)]="opened">
-    <h2 class="titleNav">Account Management</h2>
+    <h2 class="titleNav">A.M</h2>
     <hr />
     <mat-list>
       <div mat-subheader class="header-nav">Tools</div>
       <mat-list-item>
         <button class="example-menu-item" mat-button color="primary"  (click)="goToPage('/dashboard')">
             <mat-icon>dashboard</mat-icon>
-            <span class="text-nav">Dashboard</span>
+            <span class="text-nav" [ngStyle]="onDisplay('dashboard')">Dashboard</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/people')">
             <mat-icon>people</mat-icon>
-            <span class="text-nav">People</span>
+            <span class="text-nav" [ngStyle]="onDisplay('people')">People</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/account')">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/business')">
             <mat-icon>business</mat-icon>
-            <span class="text-nav">Bussiness</span>
+            <span class="text-nav" [ngStyle]="onDisplay('business')">Business</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/statistics')">
             <mat-icon>bar_chart</mat-icon>
-            <span class="text-nav">Statistics</span>
+            <span class="text-nav" [ngStyle]="onDisplay('statistics')">Statistics</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/documents')">
             <mat-icon>folder_special</mat-icon>
-            <span class="text-nav">Documents</span>
+            <span class="text-nav"  [ngStyle]="onDisplay('documents')">Documents</span>
         </button>
       </mat-list-item>
       <div mat-subheader class="header-nav">Other</div>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/chat')">
             <mat-icon>forum</mat-icon>
-            <span class="text-nav">Chat</span>
+            <span class="text-nav" [ngStyle]="onDisplay('chat')">Chat</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/help')">
             <mat-icon>live_help</mat-icon>
-            <span class="text-nav">Support</span>
+            <span class="text-nav" [ngStyle]="onDisplay('support')">Support</span>
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/map')">
             <mat-icon>map</mat-icon>
             <span class="text-nav">Map</span>
         </button>
@@ -58,7 +58,17 @@
 
   <mat-drawer-content>
     <mat-toolbar class="TitleBar">
-      <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+      <button mat-button (click)="drawer.toggle()" class="btn">
+        <!--
+        <mat-icon >menu</mat-icon>
+        -->
+        <div class="container" (click)="openMenu()">
+          <div class="bar1" [ngStyle]="bar1"></div>
+          <div class="bar2" [ngStyle]="bar2"></div>
+          <div class="bar3" [ngStyle]="bar3"></div>
+        </div>
+        
+      </button>
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
         <div *ngIf="!isLoggedIn">
@@ -86,7 +96,12 @@
       </div>
     </mat-toolbar>
     <hr />
-    <router-outlet></router-outlet>
+    <div id="content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="customize">
+      <button mat-button class="text-btn">Customize</button>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
 

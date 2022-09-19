@@ -25,7 +25,7 @@ const routes: Routes = [
           component: DashboardComponent,
         },
         {
-          path: 'account',
+          path: 'business',
           component: AccountDataComponent,
         },
         {
