@@ -9,11 +9,9 @@ import { Router } from '@angular/router';
 export class LoadingComponent implements OnInit {
 
   constructor(public router: Router,) {
-    /*
     setTimeout(() => {
       this.router.navigateByUrl('/account_management/business');
-    }, 500);
-    */
+    }, 150);
   }
 
   ngOnInit(): void {
