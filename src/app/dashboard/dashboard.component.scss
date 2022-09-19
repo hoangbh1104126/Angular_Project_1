@@ -1,6 +1,11 @@
 mat-grid-tile {
-    background: lightblue;
-    border-radius: 20px;
+  //border: 1px solid aqua;
+  border-radius: 20px;
+}
+
+.item-dash {
+  background-color: #f5f8fa;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dashboard {
@@ -54,4 +59,35 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     background-size: cover;
     pointer-events: none;
     height: 200px;
+}
+
+#user{
+  background-color: #87a4fc;
+  color: white;
+}
+.user-count {
+  margin: 5px;
+  padding: 5px;
+}
+.user-number {
+  font-size: 30px;
+}
+.att-number {
+  margin-top: 0;
+  font-size: 20px;
+  color: #bfcefa;
+}
+.user-active{
+  width: 80%;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: royalblue;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
 }

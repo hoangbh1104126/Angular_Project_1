@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  activeUser: number;
+  per: number;
+
+  constructor() {
+    this.activeUser = Math.floor(Math.random() * 1000);
+    this.per = Math.floor(this.activeUser/10);
+  }
 
   ngOnInit(): void {
   }

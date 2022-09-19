@@ -23,6 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { CheckPipe } from './check.pipe';
 import { LoadingComponent } from './loading/loading.component';
+import { PeopleComponent } from './people/people.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { LoadingComponent } from './loading/loading.component';
     ConfirmComponent,
     CheckPipe,
     LoadingComponent,
+    PeopleComponent,
+    StatisticsComponent,
   ],
   imports: [
     FormsModule,
