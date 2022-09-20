@@ -15,6 +15,10 @@ a:hover {
   letter-spacing: 10px;
 }
 
+.titleAM:hover {
+  color: blue;
+}
+
 .btn {
   margin: 0;
   padding: 0;
@@ -43,6 +47,7 @@ a:hover {
 }
 
 .TitleBar{
+  border-bottom: 1px solid royalblue;
   display: flex;
   margin: 0; padding: 0;
   position: sticky;
@@ -65,9 +70,17 @@ hr {
   margin: 0 32px;
 }
 
+.home:hover {
+  color: blue;
+}
+
 .log {
   width: 5%;
   margin: 0 32px;
+}
+
+.log:hover {
+  color: blue;
 }
 
 .example-container {

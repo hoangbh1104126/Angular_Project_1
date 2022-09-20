@@ -23,17 +23,70 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   border-radius: 20px;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: Fauna One;
   color: royalblue;
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
 
-h2 {
-  margin-bottom: 25px;
+h2, h3 {
+  text-align: center;
+  margin: 25px auto 25px;
 }
 
 a {
     text-decoration: none;
+}
+
+.chipGender {
+  max-width: 100px;
+  justify-content: center;
+  font-weight: bold;
+}
+
+table {
+  width: 70%;
+  margin: 8px auto;
+}
+
+.content {
+  margin: 8px 20px;
+}
+
+:host ::ng-deep .mat-tab-group {
+  flex-direction: row;
+}
+:host ::ng-deep .mat-tab-header {
+  border-bottom: none;
+}
+:host ::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+}
+:host ::ng-deep .mat-tab-labels {
+  margin-right: 20px;
+  padding: 30px 0;
+  flex-direction: column;
+  border: 1px double royalblue;
+}
+:host ::ng-deep .mat-tab-labels .mat-focus-indicator{
+  margin: 15px;
+  font-size: 20px;
+  text-align: start;
+}
+:host ::ng-deep .mat-tab-labels .mat-focus-indicator:hover{
+  color: blue;
+  background-color: rgb(255, 253, 198);
+}
+:host ::ng-deep .mat-ink-bar {
+  height: 100%;
+  left: 98% !important;
+}
+:host ::ng-deep .mat-tab-body-wrapper {
+  flex: 1 1 auto;
+}
+
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
 }

@@ -2,3 +2,146 @@
 <h2><a href="#">Home</a> > <a>Statistics</a></h2>
 
 <hr class="custom-hr"/>
+
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
+        <span style="margin-left: 10px;">Balance</span>
+    </ng-template>
+    <div class="content">
+        <h2>Balance</h2>
+        <div id="chart">
+            <apx-chart
+                [series]="chartOptions1.series"
+                [chart]="chartOptions1.chart"
+                [dataLabels]="chartOptions1.dataLabels"
+                [plotOptions]="chartOptions1.plotOptions"
+                [yaxis]="chartOptions1.yaxis"
+                [xaxis]="chartOptions1.xaxis"
+                [fill]="chartOptions1.fill"
+                [title]="chartOptions1.title"
+            ></apx-chart>
+        </div>
+        <h3>Table: Users with largest balance</h3>
+        <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="account_number">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.account_number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.firstname}} {{element.lastname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> <b>{{element.balance | currency}}</b> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.age}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+                    <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
+                        {{element.gender | gender }}
+                    </mat-chip>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">accessibility_new</mat-icon>
+        <span style="margin-left: 10px;">Age</span>
+    </ng-template>
+    <div class="content">
+        <h3>Oldest users</h3>
+        <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="account_number">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+                    <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
+                        {{element.gender | gender }}
+                    </mat-chip>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <h3>Youngest users</h3>
+        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="account_number">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+                    <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
+                        {{element.gender | gender }}
+                    </mat-chip>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

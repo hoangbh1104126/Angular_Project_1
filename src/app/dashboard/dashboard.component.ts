@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
   per: number;
 
   constructor() {
-    this.activeUser = Math.floor(Math.random() * 1000);
+    this.activeUser = Math.floor(Math.random() * 555);
     this.per = Math.floor(this.activeUser/10);
   }
 
