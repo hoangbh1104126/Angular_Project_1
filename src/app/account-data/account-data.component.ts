@@ -173,20 +173,19 @@ export class AccountDataComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  /*
+  setupFilter(column: string) {
+    this.dataSource.filterPredicate = (data: User, filter: string) => {
+      const textToSearch = data[column] && data[column].toLowerCase() || '';
+      return textToSearch.indexOf(filter) !== -1;
+    };
+  }
+  */
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if(this.filterByID){
-      if(this.filterSearch == "" || this.filterSearch.length == 0){
-
-      }
-      else{
-        this.dataSource.data = this.dataSource.data.filter((user) => user.account_number == Number(filterValue));
-      }
-    }
-    else {
-      this.dataSource.filter = filterValue;
-      this.refresh();
-    }
+    this.dataSource.filter = filterValue;
+    this.refresh();
   }
 
   filterGender(gender: number){
