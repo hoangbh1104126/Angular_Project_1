@@ -6,8 +6,36 @@
 <h2 class="title-data">User data</h2>
 <hr />
 
-<div class="feature">
-  <div class="user-feature">
+<pre>{{filterSearch | json}}</pre>
+
+<mat-grid-list cols="14" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;">
+  <mat-grid-tile>
+    <button mat-button [matMenuTriggerFor]="belowMenu0">Filter</button>
+    <mat-menu #belowMenu0="matMenu" yPosition="below">
+      <button mat-menu-item (click)="filterByID = true;">Filter by ID</button>
+      <button mat-menu-item [matMenuTriggerFor]="genderMenu">Filter gender</button>
+    </mat-menu>
+    <mat-menu #genderMenu="matMenu" yPosition="below">
+      <button mat-menu-item (click)="filterGender(1)">Male</button>
+      <button mat-menu-item (click)="filterGender(2)">Female</button>
+    </mat-menu>
+    <!--
+    <button mat-button [ngIf]="filterByID">
+      <mat-icon> cancel_presentation</mat-icon>
+      Filter
+    </button>
+    -->
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field appearance="standard" class="filter" style="font-size: 18px; margin-bottom: 18px; width: 95%;">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input [(ngModel)]="filterSearch">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+  <mat-grid-tile>5</mat-grid-tile>
+  <mat-grid-tile colspan="2">
     <button mat-button [matMenuTriggerFor]="belowMenu1">
       <mat-icon>group_add</mat-icon>
       Add user
@@ -16,8 +44,8 @@
       <button mat-menu-item (click)="addCustomUser()">Custom user</button>
       <button mat-menu-item (click)="addRandomUser(true)">Random user</button>
     </mat-menu>
-  </div>
-  <div class="user-feature">
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
     <button mat-button [matMenuTriggerFor]="belowMenu2">
       <mat-icon>delete</mat-icon>
       Delete user
@@ -26,8 +54,8 @@
       <button mat-menu-item (click)="deleteSelectedUser()">Selected user</button>
       <button mat-menu-item (click)="deleteNewUser()">All new user</button>
     </mat-menu>
-  </div>
-  <div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
     <mat-form-field class="selectDisplay">
       <mat-label>Display</mat-label>
       <mat-select [formControl]="display" panelClass="display-panel" multiple [(ngModel)]="onDisplayList" (selectionChange)="refreshDisplayColumns()">
@@ -50,18 +78,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-</div>
-<hr />
+  </mat-grid-tile>
 
-<div>
-  <mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
-  </mat-form-field>
-</div>
-<section class="example-container mat-elevation-z8" tabindex="0">
-  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+</mat-grid-list>
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -170,6 +191,5 @@
                  aria-label="Select page of periodic elements"
                  class="mat-paginator-sticky">
   </mat-paginator>
-</section>
 
 <hr />

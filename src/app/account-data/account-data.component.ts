@@ -37,6 +37,9 @@ export class AccountDataComponent implements OnInit {
   show : boolean = false;
   menuOpened : boolean = false;
   userShowMenu !: number;
+  filterByID: boolean = false;
+  filterSearch: string = "";
+  Users : User[] = usersData;
 
   constructor(
     private _api: UserService,
@@ -101,7 +104,6 @@ export class AccountDataComponent implements OnInit {
     }});
   }
 
-  Users : User[] = usersData;
   UsersData = this.Users;
   val = this.UsersData.length;
 
@@ -171,9 +173,23 @@ export class AccountDataComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  /*
+  setupFilter(column: string) {
+    this.dataSource.filterPredicate = (data: User, filter: string) => {
+      const textToSearch = data[column] && data[column].toLowerCase() || '';
+      return textToSearch.indexOf(filter) !== -1;
+    };
+  }
+  */
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.dataSource.filter = filterValue;
+    this.refresh();
+  }
+
+  filterGender(gender: number){
+
   }
 
   isAllSelected() {

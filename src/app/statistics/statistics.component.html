@@ -30,17 +30,17 @@
             <th mat-header-cell *matHeaderCellDef> No. </th>
             <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.account_number}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="firstname">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.firstname}} {{element.lastname}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="balance">
             <th mat-header-cell *matHeaderCellDef> Balance </th>
             <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> <b>{{element.balance | currency}}</b> </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="age">
             <th mat-header-cell *matHeaderCellDef> Age </th>
             <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> {{element.age}} </td>
@@ -56,7 +56,7 @@
                     </mat-chip-list>
                 </td>
             </ng-container>
-        
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
@@ -75,17 +75,17 @@
             <th mat-header-cell *matHeaderCellDef> No. </th>
             <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="firstname">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="balance">
             <th mat-header-cell *matHeaderCellDef> Balance </th>
             <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="age">
             <th mat-header-cell *matHeaderCellDef> Age </th>
             <td mat-cell *matCellDef="let element"> {{element.age}} </td>
@@ -101,7 +101,7 @@
                     </mat-chip-list>
                 </td>
             </ng-container>
-        
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
@@ -112,17 +112,17 @@
             <th mat-header-cell *matHeaderCellDef> No. </th>
             <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="firstname">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="balance">
             <th mat-header-cell *matHeaderCellDef> Balance </th>
             <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
             </ng-container>
-        
+
             <ng-container matColumnDef="age">
             <th mat-header-cell *matHeaderCellDef> Age </th>
             <td mat-cell *matCellDef="let element"> {{element.age}} </td>
@@ -138,12 +138,10 @@
                     </mat-chip-list>
                 </td>
             </ng-container>
-        
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
   </mat-tab>
 </mat-tab-group>
-
-  

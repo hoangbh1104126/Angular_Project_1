@@ -2,7 +2,7 @@ table {
   font-family: 'Fauna One', serif;
   font-size: 16px;
   margin: 32px;
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -12,12 +12,6 @@ table {
   bottom: 0px;
   position: sticky;
   z-index: 10;
-}
-
-.feature {
-  text-align: center;
-  display: flex;
-  justify-content: space-around;
 }
 
 h1, h2 {
@@ -83,11 +77,6 @@ a:hover {
   margin-top: -1.25em;
 }
 
-.user-feature {
-  margin-top: 15px;
-}
-
-
 .mat-row .mat-cell {
   cursor: pointer;
 }
@@ -98,13 +87,6 @@ a:hover {
   font-style: italic;
   font-weight: bolder;
   background-color: #FFFACD;
-}
-
-.mat-form-field {
-  font-size: 20px;
-  width: 80%;
-  margin: 30px auto;
-  display: block;
 }
 
 .selectDisplay {
@@ -182,4 +164,12 @@ th:hover {
 ::ng-deep .mat-option-pseudo-checkbox {
   display: inline-flex;
   margin-bottom: 40px;
+}
+
+.filter {
+  margin-bottom: 10px;
+}
+
+mat-grid-tile {
+  background: lightblue;
 }
