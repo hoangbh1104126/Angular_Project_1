@@ -32,24 +32,24 @@ export class StatisticsComponent implements OnInit {
   constructor(public router: Router) {
     this.mostBalance.push(
       this.findUserByID(411),
-      this.findUserByID(87), 
-      this.findUserByID(953), 
+      this.findUserByID(87),
+      this.findUserByID(953),
       this.findUserByID(894),
-      this.findUserByID(820), 
+      this.findUserByID(820),
     );
     this.oldest.push(
       this.findUserByID(664),
-      this.findUserByID(549), 
+      this.findUserByID(549),
       this.findUserByID(479),
       this.findUserByID(474),
-      this.findUserByID(291), 
+      this.findUserByID(291),
     );
     this.youngest.push(
       this.findUserByID(95),
-      this.findUserByID(905), 
+      this.findUserByID(905),
       this.findUserByID(816),
       this.findUserByID(215),
-      this.findUserByID(157), 
+      this.findUserByID(157),
     );
     this.chartOptions1 = {
       series: [

@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
+## Package used
+
+- [Angular Material](https://material.angular.io/) `ng add @angular/material`
+- [ApexChart](https://apexcharts.com/) `npm install apexcharts ng-apexcharts --save`
+- [Angular Carosel](https://github.com/revolunet/angular-carousel) `npm install angular-carousel`
+
 ## Feature
 
 - Managemet account

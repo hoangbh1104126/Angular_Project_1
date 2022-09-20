@@ -23,6 +23,7 @@
     "@angular/router": "^14.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
+    "angular-carousel": "^1.1.0",
     "apexcharts": "^3.35.5",
     "bootstrap": "^5.2.0",
     "ng-apexcharts": "^1.7.1",
