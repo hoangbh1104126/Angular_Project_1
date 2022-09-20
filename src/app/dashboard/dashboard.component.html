@@ -14,23 +14,22 @@
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
-      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
+      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per1}}%</mat-grid-tile>
       <mat-grid-tile colspan="2">
-        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="per1" class="user-active"></mat-progress-bar>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-number" colspan="2">{{123456 | currency}}</mat-grid-tile>
-      <mat-grid-tile class="att-number" colspan="2">Total balance</mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
-      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
+      <mat-grid-tile class="user-other" colspan="2">{{total | currency}}</mat-grid-tile>
+      <mat-grid-tile class="att-other" colspan="2">Total balance</mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="2">Largest balance: {{large | currency}}</mat-grid-tile>
+      <mat-grid-tile style="margin-left: 20px; font-size: 18px;">Guzman Whitfield</mat-grid-tile>
+      <mat-grid-tile style="font-size: 18px;">{{ per2 }}% on Total</mat-grid-tile>
       <mat-grid-tile colspan="2">
-        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" [value]="per2" class="user-active"></mat-progress-bar>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
@@ -38,29 +37,42 @@
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-number">369</mat-grid-tile>
+      <mat-grid-tile class="user-other">369</mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="att-number">Professionals</mat-grid-tile>
+      <mat-grid-tile class="att-other">Professionals</mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">Today's Heroes</mat-grid-tile>
-      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per}}%</mat-grid-tile>
-      <mat-grid-tile colspan="2">
-        <mat-progress-bar mode="determinate" [value]="per" class="user-active"></mat-progress-bar>
+      <mat-grid-tile colspan="2" rowspan="3">
+        <div class="avatars">
+          <span class="avatar">
+            <img src="https://picsum.photos/200">
+          </span>
+          <span class="avatar">
+            <img src="https://picsum.photos/195">
+          </span>
+          <span class="avatar">
+            <img src="https://picsum.photos/190">
+          </span>
+          <span class="avatar">
+            <img src="https://picsum.photos/185">
+          </span>
+          <span class="avatar">
+            <img src="https://picsum.photos/205">
+          </span>
+        </div>
       </mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="16:3"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-number">About us</mat-grid-tile>
-      <mat-grid-tile>...</mat-grid-tile>
-      <mat-grid-tile>Facebook</mat-grid-tile>
-      <mat-grid-tile>...</mat-grid-tile>
-      <mat-grid-tile>Twitter</mat-grid-tile>
-      <mat-grid-tile>...</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imperdiet lacus. Praesent eu vehicula magna.</mat-grid-tile>
+    <mat-grid-list gutterSize="0" rowHeight="16:4"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile class="user-other" rowspan="2">About us</mat-grid-tile>
+      <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
+      <mat-grid-tile rowspan="1" class="att-other">Facebook</mat-grid-tile>
+      <mat-grid-tile rowspan="1"><a href="#" class="fa fa-facebook"></a></mat-grid-tile>
+      <mat-grid-tile rowspan="1" class="att-other">Twitter</mat-grid-tile>
+      <mat-grid-tile rowspan="1"><a href="#" class="fa fa-twitter"></a></mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="2" class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>
