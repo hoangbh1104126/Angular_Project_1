@@ -171,37 +171,37 @@
     </mat-grid-tile>
     <mat-grid-tile class="item-dash">
       <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile rowspan="2"><div class="fake-title" style="font-size: 1px; width: 60%;">.</div></mat-grid-tile>
+        <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
         <mat-grid-tile rowspan="14">
-          <div class="fake-img" style="font-size: 1px; width: 100%;">.</div>
+          <div class="fake-img" style="width: 100%;">.</div>
         </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
         <mat-grid-tile rowspan="3">
           <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-            <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 50%; margin-left: -500px;">.</div></mat-grid-tile>
-            <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 70%; margin-left: -500px;">.</div></mat-grid-tile>
-            <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 80%; margin-left: -500px;">.</div></mat-grid-tile>
+            <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
+            <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
+            <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
           </mat-grid-list>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="4" rowHeight="470px" [gutterSize]="'50px'" class="dashboard">
+<mat-grid-list cols="4" rowHeight="700px" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile colspan="1" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile rowspan="2"><div class="fake-title" style="font-size: 1px; width: 60%;">.</div></mat-grid-tile>
+      <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile rowspan="14">
-        <div class="fake-img" style="font-size: 1px; width: 100%;">.</div>
+      <mat-grid-tile rowspan="24">
+        <div class="fake-img" style="width: 100%;">.</div>
       </mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="3">
         <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-          <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 50%; margin-left: -500px;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 70%; margin-left: -500px;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="font-size: 1px; width: 80%; margin-left: -500px;">.</div></mat-grid-tile>
+          <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
+          <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
+          <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
         </mat-grid-list>
       </mat-grid-tile>
     </mat-grid-list>
@@ -209,7 +209,7 @@
   <mat-grid-tile colspan="3" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile><h1>People</h1></mat-grid-tile>
-      <mat-grid-tile rowspan="8">
+      <mat-grid-tile rowspan="14">
         <div class="container">
           <div class="sliders" style='max-width: 100%'>
             <ng-container *ngFor="let img of statistics_img; let i = index">

@@ -36,6 +36,9 @@ a {
 }
 
 .fake-content {
+  position: absolute;
+  left: 2%;
+  font-size: 1px;
   background-color: #cbd5e0;
   max-width: 100%;
   opacity: 0.5;
@@ -44,14 +47,17 @@ a {
 }
 
 .fake-img {
+  position: absolute;
+  font-size: 1px;
   border-radius: 5px;
   background-color: #cbd5e0;
-  max-width: 100%;
+  max-width: 95%;
   height: 100%;
   animation: fake 5s infinite;
 }
 
 .fake-title {
+  font-size: 1px;
   border-radius: 5px;
   background-color: #cbd5e0;
   opacity: 0.5;
