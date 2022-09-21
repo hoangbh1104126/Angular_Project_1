@@ -107,7 +107,7 @@ export class EditUserComponent implements OnInit {
           Validators.pattern(/^[A-Za-z0-9_\. ]/),
         ])
       ],
-      new: false,
+      new: this.editUser?.new,
     },
     );
 
