@@ -111,7 +111,7 @@ export class StatisticsComponent implements OnInit {
             ],
             fontSize: "12px"
           },
-          
+
         },
         axisBorder: {
           show: false
