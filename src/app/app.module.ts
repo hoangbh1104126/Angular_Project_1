@@ -29,6 +29,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { ChartModule } from 'angular-highcharts';
 import { checkFailComponent } from './confirm/action/fail.component';
 import { checkSuccessComponent } from './confirm/action/check.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { checkSuccessComponent } from './confirm/action/check.component';
     StatisticsComponent,
     checkFailComponent,
     checkSuccessComponent,
+    TestComponent,
   ],
   imports: [
     FormsModule,

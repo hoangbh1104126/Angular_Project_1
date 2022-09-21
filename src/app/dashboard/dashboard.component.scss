@@ -9,11 +9,16 @@
   margin: 8px 0 50px;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: Fauna One;
     color: royalblue;
     letter-spacing: 2px;
     margin-bottom: 8px;
+}
+
+.more:hover {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 h2 {
@@ -28,6 +33,37 @@ a {
     width: 80%;
     border: 5px outset royalblue;
     margin: auto;
+}
+
+.fake-content {
+  background-color: #cbd5e0;
+  max-width: 100%;
+  opacity: 0.5;
+  height: 100%;
+  animation: fake 1.5s infinite;
+}
+
+.fake-img {
+  border-radius: 5px;
+  background-color: #cbd5e0;
+  max-width: 100%;
+  height: 100%;
+  animation: fake 5s infinite;
+}
+
+.fake-title {
+  border-radius: 5px;
+  background-color: #cbd5e0;
+  opacity: 0.5;
+  max-width: 100%;
+  height: 100%;
+  animation: fake 2s infinite;
+}
+
+@keyframes fake {
+  from {opacity: 0.5;}
+  50% {opacity: 1;}
+  to {opacity: 0.5;}
 }
 
 hr.custom-hr {
@@ -160,6 +196,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 }
 
 .container {
+  position: absolute;
   width: 100%;
   height: 100%;
 }

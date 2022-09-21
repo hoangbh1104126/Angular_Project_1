@@ -42,6 +42,8 @@ export class DashboardComponent implements OnInit {
   ];
 
   statistics_img = [
+    'assets/image/statistics_1.jpeg',
+    'assets/image/statistics_1.jpeg',
     'assets/image/statistics_1.jpeg'
   ]
 
