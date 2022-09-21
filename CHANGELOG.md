@@ -28,6 +28,6 @@ Change log:
 
 - Complete login feature (login by account).
 - Design: Home Page, navigation bar, etc.
-- Select display field -> 2 row (no scroll).
+- Display: select, add, edit user field -> 2 row (no scroll).
 - Add: Dashboard, loading, 404 page; confirm dialog.
 - Design & Update feature for account-management. (Filter Options)

@@ -67,7 +67,7 @@ export class AccountDataComponent implements OnInit {
       let randomUser : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
       const dialogRef = this.dialog.open(AddUserComponent, {
         width: '80%',
-        height: '70%',
+        height: '65%',
         enterAnimationDuration,
         exitAnimationDuration,
         data: randomUser,
@@ -89,7 +89,7 @@ export class AccountDataComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EditUserComponent, {
       width: '80%',
-      height: '70%',
+      height: '65%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: dataEdit,
@@ -179,7 +179,7 @@ export class AccountDataComponent implements OnInit {
       let textToSearch;
       if(column == "email"){
         textToSearch = data.email && data.email.toLocaleLowerCase() || '';
-      } 
+      }
       if(column == "id"){
         textToSearch = data.account_number.toString() && data.account_number.toString() || '';
       }
