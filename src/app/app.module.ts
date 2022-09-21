@@ -26,6 +26,9 @@ import { LoadingComponent } from './loading/loading.component';
 import { PeopleComponent } from './people/people.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { ChartModule } from 'angular-highcharts';
+import { checkFailComponent } from './confirm/action/fail.component';
+import { checkSuccessComponent } from './confirm/action/check.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     LoadingComponent,
     PeopleComponent,
     StatisticsComponent,
+    checkFailComponent,
+    checkSuccessComponent,
   ],
   imports: [
     FormsModule,
@@ -57,6 +62,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NgbModule,
     AppMaterialModule,
     NgApexchartsModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

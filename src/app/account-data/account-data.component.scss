@@ -6,10 +6,17 @@ table {
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  table-layout: auto;
 }
 
 .mat-paginator-sticky {
   bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}
+
+.mat-header-sticky {
+  top: 65px;
   position: sticky;
   z-index: 10;
 }
@@ -57,6 +64,7 @@ h2.title-data {
   font-size: x-large;
   color: royalblue;
   margin: 30px;
+  margin-top: 0;
 }
 
 a {
@@ -170,6 +178,33 @@ th:hover {
   margin-bottom: 10px;
 }
 
-mat-grid-tile {
-  background: lightblue;
+.feature {
+  background: rgb(216, 239, 247, 0.95);
+  border-radius: 3px;
+}
+
+.feature2 {
+  background: #e2e5e7;
+}
+
+.feature3 {
+  background: #e2e5e7;
+}
+
+.feature2:focus-within {
+  background: #f5f8fa;
+}
+
+.feature2:hover {
+  background: #f5f8fa;
+}
+
+.feature:hover {
+  background: rgba(0, 191, 255, 0.90);
+  color: white;
+}
+
+.feature:focus {
+  background: rgba(0, 191, 255, 0.90);
+  color: white;
 }

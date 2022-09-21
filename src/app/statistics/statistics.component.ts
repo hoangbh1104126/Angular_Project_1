@@ -31,11 +31,11 @@ export class StatisticsComponent implements OnInit {
 
   constructor(public router: Router) {
     this.mostBalance.push(
-      this.findUserByID(842),
-      this.findUserByID(97),
-      this.findUserByID(240),
-      this.findUserByID(854),
       this.findUserByID(248),
+      this.findUserByID(854),
+      this.findUserByID(240),
+      this.findUserByID(97),
+      this.findUserByID(842),
     );
     this.oldest.push(
       this.findUserByID(664),
@@ -55,18 +55,27 @@ export class StatisticsComponent implements OnInit {
       series: [
         {
           name: "Balance",
-          data: [671, 741, 989, 785, 587]
+          data: [671, 741, 989, 795, 587],
         }
       ],
       chart: {
         height: 350,
         type: "bar"
       },
+      colors: [
+        "#008FFB",
+        "#00E396",
+        "#FEB019",
+        "#FF4560",
+        "#775DD0",
+      ],
       plotOptions: {
         bar: {
           dataLabels: {
             position: "top" // top, center, bottom
-          }
+          },
+          columnWidth: "45%",
+          distributed: true,
         }
       },
       dataLabels: {
@@ -89,9 +98,20 @@ export class StatisticsComponent implements OnInit {
           "J.Barry",
           "M.Buckner",
         ],
+        offsetY: -20,
         position: "top",
         labels: {
-          offsetY: -18
+          style: {
+            colors: [
+              "#008FFB",
+              "#00E396",
+              "#FEB019",
+              "#FF4560",
+              "#775DD0",
+            ],
+            fontSize: "12px"
+          },
+          
         },
         axisBorder: {
           show: false
@@ -114,7 +134,7 @@ export class StatisticsComponent implements OnInit {
         tooltip: {
           enabled: true,
           offsetY: -35
-        }
+        },
       },
       fill: {
         type: "gradient",
@@ -140,18 +160,9 @@ export class StatisticsComponent implements OnInit {
           show: false,
           formatter: function(val : any) {
             return "$49," + val + ".00";
-          }
+          },
         }
       },
-      title: {
-        text: "Top 5 users have largest balance",
-        floating: false,
-        offsetY: 320,
-        align: "center",
-        style: {
-          color: "#444",
-        }
-      }
     };
   }
 
@@ -184,18 +195,28 @@ export class StatisticsComponent implements OnInit {
     switch(user){
       case 0:
         return {
-          'color': 'orange',
+          'color': '#feb019',
           'font-weight': '800',
         };
       case 1:
         return {
-          'color': 'teal',
-          'font-weight': '600',
+          'color': '#ff4560',
+          'font-weight': '550',
         }
       case 2:
         return {
-          'color': 'teal',
-          'font-weight': '600',
+          'color': '#00e396',
+          'font-weight': '550',
+        }
+      case 3:
+        return {
+          'color': '#008ffb',
+          'font-weight': '400',
+        }
+      case 4:
+        return {
+          'color': '#a58cff',
+          'font-weight': '400',
         }
       default:
         return {

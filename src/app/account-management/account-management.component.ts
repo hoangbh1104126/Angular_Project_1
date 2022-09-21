@@ -15,7 +15,11 @@ import usersData from 'src/accounts.json';
 })
 export class AccountManagementComponent implements OnInit {
 
-  ngOnInit() { }
+  ngOnInit() {
+    if(this.isLoggedIn){
+      this.openSnackBar("Hello " + this.userLoggedIn?.firstname + " " + this.userLoggedIn?.lastname + "!", "Continue");
+    }
+  }
 
   userData : User[] = usersData;
   opened : boolean = true;
@@ -54,7 +58,7 @@ export class AccountManagementComponent implements OnInit {
   }
 
   viewUserDetails(){
-    this.router.navigateByUrl('/account_management/' + this.userLoggedIn?.account_number);
+    this.router.navigateByUrl('/account_management/user/' + this.userLoggedIn?.account_number);
   }
 
   signOut(){

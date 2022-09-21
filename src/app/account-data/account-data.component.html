@@ -6,36 +6,33 @@
 <h2 class="title-data">User data</h2>
 <hr />
 
-<pre>{{filterSearch | json}}</pre>
-
-<mat-grid-list cols="14" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;">
-  <mat-grid-tile>
-    <button mat-button [matMenuTriggerFor]="belowMenu0">Filter</button>
+<mat-grid-list cols="14" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;" class="feature-panel">
+  <mat-grid-tile colspan="2" class="feature">
+    <button mat-button [matMenuTriggerFor]="belowMenu0" *ngIf="!isFilter" style="font-size: 16px;">
+      <mat-icon>settings</mat-icon>
+      Filter
+    </button>
     <mat-menu #belowMenu0="matMenu" yPosition="below">
-      <button mat-menu-item (click)="filterByID = true;">Filter by ID</button>
+      <button mat-menu-item (click)="onFilter='id'; isFilter=true; filterSearch=''">Filter by ID</button>
+      <button mat-menu-item (click)="onFilter='email'; isFilter = true; filterSearch=''">Filter by Email</button>
       <button mat-menu-item [matMenuTriggerFor]="genderMenu">Filter gender</button>
     </mat-menu>
     <mat-menu #genderMenu="matMenu" yPosition="below">
-      <button mat-menu-item (click)="filterGender(1)">Male</button>
-      <button mat-menu-item (click)="filterGender(2)">Female</button>
+      <button mat-menu-item (click)="filterGender('male')">Male</button>
+      <button mat-menu-item (click)="filterGender('female')">Female</button>
     </mat-menu>
-    <!--
-    <button mat-button [ngIf]="filterByID">
-      <mat-icon> cancel_presentation</mat-icon>
-      Filter
+    <button mat-button *ngIf="isFilter" (click)="resetFilter()" style="font-size: 15px;">
+      <mat-icon>settings_backup_restore</mat-icon>
+      Filter: {{onFilter | titlecase}}
     </button>
-    -->
   </mat-grid-tile>
-  <mat-grid-tile colspan="3">
+  <mat-grid-tile colspan="5" class="feature2">
     <mat-form-field appearance="standard" class="filter" style="font-size: 18px; margin-bottom: 18px; width: 95%;">
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input [(ngModel)]="filterSearch">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input [(ngModel)]="filterSearch" (focus)="setupFilter(onFilter)">
     </mat-form-field>
   </mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
-  <mat-grid-tile>5</mat-grid-tile>
-  <mat-grid-tile colspan="2">
+  <mat-grid-tile colspan="2" class="feature">
     <button mat-button [matMenuTriggerFor]="belowMenu1">
       <mat-icon>group_add</mat-icon>
       Add user
@@ -45,7 +42,7 @@
       <button mat-menu-item (click)="addRandomUser(true)">Random user</button>
     </mat-menu>
   </mat-grid-tile>
-  <mat-grid-tile colspan="2">
+  <mat-grid-tile colspan="2" class="feature">
     <button mat-button [matMenuTriggerFor]="belowMenu2">
       <mat-icon>delete</mat-icon>
       Delete user
@@ -55,7 +52,7 @@
       <button mat-menu-item (click)="deleteNewUser()">All new user</button>
     </mat-menu>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3">
+  <mat-grid-tile colspan="3" class="feature3">
     <mat-form-field class="selectDisplay">
       <mat-label>Display</mat-label>
       <mat-select [formControl]="display" panelClass="display-panel" multiple [(ngModel)]="onDisplayList" (selectionChange)="refreshDisplayColumns()">
@@ -181,7 +178,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="mat-header-sticky"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="$event ? selectRow(row) : null"
     [class.demo-row-is-clicked]="selection.isSelected(row)"></tr>
   </table>
@@ -193,3 +190,5 @@
   </mat-paginator>
 
 <hr />
+
+<div style="height: 100px;"></div>

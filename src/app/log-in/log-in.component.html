@@ -1,4 +1,18 @@
-<div class="dark"></div>
+<div class="loading-wallpaper" *ngIf="onLog">
+  <div class="space"></div>
+  <mat-spinner class="progress" [diameter]="175" strokeWidth="7.5"></mat-spinner>
+  <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <h1>Loading ...</h1>
+</div>
+
+<div *ngIf="!onLog">
+  <div class="dark"></div>
 <mat-card class="example-card">
   <mat-grid-list cols="2" [gutterSize]="'20px'" class="list">
     <mat-grid-tile class="card-field">
@@ -54,3 +68,5 @@
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
+
+</div>

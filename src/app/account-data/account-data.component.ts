@@ -25,6 +25,8 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
+import { checkSuccessComponent } from '../confirm/action/check.component';
+import { checkFailComponent } from '../confirm/action/fail.component';
 
 @Component({
   selector: 'app-account-data',
@@ -37,7 +39,6 @@ export class AccountDataComponent implements OnInit {
   show : boolean = false;
   menuOpened : boolean = false;
   userShowMenu !: number;
-  filterByID: boolean = false;
   filterSearch: string = "";
   Users : User[] = usersData;
 
@@ -49,10 +50,6 @@ export class AccountDataComponent implements OnInit {
     public router: Router,
   ) {
     this.sortedData = this.UsersData.slice();
-  }
-
-  ngOnInit(): void {
-
   }
 
   refresh() {
@@ -173,14 +170,25 @@ export class AccountDataComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  /*
+  onFilter!: string;
+  isFilter: boolean = false;
+
   setupFilter(column: string) {
+    if(column.length == 0 || column == undefined){ return ;}
     this.dataSource.filterPredicate = (data: User, filter: string) => {
-      const textToSearch = data[column] && data[column].toLowerCase() || '';
-      return textToSearch.indexOf(filter) !== -1;
+      let textToSearch;
+      if(column == "email"){
+        textToSearch = data.email && data.email.toLocaleLowerCase() || '';
+      } 
+      if(column == "id"){
+        textToSearch = data.account_number.toString() && data.account_number.toString() || '';
+      }
+      if(column == "gender"){
+        textToSearch = data.gender && data.gender || '';
+      }
+      return textToSearch?.indexOf(filter) !== -1;
     };
   }
-  */
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
@@ -188,8 +196,32 @@ export class AccountDataComponent implements OnInit {
     this.refresh();
   }
 
-  filterGender(gender: number){
+  genderFil: boolean = false;
 
+  resetFilter() {
+    this.isFilter = false;
+    if(this.genderFil){
+      this.genderFil = false;
+      this.filterSearch = "";
+    }
+    this.onFilter = "";
+    this.dataSource.filterPredicate = this.defaultFilterPredicate!;
+    this.refresh();
+  }
+
+  filterGender(str: string){
+    this.isFilter = true;
+    this.onFilter = 'gender';
+    this.genderFil = true;
+    this.filterSearch = str == 'male'? 'M' : 'F';
+    this.setupFilter('gender');
+    this.dataSource.filter = this.filterSearch;
+  }
+
+  defaultFilterPredicate?: (data: any, filter: string) => boolean;
+
+  ngOnInit() {
+    this.defaultFilterPredicate = this.dataSource.filterPredicate;
   }
 
   isAllSelected() {
@@ -241,8 +273,8 @@ export class AccountDataComponent implements OnInit {
     {
       "account_number": this.userTotal,
       "balance": Math.floor(Math.random() * (this.maxBalance - this.minBalance) + this.minBalance),
-      "firstname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
-      "lastname": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
+      "firstname": this.randomString(Math.floor(Math.random() * (8 - 3) + 3)),
+      "lastname": this.randomString(Math.floor(Math.random() * (8 - 3) + 3)),
       "age": Math.floor(Math.random() * (this.maxAge - this.minAge) + this.minAge),
       "gender": "MF".charAt(Math.floor(Math.random()*2)),
       "address": this.randomString(Math.floor(Math.random() * (20 - 6) + 6)),
@@ -306,10 +338,12 @@ export class AccountDataComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       maxWidth: "400px",
       data: dialogData,
-      panelClass: ['animate__animated','animate__slideInDown'] //Angular Animation
+      panelClass: ['animate__animated','animate__slideInDown', 'animate__bounce'] //Angular Animation
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      let enterAnimationDuration = "550ms";
+      let exitAnimationDuration = "650ms";
       if (confirmed) {
         this._snackBar.dismiss();
         const a = document.createElement('a');
@@ -323,7 +357,20 @@ export class AccountDataComponent implements OnInit {
         this.userSelected.forEach(user => this.deleteUser(user, true));
         this.userSelected.splice(0);
         this.selection.clear();
+        this.dialog.open(checkSuccessComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
         this.refresh();
+      } else {
+        this.dialog.open(checkFailComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
       }
     });
   }
@@ -348,6 +395,8 @@ export class AccountDataComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      let enterAnimationDuration = "550ms";
+      let exitAnimationDuration = "650ms";
       if (confirmed) {
         this._snackBar.dismiss();
         const a = document.createElement('a');
@@ -359,7 +408,20 @@ export class AccountDataComponent implements OnInit {
           duration: 2500,
         });
         this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
+        this.dialog.open(checkSuccessComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
         this.refresh();
+      } else {
+        this.dialog.open(checkFailComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
       }
     });
   }
@@ -376,6 +438,8 @@ export class AccountDataComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      let enterAnimationDuration = "550ms";
+      let exitAnimationDuration = "650ms";
       if (confirmed) {
         this._snackBar.dismiss();
         const a = document.createElement('a');
@@ -387,7 +451,20 @@ export class AccountDataComponent implements OnInit {
           duration: 2500,
         });
         this.dataSource.data = this.dataSource.data.filter((user) => !user.new);
+        this.dialog.open(checkSuccessComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
         this.refresh();
+      } else {
+        this.dialog.open(checkFailComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+        });
       }
     });
   }

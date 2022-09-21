@@ -7,6 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [Angular Material](https://material.angular.io/) `ng add @angular/material`
 - [ApexChart](https://apexcharts.com/) `npm install apexcharts ng-apexcharts --save`
 - [Angular Carosel](https://github.com/revolunet/angular-carousel) `npm install angular-carousel`
+- [Angular Highcharts](https://www.npmjs.com/package/angular-highcharts) `npm i --save angular-highcharts highcharts`
+- [Animated CSS](https://animate.style/) `npm install animate.css --save`
 
 ## Feature
 

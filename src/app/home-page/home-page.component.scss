@@ -63,7 +63,16 @@ h1 {
   transition: all 500ms;
 }
 
+.title {
+  height: max-content;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 20px;
+  animation-duration: 0ms;
+}
+
 .showNext:hover .title {
+  background-color: rgba(0,0,0,0);
   cursor: default;
   margin: 0 auto;
   opacity: 100%;

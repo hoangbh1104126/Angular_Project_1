@@ -56,6 +56,7 @@ export class LogInComponent implements OnInit {
   hide = true;
   logInForm !: FormGroup;
   role : string;
+  onLog: boolean = false;
 
   userLogged!: string;
 
@@ -110,17 +111,18 @@ export class LogInComponent implements OnInit {
         verticalPosition: "top",
         duration: 1250,
       });
+      this.onLog = true;
       setTimeout(() => {
-        this.router.navigateByUrl('/loading', {
+        this.router.navigateByUrl('/account_management', {
           state: { user: this.userLogged }
         });
-      }, 500);
+      }, 1000);
 
     } else {
       this._snackBar.open("Cannot find account in database!", "Try again", {
         horizontalPosition: "center",
         verticalPosition: "top",
-        duration: 3000,
+        duration: 2000,
       });
     }
   }
