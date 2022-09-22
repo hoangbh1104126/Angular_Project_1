@@ -39,7 +39,7 @@
 
             <ng-container matColumnDef="balance">
             <th mat-header-cell *matHeaderCellDef> Balance </th>
-            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> <b>{{element.balance | currency}}</b> </td>
+            <td mat-cell *matCellDef="let element; let i = index;" [ngStyle]="top(i)"> <b><span [countUpMoney]="element.balance" [duration]="2500"></span></b> </td>
             </ng-container>
 
             <ng-container matColumnDef="age">

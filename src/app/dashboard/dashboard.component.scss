@@ -133,7 +133,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 
 .avatars {
   display: inline-block;
-  transform: scale(-1, 1);
 }
 
 .avatar {
@@ -145,6 +144,11 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   width: 70px;
 }
 
+.avatar:hover {
+  z-index: 5;
+  border: 3px solid royalblue;
+}
+
 .avatar:not(:first-child) {
   margin-left: -35px;
 }
@@ -152,7 +156,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .avatar img {
   width: 100%;
   display: block;
-  transform: scale(-1, 1);
 }
 
 .att-other {

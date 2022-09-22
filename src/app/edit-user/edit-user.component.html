@@ -9,7 +9,7 @@
           <mat-form-field appearance="outline">
               <mat-label>Account number</mat-label>
               <mat-hint align="end"><b>Cannot change</b></mat-hint>
-              <input matInput disabled [value]="data.account_number">
+              <input matInput disabled [value]="data.account_number" matTooltip="You do not have permission to change ID">
           </mat-form-field>
         </div>
       </mat-grid-tile>

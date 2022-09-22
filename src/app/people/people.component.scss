@@ -74,6 +74,16 @@ a {
   justify-content: space-evenly;
 }
 
+.profile-card-loc__txt{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.profile-card-loc {
+  height: 40px;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
 
 a, a:hover {
@@ -90,8 +100,8 @@ a, a:hover {
 }
 
 .wrapper {
-  width: 350px; //find this
-  height: 1000px; //find this
+  width: 350px;
+  height: 1000px;
   border-radius: 20px;
   padding: 50px 20px;
   padding-top: 100px;

@@ -66,7 +66,7 @@ h1 {
 .title {
   height: max-content;
   background-color: rgba(0,0,0,0.5);
-  padding: 20px;
+  padding: 20px 20px 20px 25px;
   border-radius: 20px;
   animation-duration: 0ms;
 }
@@ -74,7 +74,7 @@ h1 {
 .showNext:hover .title {
   background-color: rgba(0,0,0,0);
   cursor: default;
-  margin: 0 auto;
+  margin: 200px auto auto;
   opacity: 100%;
   font-size: 75px;
   font-size-adjust: 20px;
@@ -91,14 +91,13 @@ h1 {
 }
 
 .showNext:hover {
-  margin: 12% auto;
+  margin: 150px auto auto;
   transition: all 500ms;
 }
 
 .navAM {
   visibility: hidden;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 50px auto;
   padding: 15px 30px;
   font-size: xx-large;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

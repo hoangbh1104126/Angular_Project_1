@@ -40,12 +40,12 @@
 
             <div class="profile-card-inf">
               <div class="profile-card-inf__item">
-                <div class="profile-card-inf__title">{{user.balance | currency}}</div>
+                <div class="profile-card-inf__title"><span [countUpMoney]="user.balance" [duration]="1500"></span></div>
                 <div class="profile-card-inf__txt">Balance</div>
               </div>
 
               <div class="profile-card-inf__item">
-                <div class="profile-card-inf__title">{{user.age}}</div>
+                <div class="profile-card-inf__title"><span [countUp]="user.age" [duration]="650"></span></div>
                 <div class="profile-card-inf__txt">Age</div>
               </div>
 

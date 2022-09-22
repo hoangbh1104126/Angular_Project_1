@@ -11,9 +11,8 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/20'+i" alt="profile card">
+                            <img [src]="'https://picsum.photos/20'+i.toString()" alt="profile card">
                           </div>
-
                           <div class="profile-card__cnt js-profile-cnt">
                             <div class="profile-card__name">{{ user.firstname }} {{ user.lastname }}</div>
                             <div class="profile-card__txt">{{user.email}}</div>
@@ -29,7 +28,9 @@
 
                             <div class="profile-card-inf">
                               <div class="profile-card-inf__item">
-                                <div class="profile-card-inf__title">{{user.balance | currency}}</div>
+                                <div class="profile-card-inf__title">
+                                  <span [countUpMoney]="user.balance" [duration]="500"></span>
+                                </div>
                                 <div class="profile-card-inf__txt">Balance</div>
                               </div>
 
@@ -118,7 +119,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/21'+i" alt="profile card">
+                            <img [src]="'https://picsum.photos/21'+i.toString()" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">
@@ -136,7 +137,7 @@
 
                             <div class="profile-card-inf">
                               <div class="profile-card-inf__item">
-                                <div class="profile-card-inf__title">{{user.balance | currency}}</div>
+                                <div class="profile-card-inf__title"><span [countUpMoney]="user.balance" [duration]="500"></span></div>
                                 <div class="profile-card-inf__txt">Balance</div>
                               </div>
 
@@ -225,7 +226,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/22'+i" alt="profile card">
+                            <img [src]="'https://picsum.photos/22'+i.toString()" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">
@@ -243,7 +244,7 @@
 
                             <div class="profile-card-inf">
                               <div class="profile-card-inf__item">
-                                <div class="profile-card-inf__title">{{user.balance | currency}}</div>
+                                <div class="profile-card-inf__title"><span [countUpMoney]="user.balance" [duration]="500"></span></div>
                                 <div class="profile-card-inf__txt">Balance</div>
                               </div>
 

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   per1: number;
 
   total: number = 1234567;
+  totalDisplay: number = 0;
   large: number = 49587;
   per2: number = Math.floor(this.large*100/this.total);
 

@@ -77,8 +77,8 @@ a:hover {
 
 mat-checkbox {
 	::ng-deep .mat-checkbox-inner-container {
-      width: 30px;
-      height: 30px;
+      width: 27.5px;
+      height: 27.5px;
   	}
 }
 
@@ -240,6 +240,10 @@ mat-chip {
       }
     }
   }
+}
+
+.sub {
+  margin-top: -6.5px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');

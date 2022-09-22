@@ -45,13 +45,15 @@
               <mat-error *ngIf="logInForm.errors" style="text-align: center; margin-bottom: 5px;">Password must not contain username</mat-error>
           </div>
           <div class="row-control">
-            <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
+            <mat-checkbox formControlName="rememberMe" color="primary">Remember me</mat-checkbox>
           </div>
           <div class="submit-field">
             <span class="forgot"><a routerLink="/forgot-password">Forgot your password?</a></span>
-            <button class="sign" mat-raised-button color="primary" type="submit" [disabled]="logInForm.invalid" (click)="comeback()">
-              Log in
-            </button>
+            <div matTooltip="Please fill your information" [matTooltipDisabled]="!logInForm.invalid" matTooltipPosition="above" class="sign">
+              <button class="sign" mat-raised-button color="primary" type="submit" [disabled]="logInForm.invalid" (click)="comeback()">
+                Log in
+              </button>
+            </div>
           </div>
         </form>
       </mat-card-content>

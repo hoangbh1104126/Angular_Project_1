@@ -7,7 +7,7 @@
   <mat-grid-tile colspan="2" rowspan="2" id="user" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="32px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-number">1000+</mat-grid-tile>
+      <mat-grid-tile class="user-number"><span [countUp]="1000" [duration]="1500"></span></mat-grid-tile>
       <mat-grid-tile class="user-number">0</mat-grid-tile>
       <mat-grid-tile class="att-number">User</mat-grid-tile>
       <mat-grid-tile class="att-number">New User</mat-grid-tile>
@@ -22,7 +22,9 @@
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="28px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-other" colspan="2">{{total | currency}}</mat-grid-tile>
+      <mat-grid-tile class="user-other" colspan="2">
+        <span [countUpMoney]="total" [duration]="1750"></span>
+      </mat-grid-tile>
       <mat-grid-tile class="att-other" colspan="2">Total balance</mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="2">Largest balance: {{large | currency}}</mat-grid-tile>
       <mat-grid-tile style="margin-left: 20px; font-size: 18px;">Guzman Whitfield</mat-grid-tile>
@@ -63,15 +65,12 @@
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="32px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile class="user-other">369</mat-grid-tile>
+      <mat-grid-tile class="user-other"><span [countUp]="369" [duration]="1250"></span></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="att-other">Professionals</mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="3">
         <div class="avatars">
-          <span class="avatar">
-            <img src="assets/image/more.png">
-          </span>
           <span class="avatar">
             <img src="https://picsum.photos/205">
           </span>
@@ -86,6 +85,9 @@
           </span>
           <span class="avatar">
             <img src="https://picsum.photos/185">
+          </span>
+          <span class="avatar" id="more">
+            <img src="assets/image/more.png">
           </span>
         </div>
       </mat-grid-tile>

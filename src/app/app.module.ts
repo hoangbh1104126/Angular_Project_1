@@ -30,6 +30,8 @@ import { ChartModule } from 'angular-highcharts';
 import { checkFailComponent } from './confirm/action/fail.component';
 import { checkSuccessComponent } from './confirm/action/check.component';
 import { TestComponent } from './test/test.component';
+import { CountUpMoneyDirective } from './count-up-money.directive';
+import { CountUpDirective } from './count-up.directive';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { TestComponent } from './test/test.component';
     checkFailComponent,
     checkSuccessComponent,
     TestComponent,
+    CountUpMoneyDirective,
+    CountUpDirective,
   ],
   imports: [
     FormsModule,
