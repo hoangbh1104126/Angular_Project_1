@@ -1,22 +1,24 @@
-mat-grid-tile {
-  //border: 1px solid aqua;
-  border-radius: 20px;
-}
 
 .item-dash {
   background-color: #f5f8fa;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
 }
 
 .dashboard {
-    margin: 8px 0 50px;
+  margin: 8px 0 50px;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: Fauna One;
     color: royalblue;
     letter-spacing: 2px;
     margin-bottom: 8px;
+}
+
+.more:hover {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 h2 {
@@ -31,6 +33,43 @@ a {
     width: 80%;
     border: 5px outset royalblue;
     margin: auto;
+}
+
+.fake-content {
+  position: absolute;
+  left: 2%;
+  font-size: 1px;
+  background-color: #cbd5e0;
+  max-width: 100%;
+  opacity: 0.5;
+  height: 100%;
+  animation: fake 1.5s infinite;
+}
+
+.fake-img {
+  position: absolute;
+  font-size: 1px;
+  border-radius: 5px;
+  background-color: #cbd5e0;
+  max-width: 95%;
+  height: 100%;
+  animation: fake 5s infinite;
+}
+
+.fake-title {
+  font-size: 1px;
+  border-radius: 5px;
+  background-color: #cbd5e0;
+  opacity: 0.5;
+  max-width: 100%;
+  height: 100%;
+  animation: fake 2s infinite;
+}
+
+@keyframes fake {
+  from {opacity: 0.5;}
+  50% {opacity: 1;}
+  to {opacity: 0.5;}
 }
 
 hr.custom-hr {
@@ -61,6 +100,10 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     height: 200px;
 }
 
+#chart {
+  width: 100%;
+}
+
 #user{
   background-color: #87a4fc;
   color: white;
@@ -70,8 +113,42 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   padding: 5px;
 }
 .user-number {
+  cursor: default;
   font-size: 30px;
+  text-transform: uppercase;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
+
+.user-number:hover {
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-20px);
+		-ms-transform:     translateY(-20px);
+		transform:         translateY(-20px)
+	}
+	60% {
+		-webkit-transform: translateY(-5px);
+		-ms-transform:     translateY(-5px);
+		transform:         translateY(-5px)
+	}
+}
+
 .att-number {
   margin-top: 0;
   font-size: 20px;
@@ -94,7 +171,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 
 .avatars {
   display: inline-block;
-  transform: scale(-1, 1);
 }
 
 .avatar {
@@ -106,6 +182,31 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   width: 70px;
 }
 
+.avatar:hover {
+  z-index: 5;
+  border-radius: 50%;
+  border: 3px solid royalblue;
+  -webkit-animation: avatar-hover 1s;
+   -moz-animation: avatar-hover 1s ;
+   animation: avatar-hover 1s;
+}
+
+@-webkit-keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
+}
+@-moz-keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
+}
+@keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
+}
+
 .avatar:not(:first-child) {
   margin-left: -35px;
 }
@@ -113,7 +214,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .avatar img {
   width: 100%;
   display: block;
-  transform: scale(-1, 1);
 }
 
 .att-other {
@@ -124,7 +224,21 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .user-other {
   font-size: 30px;
   color: cornflowerblue;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
+
+.user-other:hover {
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
 
 .fa {
   padding: 3px;
@@ -156,8 +270,213 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   color: royalblue;
 }
 .text {
-  margin: 10px;
+  padding: 0 10px;
   max-width: 300px;
   border-radius: 1px;
   text-align: justify;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.sliders {
+  position: relative;
+  width: 100vw;
+  height: 66vw;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.profile-card {
+  width: 100%;
+  min-height: 460px;
+  margin: auto;
+  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  position: relative;
+
+  &-social {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__item {
+      display: inline-flex;
+      width: 55px;
+      height: 55px;
+      margin: 15px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: #405de6;
+      box-shadow: 0px 7px 30px rgba(43,98,169,0.5);
+      position: relative;
+      font-size: 21px;
+      flex-shrink: 0;
+      transition: all .3s;
+
+      @media screen and (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+      }
+
+      @media screen and (min-width: 768px){
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      &.facebook {
+        background: linear-gradient(45deg, #3b5998, #0078d7);
+        box-shadow: 0px 4px 30px rgba(43, 98, 169, 0.5);
+      }
+
+      &.twitter {
+        background: linear-gradient(45deg, #1da1f2,#0e71c8);
+        box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
+      }
+
+      &.instagram {
+        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
+      }
+
+      &.behance {
+        background: linear-gradient(45deg, #1769ff, #213fca);
+        box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
+      }
+
+      &.github {
+        background: linear-gradient(45deg, #333333, #626b73);
+        box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
+      }
+
+      &.codepen {
+        background: linear-gradient(45deg, #324e63, #414447);
+        box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
+      }
+
+      &.link {
+        background: linear-gradient(45deg, #d5135a, #f05924);
+        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
+      }
+
+    }
+
+    .icon-font {
+      display: inline-flex;
+    }
+
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin: 15px 35px;
+    padding: 15px 40px;
+    min-width: 201px;
+    border-radius: 50px;
+    min-height: 55px;
+    color: #fff;
+    cursor: pointer;
+    backface-visibility: hidden;
+    transition: all .3s;
+
+    @media screen and (max-width: 768px) {
+      min-width: 170px;
+      margin: 15px 25px;
+    }
+
+    @media screen and (max-width: 576px) {
+      min-width: inherit;
+      margin: 0;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 300px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &:focus {
+      outline: none!important;
+    }
+
+    @media screen and (min-width: 768px) {
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.button--blue {
+      background: linear-gradient(45deg, #1da1f2, #0e71c8);
+      box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+
+      &:hover {
+        box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+      }
+
+    }
+
+    &.button--orange {
+      background: linear-gradient(45deg, #d5135a, #f05924);
+      box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.35);
+
+      &:hover {
+        box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
+      }
+
+    }
+
+    &.button--gray {
+      box-shadow: none;
+      background: #dcdcdc;
+      color: #142029;
+    }
+
+  }
+
 }

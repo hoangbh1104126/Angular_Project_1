@@ -107,6 +107,7 @@ export class EditUserComponent implements OnInit {
           Validators.pattern(/^[A-Za-z0-9_\. ]/),
         ])
       ],
+      new: this.editUser?.new,
     },
     );
 
@@ -131,6 +132,7 @@ export class EditUserComponent implements OnInit {
       "email": this.editUserForm.get('email')?.value,
       "city": this.editUserForm.get('city')?.value,
       "state": this.editUserForm.get('state')?.value,
+      "new": this.editUserForm.get('new')?.value,
     };
     this.editUser = this.editedUser;
     this.data = this.editedUser;

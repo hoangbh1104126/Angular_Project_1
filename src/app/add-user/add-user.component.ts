@@ -108,6 +108,7 @@ export class AddUserComponent implements OnInit {
           Validators.pattern(/^[A-Za-z0-9_\. ]/),
         ])
       ],
+      new: true,
     },
     );
 
@@ -135,7 +136,7 @@ export class AddUserComponent implements OnInit {
       "email": this.addUserForm.get('email')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
       "city": this.addUserForm.get('city')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
       "state": this.addUserForm.get('state')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
-      "new": true,
+      "new": this.addUserForm.get('new')?.value == "",
     };
     this.data = this.addUser;
   }
