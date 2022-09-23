@@ -333,10 +333,6 @@ export class StatisticsComponent implements OnInit {
             return Math.abs(Math.round(parseInt(val, 10))) + "%";
           }
         },
-        legend: {
-          show: 'false',
-          position: 'right',
-        }
       }
     };
   }
