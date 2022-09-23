@@ -9,7 +9,8 @@
         <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
         <span style="margin-left: 10px;">Balance</span>
     </ng-template>
-    <div class="content">
+    <ng-template matTabContent>
+      <div class="content">
         <h2>Balance</h2>
         <h3>Top 5 users with largest balance</h3>
         <div id="chart">
@@ -62,87 +63,73 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">access_time</mat-icon>
+        <span style="margin-left: 10px;">Access</span>
+    </ng-template>
+    <ng-template matTabContent>
+      <div class="content">
+        <div id="chart">
+          <apx-chart
+            [series]="chartOptions2.series"
+            [chart]="chartOptions2.chart"
+            [xaxis]="chartOptions2.xaxis"
+            [stroke]="chartOptions2.stroke"
+            [tooltip]="chartOptions2.tooltip"
+            [dataLabels]="chartOptions2.dataLabels"
+          ></apx-chart>
+        </div>
+      </div>
+      <table class="table table-bodered" style="color: #787a81;">
+        <tbody>
+          <tr>
+            <th>Username</th>
+            <td>123 </td>
+            <td></td>
+            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+          </tr>
+          <tr>
+            <th>Password</th>
+            <td>***************</td>
+            <td></td>
+            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+          </tr>
+          <tr>
+            <th>Role</th>
+            <td>User</td>
+            <td></td>
+            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">accessibility_new</mat-icon>
         <span style="margin-left: 10px;">Age</span>
     </ng-template>
-    <div class="content">
-        <h3>Oldest users</h3>
-        <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
-
-            <ng-container matColumnDef="account_number">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="balance">
-            <th mat-header-cell *matHeaderCellDef> Balance </th>
-            <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef> Age </th>
-            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="gender">
-                <th mat-header-cell *matHeaderCellDef> Gender </th>
-                <td mat-cell *matCellDef="let element">
-                    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
-                    <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
-                        {{element.gender | gender }}
-                    </mat-chip>
-                    </mat-chip-list>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <h3>Youngest users</h3>
-        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-
-            <ng-container matColumnDef="account_number">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.firstname}} {{element.lastname}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="balance">
-            <th mat-header-cell *matHeaderCellDef> Balance </th>
-            <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef> Age </th>
-            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="gender">
-                <th mat-header-cell *matHeaderCellDef> Gender </th>
-                <td mat-cell *matCellDef="let element">
-                    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
-                    <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
-                        {{element.gender | gender }}
-                    </mat-chip>
-                    </mat-chip-list>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
+    <ng-template matTabContent>
+      <div class="content">
+        <div id="chart">
+          <apx-chart
+            [series]="chartOptions3.series"
+            [chart]="chartOptions3.chart"
+            [dataLabels]="chartOptions3.dataLabels"
+            [stroke]="chartOptions3.stroke"
+            [colors]="chartOptions3.colors"
+            [title]="chartOptions3.title"
+            [grid]="chartOptions3.grid"
+            [tooltip]="chartOptions3.tooltip"
+            [plotOptions]="chartOptions3.plotOptions"
+            [yaxis]="chartOptions3.yaxis"
+            [xaxis]="chartOptions3.xaxis"
+          ></apx-chart>
+        </div>
+      </div>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

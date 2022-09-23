@@ -1,5 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
+import { Router } from '@angular/router';
+import usersData from 'src/accounts.json';
+import { User } from '../user';
+
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexTitleSubtitle,
+  ApexXAxis,
+  ApexFill
+} from "ng-apexcharts";
 
 @Component({
   selector: 'app-dashboard',
@@ -48,9 +63,134 @@ export class DashboardComponent implements OnInit {
     'assets/image/statistics_1.jpeg'
   ]
 
+  userData: User[] = usersData;
+  mostBalance: User[] = [];
+
+  @ViewChild("chart") chart!: ChartComponent;
+  public chartOptions1: Partial<ChartOptions> | any;
+
   constructor() {
     this.activeUser = Math.floor(Math.random() * 555);
     this.per1 = Math.floor(this.activeUser/10);
+    this.mostBalance.push(
+      this.findUserByID(248),
+      this.findUserByID(854),
+      this.findUserByID(240),
+      this.findUserByID(97),
+      this.findUserByID(842),
+    );
+    this.chartOptions1 = {
+      series: [
+        {
+          name: "Balance",
+          data: [671, 741, 989, 795, 587],
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "bar"
+      },
+      colors: [
+        "#008FFB",
+        "#00E396",
+        "#FEB019",
+        "#FF4560",
+        "#775DD0",
+      ],
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top" // top, center, bottom
+          },
+          columnWidth: "45%",
+          distributed: true,
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: function(val : any) {
+          return  "$49," + val + ".00";
+        },
+        offsetY: -20,
+        style: {
+          fontSize: "12px",
+          colors: ["#304758"]
+        }
+      },
+
+      xaxis: {
+        categories: [
+          "K.Trujillo",
+          "O.Clay",
+          "W.England",
+          "J.Barry",
+          "M.Buckner",
+        ],
+
+        labels: {
+          style: {
+            colors: [
+              "#008FFB",
+              "#00E396",
+              "#FEB019",
+              "#FF4560",
+              "#775DD0",
+            ],
+            fontSize: "12px"
+          },
+
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        crosshairs: {
+          fill: {
+            type: "gradient",
+            gradient: {
+              colorFrom: "#D8E3F0",
+              colorTo: "#BED1E6",
+              stops: [0, 100],
+              opacityFrom: 0.4,
+              opacityTo: 0.5
+            }
+          }
+        },
+        tooltip: {
+          enabled: true,
+          offsetY: -35
+        },
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "horizontal",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      yaxis: {
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: false,
+          formatter: function(val : any) {
+            return "$49," + val + ".00";
+          },
+        }
+      },
+    };
   }
 
   ngOnInit(): void {
@@ -59,4 +199,19 @@ export class DashboardComponent implements OnInit {
     }, 2000);
   }
 
+  findUserByID(id: number): User{
+    return this.userData.find((user) => user.account_number === id) as User;
+  }
+
 }
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  title: ApexTitleSubtitle;
+};

@@ -26,7 +26,7 @@
         <span [countUpMoney]="total" [duration]="1750"></span>
       </mat-grid-tile>
       <mat-grid-tile class="att-other" colspan="2">Total balance</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="2">Largest balance: {{large | currency}}</mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="2">Largest balance:  <span [countUpMoney]="large" [duration]="1750"></span></mat-grid-tile>
       <mat-grid-tile style="margin-left: 20px; font-size: 18px;">Guzman Whitfield</mat-grid-tile>
       <mat-grid-tile style="font-size: 18px;">{{ per2 }}% on Total</mat-grid-tile>
       <mat-grid-tile colspan="2">
@@ -71,22 +71,22 @@
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="3">
         <div class="avatars">
-          <span class="avatar">
+          <span class="avatar" matTooltip="Dale Adams">
             <img src="https://picsum.photos/205">
           </span>
-          <span class="avatar">
+          <span class="avatar" matTooltip="Hewitt Kidd">
             <img src="https://picsum.photos/200">
           </span>
-          <span class="avatar">
+          <span class="avatar" matTooltip="Anita Ewing">
             <img src="https://picsum.photos/195">
           </span>
-          <span class="avatar">
+          <span class="avatar" matTooltip="Lisa Dudley">
             <img src="https://picsum.photos/190">
           </span>
-          <span class="avatar">
+          <span class="avatar" matTooltip="Erma Kane">
             <img src="https://picsum.photos/185">
           </span>
-          <span class="avatar" id="more">
+          <span class="avatar" id="more" matTooltip="View more ...">
             <img src="assets/image/more.png">
           </span>
         </div>
@@ -172,31 +172,36 @@
       </mat-grid-list>
     </mat-grid-tile>
     <mat-grid-tile class="item-dash">
-      <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile rowspan="14">
-          <div class="fake-img" style="width: 100%;">.</div>
+      <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-tile><h1>Statistics</h1></mat-grid-tile>
+        <mat-grid-tile rowspan="9">
+          <div id="chart">
+            <apx-chart
+                [series]="chartOptions1.series"
+                [chart]="chartOptions1.chart"
+                [dataLabels]="chartOptions1.dataLabels"
+                [plotOptions]="chartOptions1.plotOptions"
+                [yaxis]="chartOptions1.yaxis"
+                [xaxis]="chartOptions1.xaxis"
+                [fill]="chartOptions1.fill"
+                [title]="chartOptions1.title"
+            ></apx-chart>
+        </div>
         </mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile rowspan="3">
-          <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-            <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
-            <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
-            <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
-          </mat-grid-list>
-        </mat-grid-tile>
+        <mat-grid-tile rowspan="1"><h3>Top users have large balance</h3></mat-grid-tile>
       </mat-grid-list>
     </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="4" rowHeight="700px" [gutterSize]="'50px'" class="dashboard">
-  <mat-grid-tile colspan="1" class="item-dash">
-    <mat-grid-list gutterSize="5px" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+<mat-grid-list cols="2" rowHeight="470px" [gutterSize]="'50px'" class="dashboard">
+  <mat-grid-tile class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
-      <mat-grid-tile rowspan="22">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile rowspan="14">
         <div class="fake-img" style="width: 100%;">.</div>
       </mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="3">
         <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
           <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
@@ -206,21 +211,21 @@
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile><h1>People</h1></mat-grid-tile>
+  <mat-grid-tile class="item-dash">
+    <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="14">
-        <div class="container">
-          <div class="sliders" style='max-width: 100%'>
-            <ng-container *ngFor="let img of statistics_img; let i = index">
-              <div class="slider" *ngIf="current == i" @fade>
-                <img class="img" [src]="img">
-              </div>
-            </ng-container>
-          </div>
-        </div>
+        <div class="fake-img" style="width: 100%;">.</div>
       </mat-grid-tile>
-      <mat-grid-tile rowspan="2"><h3>Top users</h3></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile rowspan="3">
+        <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+          <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
+          <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
+          <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
+        </mat-grid-list>
+      </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>

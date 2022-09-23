@@ -7,14 +7,14 @@ h1 {
 }
 
 .btn {
-    margin: -85px auto 0;
+    margin: -65px auto 0;
 }
 svg {
     width: 100px;
     display: block;
     margin: 25px auto 0;
   }
-  
+
   .path {
     stroke-dasharray: 1000;
     stroke-dashoffset: 0;
@@ -33,7 +33,7 @@ svg {
       animation: dash-check .9s .35s ease-in-out forwards;
     }
   }
-  
+
   p {
     text-align: center;
     margin: 20px 0 60px;
@@ -45,8 +45,8 @@ svg {
       color: #D06079;
     }
   }
-  
-  
+
+
   @-webkit-keyframes dash {
     0% {
       stroke-dashoffset: 1000;
@@ -55,7 +55,7 @@ svg {
       stroke-dashoffset: 0;
     }
   }
-  
+
   @keyframes dash {
     0% {
       stroke-dashoffset: 1000;
@@ -64,7 +64,7 @@ svg {
       stroke-dashoffset: 0;
     }
   }
-  
+
   @-webkit-keyframes dash-check {
     0% {
       stroke-dashoffset: -100;
@@ -73,7 +73,7 @@ svg {
       stroke-dashoffset: 900;
     }
   }
-  
+
   @keyframes dash-check {
     0% {
       stroke-dashoffset: -100;
@@ -82,4 +82,3 @@ svg {
       stroke-dashoffset: 900;
     }
   }
-  

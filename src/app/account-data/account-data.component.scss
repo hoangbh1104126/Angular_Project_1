@@ -16,7 +16,7 @@ table {
 }
 
 .mat-header-sticky {
-  top: 65px;
+  top: 62.5px;
   position: sticky;
   z-index: 10;
 }
@@ -90,11 +90,9 @@ a:hover {
 }
 
 .mat-row:hover .mat-cell {
-  border-top: solid 1.5px currentColor;
-  border-bottom: solid 1.5px currentColor;
   font-style: italic;
   font-weight: bolder;
-  background-color: #FFFACD;
+  background-color: #FFDEAD;
 }
 
 .selectDisplay {

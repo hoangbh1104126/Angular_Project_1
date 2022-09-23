@@ -100,6 +100,10 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     height: 200px;
 }
 
+#chart {
+  width: 100%;
+}
+
 #user{
   background-color: #87a4fc;
   color: white;
@@ -109,8 +113,42 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   padding: 5px;
 }
 .user-number {
+  cursor: default;
   font-size: 30px;
+  text-transform: uppercase;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
+
+.user-number:hover {
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-20px);
+		-ms-transform:     translateY(-20px);
+		transform:         translateY(-20px)
+	}
+	60% {
+		-webkit-transform: translateY(-5px);
+		-ms-transform:     translateY(-5px);
+		transform:         translateY(-5px)
+	}
+}
+
 .att-number {
   margin-top: 0;
   font-size: 20px;
@@ -146,7 +184,27 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 
 .avatar:hover {
   z-index: 5;
+  border-radius: 50%;
   border: 3px solid royalblue;
+  -webkit-animation: avatar-hover 1s;
+   -moz-animation: avatar-hover 1s ;
+   animation: avatar-hover 1s;
+}
+
+@-webkit-keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
+}
+@-moz-keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
+}
+@keyframes avatar-hover {
+  from {border: 3px solid royalblue; border-radius: 50%;}
+  50% {border: 3px inset #87a4fc; border-radius: 25%;}
+  to {border: 3px solid royalblue; border-radius: 50%;}
 }
 
 .avatar:not(:first-child) {
@@ -166,7 +224,21 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .user-other {
   font-size: 30px;
   color: cornflowerblue;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
 }
+
+.user-other:hover {
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+
 
 .fa {
   padding: 3px;

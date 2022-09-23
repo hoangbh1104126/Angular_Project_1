@@ -90,3 +90,7 @@ table {
   max-width: 650px;
   margin: 35px auto;
 }
+
+:host ::ng-deep .apexcharts-legend {
+  margin-left: 32px;
+}

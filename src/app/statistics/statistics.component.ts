@@ -6,13 +6,16 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ChartComponent,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexYAxis,
   ApexTitleSubtitle,
+  ApexDataLabels,
+  ApexStroke,
+  ApexGrid,
+  ApexYAxis,
   ApexXAxis,
-  ApexFill
+  ApexPlotOptions,
+  ApexTooltip
 } from "ng-apexcharts";
+import { right } from '@popperjs/core';
 
 @Component({
   selector: 'app-statistics',
@@ -28,6 +31,8 @@ export class StatisticsComponent implements OnInit {
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions1: Partial<ChartOptions> | any;
+  public chartOptions2: Partial<ChartOptions> | any;
+  public chartOptions3: Partial<ChartOptions> | any;
 
   constructor(public router: Router) {
     this.mostBalance.push(
@@ -164,6 +169,176 @@ export class StatisticsComponent implements OnInit {
         }
       },
     };
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100]
+        },
+        {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41]
+        },
+      ],
+      chart: {
+        height: 350,
+        type: "area"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "smooth"
+      },
+      xaxis: {
+        type: "datetime",
+        categories: [
+          "2018-09-19T00:00:00.000Z",
+          "2018-09-19T01:30:00.000Z",
+          "2018-09-19T02:30:00.000Z",
+          "2018-09-19T03:30:00.000Z",
+          "2018-09-19T04:30:00.000Z",
+          "2018-09-19T05:30:00.000Z",
+          "2018-09-19T06:30:00.000Z"
+        ]
+      },
+      tooltip: {
+        x: {
+          format: "dd/MM/yy HH:mm"
+        }
+      }
+    };
+    this.chartOptions3 = {
+      series: [
+        {
+          name: "Males",
+          data: [
+            0.4,
+            0.65,
+            0.76,
+            0.88,
+            1.5,
+            2.1,
+            2.9,
+            3.8,
+            3.9,
+            4.2,
+            4,
+            4.3,
+            4.1,
+            4.2,
+            4.5,
+            3.9,
+            3.5,
+            3
+          ]
+        },
+        {
+          name: "Females",
+          data: [
+            -0.8,
+            -1.05,
+            -1.06,
+            -1.18,
+            -1.4,
+            -2.2,
+            -2.85,
+            -3.7,
+            -3.96,
+            -4.22,
+            -4.3,
+            -4.4,
+            -4.1,
+            -4,
+            -4.1,
+            -3.4,
+            -3.1,
+            -2.8
+          ]
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 440,
+        stacked: true
+      },
+      colors: ["#33cc33", "#FF4560"],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          barHeight: "80%"
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 1,
+        colors: ["#fff"]
+      },
+
+      grid: {
+        xaxis: {
+          lines: {
+            show: false
+          }
+        }
+      },
+      yaxis: {
+        min: -5,
+        max: 5,
+        title: {
+          // text: 'Age',
+        }
+      },
+      tooltip: {
+        shared: false,
+        x: {
+          formatter: function(val: any) {
+            return val.toString();
+          }
+        },
+        y: {
+          formatter: function(val: any) {
+            return Math.abs(val) + "%";
+          }
+        }
+      },
+      xaxis: {
+        categories: [
+          "85+",
+          "80-84",
+          "75-79",
+          "70-74",
+          "65-69",
+          "60-64",
+          "55-59",
+          "50-54",
+          "45-49",
+          "40-44",
+          "35-39",
+          "30-34",
+          "25-29",
+          "20-24",
+          "15-19",
+          "10-14",
+          "5-9",
+          "0-4"
+        ],
+        title: {
+          text: "Percent"
+        },
+        labels: {
+          formatter: function(val: any) {
+            return Math.abs(Math.round(parseInt(val, 10))) + "%";
+          }
+        },
+        legend: {
+          show: 'false',
+          position: 'right',
+        }
+      }
+    };
   }
 
   ngOnInit(): void {
@@ -230,10 +405,13 @@ export class StatisticsComponent implements OnInit {
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  stroke: ApexStroke;
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   yaxis: ApexYAxis;
   xaxis: ApexXAxis;
-  fill: ApexFill;
+  grid: ApexGrid;
+  colors: string[];
+  tooltip: ApexTooltip;
   title: ApexTitleSubtitle;
 };

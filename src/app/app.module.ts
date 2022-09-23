@@ -27,8 +27,7 @@ import { PeopleComponent } from './people/people.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ChartModule } from 'angular-highcharts';
-import { checkFailComponent } from './confirm/action/fail.component';
-import { checkSuccessComponent } from './confirm/action/check.component';
+import { checkComponent } from './confirm/action/check.component';
 import { TestComponent } from './test/test.component';
 import { CountUpMoneyDirective } from './count-up-money.directive';
 import { CountUpDirective } from './count-up.directive';
@@ -52,8 +51,7 @@ import { CountUpDirective } from './count-up.directive';
     LoadingComponent,
     PeopleComponent,
     StatisticsComponent,
-    checkFailComponent,
-    checkSuccessComponent,
+    checkComponent,
     TestComponent,
     CountUpMoneyDirective,
     CountUpDirective,

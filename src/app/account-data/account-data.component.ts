@@ -25,8 +25,7 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
-import { checkSuccessComponent } from '../confirm/action/check.component';
-import { checkFailComponent } from '../confirm/action/fail.component';
+import { checkComponent } from '../confirm/action/check.component';
 
 @Component({
   selector: 'app-account-data',
@@ -66,7 +65,7 @@ export class AccountDataComponent implements OnInit {
       this.addRandomUser(false);
       let randomUser : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
       const dialogRef = this.dialog.open(AddUserComponent, {
-        width: '80%',
+        width: '65%',
         height: '65%',
         enterAnimationDuration,
         exitAnimationDuration,
@@ -88,7 +87,7 @@ export class AccountDataComponent implements OnInit {
     let dataEdit : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
 
     const dialogRef = this.dialog.open(EditUserComponent, {
-      width: '80%',
+      width: '65%',
       height: '65%',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -345,31 +344,31 @@ export class AccountDataComponent implements OnInit {
       let enterAnimationDuration = "550ms";
       let exitAnimationDuration = "650ms";
       if (confirmed) {
-        this._snackBar.dismiss();
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
-        this._snackBar.open("Delete " + this.userSelected.length + " user!", "Continue", {
-          horizontalPosition: "center",
-          verticalPosition: "top",
-          duration: 2500,
-        });
+        const user_count = this.userSelected.length;
         this.userSelected.forEach(user => this.deleteUser(user, true));
         this.userSelected.splice(0);
         this.selection.clear();
-        this.dialog.open(checkSuccessComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "You have delete " + user_count + " users!",
+            check: true,
+          }
         });
         this.refresh();
       } else {
-        this.dialog.open(checkFailComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "Selected users was not deleted.",
+            check: false,
+          }
         });
       }
     });
@@ -398,29 +397,28 @@ export class AccountDataComponent implements OnInit {
       let enterAnimationDuration = "550ms";
       let exitAnimationDuration = "650ms";
       if (confirmed) {
-        this._snackBar.dismiss();
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
-        this._snackBar.open("Delete user #" + number.toString() + "!", "Continue", {
-          horizontalPosition: "center",
-          verticalPosition: "top",
-          duration: 2500,
-        });
         this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
-        this.dialog.open(checkSuccessComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "You have delete user #" + number.toString() + "!",
+            check: true,
+          }
         });
         this.refresh();
       } else {
-        this.dialog.open(checkFailComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "User #" + number.toString() + " was not deleted.",
+            check: false,
+          }
         });
       }
     });
@@ -441,29 +439,28 @@ export class AccountDataComponent implements OnInit {
       let enterAnimationDuration = "550ms";
       let exitAnimationDuration = "650ms";
       if (confirmed) {
-        this._snackBar.dismiss();
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
-        this._snackBar.open("Delete all new user!", "Continue", {
-          horizontalPosition: "center",
-          verticalPosition: "top",
-          duration: 2500,
-        });
         this.dataSource.data = this.dataSource.data.filter((user) => !user.new);
-        this.dialog.open(checkSuccessComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "All new users have been deleted!",
+            check: true,
+          }
         });
         this.refresh();
       } else {
-        this.dialog.open(checkFailComponent, {
+        this.dialog.open(checkComponent, {
           width: '325px',
           height: '325px',
           enterAnimationDuration,
           exitAnimationDuration,
+          data: {
+            msg: "Cancel delete new users!",
+            check: false,
+          }
         });
       }
     });

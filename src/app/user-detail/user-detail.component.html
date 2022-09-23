@@ -138,8 +138,8 @@
                       </tr>
                       <tr>
                         <th>Password</th>
-                        <td (click)="show=true;" *ngIf="!show">***************</td>
-                        <td (click)="show=false;" *ngIf="show">{{user.lastname}}{{user.firstname}}@123</td>
+                        <td (click)="show=true;" *ngIf="!show" class="hidden-pass">***************</td>
+                        <td (click)="show=false;" *ngIf="show" class="hidden-pass">{{user.lastname}}{{user.firstname}}@123</td>
                         <td></td>
                         <td class="edit-btn"><mat-icon>edit</mat-icon></td>
                       </tr>
