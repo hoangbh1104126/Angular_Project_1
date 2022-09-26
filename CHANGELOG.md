@@ -34,4 +34,4 @@ Change log:
 
 ## Final
 
-- Design & Add chart.
+- Design & Add chart, animations.

@@ -154,9 +154,13 @@ export class AccountDataComponent implements OnInit {
   displayedColumns: string[] = this.slt.concat(this.displayedCol);
   dataSource = new MatTableDataSource<User>(this.Users);
 
+  isClosed: boolean = false;
+
   refreshDisplayColumns(){
     this.displayedCol = this.onDisplayList.concat(this.edt);
     this.displayedColumns = this.slt.concat(this.displayedCol);
+    if(this.onDisplayList.length>=8) this.isClosed = false;
+    else this.isClosed = true;
     this.refresh();
   }
 

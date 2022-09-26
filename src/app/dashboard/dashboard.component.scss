@@ -26,7 +26,20 @@ h2 {
 }
 
 a {
-    text-decoration: none;
+  color: royalblue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  text-decoration: underline;
+}
+
+.profile-card-social__item:hover{
+  color: white;
+}
+.instagram:hover{
+  color: yellow;
 }
 
 .custom-hr {
@@ -89,15 +102,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     border-color: black;
     border-width: 0 0 1px 0;
     border-radius: 20px;
-}
-
-.img1 {
-    background-image: url('../img/test_screenshot.jpeg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    pointer-events: none;
-    height: 200px;
 }
 
 .content {
@@ -297,6 +301,32 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .img {
   max-width: 100%;
   max-height: 100%;
+}
+
+:host ::ng-deep .carousel-control-next{
+  background: none;
+  animation-name: reverse;
+  animation-duration: 1s;
+}
+:host ::ng-deep .carousel-control-prev{
+  background: none;
+  animation-name: reverse;
+  animation-duration: 1s;
+}
+:host ::ng-deep .carousel-control-prev:hover{
+  animation: hoverArrow 1.5s;
+}
+:host ::ng-deep .carousel-control-next:hover{
+  animation: hoverArrow 1.5s;
+}
+
+@keyframes hoverArrow {
+  from {background: none;}
+  to {background: rgba(0, 0, 0, 0.7);}
+}
+@keyframes reverse{
+  from {background: rgba(0, 0, 0, 0.7);}
+  to {background: none;}
 }
 
 .carousel-caption {

@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
     this.age_female = this.age_female.map(function(each_element){
       return Number((each_element/4.93).toFixed(4));
     });
-    
+
     this.activeUser = Math.floor(Math.random() * (678 - 135) + 135);
     this.per1 = Math.floor(this.activeUser/10);
     this.mostBalance.push(
@@ -120,7 +120,7 @@ export class DashboardComponent implements OnInit {
         }
       ],
       chart: {
-        height: 265,
+        height: 350,
         stacked: true,
         type: "bar"
       },
@@ -230,15 +230,15 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: "Guest",
-          data: [31, 40, 28, 51, 42, 109, 100]
+          data: Array(26).fill(0).map((e,i)=>(Math.floor(Math.random() * (111 - 11 + 1)) + 11).toFixed(0)).map(i=>Number(i)),
         },
         {
           name: "User",
-          data: [11, 32, 45, 32, 34, 52, 41]
+          data: Array(26).fill(0).map((e,i)=>(Math.floor(Math.random() * (222 - 33 + 1)) + 33).toFixed(0)).map(i=>Number(i)),
         },
       ],
       chart: {
-        height: 265,
+        height: 350,
         stacked: true,
         type: "area"
       },
@@ -251,18 +251,38 @@ export class DashboardComponent implements OnInit {
       xaxis: {
         type: "datetime",
         categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z"
-        ]
+          "2022-09-24T18:00:00.000Z",
+          "2022-09-24T19:30:00.000Z",
+          "2022-09-24T21:00:00.000Z",
+          "2022-09-24T22:30:00.000Z",
+          "2022-09-24T24:00:00.000Z",
+          "2022-09-25T01:30:00.000Z",
+          "2022-09-25T03:00:00.000Z",
+          "2022-09-25T04:30:00.000Z",
+          "2022-09-25T06:00:00.000Z",
+          "2022-09-25T07:30:00.000Z",
+          "2022-09-25T09:00:00.000Z",
+          "2022-09-25T10:30:00.000Z",
+          "2022-09-25T12:00:00.000Z",
+          "2022-09-25T13:30:00.000Z",
+          "2022-09-25T15:00:00.000Z",
+          "2022-09-25T16:30:00.000Z",
+          "2022-09-25T18:00:00.000Z",
+          "2022-09-25T19:30:00.000Z",
+          "2022-09-25T21:00:00.000Z",
+          "2022-09-25T22:30:00.000Z",
+          "2022-09-25T24:00:00.000Z",
+          "2022-09-26T01:30:00.000Z",
+          "2022-09-26T03:00:00.000Z",
+          "2022-09-26T04:30:00.000Z",
+          "2022-09-26T06:00:00.000Z",
+          "2022-09-26T07:30:00.000Z",
+        ],
+        //tickAmount: 10,
       },
       tooltip: {
         x: {
-          format: "dd/MM/yy HH:mm"
+          format: 'dd/MM/yy - HH:mm'
         }
       }
     };
@@ -279,7 +299,7 @@ export class DashboardComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 300,
+        height: 385,
         stacked: true,
       },
       colors: ["#FF4560", "#33cc33"],
@@ -304,7 +324,7 @@ export class DashboardComponent implements OnInit {
           },
         }
       },
-      yaxis: { 
+      yaxis: {
         min: -10,
         max: 10,
         title: {

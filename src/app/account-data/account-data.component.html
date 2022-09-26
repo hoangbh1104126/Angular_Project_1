@@ -4,9 +4,10 @@
 
 <h2 class="title-data">User data</h2>
 <hr />
-<div *ngIf="onDisplayList.length>=8" style="width: 90%; margin: 0 auto;">
-  <ngb-alert type="primary" [dismissible]="true">
-    <strong>Warning!</strong> You should not display more than 8 columns.
+<div *ngIf="onDisplayList.length>=8 && !isClosed" style="width: 90%; margin: 0 auto;">
+  <ngb-alert type="primary" [dismissible]="true" (closed)="isClosed=true;">
+    <mat-icon>warning</mat-icon>
+    <span style="margin-left: 10px; font-size: 16px;"><strong>Warning!</strong> You should not display more than 8 columns.</span>
   </ngb-alert>
   <hr />
 </div>
@@ -116,13 +117,14 @@
 
     <ng-container matColumnDef="firstname" sticky *ngIf="displayedColumns.includes('firstname')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" matTooltip="Sort by Name" matTooltipPosition="above"> Name </th>
-      <td mat-cell 
-          *matCellDef="let element" 
+      <td mat-cell *matCellDef="let element">
+        <span
           [innerHTML]="element.firstname + ' ' + element.lastname | highlightSearch: filterText"
           (click)="viewUserDetails(element.account_number)"
-          matTooltip="View User Details"
-      >
+          matTooltip="View User details"
+        >
           {{element.firstname}} {{element.lastname}}
+        </span>
         <mat-chip *ngIf="element.new" class="newChipUser">new</mat-chip>
       </td>
     </ng-container>

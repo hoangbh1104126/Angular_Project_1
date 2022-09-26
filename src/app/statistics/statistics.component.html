@@ -76,37 +76,29 @@
         <h3 style="margin-bottom: 0;">User's access time</h3>
         <div id="chart">
           <apx-chart
-            [series]="chartOptions2.series"
-            [chart]="chartOptions2.chart"
-            [xaxis]="chartOptions2.xaxis"
-            [stroke]="chartOptions2.stroke"
-            [tooltip]="chartOptions2.tooltip"
-            [dataLabels]="chartOptions2.dataLabels"
+            [series]="chartDay.series"
+            [chart]="chartDay.chart"
+            [colors]="chartDay.colors"
+            [yaxis]="chartDay.yaxis"
+            [dataLabels]="commonOptions.dataLabels"
+            [fill]="commonOptions.fill"
+            [stroke]="commonOptions.stroke"
+            [xaxis]="commonOptions.xaxis"
+            [tooltip]="chartDay.tooltip"
+            [legend]="chartDay.legend"
           ></apx-chart>
         </div>
-        <h3>Table: Users with largest access time</h3>
-        <table class="table table-bodered" style="color: #787a81;">
-          <tbody>
-            <tr>
-              <th>Username</th>
-              <td>123 </td>
-              <td></td>
-              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-            </tr>
-            <tr>
-              <th>Password</th>
-              <td>***************</td>
-              <td></td>
-              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-            </tr>
-            <tr>
-              <th>Role</th>
-              <td>User</td>
-              <td></td>
-              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-            </tr>
-          </tbody>
-        </table>
+        <h3>Access time: <em>(18:00 - 24/09/22 to 06:00 - 26/09/22)</em></h3>
+        <apx-chart
+          [series]="chartWeek.series"
+          [chart]="chartWeek.chart"
+          [colors]="chartWeek.colors"
+          [legend]="chartWeek.legend"
+          [dataLabels]="commonOptions.dataLabels"
+          [fill]="commonOptions.fill"
+          [stroke]="commonOptions.stroke"
+          [xaxis]="commonOptions.xaxis"
+        ></apx-chart>
       </div>
     </ng-template>
   </mat-tab>

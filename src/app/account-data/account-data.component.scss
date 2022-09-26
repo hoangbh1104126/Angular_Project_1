@@ -109,6 +109,10 @@ a:hover {
   max-height: 600px;
 }
 
+.mat-icon {
+  vertical-align: middle;
+}
+
 .chipGender {
   max-width: 100px;
   justify-content: center;
@@ -116,6 +120,7 @@ a:hover {
 }
 
 .newChipUser {
+  margin-left: 5px;
   justify-content: center;
   font-weight: bold;
   background-color: #e6ccff;

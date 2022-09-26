@@ -34,6 +34,59 @@ export class StatisticsComponent implements OnInit {
   public chartOptions2: Partial<ChartOptions> | any;
   public chartOptions3: Partial<ChartOptions> | any;
 
+  guest = Array(26)
+    .fill(0)
+    .map((e, i) => (Math.floor(Math.random() * (111 - 11 + 1)) + 11).toFixed(0))
+    .map((i) => Number(i));
+  user = Array(26)
+    .fill(0)
+    .map((e, i) => (Math.floor(Math.random() * (222 - 33 + 1)) + 33).toFixed(0))
+    .map((i) => Number(i));
+
+    public chartDay: Partial<ChartOptions> | any;
+    public chartWeek: Partial<ChartOptions> | any;
+    public commonOptions: Partial<ChartOptions> | any = {
+      dataLabels: {
+        enabled: false,
+      },
+      xaxis: {
+        type: "datetime",
+        categories: [
+          "2022-09-24T18:00:00.000Z",
+          "2022-09-24T19:30:00.000Z",
+          "2022-09-24T21:00:00.000Z",
+          "2022-09-24T22:30:00.000Z",
+          "2022-09-24T24:00:00.000Z",
+          "2022-09-25T01:30:00.000Z",
+          "2022-09-25T03:00:00.000Z",
+          "2022-09-25T04:30:00.000Z",
+          "2022-09-25T06:00:00.000Z",
+          "2022-09-25T07:30:00.000Z",
+          "2022-09-25T09:00:00.000Z",
+          "2022-09-25T10:30:00.000Z",
+          "2022-09-25T12:00:00.000Z",
+          "2022-09-25T13:30:00.000Z",
+          "2022-09-25T15:00:00.000Z",
+          "2022-09-25T16:30:00.000Z",
+          "2022-09-25T18:00:00.000Z",
+          "2022-09-25T19:30:00.000Z",
+          "2022-09-25T21:00:00.000Z",
+          "2022-09-25T22:30:00.000Z",
+          "2022-09-25T24:00:00.000Z",
+          "2022-09-26T01:30:00.000Z",
+          "2022-09-26T03:00:00.000Z",
+          "2022-09-26T04:30:00.000Z",
+          "2022-09-26T06:00:00.000Z",
+          "2022-09-26T07:30:00.000Z"
+        ]
+        //tickAmount: 10,
+      },
+      stroke: {
+        width: 0,
+        curve: "smooth"
+      },
+    };
+
   constructor(public router: Router) {
     this.userData.forEach((user) => {
       if(user.gender == "M"){
@@ -170,46 +223,6 @@ export class StatisticsComponent implements OnInit {
         }
       },
     };
-    this.chartOptions2 = {
-      series: [
-        {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100]
-        },
-        {
-          name: "series2",
-          data: [11, 32, 45, 32, 34, 52, 41]
-        },
-      ],
-      chart: {
-        height: 400,
-        stacked: true,
-        type: "area"
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "smooth"
-      },
-      xaxis: {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z"
-        ]
-      },
-      tooltip: {
-        x: {
-          format: "dd/MM/yy HH:mm"
-        }
-      }
-    };
     this.chartOptions3 = {
       series: [
         {
@@ -287,6 +300,7 @@ export class StatisticsComponent implements OnInit {
         },
       }
     };
+    this.initCharts();
   }
 
   ngOnInit(): void {
@@ -345,6 +359,80 @@ export class StatisticsComponent implements OnInit {
           'font-weight': '400',
         }
     }
+  }
+
+  public initCharts(): void {
+    this.chartDay = {
+      series: [
+        {
+          name: "Guest",
+          data: this.guest
+        },
+        {
+          name: "User",
+          data: this.user
+        }
+      ],
+      chart: {
+        id: "chartweek",
+        height: 400,
+        type: "area",
+        background: "#F6F8FA",
+        toolbar: {
+          show: false,
+          autoSelected: "pan"
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        offsetY: 5,
+      },
+      stroke: {
+        curve: "smooth"
+      },
+      tooltip: {
+        x: {
+          format: 'dd/MM/yy - HH:mm'
+        }
+      },
+    };
+
+    this.chartWeek = {
+      series: [
+        {
+          name: "Guest",
+          data: this.guest
+        },
+        {
+          name: "User",
+          data: this.user
+        }
+      ],
+      chart: {
+        height: 300,
+        type: "area",
+        background: "#F6F8FA",
+        toolbar: {
+          autoSelected: "selection"
+        },
+        brush: {
+          enabled: true,
+          target: "chartweek"
+        },
+        selection: {
+          enabled: true,
+          xaxis: {
+            min: new Date("2022-09-24T24:00:00.000Z").getTime(),
+            max: new Date("2022-09-25T24:00:00.000Z").getTime(),
+          }
+        }
+      },
+      legend: {
+        show: false,
+      }
+    };
   }
 }
 

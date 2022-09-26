@@ -36,8 +36,8 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowspan="4" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile style="margin-top: 8px;"><h1>Business</h1></mat-grid-tile>
-      <mat-grid-tile rowspan="12" style="margin-top: 16px;">
+      <mat-grid-tile rowspan="2" style="margin-top: 12px;"><h1>Business</h1></mat-grid-tile>
+      <mat-grid-tile rowspan="12" style="margin-top: 2px;">
         <div class="container">
           <ngb-carousel *ngIf="business_img">
             <ng-template ngbSlide>
@@ -45,8 +45,8 @@
                 <img [src]="business_img[0]" alt="Random first slide" style='max-width: 100%; max-height: 100%;'>
               </div>
               <div class="carousel-caption">
-                <h3 class="carousel-text">10 seconds between slides...</h3>
-                <p class="carousel-text">This carousel uses customized default values.</p>
+                <h3 class="carousel-text">Management User Account</h3>
+                <p class="carousel-text">Easy to use</p>
               </div>
             </ng-template>
             <ng-template ngbSlide>
@@ -54,8 +54,7 @@
                 <img [src]="business_img[1]" alt="Random second slide" style='max-width: 100%; max-height: 100%;'>
               </div>
               <div class="carousel-caption" style="background: none;">
-                <h3 class="carousel-text-dark">No mouse events...</h3>
-                <p class="carousel-text-dark">This carousel doesn't pause or resume on mouse events</p>
+                <p class="carousel-text-dark">With many features.</p>
               </div>
             </ng-template>
             <ng-template ngbSlide>
@@ -63,8 +62,17 @@
                 <img [src]="business_img[2]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
               </div>
               <div class="carousel-caption">
-                <h3 class="carousel-text">No keyboard...</h3>
-                <p class="carousel-text">This carousel uses customized default values.</p>
+                <h3 class="carousel-text">Animated!</h3>
+                <p class="carousel-text">Cool animation.</p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="business_img[3]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
+              </div>
+              <div class="carousel-caption">
+                <h3 class="carousel-text">User details</h3>
+                <p class="carousel-text">Modern layout for everyone!</p>
               </div>
             </ng-template>
           </ngb-carousel>
@@ -109,8 +117,8 @@
     <mat-grid-list gutterSize="0" rowHeight="22.5px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile class="user-other" rowspan="2"><h2 style="margin-top: 35px;">About us</h2></mat-grid-tile>
       <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="4" class="att-other">
-        <div class="profile-card-social" style="margin-bottom: 28px;">
+      <mat-grid-tile colspan="2" rowspan="5" class="att-other">
+        <div class="profile-card-social" style="margin: 28px;">
           <a class="profile-card-social__item facebook">
             <span class="icon-font">
                 <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
@@ -176,8 +184,8 @@
                   <img [src]="people_img[0]" alt="Random first slide" style='max-width: 100%; max-height: 100%;'>
                 </div>
                 <div class="carousel-caption">
-                  <h3 class="carousel-text">10 seconds between slides...</h3>
-                  <p class="carousel-text">This carousel uses customized default values.</p>
+                  <h3 class="carousel-text">Meet our customer!</h3>
+                  <p class="carousel-text">More than 1000 User!</p>
                 </div>
               </ng-template>
               <ng-template ngbSlide>
@@ -185,17 +193,17 @@
                   <img [src]="people_img[1]" alt="Random second slide" style='max-width: 100%; max-height: 100%;'>
                 </div>
                 <div class="carousel-caption">
-                  <h3 class="carousel-text">No mouse events...</h3>
-                  <p class="carousel-text">This carousel doesn't pause or resume on mouse events</p>
+                  <h3 class="carousel-text">Modern design</h3>
+                  <p class="carousel-text">Everyone is cool!</p>
                 </div>
               </ng-template>
               <ng-template ngbSlide>
                 <div class="picsum-img-wrapper">
-                  <img [src]="people_img[2]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
+                  <img [src]="people_img[3]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
                 </div>
                 <div class="carousel-caption">
-                  <h3 class="carousel-text">No keyboard...</h3>
-                  <p class="carousel-text">This carousel uses customized default values.</p>
+                  <h3 class="carousel-text">Wanna join us?</h3>
+                  <p class="carousel-text">> <a href="contact">Contact us now </a> <</p>
                 </div>
               </ng-template>
             </ngb-carousel>
@@ -285,23 +293,6 @@
 </mat-grid-list>
 
 <mat-grid-list cols="2" rowHeight="550px" [gutterSize]="'50px'" class="dashboard">
-  <mat-grid-tile class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="23.5px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile rowspan="14">
-        <div class="fake-img" style="width: 100%;">.</div>
-      </mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile rowspan="3">
-        <mat-grid-list gutterSize="4" rowHeight="18.75px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-          <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
-        </mat-grid-list>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-grid-tile>
   <mat-grid-tile class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="23.5px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
