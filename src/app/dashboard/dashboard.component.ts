@@ -284,7 +284,10 @@ export class DashboardComponent implements OnInit {
         x: {
           format: 'dd/MM/yy - HH:mm'
         }
-      }
+      },
+      legend: {
+        offsetY: 5,
+      },
     };
     this.chartOptions3 = {
       series: [
@@ -361,7 +364,10 @@ export class DashboardComponent implements OnInit {
             return Math.abs(Math.round(parseInt(val, 10))) + "%";
           }
         },
-      }
+      },
+      legend: {
+        offsetY: 5,
+      },
     };
   }
 

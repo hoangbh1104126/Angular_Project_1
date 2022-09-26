@@ -286,6 +286,9 @@ export class StatisticsComponent implements OnInit {
           }
         }
       },
+      legend: {
+        offsetY: 5,
+      },
       xaxis: {
         categories: Array(21).fill(0).map((e,i)=>(i+20).toFixed(0)).map(i=>Number(i)),
         type: 'numeric',
