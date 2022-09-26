@@ -196,48 +196,61 @@
           </div>
         </mat-tab>
         <mat-tab label="Log">
-          <div class="content-list">
-            <mat-grid-list cols="1" rowHeight="97.5px" gutterSize="20px" class="dashboard">
-              <mat-grid-tile class="item-dash" rowspan="4">
-                <div class="content-list">
-                  <h1 class="title-content">Login Sessions</h1>
-                  <table class="table table-bodered" style="color: #787a81; font-size: 16px; padding: 0;">
-                    <thead>
-                      <th>LOCATION</th>
-                      <th>DEVICE</th>
-                      <th>IP ADDRESS</th>
-                      <th>TIME</th>
-                      <th>ACTIONS</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Vietnam</td>
-                        <td>Chome - Windows</td>
-                        <td>207.29.50.380</td>
-                        <td>23 seconds ago</td>
-                        <td>Current session</td>
-                      </tr>
-                      <tr>
-                        <td>Australia</td>
-                        <td>Safari - iOS</td>
-                        <td>207.26.29.12</td>
-                        <td>3 days ago</td>
-                        <td style="cursor: wait; color: blue;">Sign out</td>
-                      </tr>
-                      <tr>
-                        <td>Australia</td>
-                        <td>Chome - Windows</td>
-                        <td>207.32.24.138</td>
-                        <td>last week</td>
-                        <td>Expired</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile rowspan="4"></mat-grid-tile>
-            </mat-grid-list>
-          </div>
+          <ng-template matTabContent>
+            <div class="content-list">
+              <mat-grid-list cols="1" rowHeight="97.5px" gutterSize="20px" class="dashboard">
+                <mat-grid-tile class="item-dash" rowspan="3">
+                  <div class="content-list">
+                    <h1 class="title-content">Login Sessions</h1>
+                    <table class="table table-bodered" style="color: #787a81; font-size: 16px; padding: 0;">
+                      <thead>
+                        <th>LOCATION</th>
+                        <th>DEVICE</th>
+                        <th>IP ADDRESS</th>
+                        <th>TIME</th>
+                        <th>ACTIONS</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Vietnam</td>
+                          <td>Chome - Windows</td>
+                          <td>207.29.50.380</td>
+                          <td>23 seconds ago</td>
+                          <td>Current session</td>
+                        </tr>
+                        <tr>
+                          <td>Australia</td>
+                          <td>Safari - iOS</td>
+                          <td>207.26.29.12</td>
+                          <td>3 days ago</td>
+                          <td style="cursor: wait; color: blue;">Sign out</td>
+                        </tr>
+                        <tr>
+                          <td>Australia</td>
+                          <td>Chome - Windows</td>
+                          <td>207.32.24.138</td>
+                          <td>last week</td>
+                          <td>Expired</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="item-dash" rowspan="4">
+                  <div id="chart">
+                    <apx-chart
+                      [series]="chartOptions.series"
+                      [chart]="chartOptions.chart"
+                      [dataLabels]="chartOptions.dataLabels"
+                      [title]="chartOptions.title"
+                      [colors]="chartOptions.colors"
+                    ></apx-chart>
+                  </div>
+                </mat-grid-tile>
+                <mat-grid-tile rowspan="1"></mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </ng-template>
         </mat-tab>
       </mat-tab-group>
     </mat-grid-tile>

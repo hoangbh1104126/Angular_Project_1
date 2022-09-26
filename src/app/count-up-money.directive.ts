@@ -23,12 +23,10 @@ const easeOutQuad = (x: number): number => x * (2 - x);
 export class CountUpMoneyDirective implements OnInit {
   private readonly count$ = new BehaviorSubject(0);
   private readonly duration$ = new BehaviorSubject(2000);
-  private readonly money$ = new BehaviorSubject(false);
 
   private readonly currentCount$ = combineLatest([
     this.count$,
     this.duration$,
-    this.money$,
   ]).pipe(
     switchMap(([count, duration]) => {
       // get the time when animation is triggered
@@ -61,11 +59,6 @@ export class CountUpMoneyDirective implements OnInit {
   @Input()
   set duration(duration: number) {
     this.duration$.next(duration);
-  }
-
-  @Input()
-  set money(money: boolean){
-    this.money$.next(money);
   }
 
   constructor(

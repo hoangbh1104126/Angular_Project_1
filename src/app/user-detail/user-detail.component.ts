@@ -1,8 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { UserService } from '../user.service';
+
+import {
+  ApexAxisChartSeries,
+  ApexTitleSubtitle,
+  ApexDataLabels,
+  ApexChart,
+  ChartComponent
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  title: ApexTitleSubtitle;
+  colors: any;
+};
 
 @Component({
   selector: 'app-user-detail',
@@ -10,10 +26,78 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
+  
+  @ViewChild("chart") chart!: ChartComponent;
+  public chartOptions: Partial<ChartOptions> | any;
 
   user$ !: Observable<User>;
   id: any;
-  constructor(private _route: ActivatedRoute, private _api: UserService) { }
+  constructor(private _route: ActivatedRoute, private _api: UserService) {
+    this.chartOptions = {
+      series: [
+        {
+          name: "Mon",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Tue",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Wed",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Thu",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Fri",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Sat",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+        {
+          name: "Sun",
+          data: this.generateData(8, {
+            min: 0,
+            max: 24
+          })
+        },
+      ],
+      chart: {
+        height: 400,
+        type: "heatmap"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      colors: ["#008FFB"],
+      title: {
+        text: "Active map"
+      },
+    };
+  }
 
   ngOnInit(): void {
     let account_number = this._route.snapshot.paramMap.get('account_number');
@@ -37,6 +121,54 @@ export class UserDetailComponent implements OnInit {
       'font-size': '32px',
       'background-color': '#fff5f8',
       'color': '#f27d9d'
+    }
+  }
+
+  public generateData(count: any, yrange: any) {
+      var i = 0;
+      var series = [];
+      while (i < count) {
+        var x = this.getDate(i);
+        var y =
+          Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+  
+        series.push({
+          x: x,
+          y: y
+        });
+        i++;
+      }
+      return series;
+  }
+  
+  getDate(idx: number): string{
+    switch(idx){
+      case 0: {
+        return "Aug 1st";
+      }
+      case 1: {
+        return "Aug 8th";
+      }
+      case 2: {
+        return "Aug 22nd";
+      }
+      case 3: {
+        return "Aug 29th";
+      }
+      case 4: {
+        return "Sep 5th";
+      }
+      case 5: {
+        return "Sep 12th";
+      }
+      case 6: {
+        return "Sep 19th";
+      }
+      case 7: {
+        return "Sep 26th";
+      }
+      default:
+        return "Other";
     }
   }
 }

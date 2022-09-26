@@ -26,11 +26,10 @@ import { LoadingComponent } from './loading/loading.component';
 import { PeopleComponent } from './people/people.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { NgApexchartsModule } from "ng-apexcharts";
-import { ChartModule } from 'angular-highcharts';
 import { checkComponent } from './confirm/action/check.component';
-import { TestComponent } from './test/test.component';
 import { CountUpMoneyDirective } from './count-up-money.directive';
 import { CountUpDirective } from './count-up.directive';
+import { HighlightSearchPipe } from './highlight-search.pipe';
 
 @NgModule({
   declarations: [
@@ -52,9 +51,9 @@ import { CountUpDirective } from './count-up.directive';
     PeopleComponent,
     StatisticsComponent,
     checkComponent,
-    TestComponent,
     CountUpMoneyDirective,
     CountUpDirective,
+    HighlightSearchPipe,
   ],
   imports: [
     FormsModule,
@@ -66,7 +65,6 @@ import { CountUpDirective } from './count-up.directive';
     NgbModule,
     AppMaterialModule,
     NgApexchartsModule,
-    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

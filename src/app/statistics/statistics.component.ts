@@ -26,8 +26,8 @@ export class StatisticsComponent implements OnInit {
 
   userData: User[] = usersData;
   mostBalance: User[] = [];
-  oldest: User[] = [];
-  youngest: User[] = [];
+  age_male = new Array<number>(21);
+  age_female = new Array<number>(21);
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions1: Partial<ChartOptions> | any;
@@ -35,26 +35,26 @@ export class StatisticsComponent implements OnInit {
   public chartOptions3: Partial<ChartOptions> | any;
 
   constructor(public router: Router) {
+    this.userData.forEach((user) => {
+      if(user.gender == "M"){
+        this.age_male[user.age-20] = this.age_male[user.age-20] == null ? -1: this.age_male[user.age-20] - 1;
+      }
+      else {
+        this.age_female[user.age-20] = this.age_female[user.age-20] == null ? 1: this.age_female[user.age-20] + 1;
+      }
+    });
+    this.age_male = this.age_male.map(function(each_element){
+      return Number((each_element/5.07).toFixed(4));
+    });
+    this.age_female = this.age_female.map(function(each_element){
+      return Number((each_element/4.93).toFixed(4));
+    });
     this.mostBalance.push(
       this.findUserByID(248),
       this.findUserByID(854),
       this.findUserByID(240),
       this.findUserByID(97),
       this.findUserByID(842),
-    );
-    this.oldest.push(
-      this.findUserByID(664),
-      this.findUserByID(549),
-      this.findUserByID(479),
-      this.findUserByID(474),
-      this.findUserByID(291),
-    );
-    this.youngest.push(
-      this.findUserByID(95),
-      this.findUserByID(905),
-      this.findUserByID(816),
-      this.findUserByID(215),
-      this.findUserByID(157),
     );
     this.chartOptions1 = {
       series: [
@@ -64,7 +64,8 @@ export class StatisticsComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 400,
+        stacked: true,
         type: "bar"
       },
       colors: [
@@ -181,7 +182,8 @@ export class StatisticsComponent implements OnInit {
         },
       ],
       chart: {
-        height: 350,
+        height: 400,
+        stacked: true,
         type: "area"
       },
       dataLabels: {
@@ -211,58 +213,20 @@ export class StatisticsComponent implements OnInit {
     this.chartOptions3 = {
       series: [
         {
-          name: "Males",
-          data: [
-            0.4,
-            0.65,
-            0.76,
-            0.88,
-            1.5,
-            2.1,
-            2.9,
-            3.8,
-            3.9,
-            4.2,
-            4,
-            4.3,
-            4.1,
-            4.2,
-            4.5,
-            3.9,
-            3.5,
-            3
-          ]
+          name: "Females",
+          data: this.age_female,
         },
         {
-          name: "Females",
-          data: [
-            -0.8,
-            -1.05,
-            -1.06,
-            -1.18,
-            -1.4,
-            -2.2,
-            -2.85,
-            -3.7,
-            -3.96,
-            -4.22,
-            -4.3,
-            -4.4,
-            -4.1,
-            -4,
-            -4.1,
-            -3.4,
-            -3.1,
-            -2.8
-          ]
-        }
+          name: "Males",
+          data: this.age_male,
+        },
       ],
       chart: {
         type: "bar",
-        height: 440,
-        stacked: true
+        height: 400,
+        stacked: true,
       },
-      colors: ["#33cc33", "#FF4560"],
+      colors: ["#FF4560", "#33cc33"],
       plotOptions: {
         bar: {
           horizontal: true,
@@ -285,17 +249,22 @@ export class StatisticsComponent implements OnInit {
         }
       },
       yaxis: {
-        min: -5,
-        max: 5,
+        min: -10,
+        max: 10,
         title: {
-          // text: 'Age',
-        }
+          text: 'Age',
+        },
+        labels: {
+          formatter: function(val: any) {
+            return Math.abs(Math.round(parseInt(val, 10)));
+          }
+        },
       },
       tooltip: {
         shared: false,
         x: {
           formatter: function(val: any) {
-            return val.toString();
+            return "Age: " + val.toString();
           }
         },
         y: {
@@ -305,26 +274,9 @@ export class StatisticsComponent implements OnInit {
         }
       },
       xaxis: {
-        categories: [
-          "85+",
-          "80-84",
-          "75-79",
-          "70-74",
-          "65-69",
-          "60-64",
-          "55-59",
-          "50-54",
-          "45-49",
-          "40-44",
-          "35-39",
-          "30-34",
-          "25-29",
-          "20-24",
-          "15-19",
-          "10-14",
-          "5-9",
-          "0-4"
-        ],
+        categories: Array(21).fill(0).map((e,i)=>(i+20).toFixed(0)).map(i=>Number(i)),
+        type: 'numeric',
+        tickAmount: 10,
         title: {
           text: "Percent"
         },
@@ -342,8 +294,6 @@ export class StatisticsComponent implements OnInit {
 
   displayedColumns: string[] = ['account_number', 'firstname', 'balance', 'age', 'gender'];
   dataSource1 = this.mostBalance;
-  dataSource2 = this.oldest;
-  dataSource3 = this.youngest;
 
   findUserByID(id: number): User{
     return this.userData.find((user) => user.account_number === id) as User;

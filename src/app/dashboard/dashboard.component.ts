@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { Router } from '@angular/router';
+
 import usersData from 'src/accounts.json';
 import { User } from '../user';
+
+import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   ApexAxisChartSeries,
@@ -32,6 +36,7 @@ import {
       ]),
     ]),
   ],
+  providers: [NgbProgressbarConfig, NgbCarouselConfig],
 })
 export class DashboardComponent implements OnInit {
 
@@ -46,31 +51,59 @@ export class DashboardComponent implements OnInit {
   current = 0;
 
   business_img = [
-    'assets/image/business_1.jpeg',
-    'assets/image/business_3.jpeg',
-    'assets/image/business_2.jpeg'
+    'assets/image/business_1.png',
+    'assets/image/business_2.png',
+    'assets/image/business_3.png',
+    'assets/image/business_4.png'
   ];
 
   people_img = [
-    'assets/image/people_1.jpeg',
-    'assets/image/people_2.jpeg',
-    'assets/image/people_3.jpeg',
+    'assets/image/people_1.png',
+    'assets/image/people_2.png',
+    'assets/image/people_3.png',
+    'assets/image/people_4.png',
   ];
-
-  statistics_img = [
-    'assets/image/statistics_1.jpeg',
-    'assets/image/statistics_1.jpeg',
-    'assets/image/statistics_1.jpeg'
-  ]
 
   userData: User[] = usersData;
   mostBalance: User[] = [];
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions1: Partial<ChartOptions> | any;
+  public chartOptions2: Partial<ChartOptions> | any;
+  public chartOptions3: Partial<ChartOptions> | any;
 
-  constructor() {
-    this.activeUser = Math.floor(Math.random() * 555);
+  age_male = new Array<number>(21);
+  age_female = new Array<number>(21);
+
+  today = new Date();
+
+  constructor(config: NgbProgressbarConfig, config_crs: NgbCarouselConfig) {
+    config_crs.interval = 2000;
+    config_crs.wrap = true;
+    config_crs.keyboard = true;
+    config_crs.pauseOnHover = true;
+
+    config.max = 100;
+    config.striped = true;
+    config.animated = true;
+    config.height = '10px';
+
+    this.userData.forEach((user) => {
+      if(user.gender == "M"){
+        this.age_male[user.age-20] = this.age_male[user.age-20] == null ? -1: this.age_male[user.age-20] - 1;
+      }
+      else {
+        this.age_female[user.age-20] = this.age_female[user.age-20] == null ? 1: this.age_female[user.age-20] + 1;
+      }
+    });
+    this.age_male = this.age_male.map(function(each_element){
+      return Number((each_element/5.07).toFixed(4));
+    });
+    this.age_female = this.age_female.map(function(each_element){
+      return Number((each_element/4.93).toFixed(4));
+    });
+    
+    this.activeUser = Math.floor(Math.random() * (678 - 135) + 135);
     this.per1 = Math.floor(this.activeUser/10);
     this.mostBalance.push(
       this.findUserByID(248),
@@ -87,7 +120,8 @@ export class DashboardComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 265,
+        stacked: true,
         type: "bar"
       },
       colors: [
@@ -126,7 +160,8 @@ export class DashboardComponent implements OnInit {
           "J.Barry",
           "M.Buckner",
         ],
-
+        offsetY: -20,
+        position: "top",
         labels: {
           style: {
             colors: [
@@ -190,6 +225,123 @@ export class DashboardComponent implements OnInit {
           },
         }
       },
+    };
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "Guest",
+          data: [31, 40, 28, 51, 42, 109, 100]
+        },
+        {
+          name: "User",
+          data: [11, 32, 45, 32, 34, 52, 41]
+        },
+      ],
+      chart: {
+        height: 265,
+        stacked: true,
+        type: "area"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "smooth"
+      },
+      xaxis: {
+        type: "datetime",
+        categories: [
+          "2018-09-19T00:00:00.000Z",
+          "2018-09-19T01:30:00.000Z",
+          "2018-09-19T02:30:00.000Z",
+          "2018-09-19T03:30:00.000Z",
+          "2018-09-19T04:30:00.000Z",
+          "2018-09-19T05:30:00.000Z",
+          "2018-09-19T06:30:00.000Z"
+        ]
+      },
+      tooltip: {
+        x: {
+          format: "dd/MM/yy HH:mm"
+        }
+      }
+    };
+    this.chartOptions3 = {
+      series: [
+        {
+          name: "Females",
+          data: this.age_female,
+        },
+        {
+          name: "Males",
+          data: this.age_male,
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 300,
+        stacked: true,
+      },
+      colors: ["#FF4560", "#33cc33"],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          barHeight: "80%"
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 1,
+        colors: ["#fff"]
+      },
+
+      grid: {
+        xaxis: {
+          lines: {
+            show: false
+          },
+        }
+      },
+      yaxis: { 
+        min: -10,
+        max: 10,
+        title: {
+          text: 'Age',
+        },
+        labels: {
+          formatter: function(val: any) {
+            return Math.abs(Math.round(parseInt(val, 10)));
+          }
+        },
+      },
+      tooltip: {
+        shared: false,
+        x: {
+          formatter: function(val: any) {
+            return "Age: " + val.toString();
+          }
+        },
+        y: {
+          formatter: function(val: any) {
+            return Math.abs(val) + "%";
+          }
+        }
+      },
+      xaxis: {
+        categories: Array(21).fill(0).map((e,i)=>(i+20).toFixed(0)).map(i=>Number(i)),
+        type: 'numeric',
+        tickAmount: 5,
+        title: {
+          text: "Percent"
+        },
+        labels: {
+          formatter: function(val: any) {
+            return Math.abs(Math.round(parseInt(val, 10))) + "%";
+          }
+        },
+      }
     };
   }
 

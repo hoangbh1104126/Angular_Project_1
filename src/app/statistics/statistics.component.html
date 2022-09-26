@@ -3,7 +3,7 @@
 
 <hr class="custom-hr"/>
 
-<mat-tab-group>
+<mat-tab-group style="margin-left: -32px;">
   <mat-tab>
     <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
@@ -13,7 +13,7 @@
       <div class="content">
         <h2>Balance</h2>
         <h3>Top 5 users with largest balance</h3>
-        <div id="chart">
+        <div id="chart" style="padding-right: 10px;">
             <apx-chart
                 [series]="chartOptions1.series"
                 [chart]="chartOptions1.chart"
@@ -72,6 +72,8 @@
     </ng-template>
     <ng-template matTabContent>
       <div class="content">
+        <h2>Access Time</h2>
+        <h3 style="margin-bottom: 0;">User's access time</h3>
         <div id="chart">
           <apx-chart
             [series]="chartOptions2.series"
@@ -82,29 +84,30 @@
             [dataLabels]="chartOptions2.dataLabels"
           ></apx-chart>
         </div>
+        <h3>Table: Users with largest access time</h3>
+        <table class="table table-bodered" style="color: #787a81;">
+          <tbody>
+            <tr>
+              <th>Username</th>
+              <td>123 </td>
+              <td></td>
+              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+            </tr>
+            <tr>
+              <th>Password</th>
+              <td>***************</td>
+              <td></td>
+              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+            </tr>
+            <tr>
+              <th>Role</th>
+              <td>User</td>
+              <td></td>
+              <td class="edit-btn"><mat-icon>edit</mat-icon></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="table table-bodered" style="color: #787a81;">
-        <tbody>
-          <tr>
-            <th>Username</th>
-            <td>123 </td>
-            <td></td>
-            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-          </tr>
-          <tr>
-            <th>Password</th>
-            <td>***************</td>
-            <td></td>
-            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-          </tr>
-          <tr>
-            <th>Role</th>
-            <td>User</td>
-            <td></td>
-            <td class="edit-btn"><mat-icon>edit</mat-icon></td>
-          </tr>
-        </tbody>
-      </table>
     </ng-template>
   </mat-tab>
   <mat-tab>
@@ -114,7 +117,9 @@
     </ng-template>
     <ng-template matTabContent>
       <div class="content">
-        <div id="chart">
+        <h2>Age</h2>
+        <h3 style="margin-bottom: 0;">User age distribution</h3>
+        <div id="chart" style="margin-top: -5px;">
           <apx-chart
             [series]="chartOptions3.series"
             [chart]="chartOptions3.chart"
@@ -129,7 +134,57 @@
             [xaxis]="chartOptions3.xaxis"
           ></apx-chart>
         </div>
+        <h3>User age analystics</h3>
+        <table class="table table-bodered" style="color: #787a81;">
+          <thead>
+            <tr>
+              <th rowspan="2" id="gender">Gender</th>
+              <th colspan="2" style="text-align: center;">Male</th>
+              <th colspan="2" style="text-align: center;">Female</th>
+            </tr>
+            <tr>
+              <th>Least</th>
+              <th>Most</th>
+              <th>Least</th>
+              <th>Most</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Age</th>
+              <td>27</td>
+              <td>31</td>
+              <td>29</td>
+              <td>39</td>
+            </tr>
+            <tr>
+              <th>People</th>
+              <td>18</td>
+              <td>35</td>
+              <td>12</td>
+              <td>38</td>
+            </tr>
+            <tr>
+              <th>Percent</th>
+              <td>3.5503%</td>
+              <td>6.9034%</td>
+              <td>2.4321%</td>
+              <td>7.7079%</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <td>507</td>
+              <td>50.7%</td>
+              <td>493</td>
+              <td>49.3%</td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
     </ng-template>
   </mat-tab>
 </mat-tab-group>
+
+<div style="height: 100px;"></div>

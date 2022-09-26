@@ -31,3 +31,7 @@ Change log:
 - Display: select, add, edit user field -> 2 row (no scroll).
 - Add: Dashboard, loading, 404 page; confirm dialog.
 - Design & Update feature for account-management. (Filter Options)
+
+## Final
+
+- Design & Add chart.

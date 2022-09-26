@@ -100,8 +100,8 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     height: 200px;
 }
 
-#chart {
-  width: 100%;
+.content {
+  overflow: hidden; /* Hide scrollbars */
 }
 
 #user{
@@ -109,7 +109,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   color: white;
 }
 .user-count {
-  margin: 5px;
   padding: 5px;
 }
 .user-number {
@@ -266,20 +265,19 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 }
 
 .dot {
+  margin-left: 32px;
   font-size: 30px;
   color: royalblue;
 }
 .text {
   padding: 0 10px;
-  max-width: 300px;
   border-radius: 1px;
   text-align: justify;
 }
 
 .container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  padding: 0;
 }
 
 .sliders {
@@ -299,6 +297,20 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.carousel-caption {
+  left: 0;
+  width: 100%;
+  padding-top: 30px;
+  background: #778899;
+}
+.carousel-text {
+  color: white;
+  font-weight: bold;
+}
+.carousel-text-dark {
+  color: #E0FFFF;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
@@ -479,4 +491,8 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 
   }
 
+}
+
+:host ::ng-deep .apexcharts-legend {
+  margin-left: 32px;
 }

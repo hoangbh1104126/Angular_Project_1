@@ -69,7 +69,7 @@ a {
 }
 
 .content-people {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -100,11 +100,11 @@ a, a:hover {
 }
 
 .wrapper {
-  width: 350px;
+  margin: auto;
+  max-width: 350px;
   height: 1000px;
   border-radius: 20px;
-  padding: 50px 20px;
-  padding-top: 100px;
+  padding: 100px 20px 50px;
   display: flex;
   background-image: linear-gradient(-20deg, #ff2846 0%, #6944ff 100%);
 

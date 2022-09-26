@@ -3,9 +3,9 @@
 
 <hr class="custom-hr"/>
 
-<mat-grid-list cols="8" rowHeight="80px" [gutterSize]="'50px'" class="dashboard">
+<mat-grid-list cols="8" rowHeight="100px" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile colspan="2" rowspan="2" id="user" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="32px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="40px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-number"><span [countUp]="1000" [duration]="1500"></span></mat-grid-tile>
       <mat-grid-tile class="user-number">0</mat-grid-tile>
@@ -15,12 +15,12 @@
       <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
       <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per1}}%</mat-grid-tile>
       <mat-grid-tile colspan="2">
-        <mat-progress-bar mode="determinate" [value]="per1" class="user-active"></mat-progress-bar>
+        <ngb-progressbar [value]="per1" type="primary" [striped]="true" [animated]="true" class="user-active"></ngb-progressbar>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="28px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="35px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other" colspan="2">
         <span [countUpMoney]="total" [duration]="1750"></span>
@@ -30,40 +30,51 @@
       <mat-grid-tile style="margin-left: 20px; font-size: 18px;">Guzman Whitfield</mat-grid-tile>
       <mat-grid-tile style="font-size: 18px;">{{ per2 }}% on Total</mat-grid-tile>
       <mat-grid-tile colspan="2">
-        <mat-progress-bar mode="determinate" [value]="per2" class="user-active"></mat-progress-bar>
+        <ngb-progressbar [value]="per2" type="primary" [striped]="true" [animated]="true"  class="user-active"></ngb-progressbar>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowspan="4" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile><h1>Business</h1></mat-grid-tile>
-      <mat-grid-tile rowspan="8">
+      <mat-grid-tile style="margin-top: 8px;"><h1>Business</h1></mat-grid-tile>
+      <mat-grid-tile rowspan="12" style="margin-top: 16px;">
         <div class="container">
-          <div class="sliders" style='max-width: 100%' >
-            <ng-container *ngFor="let img of business_img; let i = index">
-              <div class="slider" *ngIf="current == i" @fade>
-                <img class="img" [src]="img" >
+          <ngb-carousel *ngIf="business_img">
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="business_img[0]" alt="Random first slide" style='max-width: 100%; max-height: 100%;'>
               </div>
-            </ng-container>
-          </div>
+              <div class="carousel-caption">
+                <h3 class="carousel-text">10 seconds between slides...</h3>
+                <p class="carousel-text">This carousel uses customized default values.</p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="business_img[1]" alt="Random second slide" style='max-width: 100%; max-height: 100%;'>
+              </div>
+              <div class="carousel-caption" style="background: none;">
+                <h3 class="carousel-text-dark">No mouse events...</h3>
+                <p class="carousel-text-dark">This carousel doesn't pause or resume on mouse events</p>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="business_img[2]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
+              </div>
+              <div class="carousel-caption">
+                <h3 class="carousel-text">No keyboard...</h3>
+                <p class="carousel-text">This carousel uses customized default values.</p>
+              </div>
+            </ng-template>
+          </ngb-carousel>
         </div>
-      </mat-grid-tile>
-      <mat-grid-tile rowspan="2">
-        <mat-grid-list gutterSize="0" cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-          <mat-grid-tile style="border-right: 5px double royalblue;"><h2 style="margin-top: 35px;">Feature</h2></mat-grid-tile>
-          <mat-grid-tile>
-            <mat-list>
-              <mat-list-item><h3 style="margin-top: 15px;">Data Manipulation</h3></mat-list-item>
-              <mat-list-item><h3><a href="account_management/business"><em class="more">Learn more</em></a></h3></mat-list-item>
-            </mat-list>
-          </mat-grid-tile>
-        </mat-grid-list>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="32px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="40px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other"><span [countUp]="369" [duration]="1250"></span></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
@@ -95,10 +106,10 @@
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="18px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="22.5px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile class="user-other" rowspan="2"><h2 style="margin-top: 35px;">About us</h2></mat-grid-tile>
       <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="5" class="att-other">
+      <mat-grid-tile colspan="2" rowspan="4" class="att-other">
         <div class="profile-card-social" style="margin-bottom: 28px;">
           <a class="profile-card-social__item facebook">
             <span class="icon-font">
@@ -148,54 +159,134 @@
           </defs>
         </svg>
       </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="4" class="text"><span style="margin-left: 10px; margin-top: 10px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</span></mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="4" class="text"><div style="margin: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</div></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="2" rowHeight="470px" [gutterSize]="'50px'" class="dashboard">
+<mat-grid-list cols="2" rowHeight="550px" [gutterSize]="'50px'" class="dashboard">
     <mat-grid-tile class="item-dash">
-      <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile><h1>People</h1></mat-grid-tile>
-        <mat-grid-tile rowspan="8">
+      <mat-grid-list gutterSize="0" rowHeight="47px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-tile style="margin-top: 4px;"><h1>People</h1></mat-grid-tile>
+        <mat-grid-tile rowspan="10" style="margin-top: 16px;">
           <div class="container">
-            <div class="sliders" style='max-width: 100%'>
-              <ng-container *ngFor="let img of people_img; let i = index">
-                <div class="slider" *ngIf="current == i" @fade>
-                  <img class="img" [src]="img">
+            <ngb-carousel *ngIf="people_img">
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img [src]="people_img[0]" alt="Random first slide" style='max-width: 100%; max-height: 100%;'>
                 </div>
-              </ng-container>
-            </div>
+                <div class="carousel-caption">
+                  <h3 class="carousel-text">10 seconds between slides...</h3>
+                  <p class="carousel-text">This carousel uses customized default values.</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img [src]="people_img[1]" alt="Random second slide" style='max-width: 100%; max-height: 100%;'>
+                </div>
+                <div class="carousel-caption">
+                  <h3 class="carousel-text">No mouse events...</h3>
+                  <p class="carousel-text">This carousel doesn't pause or resume on mouse events</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <img [src]="people_img[2]"  alt="Random third slide" style='max-width: 100%; max-height: 100%;'>
+                </div>
+                <div class="carousel-caption">
+                  <h3 class="carousel-text">No keyboard...</h3>
+                  <p class="carousel-text">This carousel uses customized default values.</p>
+                </div>
+              </ng-template>
+            </ngb-carousel>
           </div>
         </mat-grid-tile>
-        <mat-grid-tile rowspan="2"><h2 style="margin-top: 15px">Meet our customer's</h2></mat-grid-tile>
       </mat-grid-list>
     </mat-grid-tile>
     <mat-grid-tile class="item-dash">
-      <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile><h1>Statistics</h1></mat-grid-tile>
-        <mat-grid-tile rowspan="9">
-          <div id="chart">
-            <apx-chart
-                [series]="chartOptions1.series"
-                [chart]="chartOptions1.chart"
-                [dataLabels]="chartOptions1.dataLabels"
-                [plotOptions]="chartOptions1.plotOptions"
-                [yaxis]="chartOptions1.yaxis"
-                [xaxis]="chartOptions1.xaxis"
-                [fill]="chartOptions1.fill"
-                [title]="chartOptions1.title"
-            ></apx-chart>
-        </div>
+      <mat-grid-list gutterSize="0" rowHeight="47px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-tile style="margin-top: 4px;"><h1>Statistics</h1></mat-grid-tile>
+        <mat-grid-tile rowspan="10">
+          <mat-tab-group headerPosition="below">
+            <mat-tab label="First">
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
+                <span style="margin-left: 10px;">Balance</span>
+              </ng-template>
+              <ng-template matTabContent>
+                <div class="content">
+                  <h2 style="text-align: center;">Balance</h2>
+                  <div id="chart" style="padding-right: 10px;">
+                    <apx-chart
+                        [series]="chartOptions1.series"
+                        [chart]="chartOptions1.chart"
+                        [dataLabels]="chartOptions1.dataLabels"
+                        [plotOptions]="chartOptions1.plotOptions"
+                        [yaxis]="chartOptions1.yaxis"
+                        [xaxis]="chartOptions1.xaxis"
+                        [fill]="chartOptions1.fill"
+                        [title]="chartOptions1.title"
+                    ></apx-chart>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-tab>
+            <mat-tab label="Second">
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">access_time</mat-icon>
+                <span style="margin-left: 10px;">Access</span>
+              </ng-template>
+              <ng-template matTabContent>
+                <div class="content">
+                  <h2 style="text-align: center;">Today access ({{today | date}})</h2>
+                  <div id="chart">
+                    <apx-chart
+                      [series]="chartOptions2.series"
+                      [chart]="chartOptions2.chart"
+                      [xaxis]="chartOptions2.xaxis"
+                      [stroke]="chartOptions2.stroke"
+                      [tooltip]="chartOptions2.tooltip"
+                      [dataLabels]="chartOptions2.dataLabels"
+                    ></apx-chart>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-tab>
+            <mat-tab label="Third">
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">accessibility_new</mat-icon>
+                <span style="margin-left: 10px;">Age</span>
+              </ng-template>
+              <ng-template matTabContent>
+                <div class="content">
+                  <h2 style="text-align: center;">Age</h2>
+                  <div id="chart" style="margin: -35px 35px 0 0;">
+                    <apx-chart
+                      [series]="chartOptions3.series"
+                      [chart]="chartOptions3.chart"
+                      [dataLabels]="chartOptions3.dataLabels"
+                      [stroke]="chartOptions3.stroke"
+                      [colors]="chartOptions3.colors"
+                      [title]="chartOptions3.title"
+                      [grid]="chartOptions3.grid"
+                      [tooltip]="chartOptions3.tooltip"
+                      [plotOptions]="chartOptions3.plotOptions"
+                      [yaxis]="chartOptions3.yaxis"
+                      [xaxis]="chartOptions3.xaxis"
+                    ></apx-chart>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
         </mat-grid-tile>
-        <mat-grid-tile rowspan="1"><h3>Top users have large balance</h3></mat-grid-tile>
       </mat-grid-list>
     </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="2" rowHeight="470px" [gutterSize]="'50px'" class="dashboard">
+<mat-grid-list cols="2" rowHeight="550px" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="23.5px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="14">
@@ -203,7 +294,7 @@
       </mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="3">
-        <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-list gutterSize="4" rowHeight="18.75px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
           <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
           <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
           <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
@@ -212,7 +303,7 @@
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="20px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="23.5px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="14">
@@ -220,7 +311,7 @@
       </mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile rowspan="3">
-        <mat-grid-list gutterSize="4" rowHeight="16px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-list gutterSize="4" rowHeight="18.75px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
           <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
           <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
           <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
@@ -230,4 +321,4 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<div style="height: 75px;"></div>
+<div style="height: 100px;"></div>

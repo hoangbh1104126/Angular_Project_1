@@ -189,9 +189,12 @@ export class AccountDataComponent implements OnInit {
     };
   }
 
+  filterText = '';
+
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
+    const filterValue = (event.target as HTMLInputElement).value.trim();
+    this.filterText = filterValue;
+    this.dataSource.filter = filterValue.toLowerCase();
     this.refresh();
   }
 
