@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.10.2",
     "apexcharts": "^3.35.5",
     "bootstrap": "^5.2.0",
+    "highcharts": "^10.2.1",
     "ng-apexcharts": "^1.7.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
