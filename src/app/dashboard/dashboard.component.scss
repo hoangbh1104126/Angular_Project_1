@@ -4,6 +4,10 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
 }
+.item-dash:hover {
+  box-shadow: 0 12px 24px 0 rgba(51, 181, 255, 0.33), 0 18px 60px 0 rgba(51, 181, 255, 0.3);
+  border-radius: 10px;
+}
 
 .dashboard {
   margin: 8px 0 50px;
