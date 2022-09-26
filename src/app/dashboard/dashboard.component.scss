@@ -318,18 +318,19 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   animation-duration: 1s;
 }
 :host ::ng-deep .carousel-control-prev:hover{
-  animation: hoverArrow 1.5s;
+  animation: hoverArrow 2s infinite;
 }
 :host ::ng-deep .carousel-control-next:hover{
-  animation: hoverArrow 1.5s;
+  animation: hoverArrow 2s infinite;
 }
 
 @keyframes hoverArrow {
   from {background: none;}
-  to {background: rgba(0, 0, 0, 0.7);}
+  50% {background: rgba(0, 0, 0, 0.7);}
+  to {background: none;}
 }
 @keyframes reverse{
-  from {background: rgba(0, 0, 0, 0.7);}
+  from {background: rgba(0, 0, 0, 0.4);}
   to {background: none;}
 }
 
