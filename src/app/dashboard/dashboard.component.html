@@ -91,19 +91,19 @@
       <mat-grid-tile colspan="2" rowspan="3">
         <div class="avatars">
           <span class="avatar" matTooltip="Dale Adams">
-            <img src="https://picsum.photos/205">
+            <img [src]="isLoading[0] ? img_load : 'https://picsum.photos/205'" (load)="isLoading[0]=false">
           </span>
           <span class="avatar" matTooltip="Hewitt Kidd">
-            <img src="https://picsum.photos/200">
+            <img [src]="isLoading[1] ? img_load : 'https://picsum.photos/200'" (load)="isLoading[1]=false">
           </span>
           <span class="avatar" matTooltip="Anita Ewing">
-            <img src="https://picsum.photos/195">
+            <img [src]="isLoading[2] ? img_load : 'https://picsum.photos/195'" (load)="isLoading[2]=false">
           </span>
           <span class="avatar" matTooltip="Lisa Dudley">
-            <img src="https://picsum.photos/190">
+            <img [src]="isLoading[3] ? img_load : 'https://picsum.photos/210'" (load)="isLoading[3]=false">
           </span>
           <span class="avatar" matTooltip="Erma Kane">
-            <img src="https://picsum.photos/185">
+            <img [src]="isLoading[4] ? img_load : 'https://picsum.photos/190'" (load)="isLoading[4]=false">
           </span>
           <span class="avatar" id="more" matTooltip="View more ...">
             <img src="assets/image/more.png">

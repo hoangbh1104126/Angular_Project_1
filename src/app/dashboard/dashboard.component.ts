@@ -24,18 +24,6 @@ import {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  animations: [
-    trigger('fade', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 })),
-      ]),
-      transition('* => void', [
-        style({ opacity: 1 }),
-        animate('300ms', style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
   providers: [NgbProgressbarConfig, NgbCarouselConfig],
 })
 export class DashboardComponent implements OnInit {
@@ -230,11 +218,11 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: "Guest",
-          data: Array(26).fill(0).map((e,i)=>(Math.floor(Math.random() * (111 - 11 + 1)) + 11).toFixed(0)).map(i=>Number(i)),
+          data: Array(19).fill(0).map((e,i)=>(Math.floor(Math.random() * (111 - 11 + 1)) + 11).toFixed(0)).map(i=>Number(i)),
         },
         {
           name: "User",
-          data: Array(26).fill(0).map((e,i)=>(Math.floor(Math.random() * (222 - 33 + 1)) + 33).toFixed(0)).map(i=>Number(i)),
+          data: Array(19).fill(0).map((e,i)=>(Math.floor(Math.random() * (222 - 33 + 1)) + 33).toFixed(0)).map(i=>Number(i)),
         },
       ],
       chart: {
@@ -251,10 +239,6 @@ export class DashboardComponent implements OnInit {
       xaxis: {
         type: "datetime",
         categories: [
-          "2022-09-24T18:00:00.000Z",
-          "2022-09-24T19:30:00.000Z",
-          "2022-09-24T21:00:00.000Z",
-          "2022-09-24T22:30:00.000Z",
           "2022-09-24T24:00:00.000Z",
           "2022-09-25T01:30:00.000Z",
           "2022-09-25T03:00:00.000Z",
@@ -272,13 +256,8 @@ export class DashboardComponent implements OnInit {
           "2022-09-25T21:00:00.000Z",
           "2022-09-25T22:30:00.000Z",
           "2022-09-25T24:00:00.000Z",
-          "2022-09-26T01:30:00.000Z",
-          "2022-09-26T03:00:00.000Z",
-          "2022-09-26T04:30:00.000Z",
-          "2022-09-26T06:00:00.000Z",
-          "2022-09-26T07:30:00.000Z",
+          "2022-09-26T01:00:00.000Z",
         ],
-        //tickAmount: 10,
       },
       tooltip: {
         x: {
@@ -370,6 +349,9 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
+  img_load = ['assets/image/loading.gif'];
+  isLoading: boolean[] = new Array(5).fill(true);
 
   ngOnInit(): void {
     setInterval(() => {

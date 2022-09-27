@@ -127,7 +127,7 @@
         </div>
       </mat-grid-tile>
       <mat-grid-tile colspan="3" style="margin-left: 0.5%;">
-        <mat-checkbox [checked]="addUserForm.get('new')?.value" formControlName="new" style="margin-top: -24px;" color="primary">Mark as new user</mat-checkbox>
+        <mat-checkbox [checked]="addUserForm.get('new')?.value" formControlName="new" style="margin-top: -24px;" color="primary" (change)="change()">Mark as new user</mat-checkbox>
       </mat-grid-tile>
     </mat-grid-list>
   </form>

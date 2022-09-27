@@ -20,22 +20,18 @@ export class PeopleComponent implements OnInit {
 
   users1: User[] = this.users.slice(Math.random(), Math.random() * 300 + 30);
   users2: User[] = this.users.slice(Math.random() + 300, Math.random() * 300 + 330);
-  users3: User[] = this.users.slice(Math.random() + 630, Math.random() * 300 + 630);
+  users3: User[] = this.users.slice(Math.random() + 630, Math.random() * 300 + 660);
 
   constructor() {
   }
 
   current = 0;
-  img_list = [
-    'https://picsum.photos/600/400/?image=0',
-    'https://picsum.photos/600/400/?image=1',
-    'https://picsum.photos/600/400/?image=2',
-    'assets/image/business_1.jpeg'
-  ];
+  img_load = ['assets/image/loading.gif'];
+  isLoading: boolean[] = new Array(1000).fill(true);
 
   ngOnInit() {
     setInterval(() => {
-      this.current = ++this.current % this.img_list.length;
+      this.current = ++this.current % 111;
     }, 2000);
   }
 

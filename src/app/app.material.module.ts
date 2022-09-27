@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatExpansionModule,
     MatGridListModule,
     MatBadgeModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatButtonModule,
@@ -90,7 +92,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatStepperModule,
     MatExpansionModule,
     MatGridListModule,
-    MatBadgeModule, 
+    MatBadgeModule,
+    MatAutocompleteModule,
   ],
 })
 export class AppMaterialModule { }

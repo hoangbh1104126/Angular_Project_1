@@ -35,3 +35,4 @@ Change log:
 ## Final
 
 - Design & Add chart, animations.
+- Add loading (picture).

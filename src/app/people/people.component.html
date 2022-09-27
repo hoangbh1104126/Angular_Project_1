@@ -11,7 +11,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/20'+i.toString()" alt="profile card">
+                            <img [src]="isLoading[i] ? img_load : 'https://picsum.photos/20'+i.toString()" (load)="isLoading[i]=false" alt="profile card">
                           </div>
                           <div class="profile-card__cnt js-profile-cnt">
                             <div class="profile-card__name">{{ user.firstname }} {{ user.lastname }}</div>
@@ -119,7 +119,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/21'+i.toString()" alt="profile card">
+                            <img [src]="isLoading[i] ? img_load : 'https://picsum.photos/21'+i.toString()" (load)="isLoading[i]=false" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">
@@ -226,7 +226,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="'https://picsum.photos/22'+i.toString()" alt="profile card">
+                            <img [src]="isLoading[i] ? img_load : 'https://picsum.photos/22'+i.toString()" (load)="isLoading[i]=false" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">

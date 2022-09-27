@@ -22,7 +22,7 @@
       <div class="wrapper">
         <div class="profile-card js-profile-card">
           <div class="profile-card__img">
-            <img src="https://picsum.photos/200" alt="profile card">
+            <img [src]="isLoading ? img_load : 'https://picsum.photos/200'" (load)="isLoading=false" alt="profile card">
           </div>
 
           <div class="profile-card__cnt js-profile-cnt">

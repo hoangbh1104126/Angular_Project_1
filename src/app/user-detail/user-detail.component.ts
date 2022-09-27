@@ -106,6 +106,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   show: boolean = false;
+  isLoading: boolean = true;
+  img_load = ['assets/image/loading.gif'];
 
   styleGender(element : User): Object {
     if (element.gender == "M"){

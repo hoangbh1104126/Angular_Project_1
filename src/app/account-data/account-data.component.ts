@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild
+} from "@angular/core";
 
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 
@@ -49,11 +55,15 @@ export class AccountDataComponent implements OnInit {
     public router: Router,
   ) {
     this.sortedData = this.UsersData.slice();
+    this.pageNumbers = Array(200).fill(0).map((e,i)=>(i+1).toFixed(0)).map(i=>Number(i));
   }
 
   refresh() {
     this.userTotal = this.userTotal;
-    this.dataSource.data = this.dataSource.data;
+    this.dataSource.data = this.dataSource.data.filter(function( element ) {
+      return element !== undefined && Object.keys(element).length !== 0;
+   });
+   this.dataSource.data = this.dataSource.data;
   }
 
   dialogRef !: DialogRef;
@@ -63,7 +73,7 @@ export class AccountDataComponent implements OnInit {
     this.editedUser != undefined;
     if(type == "add"){
       this.addRandomUser(false);
-      let randomUser : User | undefined = this.dataSource.data.find((user) => user.account_number == number);
+      let randomUser : User = this.newUser;
       const dialogRef = this.dialog.open(AddUserComponent, {
         width: '65%',
         height: '65%',
@@ -73,13 +83,12 @@ export class AccountDataComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         if(result !== undefined){
-        this.editedUser = result;
-        this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
+          this.dataSource.data.push(this.newUser);
+          this.userTotal = this.userTotal + 1;
+          this.editedUser = result;
+          this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
+        } 
         this.refresh();
-        } else {
-          this.dataSource.data = this.dataSource.data.filter((user) => user.account_number != number);
-          this.userTotal = this.userTotal - 1;
-        }
       });
       return;
     }
@@ -227,6 +236,8 @@ export class AccountDataComponent implements OnInit {
   defaultFilterPredicate?: (data: any, filter: string) => boolean;
 
   ngOnInit() {
+    this.updateGoto();
+    this.pageNumbers = Array(200).fill(0).map((e,i)=>(i+1).toFixed(0)).map(i=>Number(i));
     this.defaultFilterPredicate = this.dataSource.filterPredicate;
   }
 
@@ -264,7 +275,8 @@ export class AccountDataComponent implements OnInit {
   }
 
   addCustomUser() {
-    this.openDialog("500ms", "500ms", "add", this.userTotal);
+    this.openDialog("125ms", "1000ms", "add", this.userTotal);
+    this.refresh();
   }
 
   newUser!: User;
@@ -291,9 +303,9 @@ export class AccountDataComponent implements OnInit {
       "new": true,
     }
 
-    this.dataSource.data.push(this.newUser);
-    this.userTotal = this.userTotal + 1;
     if(showNoti){
+      this.dataSource.data.push(this.newUser);
+      this.userTotal = this.userTotal + 1;
       this._snackBar.open("Add user #" + this.newUser.account_number + ": " + this.newUser.firstname + " " + this.newUser.lastname + "!", "Continue", {
         horizontalPosition: "center",
         verticalPosition: "top",
@@ -479,6 +491,59 @@ export class AccountDataComponent implements OnInit {
     this.router.navigateByUrl(link, {
       state: { user: userDetails }
     });
+  }
+
+  pageSize!: number;
+  pageIndex!: number;
+  length!: number;
+  goTo!: number;
+  pageNumbers: number[];
+  @Input() disabled = false;
+  @Input() hidePageSize = false;
+  @Input() pageSizeOptions!: number[];
+  @Input() showFirstLastButtons = false;
+  @Output() page = new EventEmitter<PageEvent>();
+  @Input("pageIndex") set pageIndexChanged(pageIndex: number) {
+    this.pageIndex = pageIndex;
+  }
+  @Input("length") set lengthChanged(length: number) {
+    this.length = length;
+    this.updateGoto();
+  }
+  @Input("pageSize") set pageSizeChanged(pageSize: number) {
+    this.pageSize = pageSize;
+    this.updateGoto();
+  }
+
+  updateGoto() {
+    this.goTo = (this.pageIndex || 0) + 1;
+    this.pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(this.length / this.pageSize); i++) {
+      this.pageNumbers.push(i);
+    }
+  }
+
+  paginationChange(pageEvt: PageEvent) {
+    this.length = pageEvt.length;
+    this.pageIndex = pageEvt.pageIndex;
+    this.pageSize = pageEvt.pageSize;
+    this.updateGoto();
+    this.emitPageEvent(pageEvt);
+  }
+
+  goToChange() {
+    this.paginator.pageIndex = this.goTo - 1;
+    const event: PageEvent = {
+      length: this.paginator.length,
+      pageIndex: this.paginator.pageIndex,
+      pageSize: this.paginator.pageSize
+    };
+    this.paginator.page.next(event);
+    this.emitPageEvent(event);
+  }
+
+  emitPageEvent(pageEvent: PageEvent) {
+    this.page.next(pageEvent);
   }
 
 }

@@ -11,9 +11,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Feature
 
-- Managemet account
-- Sort
-- etc
+- Managemet account.
+- User page with modern design.
+- Analystics data.
 
 ## Some attribute
 - Font: [Fauna One](https://fonts.google.com/specimen/Fauna+One?query=Fauna+One) & [Cinzel](https://fonts.google.com/specimen/Cinzel?query=Cinzel)

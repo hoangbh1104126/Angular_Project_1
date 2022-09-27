@@ -9,12 +9,6 @@ table {
   table-layout: auto;
 }
 
-.mat-paginator-sticky {
-  bottom: 0px;
-  position: sticky;
-  z-index: 10;
-}
-
 .mat-header-sticky {
   top: 62.5px;
   position: sticky;
@@ -210,4 +204,30 @@ th:hover {
 .feature:focus {
   background: rgba(0, 191, 255, 0.90);
   color: white;
+}
+
+//Bootstrap Temp
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+  width: 90%;
+  margin: auto;
+  padding: 0 0 0 24px;
+  background: #FFFFFF;
+}
+
+//Original
+.go-to-container {
+  display: flex;
+  align-items: baseline;
+  background: white;
+  .go-to-label {
+    margin: 0 4px;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
 }

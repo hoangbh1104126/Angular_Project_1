@@ -107,7 +107,7 @@
 
     <ng-container matColumnDef="account_number" sticky *ngIf="displayedColumns.includes('account_number')">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by account_number" matTooltip="Sort by id" matTooltipPosition="above"> No. </th>
-      <td mat-cell *matCellDef="let element" [innerHTML]="element.account_number | highlightSearch: filterText"> {{element.account_number}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
     </ng-container>
 
     <ng-container matColumnDef="balance"  *ngIf="displayedColumns.includes('balance')">
@@ -200,11 +200,29 @@
     [class.demo-row-is-clicked]="selection.isSelected(row)"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements"
-                 class="mat-paginator-sticky">
-  </mat-paginator>
+  <div class="d-flex">
+    <div class="go-to-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Go to page</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="goTo"
+          (input)="goToChange()"
+          min="1"
+          [max]="pageNumbers.length"
+        />
+        <mat-error *ngIf="goTo>pageNumbers.length || goTo <1">Out of range!</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-paginator 
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      (page)="paginationChange($event)"
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
 
 <hr />
 
