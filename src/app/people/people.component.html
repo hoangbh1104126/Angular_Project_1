@@ -119,7 +119,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="isLoading[i] ? img_load : 'https://picsum.photos/21'+i.toString()" (load)="isLoading[i]=false" alt="profile card">
+                            <img [src]="isLoading[i+333] ? img_load : 'https://picsum.photos/21'+i.toString()" (load)="isLoading[i+333]=false" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">
@@ -226,7 +226,7 @@
                     <div class="wrapper">
                         <div class="profile-card js-profile-card">
                           <div class="profile-card__img">
-                            <img [src]="isLoading[i] ? img_load : 'https://picsum.photos/22'+i.toString()" (load)="isLoading[i]=false" alt="profile card">
+                            <img [src]="isLoading[i+666] ? img_load : 'https://picsum.photos/22'+i.toString()" (load)="isLoading[i+666]=false" alt="profile card">
                           </div>
 
                           <div class="profile-card__cnt js-profile-cnt">
