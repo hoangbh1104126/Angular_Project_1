@@ -35,4 +35,7 @@ Change log:
 ## Final
 
 - Design & Add chart, animations.
-- Add loading (picture).
+- Add loading to picture on loaded.
+- Adjust columns with, add caution. Add `Go to page` feature.
+- Remake dashboard.
+- Make label vertical right align in `Statistics`.
