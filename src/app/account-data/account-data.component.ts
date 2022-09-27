@@ -87,7 +87,7 @@ export class AccountDataComponent implements OnInit {
           this.userTotal = this.userTotal + 1;
           this.editedUser = result;
           this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
-        } 
+        }
         this.refresh();
       });
       return;
@@ -275,7 +275,7 @@ export class AccountDataComponent implements OnInit {
   }
 
   addCustomUser() {
-    this.openDialog("125ms", "1000ms", "add", this.userTotal);
+    this.openDialog("500ms", "500ms", "add", this.userTotal);
     this.refresh();
   }
 

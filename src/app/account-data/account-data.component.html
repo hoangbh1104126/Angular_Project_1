@@ -212,10 +212,11 @@
           min="1"
           [max]="pageNumbers.length"
         />
+        <mat-hint align="end">{{goTo}}/{{pageNumbers.length}}</mat-hint>
         <mat-error *ngIf="goTo>pageNumbers.length || goTo <1">Out of range!</mat-error>
       </mat-form-field>
     </div>
-    <mat-paginator 
+    <mat-paginator
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
       (page)="paginationChange($event)"
