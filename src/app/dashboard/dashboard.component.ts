@@ -91,8 +91,8 @@ export class DashboardComponent implements OnInit {
       return Number((each_element/4.93).toFixed(4));
     });
 
-    this.activeUser = Math.floor(Math.random() * (678 - 135) + 135);
-    this.per1 = Math.floor(this.activeUser/10);
+    this.activeUser = Math.round(Math.random() * (678 - 135) + 135);
+    this.per1 = Math.round(this.activeUser/10);
     this.mostBalance.push(
       this.findUserByID(248),
       this.findUserByID(854),
