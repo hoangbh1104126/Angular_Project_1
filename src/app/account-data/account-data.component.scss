@@ -10,18 +10,18 @@ table {
   position: relative;
   table-layout: auto;
   @include mat-table-columns((
-    select: (width: 3rem, color: gray),
+    select: (width: 3.5rem, color: gray),
     account_number: (width: 3rem),
     balance: (width: 5rem),
-    firstname: (width: 11rem),
+    firstname: (width: 10rem),
     age: (width: 2rem),
     gender: (width: 8rem),
-    address: (width: 12rem),
+    address: (width: 11rem),
     employer: (width: 6rem),
-    email: (width: 18rem),
+    email: (width: 17.5rem),
     city: (width: 6rem),
     state: (width: 3rem),
-    edit: (width: 10rem),
+    edit: (width: 2rem),
   ));
 }
 
