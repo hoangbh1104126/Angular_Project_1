@@ -12,6 +12,7 @@ import { User } from "../user";
 import { AdminAccount, UserAccount } from "../user-account";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
 import usersData from 'src/accounts.json';
+import {map, startWith} from 'rxjs/operators';
 
 import {
   MatSnackBar,
@@ -68,7 +69,24 @@ export class LogInComponent implements OnInit {
     this.role = "Guest";
   }
 
+  hint() {
+    let val = this.logInForm.get('username')?.value;
+    if(val == "" || val.length == 0){
+      this.autocomplete = this.user_auto;
+    } else {
+      this.autocomplete = this.user_auto.filter((obj) => obj.includes(val));
+    }
+  }
+
+  user_auto: string[] = [
+    this.userAccount[Math.floor(Math.random() * this.userAccount.length)].username,
+    this.userAccount[Math.floor(Math.random() * this.userAccount.length)].username,
+    this.userAccount[Math.floor(Math.random() * this.userAccount.length)].username,
+  ];
+  autocomplete: string[] = this.user_auto;
+
   ngOnInit(): void {
+    console.log(this.user_auto);
     this.logInForm = this.fb.group({
       username: [
         "",

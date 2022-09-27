@@ -75,7 +75,7 @@ hr {
 }
 
 .log {
-  width: 5%;
+  width: 7.5%;
   margin: 0 32px;
 }
 
@@ -160,7 +160,7 @@ mat-icon {
 .customize {
   position: fixed;
   bottom: 50px;
-  right: 50px; 
+  right: 50px;
   z-index: 2;
 
   -webkit-touch-callout: none;
@@ -178,7 +178,7 @@ mat-icon {
 	font-weight: bold;
 	color: white;
   background: linear-gradient(to bottom right, #a691f0 0%, #70bfea 100%);
-	box-shadow: 
+	box-shadow:
     5px 5px 0 cornflowerblue,
 		-5px -5px 0 cornflowerblue,
 		-5px 5px 0 cornflowerblue,

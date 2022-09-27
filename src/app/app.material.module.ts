@@ -29,6 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatBadgeModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
   ],
   exports: [
     MatButtonModule,
@@ -94,6 +96,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatBadgeModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
   ],
 })
 export class AppMaterialModule { }

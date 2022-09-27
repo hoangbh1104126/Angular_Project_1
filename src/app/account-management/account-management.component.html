@@ -34,6 +34,25 @@
             <span class="text-nav"  [ngStyle]="onDisplay('documents')">Documents</span>
         </button>
       </mat-list-item>
+      <div mat-subheader class="header-nav" *ngIf="isLoggedIn">User</div>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item" mat-button color="primary" (click)="task()">
+          <mat-icon>today</mat-icon>
+          <span class="text-nav">Task</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/security')">
+          <mat-icon>security</mat-icon>
+          <span class="text-nav">Security</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/extension')">
+          <mat-icon>extension</mat-icon>
+          <span class="text-nav">Extension</span>
+        </button>
+      </mat-list-item>
       <div mat-subheader class="header-nav">Other</div>
       <mat-list-item>
         <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/chat')">
@@ -50,7 +69,7 @@
       <mat-list-item>
         <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/map')">
             <mat-icon>map</mat-icon>
-            <span class="text-nav">Map</span>
+            <span class="text-nav" [ngStyle]="onDisplay('support')">Map</span>
         </button>
       </mat-list-item>
     </mat-list>
@@ -65,7 +84,7 @@
           <div class="bar3" [ngStyle]="bar3"></div>
         </div>
       </button>
-      <div style="width: 30%;"></div>
+      <div style="width: 27.5%;"></div>
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
         <div *ngIf="!isLoggedIn">

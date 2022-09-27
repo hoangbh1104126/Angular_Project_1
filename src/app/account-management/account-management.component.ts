@@ -32,7 +32,7 @@ export class AccountManagementComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     private router: Router,
-  ) { 
+  ) {
     this.link = this.router.url;
   }
 
@@ -97,5 +97,10 @@ export class AccountManagementComponent implements OnInit {
       this.bar2 = {};
       this.bar3 = {};
     }
+  }
+
+  task() {
+    let date = new Date().toLocaleString();
+    this.openSnackBar(date + ": Great, no task are due!", '\u{2705}');
   }
 }

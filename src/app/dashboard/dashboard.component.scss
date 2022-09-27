@@ -34,7 +34,11 @@ h2 {
   text-decoration: none;
 }
 
-a:hover {
+a {
+  text-decoration: none;
+}
+
+.view-more:hover {
   color: yellow;
   text-decoration: underline;
 }

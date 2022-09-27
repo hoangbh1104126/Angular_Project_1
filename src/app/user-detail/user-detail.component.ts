@@ -26,7 +26,7 @@ export type ChartOptions = {
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  
+
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
@@ -39,49 +39,49 @@ export class UserDetailComponent implements OnInit {
           name: "Mon",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 10
           })
         },
         {
           name: "Tue",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 10
           })
         },
         {
           name: "Wed",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 10
           })
         },
         {
           name: "Thu",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 10
           })
         },
         {
           name: "Fri",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 10
           })
         },
         {
           name: "Sat",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 12
           })
         },
         {
           name: "Sun",
           data: this.generateData(8, {
             min: 0,
-            max: 24
+            max: 15
           })
         },
       ],
@@ -133,7 +133,7 @@ export class UserDetailComponent implements OnInit {
         var x = this.getDate(i);
         var y =
           Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-  
+
         series.push({
           x: x,
           y: y
@@ -142,7 +142,7 @@ export class UserDetailComponent implements OnInit {
       }
       return series;
   }
-  
+
   getDate(idx: number): string{
     switch(idx){
       case 0: {
