@@ -31,10 +31,10 @@ export class DashboardComponent implements OnInit {
   activeUser: number;
   per1: number;
 
-  total: number = 1234567;
+  total: number = 1023456;
   totalDisplay: number = 0;
   large: number = 49587;
-  per2: number = Math.floor(this.large*100/this.total);
+  per2: number = Math.round(this.large*1000/this.total)/10;
 
   current = 0;
 
