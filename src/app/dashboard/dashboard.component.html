@@ -105,9 +105,9 @@
           <span class="avatar" matTooltip="Erma Kane">
             <img [src]="isLoading[4] ? img_load : 'https://picsum.photos/190'" (load)="isLoading[4]=false">
           </span>
-          <span class="avatar" id="more" matTooltip="View more ...">
+          <a target="_blank" href="account_management/people" class="avatar" id="more" matTooltip="View more ...">
             <img src="assets/image/more.png">
-          </span>
+          </a>
         </div>
       </mat-grid-tile>
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
@@ -203,7 +203,7 @@
                 </div>
                 <div class="carousel-caption">
                   <h3 class="carousel-text">Wanna join us?</h3>
-                  <p class="carousel-text">> <a href="contact">Contact us now </a> <</p>
+                  <p class="carousel-text">> <a href="contact" class="view-more">Contact us now </a> <</p>
                 </div>
               </ng-template>
             </ngb-carousel>

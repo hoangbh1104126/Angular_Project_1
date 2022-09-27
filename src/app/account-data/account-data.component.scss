@@ -1,3 +1,5 @@
+@import "columns.scss";
+
 table {
   font-family: 'Fauna One', serif;
   font-size: 16px;
@@ -7,6 +9,20 @@ table {
   margin-right: auto;
   position: relative;
   table-layout: auto;
+  @include mat-table-columns((
+    select: (width: 3rem, color: gray),
+    account_number: (width: 3rem),
+    balance: (width: 5rem),
+    firstname: (width: 11rem),
+    age: (width: 2rem),
+    gender: (width: 8rem),
+    address: (width: 12rem),
+    employer: (width: 6rem),
+    email: (width: 18rem),
+    city: (width: 6rem),
+    state: (width: 3rem),
+    edit: (width: 10rem),
+  ));
 }
 
 .mat-header-sticky {

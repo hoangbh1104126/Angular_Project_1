@@ -18,9 +18,9 @@ export class PeopleComponent implements OnInit {
 
   users: User[] = usersData;
 
-  users1: User[] = this.users.slice(Math.random(), Math.random() * 300 + 30);
-  users2: User[] = this.users.slice(Math.random() + 300, Math.random() * 300 + 330);
-  users3: User[] = this.users.slice(Math.random() + 630, Math.random() * 300 + 660);
+  users1: User[] = this.users.slice(0, 333);
+  users2: User[] = this.users.slice(333, 666);
+  users3: User[] = this.users.slice(666, 999);
 
   constructor() {
   }
