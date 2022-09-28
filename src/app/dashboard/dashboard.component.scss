@@ -343,6 +343,10 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   width: 100%;
   padding-top: 30px;
   background: #778899;
+  transform: translateY(-0.65rem);
+}
+:host ::ng-deep .carousel-indicators {
+  transform: translateY(-1.25rem);
 }
 .carousel-text {
   color: white;
