@@ -97,7 +97,7 @@
               <mat-label>
                 Gender
               </mat-label>
-              <mat-select matInput placeholder="Gender" formControlName="gender" #gender required>
+              <mat-select matInput placeholder="Gender" formControlName="gender" #gender required (selectionChange)="change()">
                 <mat-option value="M">M</mat-option>
                 <mat-option value="F">F</mat-option>
               </mat-select>
@@ -136,5 +136,5 @@
 <div mat-dialog-actions align="center">
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button style="visibility: none;"></button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial class="sign" color="primary" type="submit" [disabled]="editUserForm.invalid">Change</button>
+    <button mat-button [mat-dialog-close]="data" class="sign" color="primary" type="submit" [disabled]="editUserForm.invalid">Change</button>
 </div>

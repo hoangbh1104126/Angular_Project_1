@@ -437,6 +437,10 @@ export class StatisticsComponent implements OnInit {
       }
     };
   }
+
+  reset(){
+    console.clear();
+  }
 }
 
 export type ChartOptions = {

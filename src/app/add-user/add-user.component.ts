@@ -70,7 +70,7 @@ export class AddUserComponent implements OnInit {
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern(/^[FM]/),
+          Validators.pattern(/^[A-Z]/),
         ])
       ],
       address: [
@@ -119,10 +119,6 @@ export class AddUserComponent implements OnInit {
     return of({});
   }
 
-  comeback(){
-
-  }
-
   change(){
     this.addUser = {
       "account_number": this.data.account_number,
@@ -130,7 +126,7 @@ export class AddUserComponent implements OnInit {
       "firstname": this.addUserForm.get('firstname')?.value,
       "lastname": this.addUserForm.get('lastname')?.value,
       "age": this.addUserForm.get('age')?.value,
-      "gender": this.addUserForm.get('gender')?.value,
+      "gender": this.addUserForm.get('gender')?.value == "M"? "M" : "F",
       "address": this.addUserForm.get('address')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
       "employer": this.addUserForm.get('employer')?.value == "" ? this.addUserForm.get('address')?.value : undefined,
       "email": this.addUserForm.get('email')?.value == "" ? this.addUserForm.get('address')?.value : undefined,

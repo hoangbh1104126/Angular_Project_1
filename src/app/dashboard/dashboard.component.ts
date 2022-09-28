@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
   age_male = new Array<number>(21);
   age_female = new Array<number>(21);
 
-  today = new Date();
+  yesterday: Date = new Date(new Date().setDate(new Date().getDate()-1));
 
   constructor(config: NgbProgressbarConfig, config_crs: NgbCarouselConfig) {
     config_crs.interval = 2000;

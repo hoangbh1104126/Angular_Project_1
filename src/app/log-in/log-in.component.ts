@@ -86,7 +86,6 @@ export class LogInComponent implements OnInit {
   autocomplete: string[] = this.user_auto;
 
   ngOnInit(): void {
-    console.log(this.user_auto);
     this.logInForm = this.fb.group({
       username: [
         "",
@@ -122,6 +121,7 @@ export class LogInComponent implements OnInit {
   }
 
   comeback(){
+    console.log(this.not_found);
     let check = true;
     if(this.checkCorrect(this.logInForm.get('username')?.value, this.logInForm.get('password')?.value)){
       this._snackBar.open("Success! \nYou are login as " + this.logInForm.get('username')?.value +" = " + this.role, "Return", {
@@ -137,7 +137,8 @@ export class LogInComponent implements OnInit {
       }, 1000);
 
     } else {
-      this._snackBar.open("Cannot find account in database!", "Try again", {
+      let msg = this.not_found? "Cannot find account in database!" : "The password is incorrect";
+      this._snackBar.open(msg, "Try again", {
         horizontalPosition: "center",
         verticalPosition: "top",
         duration: 2000,
@@ -170,13 +171,21 @@ export class LogInComponent implements OnInit {
     };
   };
 
-  checkCorrect(username: string, password: string){
-    return userAccount.some(element => {
-      if(element.username == username && element.password == password){
-        this.role = element.role;
-        this.userLogged = element.id.toString();
-        return true;
-      } return false;
-    });
+  not_found: boolean = true;
+
+  checkCorrect(username: string, password: string): boolean{
+    let check: boolean = false;
+    let user = userAccount.find(element => element.username == username);
+    if(user == undefined){
+      this.not_found = true;
+      return false;
+    };
+    if(user.password != password){
+      this.not_found = false;
+      return false;
+    } 
+    this.role = user.role;
+    this.userLogged = user.id.toString();
+    return true;
   }
 }

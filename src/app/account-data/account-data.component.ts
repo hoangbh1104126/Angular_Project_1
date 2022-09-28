@@ -60,10 +60,7 @@ export class AccountDataComponent implements OnInit {
 
   refresh() {
     this.userTotal = this.userTotal;
-    this.dataSource.data = this.dataSource.data.filter(function( element ) {
-      return element !== undefined && Object.keys(element).length !== 0;
-   });
-   this.dataSource.data = this.dataSource.data;
+    this.dataSource.data = this.dataSource.data;
   }
 
   dialogRef !: DialogRef;
@@ -83,13 +80,12 @@ export class AccountDataComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         if(result !== undefined){
-          this.dataSource.data.push(this.newUser);
-          this.userTotal = this.userTotal + 1;
           this.editedUser = result;
-          this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
+          this.dataSource.data.push(this.editedUser);
+          this.userTotal = this.userTotal + 1;
+          this.refresh();
         }
-        this.refresh();
-      });
+      }); this.refresh();
       return;
     }
 
@@ -150,17 +146,17 @@ export class AccountDataComponent implements OnInit {
     });
   }
 
-  display = new FormControl('');
-
   displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
   onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
+
+  display = new FormControl(this.onDisplayList);
 
   slt : string[] = ["select"];
   edt : string[] = ["edit"];
 
   displayedCol = this.onDisplayList.concat(this.edt);
-
   displayedColumns: string[] = this.slt.concat(this.displayedCol);
+
   dataSource = new MatTableDataSource<User>(this.Users);
 
   isClosed: boolean = false;
@@ -193,13 +189,14 @@ export class AccountDataComponent implements OnInit {
         textToSearch = data.email && data.email.toLocaleLowerCase() || '';
       }
       if(column == "id"){
-        textToSearch = data.account_number.toString() && data.account_number.toString() || '';
+        textToSearch = data.account_number.toString() || '';
       }
       if(column == "gender"){
-        textToSearch = data.gender && data.gender || '';
+        textToSearch = data.gender || '';
       }
       return textToSearch?.indexOf(filter) !== -1;
     };
+    this.refresh();
   }
 
   filterText = '';
@@ -215,12 +212,10 @@ export class AccountDataComponent implements OnInit {
 
   resetFilter() {
     this.isFilter = false;
-    if(this.genderFil){
-      this.genderFil = false;
-      this.filterSearch = "";
-    }
+    this.filterSearch = '';
     this.onFilter = "";
     this.dataSource.filterPredicate = this.defaultFilterPredicate!;
+    this.dataSource.filter = this.filterSearch.trim();
     this.refresh();
   }
 
@@ -230,7 +225,8 @@ export class AccountDataComponent implements OnInit {
     this.genderFil = true;
     this.filterSearch = str == 'male'? 'M' : 'F';
     this.setupFilter('gender');
-    this.dataSource.filter = this.filterSearch;
+    this.dataSource.filter = this.filterSearch.trim();
+    this.refresh();
   }
 
   defaultFilterPredicate?: (data: any, filter: string) => boolean;
@@ -311,8 +307,7 @@ export class AccountDataComponent implements OnInit {
         verticalPosition: "top",
         duration: 2500,
       });
-      this.refresh();
-    }
+    } this.refresh();
   }
 
   randomString(length : number) {
