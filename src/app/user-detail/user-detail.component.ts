@@ -73,14 +73,14 @@ export class UserDetailComponent implements OnInit {
         {
           name: "Sat",
           data: this.generateData(8, {
-            min: 0,
+            min: 2,
             max: 12
           })
         },
         {
           name: "Sun",
           data: this.generateData(8, {
-            min: 0,
+            min: 2,
             max: 15
           })
         },
