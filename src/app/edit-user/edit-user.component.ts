@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
   AbstractControl,
   FormControl,
@@ -139,6 +140,12 @@ export class EditUserComponent implements OnInit {
   }
 
   getErrorMessage(attribute : any) : string{
+    if(attribute == "age"){
+      return "Your age must be between 16 and 80"
+    }
+    if(attribute == "balance"){
+      return "Balance can not be negative!"
+    }
     if(this.editUserForm.get(attribute)?.hasError('required')){
       return "You must enter a value!";
     }

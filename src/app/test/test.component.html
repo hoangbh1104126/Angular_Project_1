@@ -1,0 +1,24 @@
+Test!
+
+<hr />
+
+<mat-form-field class="example-form-field" appearance="fill">
+  <mat-label *ngIf="ageNumber">Age</mat-label>
+  <mat-label *ngIf="!ageNumber">Birthday</mat-label>
+  <input matInput type="number" [(ngModel)]="value" *ngIf="ageNumber" (input)="date=undefined!">
+  <mat-hint *ngIf="ageNumber">Enter age</mat-hint>
+  <input matInput [matDatepicker]="picker" *ngIf="!ageNumber" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)">
+  <mat-hint *ngIf="!ageNumber && date==undefined">MM/DD/YYYY</mat-hint>
+  <mat-hint *ngIf="!ageNumber && date!=undefined">Your age is {{value}}</mat-hint>
+  <button matSuffix mat-icon-button aria-label="Refresh" (click)="ageNumber=!ageNumber">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <mat-datepicker-toggle matSuffix [for]="picker" *ngIf="!ageNumber"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<hr />
+
+<pre>{{value | json}}</pre>
+<br />
+<pre>{{date | json}}</pre>

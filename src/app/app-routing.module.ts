@@ -5,15 +5,12 @@ import { PreloadAllModules } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
     path: 'account_management',
     loadChildren: () => import('./account-management/account-management.module').then((m) => m.AccountManagementModule),
-  },
-  {
-    path: '',
-    component: HomePageComponent,
   },
   {
     path: "log-in",
@@ -22,6 +19,14 @@ const routes: Routes = [
   {
     path: "loading",
     component: LoadingComponent,
+  },
+  {
+    path: "test",
+    component: TestComponent,
+  },
+  {
+    path: '',
+    component: HomePageComponent,
   },
   {
     path: '**', component: PageNotFoundComponent

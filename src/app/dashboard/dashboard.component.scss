@@ -1,11 +1,12 @@
-
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Fauna+One|Dancing+Script');
 .item-dash {
   background-color: #f5f8fa;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 20px;
 }
 .item-dash:hover {
-  box-shadow: 0 12px 24px 0 rgba(51, 181, 255, 0.33), 0 18px 60px 0 rgba(51, 181, 255, 0.3);
+  box-shadow: 0 12px 24px 0 rgba(51, 181, 255, 0.33),
+    0 18px 60px 0 rgba(51, 181, 255, 0.3);
   border-radius: 10px;
 }
 
@@ -13,11 +14,13 @@
   margin: 8px 0 50px;
 }
 
-h1, h2, h3 {
-    font-family: Fauna One;
-    color: royalblue;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
+h1,
+h2,
+h3 {
+  font-family: Fauna One;
+  color: royalblue;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
 .more:hover {
@@ -26,11 +29,11 @@ h1, h2, h3 {
 }
 
 h2 {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .view-more {
-  color: #9BDBEF;
+  color: #9bdbef;
   text-decoration: none;
 }
 
@@ -43,17 +46,17 @@ a {
   text-decoration: underline;
 }
 
-.profile-card-social__item:hover{
+.profile-card-social__item:hover {
   color: white;
 }
-.instagram:hover{
+.instagram:hover {
   color: yellow;
 }
 
 .custom-hr {
-    width: 80%;
-    border: 5px outset royalblue;
-    margin: auto;
+  width: 80%;
+  border: 5px outset royalblue;
+  margin: auto;
 }
 
 .fake-content {
@@ -88,35 +91,42 @@ a {
 }
 
 @keyframes fake {
-  from {opacity: 0.5;}
-  50% {opacity: 1;}
-  to {opacity: 0.5;}
+  from {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }
 
 hr.custom-hr {
-    overflow: visible; /* For IE */
-    height: 30px;
-    border-style: solid;
-    border-color: royalblue;
-    border-width: 3px 0 0 0;
-    border-radius: 20px;
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: royalblue;
+  border-width: 3px 0 0 0;
+  border-radius: 20px;
 }
-hr.custom-hr:before { /* Not really supposed to work, but does */
-    display: block;
-    content: "";
-    height: 30px;
-    margin-top: -31px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0 0 1px 0;
-    border-radius: 20px;
+hr.custom-hr:before {
+  /* Not really supposed to work, but does */
+  display: block;
+  content: '';
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
 }
 
 .content {
   overflow: hidden; /* Hide scrollbars */
 }
 
-#user{
+#user {
   background-color: #87a4fc;
   color: white;
 }
@@ -143,21 +153,25 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 }
 
 @keyframes bounce {
-	0%, 100%, 20%, 50%, 80% {
-		-webkit-transform: translateY(0);
-		-ms-transform:     translateY(0);
-		transform:         translateY(0)
-	}
-	40% {
-		-webkit-transform: translateY(-20px);
-		-ms-transform:     translateY(-20px);
-		transform:         translateY(-20px)
-	}
-	60% {
-		-webkit-transform: translateY(-5px);
-		-ms-transform:     translateY(-5px);
-		transform:         translateY(-5px)
-	}
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+  60% {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
 }
 
 .att-number {
@@ -165,7 +179,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   font-size: 20px;
   color: #bfcefa;
 }
-.user-active{
+.user-active {
   width: 80%;
 }
 ::ng-deep .mat-progress-bar-fill::after {
@@ -173,7 +187,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 }
 
 ::ng-deep .mat-progress-bar-buffer {
-  background: #E4E8EB;
+  background: #e4e8eb;
 }
 
 ::ng-deep .mat-progress-bar {
@@ -198,24 +212,51 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   border-radius: 50%;
   border: 3px solid royalblue;
   -webkit-animation: avatar-hover 1s;
-   -moz-animation: avatar-hover 1s ;
-   animation: avatar-hover 1s;
+  -moz-animation: avatar-hover 1s;
+  animation: avatar-hover 1s;
 }
 
 @-webkit-keyframes avatar-hover {
-  from {border: 3px solid royalblue; border-radius: 50%;}
-  50% {border: 3px inset #87a4fc; border-radius: 25%;}
-  to {border: 3px solid royalblue; border-radius: 50%;}
+  from {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
+  50% {
+    border: 3px inset #87a4fc;
+    border-radius: 25%;
+  }
+  to {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
 }
 @-moz-keyframes avatar-hover {
-  from {border: 3px solid royalblue; border-radius: 50%;}
-  50% {border: 3px inset #87a4fc; border-radius: 25%;}
-  to {border: 3px solid royalblue; border-radius: 50%;}
+  from {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
+  50% {
+    border: 3px inset #87a4fc;
+    border-radius: 25%;
+  }
+  to {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
 }
 @keyframes avatar-hover {
-  from {border: 3px solid royalblue; border-radius: 50%;}
-  50% {border: 3px inset #87a4fc; border-radius: 25%;}
-  to {border: 3px solid royalblue; border-radius: 50%;}
+  from {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
+  50% {
+    border: 3px inset #87a4fc;
+    border-radius: 25%;
+  }
+  to {
+    border: 3px solid royalblue;
+    border-radius: 50%;
+  }
 }
 
 .avatar:not(:first-child) {
@@ -250,12 +291,12 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   -moz-animation-name: bounce;
 }
 
-
 .fa {
   padding: 3px;
   padding-top: 5px;
   font-size: 22.5px;
-  width: 30px; height: 30px;
+  width: 30px;
+  height: 30px;
   text-align: center;
   text-decoration: none;
   margin: 5px 2px;
@@ -267,12 +308,12 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 }
 
 .fa-facebook {
-  background: #3B5998;
+  background: #3b5998;
   color: white;
 }
 
 .fa-twitter {
-  background: #55ACEE;
+  background: #55acee;
   color: white;
 }
 
@@ -301,7 +342,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
 .slider {
   position: absolute;
   top: 0;
-  left:0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -311,37 +352,47 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   max-height: 100%;
 }
 
-:host ::ng-deep .carousel-control-next{
+:host ::ng-deep .carousel-control-next {
   background: none;
   animation-name: reverse;
   animation-duration: 1s;
 }
-:host ::ng-deep .carousel-control-prev{
+:host ::ng-deep .carousel-control-prev {
   background: none;
   animation-name: reverse;
   animation-duration: 1s;
 }
-:host ::ng-deep .carousel-control-prev:hover{
+:host ::ng-deep .carousel-control-prev:hover {
   animation: hoverArrow 2s infinite;
 }
-:host ::ng-deep .carousel-control-next:hover{
+:host ::ng-deep .carousel-control-next:hover {
   animation: hoverArrow 2s infinite;
 }
 
 @keyframes hoverArrow {
-  from {background: none;}
-  50% {background: rgba(0, 0, 0, 0.7);}
-  to {background: none;}
+  from {
+    background: none;
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  to {
+    background: none;
+  }
 }
-@keyframes reverse{
-  from {background: rgba(0, 0, 0, 0.4);}
-  to {background: none;}
+@keyframes reverse {
+  from {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  to {
+    background: none;
+  }
 }
 
 .carousel-caption {
   left: 0;
   width: 100%;
-  padding-top: 30px;
+  padding-top: 20px;
   background: #778899;
   transform: translateY(-0.25rem);
 }
@@ -353,7 +404,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   font-weight: bold;
 }
 .carousel-text-dark {
-  color: #E0FFFF;
+  color: #e0ffff;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
@@ -371,7 +422,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   width: 100%;
   min-height: 460px;
   margin: auto;
-  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
+  box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
   background: #fff;
   border-radius: 12px;
   max-width: 700px;
@@ -380,25 +431,25 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
   &-social {
     margin-top: 25px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
 
     &__item {
       display: inline-flex;
-      width: 55px;
-      height: 55px;
-      margin: 15px;
+      width: 3vw;
+      height: 3vw;
+      margin: 0.75vw;
       border-radius: 50%;
       align-items: center;
       justify-content: center;
       color: #fff;
       background: #405de6;
-      box-shadow: 0px 7px 30px rgba(43,98,169,0.5);
+      box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
       position: relative;
       font-size: 21px;
       flex-shrink: 0;
-      transition: all .3s;
+      transition: all 0.3s;
 
       @media screen and (max-width: 768px) {
         width: 50px;
@@ -406,7 +457,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
         margin: 10px;
       }
 
-      @media screen and (min-width: 768px){
+      @media screen and (min-width: 768px) {
         &:hover {
           transform: scale(1.2);
         }
@@ -418,41 +469,27 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
       }
 
       &.twitter {
-        background: linear-gradient(45deg, #1da1f2,#0e71c8);
+        background: linear-gradient(45deg, #1da1f2, #0e71c8);
         box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.7);
       }
 
       &.instagram {
-        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        background: linear-gradient(
+          45deg,
+          #405de6,
+          #5851db,
+          #833ab4,
+          #c13584,
+          #e1306c,
+          #fd1d1d
+        );
         box-shadow: 0px 4px 30px rgba(120, 64, 190, 0.6);
       }
-
-      &.behance {
-        background: linear-gradient(45deg, #1769ff, #213fca);
-        box-shadow: 0px 4px 30px rgba(27, 86, 231, 0.7);
-      }
-
-      &.github {
-        background: linear-gradient(45deg, #333333, #626b73);
-        box-shadow: 0px 4px 30px rgba(63, 65, 67, 0.6);
-      }
-
-      &.codepen {
-        background: linear-gradient(45deg, #324e63, #414447);
-        box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
-      }
-
-      &.link {
-        background: linear-gradient(45deg, #d5135a, #f05924);
-        box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
-      }
-
     }
 
     .icon-font {
       display: inline-flex;
     }
-
   }
 
   &__button {
@@ -469,7 +506,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     color: #fff;
     cursor: pointer;
     backface-visibility: hidden;
-    transition: all .3s;
+    transition: all 0.3s;
 
     @media screen and (max-width: 768px) {
       min-width: 170px;
@@ -489,7 +526,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
     }
 
     &:focus {
-      outline: none!important;
+      outline: none !important;
     }
 
     @media screen and (min-width: 768px) {
@@ -513,7 +550,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
       &:hover {
         box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
       }
-
     }
 
     &.button--orange {
@@ -523,7 +559,6 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
       &:hover {
         box-shadow: 0px 7px 30px rgba(223, 45, 70, 0.75);
       }
-
     }
 
     &.button--gray {
@@ -531,9 +566,7 @@ hr.custom-hr:before { /* Not really supposed to work, but does */
       background: #dcdcdc;
       color: #142029;
     }
-
   }
-
 }
 
 :host ::ng-deep .apexcharts-legend {

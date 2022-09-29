@@ -27,9 +27,11 @@ import { PeopleComponent } from './people/people.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { checkComponent } from './confirm/action/check.component';
-import { CountUpMoneyDirective } from './count-up-money.directive';
 import { CountUpDirective } from './count-up.directive';
+import { CountUpMoneyDirective } from './count-up-money.directive';
 import { HighlightSearchPipe } from './highlight-search.pipe';
+import { TestComponent } from './test/test.component';
+import { MinDirective, MaxDirective } from './range.directive';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,12 @@ import { HighlightSearchPipe } from './highlight-search.pipe';
     PeopleComponent,
     StatisticsComponent,
     checkComponent,
-    CountUpMoneyDirective,
     CountUpDirective,
+    CountUpMoneyDirective,
     HighlightSearchPipe,
+    TestComponent,
+    MinDirective,
+    MaxDirective,
   ],
   imports: [
     FormsModule,

@@ -30,6 +30,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
@@ -65,6 +66,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MatBadgeModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     A11yModule, // Accessibility CDK
   ],
   exports: [
@@ -99,6 +101,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MatBadgeModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     A11yModule, // Accessibility CDK
   ],
 })

@@ -73,7 +73,7 @@
               <mat-label>
                 Balance
               </mat-label>
-              <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required>
+              <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required min="0">
               <mat-hint align="end">Required <b>*</b></mat-hint>
               <mat-error *ngIf="addUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | titlecase}}</mat-error>
           </mat-form-field>
@@ -85,9 +85,28 @@
               <mat-label>
                 Age
               </mat-label>
-              <input type="number" matInput placeholder="Age" formControlName="age" #age required>
+              <input type="number" matInput placeholder="Age" formControlName="age" #age required min="16" max="80">
               <mat-hint align="end">Required <b>*</b></mat-hint>
               <mat-error *ngIf="addUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
+
+            <!--
+              <mat-label *ngIf="ageNumber">Age</mat-label>
+              <mat-label *ngIf="!ageNumber">Birthday</mat-label>
+              <input matInput type="number" formControlName="age" required min="16" max="80" #age *ngIf="ageNumber">
+              <mat-hint *ngIf="ageNumber">Enter age</mat-hint>
+              <input matInput [matDatepicker]="picker" *ngIf="!ageNumber" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)">
+              <mat-hint *ngIf="!ageNumber && date==undefined">MM/DD/YYYY</mat-hint>
+              <mat-hint *ngIf="!ageNumber && date!=undefined">Your age is {{addUserForm.get('age')?.value}}</mat-hint>
+              <mat-hint align="end">Required <b>*</b></mat-hint>
+              <button matSuffix mat-icon-button aria-label="Refresh" (click)="ageNumber=!ageNumber">
+                <mat-icon>refresh</mat-icon>
+              </button>
+              <mat-datepicker-toggle matSuffix [for]="picker" *ngIf="!ageNumber"></mat-datepicker-toggle>
+              <mat-datepicker #picker *ngIf="!ageNumber"></mat-datepicker>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="addUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
+            -->
+
           </mat-form-field>
         </div>
       </mat-grid-tile>

@@ -63,7 +63,7 @@ export class CountUpDirective implements OnInit {
   constructor(
     private readonly elementRef: ElementRef,
     private readonly renderer: Renderer2,
-    private readonly destroy$: Destroy
+    private readonly destroy$: Destroy,
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +77,7 @@ export class CountUpDirective implements OnInit {
         this.renderer.setProperty(
           this.elementRef.nativeElement,
           'innerHTML',
-          currentCount
+          currentCount,
         );
       });
   }

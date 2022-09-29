@@ -11,6 +11,7 @@ import {
 import { Observable, of } from "rxjs";
 import { User } from "../user";
 import { NoWhitespaceValidator } from "../validators/no-whitespace.validator";
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -138,6 +139,12 @@ export class AddUserComponent implements OnInit {
   }
 
   getErrorMessage(attribute : any) : string{
+    if(attribute == "age" && !this.addUserForm.get(attribute)?.hasError('required')){
+      return "Your age must be between 16 and 80";
+    }
+    if(attribute == "balance" && !this.addUserForm.get(attribute)?.hasError('required')){
+      return "Balance can not be negative!";
+    }
     if(this.addUserForm.get(attribute)?.hasError('required')){
       return "You must enter a value!";
     }

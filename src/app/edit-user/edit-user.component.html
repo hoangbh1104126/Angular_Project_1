@@ -73,7 +73,7 @@
               <mat-label>
                 Balance
               </mat-label>
-              <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required>
+              <input type="number" matInput placeholder="Balance" formControlName="balance" #balance required min="0">
               <mat-hint align="end">Required <b>*</b></mat-hint>
               <mat-error *ngIf="editUserForm.get('balance')?.invalid">{{getErrorMessage('balance') | titlecase}}</mat-error>
           </mat-form-field>
@@ -85,7 +85,7 @@
               <mat-label>
                 Age
               </mat-label>
-              <input type="number" matInput placeholder="Age" formControlName="age" #age required>
+              <input type="number" matInput placeholder="Age" formControlName="age" #age required min="16" max="80">
               <mat-hint align="end">Required <b>*</b></mat-hint>
               <mat-error *ngIf="editUserForm.get('age')?.invalid">{{getErrorMessage('age') | titlecase}}</mat-error>
           </mat-form-field>
