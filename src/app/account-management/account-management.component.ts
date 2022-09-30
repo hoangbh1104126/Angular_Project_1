@@ -11,22 +11,34 @@ import usersData from 'src/accounts.json';
 @Component({
   selector: 'app-account-management',
   templateUrl: './account-management.component.html',
-  styleUrls: ['./account-management.component.scss']
+  styleUrls: ['./account-management.component.scss'],
+  host: {
+    "(window:resize)":"onWindowResize($event)"
+  }
 })
 export class AccountManagementComponent implements OnInit {
+
+  width:number = window.innerWidth;
+
+  onWindowResize(event: any) {
+      this.width = event.target.innerWidth;
+  }
+
+  opened: boolean = this.width < 1000 ? false : true;
+  modeNavigation: any = this.width < 1000 ? 'over' : 'side';
+  backdropNavigation: boolean = this.width < 1000 ? true : false;
 
   ngOnInit() {
     if(this.isLoggedIn){
       this.openSnackBar("Hello " + this.userLoggedIn?.firstname + " " + this.userLoggedIn?.lastname + "!", "Continue");
     }
+
   }
 
   userData : User[] = usersData;
-  opened : boolean = true;
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  modeNavigation: any = "side";
-  backdropNavigation: boolean = false;
   link !: string;
 
   constructor(

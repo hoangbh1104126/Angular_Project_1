@@ -157,7 +157,7 @@ export class AccountDataComponent implements OnInit {
   displayedCol = this.onDisplayList.concat(this.edt);
   displayedColumns: string[] = this.slt.concat(this.displayedCol);
 
-  dataSource = new MatTableDataSource<User>(this.Users);
+  dataSource = new MatTableDataSource<User>();
 
   isClosed: boolean = false;
 
@@ -174,6 +174,13 @@ export class AccountDataComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
+    //Fake data with 1000 times of accounts.json :)
+    let data = this.Users;
+    for(var i=0; i<= 1000; i++){
+      data = data.concat(this.Users);
+    }
+
+    this.dataSource = new MatTableDataSource<User>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
