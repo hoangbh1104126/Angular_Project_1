@@ -39,4 +39,4 @@ Change log:
 - Adjust columns with, add caution. Add `Go to page` feature.
 - Remake dashboard.
 - Make label vertical right align in `Statistics`.
-- Fix bug.
+- Fix bug, performance.

@@ -85,7 +85,7 @@
 
 </mat-grid-list>
 
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" (contentChanged)="ch($event)">
 
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>

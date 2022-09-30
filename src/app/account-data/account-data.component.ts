@@ -83,9 +83,8 @@ export class AccountDataComponent implements OnInit {
           this.editedUser = result;
           this.dataSource.data.push(this.editedUser);
           this.userTotal = this.userTotal + 1;
-          this.refresh();
         }
-      }); this.refresh();
+      });
       return;
     }
 
@@ -169,6 +168,11 @@ export class AccountDataComponent implements OnInit {
     this.refresh();
   }
 
+  ch($event: any) {
+    console.log("adwdawd");
+    console.log($event);
+  }
+
   userTotal : number = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -203,7 +207,6 @@ export class AccountDataComponent implements OnInit {
       }
       return textToSearch?.indexOf(filter) !== -1;
     };
-    this.refresh();
   }
 
   filterText = '';
@@ -314,7 +317,8 @@ export class AccountDataComponent implements OnInit {
         verticalPosition: "top",
         duration: 2500,
       });
-    } this.refresh();
+      this.refresh();
+    }
   }
 
   randomString(length : number) {
@@ -379,7 +383,6 @@ export class AccountDataComponent implements OnInit {
             check: true,
           }
         });
-        this.refresh();
       } else {
         this.dialog.open(checkComponent, {
           width: '325px',
@@ -403,7 +406,6 @@ export class AccountDataComponent implements OnInit {
   deleteUser(number: number, mulUser: boolean) {
     if(mulUser){
       this.dataSource.data = this.dataSource.data.filter((item) => item.account_number !== number);
-      this.refresh();
       return ;
     }
     const message = `Are you sure you want to do delete this user?`;
@@ -429,7 +431,6 @@ export class AccountDataComponent implements OnInit {
             check: true,
           }
         });
-        this.refresh();
       } else {
         this.dialog.open(checkComponent, {
           width: '325px',
