@@ -60,6 +60,7 @@ export class AccountDataComponent implements OnInit {
 
   refresh() {
     this.userTotal = this.userTotal;
+    this.dataSource.data = this.dataSource.data.filter((user) => user !== undefined);
     this.dataSource.data = this.dataSource.data;
   }
 
@@ -83,6 +84,7 @@ export class AccountDataComponent implements OnInit {
           this.editedUser = result;
           this.dataSource.data.push(this.editedUser);
           this.userTotal = this.userTotal + 1;
+          this.refresh();
         }
       });
       return;
@@ -98,10 +100,12 @@ export class AccountDataComponent implements OnInit {
       data: dataEdit,
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result !== undefined){
-      this.editedUser = result;
-      this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
-    }});
+      if(result !== undefined && result.length != 0){
+        this.editedUser = result;
+        this.dataSource.data = this.dataSource.data.map((user) => user.account_number == number ? this.editedUser : user);
+        this.refresh();
+      }
+    });
   }
 
   UsersData = this.Users;
@@ -168,19 +172,15 @@ export class AccountDataComponent implements OnInit {
     this.refresh();
   }
 
-  ch($event: any) {
-    console.log("adwdawd");
-    console.log($event);
-  }
-
-  userTotal : number = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.account_number })) + 1;
+  userTotal : number = 1001;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     //Fake data with 1000 times of accounts.json :)
+
     let data = this.Users;
-    for(var i=0; i<= 1000; i++){
+    for(var i=0; i<= -1000; i++){
       data = data.concat(this.Users);
     }
 
@@ -245,6 +245,7 @@ export class AccountDataComponent implements OnInit {
     this.updateGoto();
     this.pageNumbers = Array(200).fill(0).map((e,i)=>(i+1).toFixed(0)).map(i=>Number(i));
     this.defaultFilterPredicate = this.dataSource.filterPredicate;
+    this.dataSource = new MatTableDataSource<User>(usersData.slice(0,5));
   }
 
   isAllSelected() {
@@ -282,15 +283,14 @@ export class AccountDataComponent implements OnInit {
 
   addCustomUser() {
     this.openDialog("500ms", "500ms", "add", this.userTotal);
-    this.refresh();
   }
 
   newUser!: User;
 
-  minBalance = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.balance }));
-  maxBalance = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.balance }));;
-  minAge = Math.min.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
-  maxAge = Math.max.apply(Math, this.dataSource.data.map(function(obj) { return obj.age }));;
+  minBalance = 0;
+  maxBalance = 50000;
+  minAge = 18;
+  maxAge = 50;
 
   addRandomUser(showNoti : boolean){
     this.newUser =
@@ -400,7 +400,6 @@ export class AccountDataComponent implements OnInit {
 
   editUser(number : number) {
     this.openDialog("550ms", "500ms", "edit", number);
-    this.refresh();
   }
 
   deleteUser(number: number, mulUser: boolean) {
