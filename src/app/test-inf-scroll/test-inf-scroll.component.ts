@@ -26,7 +26,6 @@ export class TestInfScrollComponent implements OnInit {
     private _snackBar: MatSnackBar,
   ) {
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
-    this.remakePaging(url, true);
     this.newUser =
     {
       "account_number": this.userTotal+1,
@@ -102,34 +101,23 @@ export class TestInfScrollComponent implements OnInit {
   userShowMenu !: number;
   menuOpened : boolean = false;
 
-  remakePaging(url: string, check ?: boolean){
-    this.http
-    .get<any>(url, {observe: 'response'})
-    .subscribe(resp => {
-      this.userTotal = Number(resp.headers.get('X-Total-Count'));
-      if(check){
-        this.newUser.account_number = this.userTotal + 1;
-      }
-    });
-  }
-
   filter_all(){
     this.filterID = '';
+    this.currentPage = 1;
     let filter: string | undefined = this.filterContent == '' ? undefined : '&q=' + this.filterContent;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
     })
-    this.remakePaging(url);
   }
   filter_ID(){
     this.filterContent = '';
+    this.currentPage = 1;
     let filter: string | undefined = this.filterID == '' ? undefined : '&account_number=' +  this.filterID;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
     })
-    this.remakePaging(url);
   }
   more(){
     this.currentRow = this.currentRow == 5? 10 : this. currentRow == 10 ? 15 : 5;
@@ -298,7 +286,6 @@ export class TestInfScrollComponent implements OnInit {
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
     })
-    this.remakePaging(url);
   }
 
 
