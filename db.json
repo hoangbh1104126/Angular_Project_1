@@ -415,7 +415,8 @@
       "employer": "Lumbrex",
       "email": "claudiaterry@lumbrex.com",
       "city": "Castleton",
-      "state": "MD"
+      "state": "MD",
+      "new": null
     },
     {
       "account_number": 164,
@@ -13002,38 +13003,10 @@
       "state": "ME"
     },
     {
-      "account_number": 1001,
-      "balance": 123,
-      "firstname": "abc",
-      "lastname": "def",
-      "age": 32,
-      "gender": "F",
-      "address": "",
-      "employer": "",
-      "email": "",
-      "city": "",
-      "state": "",
-      "new": true
-    },
-    {
       "account_number": 1002,
       "balance": 123,
-      "firstname": "abc",
-      "lastname": "def",
-      "age": 32,
-      "gender": "F",
-      "address": "",
-      "employer": "",
-      "email": "",
-      "city": "",
-      "state": "",
-      "new": true
-    },
-    {
-      "account_number": 1003,
-      "balance": 23,
-      "firstname": "abc",
-      "lastname": "def",
+      "firstname": "abdf",
+      "lastname": "asd",
       "age": 32,
       "gender": "F",
       "address": "",

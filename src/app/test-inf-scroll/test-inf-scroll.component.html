@@ -34,12 +34,13 @@
   <div class="example-button-row">
       Filter: <input [(ngModel)]="filterContent" (input)="filter_all()" />
       Filter ID: <input [(ngModel)]="filterID" (input)="filter_ID()" />
-      <button mat-button color="warn" (click)="addUser()">>Add user</button>
-      Delete user <input [(ngModel)]="selectUser"/><button mat-button color="primary" (click)="deleteUser()">Delete user</button>
+      <button mat-button (click)="addUser()">>Add user</button>
+      Delete user <input [(ngModel)]="selectUser"/><button mat-button (click)="deleteUser()">Delete user</button>
   </div>
 </section>
 
-<table mat-table [dataSource]="dataSource">
+<div class="example-container mat-elevation-z8">
+<mat-table #table [dataSource]="dataSource" (scroll)="onTableScroll($event)">
 
     <ng-container matColumnDef="account_number" sticky *ngIf="displayedColumns.includes('account_number')">
       <th mat-header-cell *matHeaderCellDef matTooltip="Sort by id" matTooltipPosition="above" (click)="sort('account_number')"> No. </th>
@@ -106,18 +107,7 @@
       <td mat-cell *matCellDef="let element"> {{element.state | noValue}} </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="mat-header-sticky"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<section>
-  <div class="example-label">Feature</div>
-  <div class="example-button-row">
-      Go to Page: <input [(ngModel)]="currentPage" (input)="changePage()" /> / {{maxPage}}
-      <button mat-button color="primary" (click)="more()">>Change display row</button>
-      <button mat-button color="warn" (click)="currentPage=1; changePage();">First Page</button>
-      <button mat-button color="primary" (click)="prePage()">Previous Page</button>
-      <button mat-button color="accent" (click)="nextPage()">Next Page</button>
-      <button mat-button color="warn" (click)="currentPage=maxPage; changePage();">Last Page</button>
-  </div>
-</section>
+</mat-table>
+</div>

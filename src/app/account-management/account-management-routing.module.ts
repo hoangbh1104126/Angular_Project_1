@@ -5,6 +5,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PeopleComponent } from '../people/people.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
 import { TestApiComponent } from '../test-api/test-api.component';
+import { TestInfScrollComponent } from '../test-inf-scroll/test-inf-scroll.component';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 import { AccountManagementComponent } from './account-management.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
         {
           path: "test-api",
           component: TestApiComponent,
+        },
+        {
+          path: "test-inf-scroll",
+          component: TestInfScrollComponent,
         },
         {
           path: '',

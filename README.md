@@ -26,6 +26,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `json-server --id account_number db.json` to create server.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+If error, run `npm run ng serve`.
 
 ## Code scaffolding
 

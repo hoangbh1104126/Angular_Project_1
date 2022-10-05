@@ -10,13 +10,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-test-api',
-  templateUrl: './test-api.component.html',
-  styleUrls: ['./test-api.component.scss']
+  selector: 'app-test-inf-scroll',
+  templateUrl: './test-inf-scroll.component.html',
+  styleUrls: ['./test-inf-scroll.component.scss']
 })
-export class TestApiComponent implements OnInit {
+export class TestInfScrollComponent implements OnInit {
 
   dataSource: User[] = [];
+  addData: User[] = [];
 
   constructor(
     private http: HttpClient,
@@ -44,9 +45,8 @@ export class TestApiComponent implements OnInit {
   }
 
   currentPage: number = 1;
-  currentRow: number = 5;
+  currentRow: number = 30;
   userTotal: number = 1000;
-  maxPage:number = Math.ceil(this.userTotal/this.currentRow);
 
   users: User[] = []
   ngOnInit(): void {
@@ -61,7 +61,7 @@ export class TestApiComponent implements OnInit {
   filterID: string = '';
 
   displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
-  onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
+  onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
 
   display = new FormControl(this.onDisplayList);
 
@@ -80,11 +80,22 @@ export class TestApiComponent implements OnInit {
     else this.isClosed = true;
   }
 
-  nextPage(){
-    this.currentPage = this.currentPage == 1000? 1000 : this.currentPage + 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
-      this.dataSource = res;
-    })
+  onTableScroll(e: any) {
+    const tableViewHeight = e.target.offsetHeight // viewport: ~500px
+    const tableScrollHeight = e.target.scrollHeight // length of all table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const buffer = 350;
+    const limit = tableScrollHeight - tableViewHeight - buffer;
+    if (scrollLocation > limit) {
+      this.currentPage = this.currentPage + 1;
+      let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
+      this.http.get<User[]>(url).subscribe((res: User[]) => {
+        this.addData = res;
+        this.dataSource = this.dataSource.concat(res);
+      });
+    }
   }
 
   filterText = '';
@@ -96,7 +107,6 @@ export class TestApiComponent implements OnInit {
     .get<any>(url, {observe: 'response'})
     .subscribe(resp => {
       this.userTotal = Number(resp.headers.get('X-Total-Count'));
-      this.maxPage = Math.ceil(this.userTotal/this.currentRow);
       if(check){
         this.newUser.account_number = this.userTotal + 1;
       }
@@ -104,7 +114,6 @@ export class TestApiComponent implements OnInit {
   }
 
   filter_all(){
-    this.currentPage = 1;
     this.filterID = '';
     let filter: string | undefined = this.filterContent == '' ? undefined : '&q=' + this.filterContent;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
@@ -114,7 +123,6 @@ export class TestApiComponent implements OnInit {
     this.remakePaging(url);
   }
   filter_ID(){
-    this.currentPage = 1;
     this.filterContent = '';
     let filter: string | undefined = this.filterID == '' ? undefined : '&account_number=' +  this.filterID;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
@@ -123,20 +131,8 @@ export class TestApiComponent implements OnInit {
     })
     this.remakePaging(url);
   }
-  prePage(){
-    this.currentPage = this.currentPage == 1? 1 : this.currentPage - 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
-      this.dataSource = res;
-    })
-  }
   more(){
     this.currentRow = this.currentRow == 5? 10 : this. currentRow == 10 ? 15 : 5;
-    this.maxPage = Math.ceil(this.userTotal/this.currentRow);
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
-      this.dataSource = res;
-    })
-  }
-  changePage(){
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
     })
@@ -194,7 +190,6 @@ export class TestApiComponent implements OnInit {
   sort(att: string){
     let count = this.sort_click[this.countClick(att)];
     this.order = count % 3 == 1? 'asc' : count % 3 == 2 ? 'desc' : '';
-    this.currentPage = 1;
     let isOrder: string | undefined = this.order == '' ? undefined : '&_order=' + this.order;
     let attSort = att == 'name' ? 'firstname,lastname' : att;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + '&_sort=' + attSort + isOrder).subscribe((res: User[]) => {
@@ -285,7 +280,6 @@ export class TestApiComponent implements OnInit {
           this.dataSource = res;
         })
         this.userTotal = this.userTotal + 1;
-        this.maxPage = Math.ceil(this.userTotal/this.currentRow);
         this.newUser.account_number = this.userTotal + 1;
       }
     });
