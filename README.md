@@ -8,6 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ApexChart](https://apexcharts.com/) `npm install apexcharts ng-apexcharts --save`
 - [Animated CSS](https://animate.style/) `npm install animate.css --save`
 - [Ng-Bootstrap](https://ng-bootstrap.github.io/) `ng add @ng-bootstrap/ng-bootstrap`
+- [JSON server](https://github.com/typicode/json-server#generate-random-data)
 
 ## Feature
 
@@ -23,6 +24,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Run `json-server --id account_number db.json` to create server.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding

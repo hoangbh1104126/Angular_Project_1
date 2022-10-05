@@ -4,6 +4,7 @@ import { AccountDataComponent } from '../account-data/account-data.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PeopleComponent } from '../people/people.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
+import { TestApiComponent } from '../test-api/test-api.component';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 import { AccountManagementComponent } from './account-management.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
         {
           path: 'statistics',
           component: StatisticsComponent,
+        },
+        {
+          path: "test-api",
+          component: TestApiComponent,
         },
         {
           path: '',

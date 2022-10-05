@@ -32,6 +32,8 @@ import { CountUpMoneyDirective } from './count-up-money.directive';
 import { HighlightSearchPipe } from './highlight-search.pipe';
 import { TestComponent } from './test/test.component';
 import { MinDirective, MaxDirective } from './range.directive';
+import { TestApiComponent } from './test-api/test-api.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { MinDirective, MaxDirective } from './range.directive';
     TestComponent,
     MinDirective,
     MaxDirective,
+    TestApiComponent,
   ],
   imports: [
     FormsModule,
@@ -70,6 +73,7 @@ import { MinDirective, MaxDirective } from './range.directive';
     NgbModule,
     AppMaterialModule,
     NgApexchartsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

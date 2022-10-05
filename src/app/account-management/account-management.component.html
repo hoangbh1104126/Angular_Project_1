@@ -34,6 +34,12 @@
             <span class="text-nav"  [ngStyle]="onDisplay('documents')">Documents</span>
         </button>
       </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/test-api')">
+            <mat-icon>new_releases</mat-icon>
+            <span class="text-nav"  [ngStyle]="onDisplay('test-api')">Test</span>
+        </button>
+      </mat-list-item>
       <div mat-subheader class="header-nav" *ngIf="isLoggedIn">User</div>
       <mat-list-item *ngIf="isLoggedIn">
         <button class="example-menu-item" mat-button color="primary" (click)="task()">
