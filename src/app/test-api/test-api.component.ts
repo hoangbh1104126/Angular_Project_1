@@ -81,8 +81,8 @@ export class TestApiComponent implements OnInit {
   }
 
   nextPage(){
-    this.currentPage = this.currentPage == 1000? 1000 : this.currentPage + 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
+    this.currentPage = this.currentPage == this.maxPage? this.maxPage : this.currentPage + 1;
+    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
     })
   }
@@ -106,8 +106,8 @@ export class TestApiComponent implements OnInit {
   filter_all(){
     this.currentPage = 1;
     this.filterID = '';
-    let filter: string | undefined = this.filterContent == '' ? undefined : '&q=' + this.filterContent;
-    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
+    this.filterText = this.filterContent == '' ? '' : '&q=' + this.filterContent;
+    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
     })
@@ -116,8 +116,8 @@ export class TestApiComponent implements OnInit {
   filter_ID(){
     this.currentPage = 1;
     this.filterContent = '';
-    let filter: string | undefined = this.filterID == '' ? undefined : '&account_number=' +  this.filterID;
-    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
+    this.filterText = this.filterID == '' ? '' : '&account_number=' +  this.filterID;
+    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
     })
@@ -125,7 +125,7 @@ export class TestApiComponent implements OnInit {
   }
   prePage(){
     this.currentPage = this.currentPage == 1? 1 : this.currentPage - 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
+    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
     })
   }
@@ -137,7 +137,7 @@ export class TestApiComponent implements OnInit {
     })
   }
   changePage(){
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
+    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
     })
   }
@@ -190,14 +190,15 @@ export class TestApiComponent implements OnInit {
 
   sort_click: number[] = Array(26).fill(0);
   order: string = 'asc';
+  isOrder: string = '';
 
   sort(att: string){
     let count = this.sort_click[this.countClick(att)];
     this.order = count % 3 == 1? 'asc' : count % 3 == 2 ? 'desc' : '';
     this.currentPage = 1;
-    let isOrder: string | undefined = this.order == '' ? undefined : '&_order=' + this.order;
     let attSort = att == 'name' ? 'firstname,lastname' : att;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + '&_sort=' + attSort + isOrder).subscribe((res: User[]) => {
+    this.isOrder = this.order == '' ? '' : '&_sort=' + attSort + '&_order=' + this.order;
+    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder).subscribe((res: User[]) => {
       this.dataSource = res;
     })
   }

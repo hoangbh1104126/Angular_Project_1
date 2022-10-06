@@ -177,6 +177,7 @@ export class TestInfScrollComponent implements OnInit {
 
   sort(att: string){
     let count = this.sort_click[this.countClick(att)];
+    this.currentPage = 1;
     this.order = count % 3 == 1? 'asc' : count % 3 == 2 ? 'desc' : '';
     let isOrder: string | undefined = this.order == '' ? undefined : '&_order=' + this.order;
     let attSort = att == 'name' ? 'firstname,lastname' : att;
