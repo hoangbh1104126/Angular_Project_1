@@ -45,6 +45,33 @@ a:hover {
   line-height: 1.5;
   letter-spacing: 10px;
 }
+.titleNav-mini{
+  margin: 10px auto;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.45rem;
+  text-align: center;
+  line-height: 1.15;
+  letter-spacing: 10px;
+}
+
+.content-1{
+  width: calc(100% - 80px);
+  position: absolute;
+  inset: 0;
+  margin-left: 80px;
+  transition: 500ms;
+}
+.content-2{
+  width: calc(100% - 250px);
+  position: absolute;
+  inset: 0;
+  transition: 500ms;
+}
+.content-3{
+  position: absolute;
+  inset: 0;
+  transition: 500ms;
+}
 
 .TitleBar{
   border-bottom: 1px solid royalblue;
@@ -90,12 +117,26 @@ hr {
   left: 0;
   right: 0;
 }
+.example-container-mini {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 80px;
+}
 
 .navigationPane {
   background: #1e1e2d;
   color: #f0f0f3;
   min-width: 250px;
   max-width: 300px;
+}
+.navigationPane-mini {
+  background: #1e1e2d;
+  color: #f0f0f3;
+  min-width: 50px;
+  max-width: 85px;
 }
 
 mat-list-item {
@@ -135,6 +176,17 @@ mat-icon {
   border-radius: 10px;
 }
 
+.example-menu-item-mini{
+  color: #787887;
+  font-size: 17px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  background: none;
+  display: block;
+  padding-left: 0;
+}
+
 .example-menu-item:hover {
   color: white;
   background: linear-gradient(to right, #ad92f2 0%, #71c5ec 100%);
@@ -149,6 +201,15 @@ mat-icon {
 .header-nav {
   font-weight: bold;
   color: #f0f0f3;
+}
+.header-nav-mini{
+  font-weight: bold;
+  color: #f0f0f3;
+  display: block;
+  text-align: center;
+}
+.mat-drawer-container .example-container .ng-star-inserted{
+  width: 80px;;
 }
 
 #content {

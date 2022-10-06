@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="backdropNavigation" autosize>
-  <mat-drawer class="navigationPane" #drawer [mode]="modeNavigation" [(opened)]="opened">
+  <mat-drawer class="navigationPane" #drawer [mode]="modeNavigation" [(opened)]="opened" (mouseleave)="mouseleave()">
     <h2 class="titleNav">A.M</h2>
     <hr />
     <mat-list>
@@ -87,9 +87,9 @@
     </mat-list>
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content [ngClass]="minimize()">
     <mat-toolbar class="TitleBar">
-      <button mat-button (click)="drawer.toggle()" class="btn">
+      <button mat-button (click)="drawer.toggle(); miniNavBar();" class="btn">
         <div class="container" (click)="openMenu()">
           <div class="bar1" [ngStyle]="bar1"></div>
           <div class="bar2" [ngStyle]="bar2"></div>
@@ -133,9 +133,80 @@
   </mat-drawer-content>
 </mat-drawer-container>
 
-
-
-
-
-
-
+<mat-drawer-container class="example-container-mini" *ngIf="notOpened && !backdropNavigation" autosize>
+  <mat-drawer class="navigationPane-mini" #drawer [mode]="modeNavigation" [opened]="notOpened" (mouseenter)="mouseenter()">
+    <h4 class="titleNav-mini">A</h4>
+    <h4 class="titleNav-mini">M</h4>
+    <hr />
+    <mat-list>
+      <div mat-subheader class="header-nav-mini">Tools</div>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>dashboard</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>people</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>business</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>bar_chart</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>folder_special</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>new_releases</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>open_in_new</mat-icon>
+        </button>
+      </mat-list-item>
+      <div mat-subheader class="header-nav-mini" *ngIf="isLoggedIn">User</div>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item-mini" mat-button color="primary">
+          <mat-icon>today</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item-mini" mat-button color="primary">
+          <mat-icon>security</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isLoggedIn">
+        <button class="example-menu-item-mini" mat-button color="primary">
+          <mat-icon>extension</mat-icon>
+        </button>
+      </mat-list-item>
+      <div mat-subheader class="header-nav-mini">Other</div>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>forum</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>live_help</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item-mini" mat-button color="primary">
+            <mat-icon>map</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+</mat-drawer-container>

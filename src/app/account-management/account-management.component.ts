@@ -25,14 +25,37 @@ export class AccountManagementComponent implements OnInit {
   }
 
   opened: boolean = this.width < 1000 ? false : true;
+  notOpened = !this.opened;
   modeNavigation: any = this.width < 1000 ? 'over' : 'side';
   backdropNavigation: boolean = this.width < 1000 ? true : false;
+
+  miniNavBar(){
+    this.notOpened = this.opened;
+    this.mouseMode = true;
+  }
+
+  mouseMode: boolean = true;
+
+  mouseenter() {
+    if (!this.opened) {
+      this.opened = true;
+      this.notOpened = false;
+      this.mouseMode = false;
+    }
+  }
+
+  mouseleave() {
+    if (this.opened && !this.mouseMode) {
+      this.opened = false;
+      this.notOpened = true;
+      this.mouseMode = true;
+    }
+  }
 
   ngOnInit() {
     if(this.isLoggedIn){
       this.openSnackBar("Hello " + this.userLoggedIn?.firstname + " " + this.userLoggedIn?.lastname + "!", "Continue");
     }
-
   }
 
   userData : User[] = usersData;
@@ -98,6 +121,11 @@ export class AccountManagementComponent implements OnInit {
   bar1: Object = {'transform': 'translate(0, 10px) rotate(-45deg)'};
   bar2: Object = {'opacity': '0'};
   bar3: Object = {'transform': 'translate(0, -10px) rotate(45deg)'};
+
+  minimize(): string{
+    if(this.backdropNavigation) return 'content-3';
+    return !this.opened? 'content-1' : 'content-2';
+  }
 
   openMenu() {
     if(!this.opened){
