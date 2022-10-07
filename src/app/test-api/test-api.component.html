@@ -39,6 +39,10 @@
   </div>
 </section>
 
+<div *ngIf="isLoading">
+   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="account_number" sticky *ngIf="displayedColumns.includes('account_number')">
@@ -109,6 +113,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<div *ngIf="isLoading">
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
 
 <section>
   <div class="example-label">Feature</div>

@@ -50,10 +50,12 @@ export class TestApiComponent implements OnInit {
 
   users: User[] = []
   ngOnInit(): void {
+    this.isLoading = true;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
-    });
+      this.isLoading = false;
+    })
   }
 
   isFilter: boolean = false;
@@ -80,10 +82,13 @@ export class TestApiComponent implements OnInit {
     else this.isClosed = true;
   }
 
+  isLoading = true;
+
   nextPage(){
     this.currentPage = this.currentPage == this.maxPage? this.maxPage : this.currentPage + 1;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -105,40 +110,50 @@ export class TestApiComponent implements OnInit {
 
   filter_all(){
     this.currentPage = 1;
+    this.isLoading = true;
     this.filterID = '';
     this.filterText = this.filterContent == '' ? '' : '&q=' + this.filterContent;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
     this.remakePaging(url);
   }
   filter_ID(){
     this.currentPage = 1;
+    this.isLoading = true;
     this.filterContent = '';
     this.filterText = this.filterID == '' ? '' : '&account_number=' +  this.filterID;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
     this.remakePaging(url);
   }
   prePage(){
+    this.isLoading = true;
     this.currentPage = this.currentPage == 1? 1 : this.currentPage - 1;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
   more(){
+    this.isLoading = true;
     this.currentRow = this.currentRow == 5? 10 : this. currentRow == 10 ? 15 : 5;
     this.maxPage = Math.ceil(this.userTotal/this.currentRow);
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
   changePage(){
+    this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -158,6 +173,7 @@ export class TestApiComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         if(result !== undefined && result.length != 0){
+          this.isLoading = true;
           this.http.put('http://localhost:3000/users/' + number, result).subscribe(data => {
             console.log(data);
             this._snackBar.open("User #" + number + " edited!", "Continue", {
@@ -165,13 +181,15 @@ export class TestApiComponent implements OnInit {
               verticalPosition: "top",
               duration: 2500,
             });
+            this.isLoading = false;
           })
         }
       });
     })
-
+    this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -197,9 +215,11 @@ export class TestApiComponent implements OnInit {
     this.order = count % 3 == 1? 'asc' : count % 3 == 2 ? 'desc' : '';
     this.currentPage = 1;
     let attSort = att == 'name' ? 'firstname,lastname' : att;
+    this.isLoading = true;
     this.isOrder = this.order == '' ? '' : '&_sort=' + attSort + '&_order=' + this.order;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -282,8 +302,10 @@ export class TestApiComponent implements OnInit {
             duration: 2500,
           });
         })
+        this.isLoading = true;
         this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
           this.dataSource = res;
+          this.isLoading = false;
         })
         this.userTotal = this.userTotal + 1;
         this.maxPage = Math.ceil(this.userTotal/this.currentRow);
@@ -301,13 +323,14 @@ export class TestApiComponent implements OnInit {
         duration: 2500,
       });
     })
+    this.isLoading = true;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
     this.remakePaging(url);
   }
-
 
   selectUser: string = '';
 }

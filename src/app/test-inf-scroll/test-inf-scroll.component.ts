@@ -49,9 +49,11 @@ export class TestInfScrollComponent implements OnInit {
 
   users: User[] = []
   ngOnInit(): void {
+    this.isLoading = true;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     });
   }
 
@@ -93,13 +95,17 @@ export class TestInfScrollComponent implements OnInit {
       else {
       this.currentPage = this.currentPage + 1;
       let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
+      this.isLoading = true;
       this.http.get<User[]>(url).subscribe((res: User[]) => {
         this.addData = res;
+        this.isLoading = false;
         this.dataSource = this.dataSource.concat(res);
       });
       }
     }
   }
+
+  isLoading = true;
 
   filterText = '';
   userShowMenu !: number;
@@ -110,8 +116,10 @@ export class TestInfScrollComponent implements OnInit {
     this.currentPage = 1;
     let filter: string | undefined = this.filterContent == '' ? undefined : '&q=' + this.filterContent;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
+    this.isLoading = true;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
   filter_ID(){
@@ -119,14 +127,18 @@ export class TestInfScrollComponent implements OnInit {
     this.currentPage = 1;
     let filter: string | undefined = this.filterID == '' ? undefined : '&account_number=' +  this.filterID;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + filter;
+    this.isLoading = true;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
   more(){
     this.currentRow = this.currentRow == 5? 10 : this. currentRow == 10 ? 15 : 5;
+    this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -157,9 +169,10 @@ export class TestInfScrollComponent implements OnInit {
         }
       });
     })
-
+    this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -185,8 +198,10 @@ export class TestInfScrollComponent implements OnInit {
     this.order = count % 3 == 1? 'asc' : count % 3 == 2 ? 'desc' : '';
     let isOrder: string | undefined = this.order == '' ? undefined : '&_order=' + this.order;
     let attSort = att == 'name' ? 'firstname,lastname' : att;
+    this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + '&_sort=' + attSort + isOrder).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
@@ -269,8 +284,10 @@ export class TestInfScrollComponent implements OnInit {
             duration: 2500,
           });
         })
+        this.isLoading = true;
         this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
           this.dataSource = res;
+          this.isLoading = false;
         })
         this.userTotal = this.userTotal + 1;
         this.newUser.account_number = this.userTotal + 1;
@@ -287,9 +304,11 @@ export class TestInfScrollComponent implements OnInit {
         duration: 2500,
       });
     })
+    this.isLoading = true;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
+      this.isLoading = false;
     })
   }
 
