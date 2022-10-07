@@ -88,12 +88,16 @@ export class TestInfScrollComponent implements OnInit {
     const buffer = 200;
     const limit = tableScrollHeight - tableViewHeight - buffer;
     if (scrollLocation > limit) {
+      if(this.currentPage > this.userTotal/this.currentRow)
+        return ;
+      else {
       this.currentPage = this.currentPage + 1;
       let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
       this.http.get<User[]>(url).subscribe((res: User[]) => {
         this.addData = res;
         this.dataSource = this.dataSource.concat(res);
       });
+      }
     }
   }
 
