@@ -38,17 +38,21 @@ export class AccountManagementComponent implements OnInit {
 
   mouseenter() {
     if (!this.opened) {
-      this.opened = true;
-      this.notOpened = false;
-      this.mouseMode = false;
+      setTimeout(() => {
+        this.opened = true;
+        this.notOpened = false;
+        this.mouseMode = false;
+      }, 100)
     }
   }
 
   mouseleave() {
     if (this.opened && !this.mouseMode) {
-      this.opened = false;
-      this.notOpened = true;
-      this.mouseMode = true;
+      setTimeout(() => {
+        this.opened = false;
+        this.notOpened = true;
+        this.mouseMode = true;
+      }, 100)
     }
   }
 
