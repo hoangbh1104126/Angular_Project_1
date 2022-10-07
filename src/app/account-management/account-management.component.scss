@@ -116,6 +116,7 @@ hr {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 .example-container-mini {
   position: absolute;
@@ -124,6 +125,7 @@ hr {
   left: 0;
   right: 0;
   width: 80px;
+  z-index: 3;
 }
 
 .navigationPane {
