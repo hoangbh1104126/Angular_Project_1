@@ -3,7 +3,7 @@
 
 <hr class="custom-hr"/>
 
-<mat-grid-list [cols]="breakpoint1" rowHeight="36:25" [gutterSize]="'50px'" class="dashboard" (window:resize)="onResize($event)">
+<mat-grid-list [cols]="breakpoint1" rowHeight="36:25" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile colspan="2" rowspan="2" id="user" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="fit" cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
@@ -172,7 +172,7 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list [cols]="breakpoint2" rowHeight="7:5" [gutterSize]="'50px'" class="dashboard" (window:resize)="onResize($event)">
+<mat-grid-list [cols]="breakpoint2" rowHeight="7:5" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile class="item-dash">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
         <mat-grid-tile style="margin-top: 4px;"><h1>People</h1></mat-grid-tile>

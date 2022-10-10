@@ -30,9 +30,12 @@ export class UserDetailComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
+  breakpoint: number;
+
   user$ !: Observable<User>;
   id: any;
   constructor(private _route: ActivatedRoute, private _api: UserService) {
+    this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
     this.chartOptions = {
       series: [
         {

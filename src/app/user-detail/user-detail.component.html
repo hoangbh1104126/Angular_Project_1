@@ -17,7 +17,7 @@
 <hr class="custom-hr"/>
 
 <div *ngIf="user$ | async as user else loadingTmpl">
-  <mat-grid-list cols="3" rowHeight="60px" [gutterSize]="'30px'" class="dashboard">
+  <mat-grid-list [cols]="breakpoint" rowHeight="60px" [gutterSize]="'30px'" class="dashboard">
     <mat-grid-tile rowspan="10" class="item-dash">
       <div class="wrapper">
         <div class="profile-card js-profile-card">
@@ -120,7 +120,7 @@
         </defs>
       </svg>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="12">
+    <mat-grid-tile [colspan]="breakpoint==1? 1 : 2" rowspan="12">
       <mat-tab-group mat-align-tabs="start" class="content">
         <mat-tab label="Security">
           <div class="content-list">
@@ -128,7 +128,7 @@
               <mat-grid-tile class="item-dash" rowspan="3">
                 <div class="content-list">
                   <h1 class="title-content">Profile</h1>
-                  <table class="table table-bodered" style="color: #787a81;">
+                  <table class="table table-bodered" style="color: #787a81; overflow-x:auto;">
                     <tbody>
                       <tr>
                         <th>Username</th>
@@ -202,7 +202,7 @@
                 <mat-grid-tile class="item-dash" rowspan="3">
                   <div class="content-list">
                     <h1 class="title-content">Login Sessions</h1>
-                    <table class="table table-bodered" style="color: #787a81; font-size: 16px; padding: 0;">
+                    <table class="table table-bodered" style="color: #787a81; font-size: 16px; padding: 0; overflow-x:auto;">
                       <thead>
                         <th>LOCATION</th>
                         <th>DEVICE</th>

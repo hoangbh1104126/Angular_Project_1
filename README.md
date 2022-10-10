@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [Animated CSS](https://animate.style/) `npm install animate.css --save`
 - [Ng-Bootstrap](https://ng-bootstrap.github.io/) `ng add @ng-bootstrap/ng-bootstrap`
 - [JSON server](https://github.com/typicode/json-server#generate-random-data)
+- [Angular Flex-Layout](https://github.com/angular/flex-layout) `npm i -s @angular/flex-layout @angular/cdk`
 
 ## Feature
 
