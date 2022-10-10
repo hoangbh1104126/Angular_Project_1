@@ -37,6 +37,8 @@ export class DashboardComponent implements OnInit {
   per2: number = Math.round(this.large*1000/this.total)/10;
 
   current = 0;
+  breakpoint1: number;
+  breakpoint2: number;
 
   business_img = [
     'assets/image/business_1.png',
@@ -65,16 +67,9 @@ export class DashboardComponent implements OnInit {
 
   yesterday: Date = new Date(new Date().setDate(new Date().getDate()-1));
 
-  constructor(config: NgbProgressbarConfig, config_crs: NgbCarouselConfig) {
-    config_crs.interval = 2000;
-    config_crs.wrap = true;
-    config_crs.keyboard = true;
-    config_crs.pauseOnHover = true;
-
-    config.max = 100;
-    config.striped = true;
-    config.animated = true;
-    config.height = '10px';
+  constructor() {
+    this.breakpoint1 = (window.innerWidth <= 1000) ? 4 : 8;
+    this.breakpoint2 = (window.innerWidth <= 1000) ? 1 : 2;
 
     this.userData.forEach((user) => {
       if(user.gender == "M"){
@@ -357,6 +352,11 @@ export class DashboardComponent implements OnInit {
     setInterval(() => {
       this.current = ++this.current % 3;
     }, 2000);
+  }
+
+  onResize(event: any) {
+    this.breakpoint1 = (event.target.innerWidth <= 400) ? 4 : 8;
+    this.breakpoint2 = (event.target.innerWidth <= 400) ? 1 : 2;
   }
 
   findUserByID(id: number): User{

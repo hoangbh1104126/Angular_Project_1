@@ -3,9 +3,9 @@
 
 <hr class="custom-hr"/>
 
-<mat-grid-list cols="8" rowHeight="100px" [gutterSize]="'50px'" class="dashboard">
+<mat-grid-list [cols]="breakpoint1" rowHeight="36:25" [gutterSize]="'50px'" class="dashboard" (window:resize)="onResize($event)">
   <mat-grid-tile colspan="2" rowspan="2" id="user" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="40px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="fit" cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-number"><span [countUp]="1000" [duration]="1650"></span></mat-grid-tile>
       <mat-grid-tile class="user-number">0</mat-grid-tile>
@@ -20,7 +20,7 @@
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="35px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="fit" cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other" colspan="2">
         <span [countUpMoney]="total" [duration]="1625"></span>
@@ -35,7 +35,7 @@
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowspan="4" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="40px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2" style="margin-top: 12px;"><h1>Business</h1></mat-grid-tile>
       <mat-grid-tile rowspan="12" style="margin-top: 2px;">
         <div class="container">
@@ -82,7 +82,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="40px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="fit"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other"><span [countUp]="369" [duration]="1650"></span></mat-grid-tile>
       <mat-grid-tile></mat-grid-tile>
@@ -114,7 +114,7 @@
     </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="22.5px"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+    <mat-grid-list gutterSize="0" rowHeight="fit"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile class="user-other" rowspan="2"><h2 style="margin-top: 35px;">About us</h2></mat-grid-tile>
       <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="5" class="att-other">
@@ -172,9 +172,9 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list cols="2" rowHeight="550px" [gutterSize]="'50px'" class="dashboard">
-    <mat-grid-tile class="item-dash">
-      <mat-grid-list gutterSize="0" rowHeight="47px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+<mat-grid-list [cols]="breakpoint2" rowHeight="7:5" [gutterSize]="'50px'" class="dashboard" (window:resize)="onResize($event)">
+  <mat-grid-tile class="item-dash">
+      <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
         <mat-grid-tile style="margin-top: 4px;"><h1>People</h1></mat-grid-tile>
         <mat-grid-tile rowspan="10" style="margin-top: 16px;">
           <div class="container">
@@ -210,9 +210,9 @@
           </div>
         </mat-grid-tile>
       </mat-grid-list>
-    </mat-grid-tile>
-    <mat-grid-tile class="item-dash">
-      <mat-grid-list gutterSize="0" rowHeight="47px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+  </mat-grid-tile>
+  <mat-grid-tile class="item-dash">
+      <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
         <mat-grid-tile style="margin-top: 4px;"><h1>Statistics</h1></mat-grid-tile>
         <mat-grid-tile rowspan="10">
           <mat-tab-group headerPosition="below">
@@ -291,26 +291,23 @@
           </mat-tab-group>
         </mat-grid-tile>
       </mat-grid-list>
-    </mat-grid-tile>
-</mat-grid-list>
-
-<mat-grid-list cols="2" rowHeight="550px" [gutterSize]="'50px'" class="dashboard">
+  </mat-grid-tile>
   <mat-grid-tile class="item-dash">
-    <mat-grid-list gutterSize="0" rowHeight="23.5px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile rowspan="14">
-        <div class="fake-img" style="width: 100%;">.</div>
-      </mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile rowspan="3">
-        <mat-grid-list gutterSize="4" rowHeight="18.75px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-          <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
-          <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
-        </mat-grid-list>
-      </mat-grid-tile>
-    </mat-grid-list>
+      <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+        <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile rowspan="14">
+          <div class="fake-img" style="width: 100%;">.</div>
+        </mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile rowspan="3">
+          <mat-grid-list gutterSize="4" rowHeight="18.75px" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+            <mat-grid-tile><div class="fake-content" style="width: 50%;">.</div></mat-grid-tile>
+            <mat-grid-tile><div class="fake-content" style="width: 70%;">.</div></mat-grid-tile>
+            <mat-grid-tile><div class="fake-content" style="width: 80%;">.</div></mat-grid-tile>
+          </mat-grid-list>
+        </mat-grid-tile>
+      </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>
 
