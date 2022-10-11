@@ -21,13 +21,13 @@ export class AccountManagementComponent implements OnInit {
   width:number = window.innerWidth;
 
   onWindowResize(event: any) {
-      this.width = event.target.innerWidth;
+    this.width = event.target.innerWidth;
   }
 
-  opened: boolean = this.width < 1000 ? false : true;
-  notOpened = !this.opened;
-  modeNavigation: any = this.width < 1000 ? 'over' : 'side';
-  backdropNavigation: boolean = this.width < 1000 ? true : false;
+  opened: boolean;
+  notOpened: boolean;
+  modeNavigation: any;
+  backdropNavigation: boolean;
 
   miniNavBar(){
     this.notOpened = this.opened;
@@ -73,6 +73,11 @@ export class AccountManagementComponent implements OnInit {
     private router: Router,
   ) {
     this.link = this.router.url;
+    this.opened = this.width < 1000 ? false : true;
+    this.notOpened = !this.opened;
+    this.modeNavigation = this.width < 1000 ? 'over' : 'side';
+    this.backdropNavigation = this.width < 1000 ? true : false;
+    this.openMenu();
   }
 
   test = (this.router.getCurrentNavigation() as Navigation).extras.state;
@@ -122,9 +127,9 @@ export class AccountManagementComponent implements OnInit {
     } return {}
   }
 
-  bar1: Object = {'transform': 'translate(0, 10px) rotate(-45deg)'};
-  bar2: Object = {'opacity': '0'};
-  bar3: Object = {'transform': 'translate(0, -10px) rotate(45deg)'};
+  bar1!: Object;
+  bar2!: Object;
+  bar3!: Object;
 
   minimize(): string{
     if(this.backdropNavigation) return 'content-3';
@@ -137,6 +142,10 @@ export class AccountManagementComponent implements OnInit {
       this.bar2 = {'opacity': '0'};
       this.bar3 = {'transform': 'translate(0, -9.5px) rotate(45deg)'};
     } else {
+      this.bar1 = {};
+      this.bar2 = {};
+      this.bar3 = {};
+    } if(this.width < 1000){
       this.bar1 = {};
       this.bar2 = {};
       this.bar3 = {};

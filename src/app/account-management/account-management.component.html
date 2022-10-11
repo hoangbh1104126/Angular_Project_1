@@ -84,6 +84,27 @@
             <span class="text-nav" [ngStyle]="onDisplay('support')">Map</span>
         </button>
       </mat-list-item>
+      <div mat-subheader class="header-nav" *ngIf="width < 1000">Account</div>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary" onclick="location.href = '/log-in'" *ngIf="!isLoggedIn && width < 1000">
+          <mat-icon>account_box</mat-icon>
+          <span class="text-nav">Log in</span>
+        </button>
+        <button mat-button class="example-menu-item" [matMenuTriggerFor]="belowMenu" *ngIf="isLoggedIn && width < 1000">
+          <mat-icon>account_box</mat-icon>
+          <span class="text-nav">{{userLoggedIn!.firstname}} {{userLoggedIn!.lastname}}</span>
+        </button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item (click)="signOut()">Sign out</button>
+          <button mat-menu-item (click)="viewUserDetails()">View user details</button>
+        </mat-menu>
+      </mat-list-item>
+      <mat-list-item>
+        <button class="example-menu-item" mat-button color="primary" onclick="location.href = ''" *ngIf="width < 1000">
+          <mat-icon>home</mat-icon>
+          <span class="text-nav">Back to Home</span>
+        </button>
+      </mat-list-item>
     </mat-list>
   </mat-drawer>
 
@@ -96,7 +117,6 @@
           <div class="bar3" [ngStyle]="bar3"></div>
         </div>
       </button>
-      <div style="width: 27.5%;"></div>
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
         <div *ngIf="!isLoggedIn">

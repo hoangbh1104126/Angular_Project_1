@@ -8,6 +8,7 @@ a:hover {
 
 .titleAM{
   margin: 32px;
+  margin-left: 22.5%;
   width: 75%;
   font-family: 'Cinzel';
   font-size: 1.8rem;
@@ -264,4 +265,22 @@ mat-icon {
 
 .customize:focus {
 	outline: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .customize{
+    display: none;
+  }
+  .titleAM{
+    margin-left: -1rem;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  .log{
+    display: none;
+  }
+  .home {
+    display: none;
+  }
+
 }

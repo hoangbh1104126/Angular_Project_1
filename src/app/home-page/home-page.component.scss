@@ -133,6 +133,7 @@ a:hover {
 .btn-101 {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: button;
+  appearance: button;
   background-color: #000;
   background-image: none;
   color: #fff;
@@ -258,5 +259,20 @@ a:hover {
 @keyframes snake {
   to {
     stroke-dashoffset: 370%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .showNext:hover .title {
+    margin: 3vh auto auto;
+    opacity: 100%;
+    font-size: 10vw;
+    font-size-adjust: 2vw;
+  }
+  .showNext{
+    margin-top: 25vh;
+  }
+  .btn-101{
+    font-size: 5vw;
   }
 }

@@ -52,6 +52,9 @@ userAccount = userAccount.concat(adminAccount);
   styleUrls: ["./log-in.component.scss"]
 })
 export class LogInComponent implements OnInit {
+
+  breakpoint:number;
+
   check: boolean = true;
   userAccount = userAccount;
   hide = true;
@@ -67,6 +70,7 @@ export class LogInComponent implements OnInit {
     public router: Router,
   ) {
     this.role = "Guest";
+    this.breakpoint = window.innerWidth <= 1000 ? 1 : 2;
   }
 
   hint() {
