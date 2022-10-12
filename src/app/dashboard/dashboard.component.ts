@@ -355,8 +355,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onResize(event: any) {
-    this.breakpoint1 = (event.target.innerWidth <= 400) ? 4 : 8;
-    this.breakpoint2 = (event.target.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint1 = (event.target.innerWidth <= 1000) ? 4 : 8;
+    this.breakpoint2 = (event.target.innerWidth <= 1000) ? 1 : 2;
   }
 
   findUserByID(id: number): User{

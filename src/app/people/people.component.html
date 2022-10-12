@@ -112,7 +112,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="breakpoint>1">
         <div class="sliders">
             <ng-container *ngFor="let user of users2; let i = index">
                 <div class="slider" *ngIf="current == i" @fade>
@@ -219,7 +219,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="breakpoint>2">
         <div class="sliders">
             <ng-container *ngFor="let user of users3; let i = index">
                 <div class="slider" *ngIf="current == i" @fade>

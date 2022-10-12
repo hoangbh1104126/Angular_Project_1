@@ -53,7 +53,7 @@ userAccount = userAccount.concat(adminAccount);
 })
 export class LogInComponent implements OnInit {
 
-  breakpoint:number;
+  breakpoint: number;
 
   check: boolean = true;
   userAccount = userAccount;

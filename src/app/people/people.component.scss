@@ -46,11 +46,6 @@ a {
   max-width: 100%;
 }
 
-.container {
-  width: 50%;
-  height: 50%;
-}
-
 .sliders {
   position: relative;
 }
@@ -71,7 +66,7 @@ a {
 .content-people {
   max-width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .profile-card-loc__txt{

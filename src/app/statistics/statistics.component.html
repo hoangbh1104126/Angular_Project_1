@@ -3,7 +3,7 @@
 
 <hr class="custom-hr"/>
 
-<mat-tab-group style="margin-left: -32px;">
+<mat-tab-group class="tab" mat-align-tabs="center">
   <mat-tab>
     <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
@@ -26,7 +26,7 @@
             ></apx-chart>
         </div>
         <h3>Table: Users with largest balance</h3>
-        <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8" id="large-balance">
 
             <ng-container matColumnDef="account_number">
             <th mat-header-cell *matHeaderCellDef> No. </th>

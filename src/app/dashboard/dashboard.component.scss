@@ -135,7 +135,7 @@ hr.custom-hr:before {
 }
 .user-number {
   cursor: default;
-  font-size: 30px;
+  font-size: min(5vw , 36px);
   text-transform: uppercase;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -176,11 +176,25 @@ hr.custom-hr:before {
 
 .att-number {
   margin-top: 0;
-  font-size: 20px;
+  font-size: min(2.85vw, 20px);
   color: #bfcefa;
 }
+
+.card-title {
+  margin-top: 1vh;
+  h1 {
+    font-size: min(5vw, 24px);
+  }
+}
+
+.sub {
+  margin-left: 1vw;
+  font-size: min(2.5vw, 20px);
+}
+
 .user-active {
   width: 80%;
+  height: 1vh;
 }
 ::ng-deep .mat-progress-bar-fill::after {
   background-color: royalblue;
@@ -195,7 +209,9 @@ hr.custom-hr:before {
 }
 
 .avatars {
+  margin: auto;
   display: inline-block;
+  width: 80%;
 }
 
 .avatar {
@@ -204,7 +220,7 @@ hr.custom-hr:before {
   border: 4px solid #fff;
   border-radius: 50%;
   overflow: hidden;
-  width: 70px;
+  width: min(70px, 12vw);
 }
 
 .avatar:hover {
@@ -260,21 +276,22 @@ hr.custom-hr:before {
 }
 
 .avatar:not(:first-child) {
-  margin-left: -35px;
+  margin-left: max(-35px, -7.5vw);
 }
 
 .avatar img {
   width: 100%;
+  height: min(60px, 10vw);
   display: block;
 }
 
 .att-other {
   margin-top: 0;
-  font-size: 20px;
+  font-size: min(3vw, 20px);
   color: royalblue;
 }
 .user-other {
-  font-size: 30px;
+  font-size: min(3.5vw, 30px);
   color: cornflowerblue;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -318,13 +335,15 @@ hr.custom-hr:before {
 }
 
 .dot {
-  margin-left: 32px;
-  font-size: 30px;
+  margin-left: min(30px, 2vw);
+  font-size: min(30px, 5vw);
   color: royalblue;
 }
 .text {
-  padding: 0 10px;
+  padding: 0 min(10px, 1vw);
   border-radius: 1px;
+  font-size: min(16px, 2.5vw);
+  line-height: 1vh;
   text-align: justify;
 }
 
@@ -392,19 +411,24 @@ hr.custom-hr:before {
 .carousel-caption {
   left: 0;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 1vh;
   background: #778899;
-  transform: translateY(-0.25rem);
+
+  h3 {
+    margin-bottom: 0;
+  }
 }
 :host ::ng-deep .carousel-indicators {
-  transform: translateY(-1.25rem);
+  transform: translateY(-1.25vh);
 }
 .carousel-text {
   color: white;
   font-weight: bold;
+  font-size: min(3vw, 18px);
 }
 .carousel-text-dark {
-  color: #e0ffff;
+  color: #0f12d1;
+  font-size: min(3vw, 18px);
 }
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
@@ -571,4 +595,10 @@ hr.custom-hr:before {
 
 :host ::ng-deep .apexcharts-legend {
   margin-left: 32px;
+}
+
+@media screen and (max-width: 1000px) {
+  .avatars {
+    width: 90%;
+  }
 }

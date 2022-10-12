@@ -229,9 +229,14 @@ font-family: cursive;
 @media only screen and (max-width: 1000px) {
   .example-card {
     width: 90%;
-    height: 85%;
+    height: 80%;
+    max-width: 450px;
+    max-height: 550px;
   }
   .dark {
     background-image: url("/assets/image/login.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }

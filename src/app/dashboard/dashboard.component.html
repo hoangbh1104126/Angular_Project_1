@@ -12,8 +12,8 @@
       <mat-grid-tile class="att-number">User</mat-grid-tile>
       <mat-grid-tile class="att-number">New User</mat-grid-tile>
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
-      <mat-grid-tile style="margin-left: 10px; font-size: 18px;">{{activeUser}} user active</mat-grid-tile>
-      <mat-grid-tile style="margin-left: 25px; font-size: 18px;">{{per1}}%</mat-grid-tile>
+      <mat-grid-tile class="sub">{{activeUser}} user active</mat-grid-tile>
+      <mat-grid-tile class="sub">{{per1}}%</mat-grid-tile>
       <mat-grid-tile colspan="2">
         <ngb-progressbar [value]="per1" type="primary" [striped]="true" [animated]="true" class="user-active"></ngb-progressbar>
       </mat-grid-tile>
@@ -26,9 +26,9 @@
         <span [countUpMoney]="total" [duration]="1625"></span>
       </mat-grid-tile>
       <mat-grid-tile class="att-other" colspan="2">Total balance</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="2">Largest balance:  <span [countUpMoney]="large" [duration]="1625"></span></mat-grid-tile>
-      <mat-grid-tile style="margin-left: 20px; font-size: 18px;">Guzman Whitfield</mat-grid-tile>
-      <mat-grid-tile style="font-size: 18px;">{{ per2 }}% on Total</mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="2" class="user-other">Largest: <span [countUpMoney]="large" [duration]="1625"></span></mat-grid-tile>
+      <mat-grid-tile class="sub">Guzman Whitfield</mat-grid-tile>
+      <mat-grid-tile class="sub">{{ per2 }}% on Total</mat-grid-tile>
       <mat-grid-tile colspan="2">
         <ngb-progressbar [value]="per2" type="primary" [striped]="true" [animated]="true"  class="user-active"></ngb-progressbar>
       </mat-grid-tile>
@@ -36,8 +36,8 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowspan="4" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile rowspan="2" style="margin-top: 12px;"><h1>Business</h1></mat-grid-tile>
-      <mat-grid-tile rowspan="12" style="margin-top: 2px;">
+      <mat-grid-tile rowspan="2" class="card-title"><h1>Business</h1></mat-grid-tile>
+      <mat-grid-tile rowspan="12">
         <div class="container">
           <ngb-carousel *ngIf="business_img">
             <ng-template ngbSlide>
@@ -85,9 +85,9 @@
     <mat-grid-list gutterSize="0" rowHeight="fit"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other"><span [countUp]="369" [duration]="1650"></span></mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile *ngIf="breakpoint2==2"></mat-grid-tile>
       <mat-grid-tile class="att-other">Professionals</mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile *ngIf="breakpoint2==1"></mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="3">
         <div class="avatars">
           <span class="avatar" matTooltip="Dale Adams">
@@ -113,9 +113,10 @@
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
+  <!--Not responsive-->
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="fit"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-      <mat-grid-tile class="user-other" rowspan="2"><h2 style="margin-top: 35px;">About us</h2></mat-grid-tile>
+      <mat-grid-tile class="user-other" rowspan="2">About us</mat-grid-tile>
       <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
       <mat-grid-tile colspan="2" rowspan="5" class="att-other">
         <div class="profile-card-social" style="margin: 28px;">
@@ -167,7 +168,7 @@
           </defs>
         </svg>
       </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="4" class="text"><div style="margin: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</div></mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="4"><div  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</div></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>
@@ -175,8 +176,8 @@
 <mat-grid-list [cols]="breakpoint2" rowHeight="7:5" [gutterSize]="'50px'" class="dashboard">
   <mat-grid-tile class="item-dash">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile style="margin-top: 4px;"><h1>People</h1></mat-grid-tile>
-        <mat-grid-tile rowspan="10" style="margin-top: 16px;">
+        <mat-grid-tile class="card-title"><h1>People</h1></mat-grid-tile>
+        <mat-grid-tile rowspan="10">
           <div class="container">
             <ngb-carousel *ngIf="people_img">
               <ng-template ngbSlide>
@@ -213,7 +214,7 @@
   </mat-grid-tile>
   <mat-grid-tile class="item-dash">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile style="margin-top: 4px;"><h1>Statistics</h1></mat-grid-tile>
+        <mat-grid-tile class="card-title"><h1>Statistics</h1></mat-grid-tile>
         <mat-grid-tile rowspan="10">
           <mat-tab-group headerPosition="below">
             <mat-tab label="First">
