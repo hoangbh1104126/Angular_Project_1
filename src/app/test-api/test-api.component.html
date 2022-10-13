@@ -3,7 +3,7 @@
 <h2><a href="#">Home</a> > <a>Test</a></h2>
 <hr class="custom-hr"/>
 
-<h2 class="title-data">User data</h2> {{userTotal | json}} of Total
+<h2 class="title-data">User data</h2>
 <hr />
 
 <div *ngIf="onDisplayList.length>=8 && !isClosed" style="width: 90%; margin: 0 auto;">
@@ -90,7 +90,7 @@
    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" [ngStyle]="!isLoading ? {'margin':'4px auto'} : {'margin':'auto'}">
 
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -175,9 +175,6 @@
       <td mat-cell *matCellDef="let element"> {{element.state | noValue}} </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let row">
@@ -203,6 +200,10 @@
       </td>
     </tr>
 
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="mat-header-sticky"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="$event ? selectRow(row) : null"
+    [class.demo-row-is-clicked]="selection.isSelected(row)"></tr>
+
 </table>
 
 <div *ngIf="isLoading">
@@ -210,33 +211,29 @@
 </div>
 
 <section>
-  <div class="example-label">Feature</div>
-  <div class="example-button-row">
-    <mat-form-field appearance="outline">
-      <mat-label>Go to page</mat-label>
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="currentPage"
-        (input)="changePage()"
-        min="1"
-        [max]="maxPage"
-      />
-      <mat-hint align="end">{{currentPage}}/{{maxPage}}</mat-hint>
-      <mat-error *ngIf="currentPage>maxPage || currentPage <1">Out of range!</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>User per page: <span *ngIf="!changeRow">{{currentRow}}</span></mat-label>
-      <mat-select [(value)]="currentRow" (selectionChange)="more()">
-        <mat-option value="5">5</mat-option>
-        <mat-option value="10">10</mat-option>
-        <mat-option value="20">20</mat-option>
-        <mat-option value="50">50</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-button color="warn" (click)="currentPage=1; changePage();">First Page</button>
-    <button mat-button color="primary" (click)="prePage()">Previous Page</button>
-    <button mat-button color="accent" (click)="nextPage()">Next Page</button>
-    <button mat-button color="warn" (click)="currentPage=maxPage; changePage();">Last Page</button>
+  <div class="d-flex">
+    <div class="go-to-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Go to page</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="currentPage"
+          (input)="changePage()"
+          min="1"
+          [max]="maxPage"
+        />
+        <mat-hint align="end">{{currentPage}}/{{maxPage}}</mat-hint>
+        <mat-error *ngIf="currentPage>maxPage || currentPage <1">Out of range!</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-paginator
+      [length]="userTotal"
+      [pageSize]="currentRow"
+      [pageSizeOptions]="[5, 10, 20, 50]"
+      showFirstLastButtons
+      (page)="paging($event)"
+      aria-label="Select page">
+    </mat-paginator>
   </div>
 </section>

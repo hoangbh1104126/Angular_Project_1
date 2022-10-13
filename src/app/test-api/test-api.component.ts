@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,6 +9,7 @@ import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.compone
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { checkComponent } from '../confirm/action/check.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-test-api',
@@ -88,14 +89,6 @@ export class TestApiComponent implements OnInit {
 
   isLoading = true;
 
-  nextPage(){
-    this.currentPage = this.currentPage == this.maxPage? this.maxPage : this.currentPage + 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
-      this.dataSource = res;
-      this.isLoading = false;
-    })
-  }
-
   filterText = '';
   userShowMenu !: number;
   menuOpened : boolean = false;
@@ -166,14 +159,6 @@ export class TestApiComponent implements OnInit {
     })
     this.remakePaging(url);
   }
-  prePage(){
-    this.isLoading = true;
-    this.currentPage = this.currentPage == 1? 1 : this.currentPage - 1;
-    this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
-      this.dataSource = res;
-      this.isLoading = false;
-    })
-  }
 
   more(){
     this.changeRow = true;
@@ -184,13 +169,17 @@ export class TestApiComponent implements OnInit {
       this.isLoading = false;
     })
   }
+
   changePage(){
     this.isLoading = true;
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.isOrder + this.filterText).subscribe((res: User[]) => {
       this.dataSource = res;
       this.isLoading = false;
-    })
+    });
+    this.paginator.pageIndex = this.currentPage - 1;
   }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   getUsers(number: number) {
     return this.http.get('http://localhost:3000/users/' + number);
@@ -496,6 +485,15 @@ export class TestApiComponent implements OnInit {
     this.router.navigateByUrl(link, {
       state: { user: userDetails }
     });
+  }
+
+  pageEvent!: PageEvent;
+
+  paging(event: any){
+    this.pageEvent = event;
+    this.currentPage = this.pageEvent.pageIndex + 1;
+    this.currentRow = this.pageEvent.pageSize;
+    this.changePage();
   }
 }
 
