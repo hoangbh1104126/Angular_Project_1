@@ -37,7 +37,8 @@
   <mat-grid-tile colspan="4" rowspan="4" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
       <mat-grid-tile rowspan="2" class="card-title"><h1>Business</h1></mat-grid-tile>
-      <mat-grid-tile rowspan="12">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile rowspan="20">
         <div class="container">
           <ngb-carousel *ngIf="business_img">
             <ng-template ngbSlide>
@@ -113,13 +114,13 @@
       <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
-  <!--Not responsive-->
   <mat-grid-tile colspan="2" rowspan="2" class="item-dash">
     <mat-grid-list gutterSize="0" rowHeight="fit"cols="2" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
+      <mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
       <mat-grid-tile class="user-other" rowspan="2">About us</mat-grid-tile>
       <mat-grid-tile class="dot" rowspan="2">...</mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="5" class="att-other">
-        <div class="profile-card-social" style="margin: 28px;">
+      <mat-grid-tile colspan="2" rowspan="4" class="att-other">
+        <div class="profile-card-social">
           <a class="profile-card-social__item facebook">
             <span class="icon-font">
                 <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
@@ -168,16 +169,17 @@
           </defs>
         </svg>
       </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="4"><div  class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</div></mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="4"><div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sem, blandit id justo ac, sollicitudin imper1diet lacus.</div></mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-grid-list [cols]="breakpoint2" rowHeight="7:5" [gutterSize]="'50px'" class="dashboard">
-  <mat-grid-tile class="item-dash">
+<mat-grid-list [cols]="breakpoint2" rowHeight="14:5" [gutterSize]="'50px'" class="dashboard">
+  <mat-grid-tile class="item-dash" rowspan="2">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile class="card-title"><h1>People</h1></mat-grid-tile>
-        <mat-grid-tile rowspan="10">
+        <mat-grid-tile rowspan="2" class="card-title"><h1>People</h1></mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile rowspan="20">
           <div class="container">
             <ngb-carousel *ngIf="people_img">
               <ng-template ngbSlide>
@@ -212,17 +214,18 @@
         </mat-grid-tile>
       </mat-grid-list>
   </mat-grid-tile>
-  <mat-grid-tile class="item-dash">
+  <mat-grid-tile class="item-dash" [rowspan]="breakpoint2==1? testHeight ? 2 : 3 :2">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
-        <mat-grid-tile class="card-title"><h1>Statistics</h1></mat-grid-tile>
-        <mat-grid-tile rowspan="10">
+        <mat-grid-tile rowspan="3" class="card-title"><h1>Statistics</h1></mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile rowspan="30">
           <mat-tab-group headerPosition="below">
             <mat-tab label="First">
               <ng-template mat-tab-label>
                 <mat-icon class="example-tab-icon">account_balance_wallet</mat-icon>
                 <span style="margin-left: 10px;">Balance</span>
               </ng-template>
-              <ng-template matTabContent>
+              <ng-template matTabContent class="tab-content">
                 <div class="content">
                   <h2 style="text-align: center;">Balance</h2>
                   <div id="chart" style="padding-right: 10px;">
@@ -245,7 +248,7 @@
                 <mat-icon class="example-tab-icon">access_time</mat-icon>
                 <span style="margin-left: 10px;">Access</span>
               </ng-template>
-              <ng-template matTabContent>
+              <ng-template matTabContent class="tab-content">
                 <div class="content">
                   <h2 style="text-align: center;">Yesterday access ({{yesterday | date}})</h2>
                   <div id="chart">
@@ -267,7 +270,7 @@
                 <mat-icon class="example-tab-icon">accessibility_new</mat-icon>
                 <span style="margin-left: 10px;">Age</span>
               </ng-template>
-              <ng-template matTabContent>
+              <ng-template matTabContent class="tab-content">
                 <div class="content">
                   <h2 style="text-align: center;">Age</h2>
                   <div id="chart" style="margin: -35px 35px 0 0;">
@@ -293,7 +296,7 @@
         </mat-grid-tile>
       </mat-grid-list>
   </mat-grid-tile>
-  <mat-grid-tile class="item-dash">
+  <mat-grid-tile class="item-dash" rowspan="2">
       <mat-grid-list gutterSize="0" rowHeight="fit" cols="1" [ngStyle]="{width:'100%',height:'100%'}" class="user-count">
         <mat-grid-tile rowspan="2"><div class="fake-title" style="width: 60%;">.</div></mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>

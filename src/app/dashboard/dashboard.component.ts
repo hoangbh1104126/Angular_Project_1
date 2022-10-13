@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   current = 0;
   breakpoint1: number;
   breakpoint2: number;
+  testHeight: boolean;
 
   business_img = [
     'assets/image/business_1.png',
@@ -70,6 +71,7 @@ export class DashboardComponent implements OnInit {
   constructor() {
     this.breakpoint1 = (window.innerWidth <= 1000) ? 4 : 8;
     this.breakpoint2 = (window.innerWidth <= 1000) ? 1 : 2;
+    this.testHeight = (window.innerHeight >= 680 && window.innerWidth<= 1000);
 
     this.userData.forEach((user) => {
       if(user.gender == "M"){
@@ -103,7 +105,7 @@ export class DashboardComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 'auto',
         stacked: true,
         type: "bar"
       },
@@ -221,7 +223,7 @@ export class DashboardComponent implements OnInit {
         },
       ],
       chart: {
-        height: 350,
+        height: 'auto',
         stacked: true,
         type: "area"
       },
@@ -276,7 +278,7 @@ export class DashboardComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 385,
+        height: 'auto',
         stacked: true,
       },
       colors: ["#FF4560", "#33cc33"],
