@@ -246,14 +246,12 @@ th:hover {
   width: 90%;
   margin: auto;
   padding: 0 0 0 24px;
-  background: currentColor;
 }
 
 //Original
 .go-to-container {
   display: flex;
   align-items: baseline;
-  background: currentColor;
   .go-to-label {
     margin: 0 4px;
     font-size: 12px;
@@ -265,4 +263,7 @@ th:hover {
 mat-progress-bar {
   width: 90%;
   margin: auto;
+}
+:host ::ng-deep .mat-paginator{
+  background: none;
 }
