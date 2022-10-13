@@ -246,14 +246,14 @@ th:hover {
   width: 90%;
   margin: auto;
   padding: 0 0 0 24px;
-  background: #FFFFFF;
+  background: currentColor;
 }
 
 //Original
 .go-to-container {
   display: flex;
   align-items: baseline;
-  background: white;
+  background: currentColor;
   .go-to-label {
     margin: 0 4px;
     font-size: 12px;

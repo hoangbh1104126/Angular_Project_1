@@ -35,6 +35,7 @@ import { MinDirective, MaxDirective } from './range.directive';
 import { TestApiComponent } from './test-api/test-api.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestInfScrollComponent } from './test-inf-scroll/test-inf-scroll.component';
+import { ThemeModeComponent } from './theme-mode/theme-mode.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { TestInfScrollComponent } from './test-inf-scroll/test-inf-scroll.compon
     MaxDirective,
     TestApiComponent,
     TestInfScrollComponent,
+    ThemeModeComponent,
   ],
   imports: [
     FormsModule,
