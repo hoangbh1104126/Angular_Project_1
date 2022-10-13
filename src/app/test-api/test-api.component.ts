@@ -493,6 +493,7 @@ export class TestApiComponent implements OnInit {
     this.pageEvent = event;
     this.currentPage = this.pageEvent.pageIndex + 1;
     this.currentRow = this.pageEvent.pageSize;
+    this.maxPage = Math.ceil(this.userTotal/this.currentRow);
     this.changePage();
   }
 }

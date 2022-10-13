@@ -73,6 +73,10 @@ export class LogInComponent implements OnInit {
     this.breakpoint = window.innerWidth <= 1000 ? 1 : 2;
   }
 
+  ngDoCheck(){
+    this.breakpoint = window.innerWidth <= 1000 ? 1 : 2;
+  }
+
   hint() {
     let val = this.logInForm.get('username')?.value;
     if(val == "" || val.length == 0){

@@ -68,6 +68,12 @@ export class DashboardComponent implements OnInit {
 
   yesterday: Date = new Date(new Date().setDate(new Date().getDate()-1));
 
+  ngDoCheck(){
+    this.breakpoint1 = (window.innerWidth <= 1000) ? 4 : 8;
+    this.breakpoint2 = (window.innerWidth <= 1000) ? 1 : 2;
+    this.testHeight = (window.innerHeight >= 680 && window.innerWidth<= 1000);
+  }
+
   constructor() {
     this.breakpoint1 = (window.innerWidth <= 1000) ? 4 : 8;
     this.breakpoint2 = (window.innerWidth <= 1000) ? 1 : 2;

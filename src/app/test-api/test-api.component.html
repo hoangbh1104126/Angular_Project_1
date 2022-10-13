@@ -210,30 +210,28 @@
   <mat-progress-bar mode="query"></mat-progress-bar>
 </div>
 
-<section>
-  <div class="d-flex">
-    <div class="go-to-container">
-      <mat-form-field appearance="outline">
-        <mat-label>Go to page</mat-label>
-        <input
-          matInput
-          type="number"
-          [(ngModel)]="currentPage"
-          (input)="changePage()"
-          min="1"
-          [max]="maxPage"
-        />
-        <mat-hint align="end">{{currentPage}}/{{maxPage}}</mat-hint>
-        <mat-error *ngIf="currentPage>maxPage || currentPage <1">Out of range!</mat-error>
-      </mat-form-field>
-    </div>
-    <mat-paginator
-      [length]="userTotal"
-      [pageSize]="currentRow"
-      [pageSizeOptions]="[5, 10, 20, 50]"
-      showFirstLastButtons
-      (page)="paging($event)"
-      aria-label="Select page">
-    </mat-paginator>
+<div class="d-flex">
+  <div class="go-to-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Go to page</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="currentPage"
+        (input)="changePage()"
+        min="1"
+        [max]="maxPage"
+      />
+      <mat-hint align="end">{{currentPage}}/{{maxPage}}</mat-hint>
+      <mat-error *ngIf="currentPage>maxPage || currentPage <1">Out of range!</mat-error>
+    </mat-form-field>
   </div>
-</section>
+  <mat-paginator
+    [length]="userTotal"
+    [pageSize]="currentRow"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    showFirstLastButtons
+    (page)="paging($event)"
+    aria-label="Select page">
+  </mat-paginator>
+</div>

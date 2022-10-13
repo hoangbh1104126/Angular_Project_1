@@ -24,6 +24,10 @@ import { right } from '@popperjs/core';
 })
 export class StatisticsComponent implements OnInit {
 
+  ngDoCheck(){
+    this.breakpoint = window.innerWidth < 1000;
+  }
+
   breakpoint:boolean = window.innerWidth < 1000;
 
   userData: User[] = usersData;

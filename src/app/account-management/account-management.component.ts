@@ -24,6 +24,14 @@ export class AccountManagementComponent implements OnInit {
     this.width = event.target.innerWidth;
   }
 
+  ngDoCheck(){
+    this.opened = this.width < 1000 ? false : true;
+    this.notOpened = !this.opened;
+    this.modeNavigation = this.width < 1000 ? 'over' : 'side';
+    this.backdropNavigation = this.width < 1000 ? true : false;
+    this.openMenu();
+  }
+
   opened: boolean;
   notOpened: boolean;
   modeNavigation: any;
