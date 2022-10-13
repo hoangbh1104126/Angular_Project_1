@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { checkComponent } from '../confirm/action/check.component';
 
 @Component({
   selector: 'app-test-api',
@@ -43,6 +44,8 @@ export class TestApiComponent implements OnInit {
     }
   }
 
+  changeRow: boolean = false;
+
   currentPage: number = 1;
   currentRow: number = 5;
   userTotal: number = 1000;
@@ -58,26 +61,27 @@ export class TestApiComponent implements OnInit {
     })
   }
 
+  onFilter: string = "";
+
   isFilter: boolean = false;
-  filterContent: string = '';
-  filterID: string = '';
+  filterSearch: string = '';
 
   displayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender', 'address', 'employer', 'email', 'city', 'state'];
   onDisplayList: string[] = ['account_number', 'balance', 'firstname', 'age', 'gender'];
-
-  display = new FormControl(this.onDisplayList);
 
   slt : string[] = ["select"];
   edt : string[] = ["edit"];
 
   displayedCol = this.onDisplayList.concat(this.edt);
-  displayedColumns: string[] = this.onDisplayList; //this.slt.concat(this.displayedCol);
+  displayedColumns: string[] = this.slt.concat(this.displayedCol);
+
+  display = new FormControl(this.onDisplayList);
 
   isClosed: boolean = false;
 
   refreshDisplayColumns(){
     this.displayedCol = this.onDisplayList.concat(this.edt);
-    this.displayedColumns = this.onDisplayList; //this.slt.concat(this.displayedCol);
+    this.displayedColumns = this.slt.concat(this.displayedCol);
     if(this.onDisplayList.length>=8) this.isClosed = false;
     else this.isClosed = true;
   }
@@ -108,11 +112,31 @@ export class TestApiComponent implements OnInit {
     });
   }
 
-  filter_all(){
+  filter_Search(){
+    switch(this.onFilter){
+      case '': {
+        this.filterAll(); return;
+      }
+      case 'id': {
+        this.filter_ID(); return;
+      }
+      default: {
+        this.filterAll();
+      }
+    }
+  }
+
+  resetFilter(){
+    this.onFilter='';
+    this.filter_Search();
+    this.isFilter = false;
+    this.filterSearch = '';
+  }
+
+  filterAll(){
     this.currentPage = 1;
     this.isLoading = true;
-    this.filterID = '';
-    this.filterText = this.filterContent == '' ? '' : '&q=' + this.filterContent;
+    this.filterText = this.filterSearch == '' ? '' : '&q=' + this.filterSearch;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
@@ -123,8 +147,18 @@ export class TestApiComponent implements OnInit {
   filter_ID(){
     this.currentPage = 1;
     this.isLoading = true;
-    this.filterContent = '';
-    this.filterText = this.filterID == '' ? '' : '&account_number=' +  this.filterID;
+    this.filterText = this.filterSearch == '' ? '' : '&account_number=' +  this.filterSearch;
+    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
+    this.http.get<User[]>(url).subscribe((res: User[]) => {
+      this.dataSource = res;
+      this.isLoading = false;
+    })
+    this.remakePaging(url);
+  }
+  filterGender(gender: string){
+    this.currentPage = 1;
+    this.isLoading = true;
+    this.filterText = "&gender=" + gender;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow + this.filterText;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
@@ -140,9 +174,10 @@ export class TestApiComponent implements OnInit {
       this.isLoading = false;
     })
   }
+
   more(){
+    this.changeRow = true;
     this.isLoading = true;
-    this.currentRow = this.currentRow == 5? 10 : this. currentRow == 10 ? 15 : 5;
     this.maxPage = Math.ceil(this.userTotal/this.currentRow);
     this.http.get<User[]>('http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow).subscribe((res: User[]) => {
       this.dataSource = res;
@@ -314,25 +349,154 @@ export class TestApiComponent implements OnInit {
     });
   }
 
-  deleteUser(){
-    this.http.delete('http://localhost:3000/users/' + this.selectUser).subscribe(data => {
-      console.log(data);
-      this._snackBar.open("User #" + this.selectUser + " deleted!", "Continue", {
-        horizontalPosition: "center",
-        verticalPosition: "top",
-        duration: 2500,
-      });
-    })
-    this.isLoading = true;
-    let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
-    this.http.get<User[]>(url).subscribe((res: User[]) => {
-      this.dataSource = res;
-      this.isLoading = false;
-    })
-    this.remakePaging(url);
+  deleteSelectedUser(){
+    const message = `Are you sure you want delete these user?`;
+    const dialogData = new ConfirmDialogModel("Delete selected user", message);
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData,
+      panelClass: ['animate__animated','animate__slideInDown', 'animate__bounce'] //Angular Animation
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      let enterAnimationDuration = "550ms";
+      let exitAnimationDuration = "650ms";
+      if (confirmed) {
+        const user_count = this.userSelected.length;
+        this.userSelected.forEach((id) => {
+          this.http.delete('http://localhost:3000/users/' + id).subscribe(data => {})
+        this.isLoading = true;
+        let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
+        this.http.get<User[]>(url).subscribe((res: User[]) => {
+          this.dataSource = res;
+          this.isLoading = false;
+        })
+        this.remakePaging(url);
+        });
+        this.dialog.open(checkComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+          data: {
+            msg: "You have delete " + user_count + " users!",
+            check: true,
+          }
+        });
+      } else {
+        this.dialog.open(checkComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+          data: {
+            msg: "Selected users was not deleted.",
+            check: false,
+          }
+        });
+      }
+    });
   }
 
-  selectUser: string = '';
+  deleteUser(id: number){
+    const message = `Are you sure you want to do delete this user?`;
+    const dialogData = new ConfirmDialogModel("Delete single user", message);
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      maxWidth: "400px",
+      data: dialogData,
+      panelClass: ['animate__animated','animate__slideInDown'] //Angular Animation
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      let enterAnimationDuration = "550ms";
+      let exitAnimationDuration = "650ms";
+      if (confirmed) {
+        this.http.delete('http://localhost:3000/users/' + id).subscribe(data => {
+        this._snackBar.open("User #" + id + " deleted!", "Continue", {
+          horizontalPosition: "center",
+          verticalPosition: "top",
+          duration: 2500,
+        });
+        })
+        this.isLoading = true;
+        let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
+        this.http.get<User[]>(url).subscribe((res: User[]) => {
+          this.dataSource = res;
+          this.isLoading = false;
+        })
+        this.remakePaging(url);
+        this.dialog.open(checkComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+          data: {
+            msg: "You have delete user #" + id + "!",
+            check: true,
+          }
+        });
+      } else {
+        this.dialog.open(checkComponent, {
+          width: '325px',
+          height: '325px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+          data: {
+            msg: "User #" + id + " was not deleted.",
+            check: false,
+          }
+        });
+      }
+    });
+  }
+
+  selection = new SelectionModel<User>(true, []);
+  userSelected : number[] = [];
+
+  selectRow(dataSource ?: User) {
+    this.selection.toggle(dataSource!);
+    if (!this.userSelected.includes(dataSource!.account_number)) {
+      this.userSelected.push(dataSource!.account_number);
+    } else {
+      this.userSelected = this.userSelected.filter((o) => o != dataSource!.account_number);
+    }
+  }
+
+  isAllSelected() {
+    const numSelected = this.userSelected.length;
+    const numRows = this.userTotal;
+    return numSelected === numRows;
+  }
+
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      this.userSelected.splice(0);
+      return;
+    }
+    this.userSelected = [...Array(this.userTotal).keys()];
+    this.selection.select(...this.dataSource);
+  }
+
+  checkboxLabel(row?: User): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.userSelected.includes(row.account_number) ? 'deselect' : 'select'} row ${row.account_number}`;
+  }
+
+  viewUserDetails(number: number){
+    let link = "/account_management/user/" + number.toString();
+    let userDetails: User | undefined;
+    let url = 'http://localhost:3000/users/' + number;
+    this.http.get<User>(url).subscribe((res: User) => {
+      userDetails = res;
+      this.isLoading = false;
+    })
+    this.router.navigateByUrl(link, {
+      state: { user: userDetails }
+    });
+  }
 }
 
 export interface User{

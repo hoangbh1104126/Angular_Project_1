@@ -1,98 +1,6 @@
 {
   "users": [
     {
-      "account_number": 1,
-      "balance": 39225,
-      "firstname": "Amber",
-      "lastname": "Duke",
-      "age": 32,
-      "gender": "M",
-      "address": "880 Holmes Lane",
-      "employer": "Pyrami",
-      "email": "amberduke@pyrami.com",
-      "city": "Brogan",
-      "state": "IL"
-    },
-    {
-      "account_number": 6,
-      "balance": 5686,
-      "firstname": "Hattie",
-      "lastname": "Bond",
-      "age": 36,
-      "gender": "M",
-      "address": "671 Bristol Street",
-      "employer": "Netagy",
-      "email": "hattiebond@netagy.com",
-      "city": "Dante",
-      "state": "TN"
-    },
-    {
-      "account_number": 13,
-      "balance": 32838,
-      "firstname": "Nanette",
-      "lastname": "Bates",
-      "age": 28,
-      "gender": "F",
-      "address": "789 Madison Street",
-      "employer": "Quility",
-      "email": "nanettebates@quility.com",
-      "city": "Nogal",
-      "state": "VA",
-      "new": null
-    },
-    {
-      "account_number": 18,
-      "balance": 4180,
-      "firstname": "Dale",
-      "lastname": "Adams",
-      "age": 33,
-      "gender": "M",
-      "address": "467 Hutchinson Court",
-      "employer": "Boink",
-      "email": "daleadams@boink.com",
-      "city": "Orick",
-      "state": "MD"
-    },
-    {
-      "account_number": 20,
-      "balance": 16418,
-      "firstname": "Elinor",
-      "lastname": "Ratliff",
-      "age": 36,
-      "gender": "M",
-      "address": "282 Kings Place",
-      "employer": "Scentric",
-      "email": "elinorratliff@scentric.com",
-      "city": "Ribera",
-      "state": "WA"
-    },
-    {
-      "account_number": 25,
-      "balance": 40540,
-      "firstname": "Virginia",
-      "lastname": "Ayala",
-      "age": 39,
-      "gender": "F",
-      "address": "171 Putnam Avenue",
-      "employer": "Filodyne",
-      "email": "virginiaayala@filodyne.com",
-      "city": "Nicholson",
-      "state": "PA"
-    },
-    {
-      "account_number": 32,
-      "balance": 48086,
-      "firstname": "Dillard",
-      "lastname": "Mcpherson",
-      "age": 34,
-      "gender": "F",
-      "address": "702 Quentin Street",
-      "employer": "Quailcom",
-      "email": "dillardmcpherson@quailcom.com",
-      "city": "Veguita",
-      "state": "IN"
-    },
-    {
       "account_number": 37,
       "balance": 18612,
       "firstname": "Mcgee",
@@ -2601,19 +2509,6 @@
       "email": "lethabaker@dognosis.com",
       "city": "Dunlo",
       "state": "WV"
-    },
-    {
-      "account_number": 2,
-      "balance": 28838,
-      "firstname": "Roberta",
-      "lastname": "Bender",
-      "age": 22,
-      "gender": "F",
-      "address": "560 Kingsway Place",
-      "employer": "Chillium",
-      "email": "robertabender@chillium.com",
-      "city": "Bennett",
-      "state": "LA"
     },
     {
       "account_number": 7,
@@ -5201,19 +5096,6 @@
       "email": "dorothybarron@xurban.com",
       "city": "Belvoir",
       "state": "CA"
-    },
-    {
-      "account_number": 4,
-      "balance": 27658,
-      "firstname": "Rodriquez",
-      "lastname": "Flores",
-      "age": 31,
-      "gender": "F",
-      "address": "986 Wyckoff Avenue",
-      "employer": "Tourmania",
-      "email": "rodriquezflores@tourmania.com",
-      "city": "Eastvale",
-      "state": "HI"
     },
     {
       "account_number": 9,
@@ -7816,19 +7698,6 @@
       "state": "CO"
     },
     {
-      "account_number": 5,
-      "balance": 29342,
-      "firstname": "Leola",
-      "lastname": "Stewart",
-      "age": 30,
-      "gender": "F",
-      "address": "311 Elm Place",
-      "employer": "Diginetic",
-      "email": "leolastewart@diginetic.com",
-      "city": "Fairview",
-      "state": "NJ"
-    },
-    {
       "account_number": 12,
       "balance": 37055,
       "firstname": "Stafford",
@@ -10403,19 +10272,6 @@
       "state": "CA"
     },
     {
-      "account_number": 3,
-      "balance": 44947,
-      "firstname": "Levine",
-      "lastname": "Burks",
-      "age": 26,
-      "gender": "F",
-      "address": "328 Wilson Avenue",
-      "employer": "Amtap",
-      "email": "levineburks@amtap.com",
-      "city": "Cochranville",
-      "state": "HI"
-    },
-    {
       "account_number": 8,
       "balance": 48868,
       "firstname": "Jan",
@@ -12949,19 +12805,6 @@
       "email": "mullentanner@pulze.com",
       "city": "Mooresburg",
       "state": "MA"
-    },
-    {
-      "account_number": 983,
-      "balance": 47205,
-      "firstname": "Mattie",
-      "lastname": "Eaton",
-      "age": 24,
-      "gender": "F",
-      "address": "418 Allen Avenue",
-      "employer": "Trasola",
-      "email": "mattieeaton@trasola.com",
-      "city": "Dupuyer",
-      "state": "NJ"
     },
     {
       "account_number": 988,

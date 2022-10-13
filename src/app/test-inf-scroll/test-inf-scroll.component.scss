@@ -49,3 +49,226 @@
   justify-content: center;
   font-weight: bold;
 }
+
+.mat-header-sticky {
+  top: 62.5px;
+  position: sticky;
+  z-index: 10;
+}
+
+h1, h2 {
+  font-family: Fauna One;
+  color: royalblue;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin-bottom: 25px;
+}
+
+
+.custom-hr {
+  width: 80%;
+  border: 5px outset royalblue;
+  margin: auto;
+}
+
+hr.custom-hr {
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: royalblue;
+  border-width: 3px 0 0 0;
+  border-radius: 20px;
+}
+hr.custom-hr:before { /* Not really supposed to work, but does */
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+h2.title-data {
+  text-align: center;
+  font-family: 'Fauna One', serif;
+  font-size: x-large;
+  color: royalblue;
+  margin: 30px;
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -2.5em;
+  margin-top: -1.25em;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  font-style: italic;
+  font-weight: bolder;
+  background-color: #FFDEAD;
+}
+
+.selectDisplay {
+  font-size: 16px;
+  width: 200px;
+}
+
+.example-container {
+  position: relative;
+  height: 450px;
+  resize: vertical;
+  overflow: auto;
+  min-height: 350px;
+  max-height: 600px;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.chipGender {
+  max-width: 100px;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.newChipUser {
+  margin-left: 5px;
+  justify-content: center;
+  font-weight: bold;
+  background-color: #e6ccff;
+  color: #9933ff;
+}
+
+.chipAction {
+  max-width: 100px;
+  color: currentColor;
+  background-color: #f5f8fa;
+  justify-content: center;
+  //font-weight: bolder;
+  border-radius: 10px;
+  display: flex;
+}
+
+.chipAction:hover {
+  color: #156fc4;
+}
+
+.filter {
+  display: block;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+  background-color: #FAFAD2;
+  border: none;
+}
+
+th {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+th:hover {
+  color: royalblue;
+}
+
+.display-panel.mat-select-panel {
+  column-count: 2;
+  column-width: 250px;
+
+}
+
+.selection-display {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+
+::ng-deep .mat-option-pseudo-checkbox {
+  display: inline-flex;
+  margin-bottom: 40px;
+}
+
+.filter {
+  margin-bottom: 10px;
+}
+
+.feature {
+  background: rgb(216, 239, 247, 0.95);
+  border-radius: 3px;
+}
+
+.feature2 {
+  background: #e2e5e7;
+}
+
+.feature3 {
+  background: #e2e5e7;
+}
+
+.feature2:focus-within {
+  background: #f5f8fa;
+}
+
+.feature2:hover {
+  background: #f5f8fa;
+}
+
+.feature:hover {
+  background: rgba(0, 191, 255, 0.90);
+  color: white;
+}
+
+.feature:focus {
+  background: rgba(0, 191, 255, 0.90);
+  color: white;
+}
+
+//Bootstrap Temp
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+  width: 90%;
+  margin: auto;
+  padding: 0 0 0 24px;
+  background: #FFFFFF;
+}
+
+//Original
+.go-to-container {
+  display: flex;
+  align-items: baseline;
+  background: white;
+  .go-to-label {
+    margin: 0 4px;
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
