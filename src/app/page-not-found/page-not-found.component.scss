@@ -79,16 +79,16 @@ Content
   h1 {
     letter-spacing: 15px;
     font-weight: 900;
-    font-size: 40vw;
+    font-size: min(40vw, 200px);
     line-height: 1;
-    margin-top: 30vh;
+    margin-top: min(30vh, 100px);
   }
 
   h2 {
     margin-top: 3vh;
     font-weight: 700;
-    font-size: 8vw;
-    margin-bottom: 2vh;
+    font-size: min(8vw, 35px);
+    margin-bottom: max(2vh, 50px);
     opacity: 0.9;
   }
 
@@ -96,9 +96,9 @@ Content
     margin-top: 3vh;
     color:#0D0C1E;
     font-weight: 500;
-    font-size: 4vw;
+    font-size: min(4vw, 24px);
     opacity: 0.7;
-    margin-bottom: 20vh;
+    margin-bottom: min(20vh, 100px);
   }
 
   a {
@@ -106,10 +106,10 @@ Content
     text-decoration: none;
     display: inline-block;
     font-weight: 300;
-    font-size: 5vw;
+    font-size: min(20px, 5vw);
     text-transform: uppercase;
     border: 1px solid #CDD4DE;
-    padding: 5vw 10vw;
+    padding: min(5vw, 16px) min(32px, 10vw);
     border-radius: 3vw;
     opacity: 0.4;
     background: none;
@@ -139,6 +139,9 @@ img {
 }
 
 @media only screen and (max-width: 1000px) {
+  .content {
+    margin-top: 30vh;
+  }
   .page {
     display: block;
     width: 100%;

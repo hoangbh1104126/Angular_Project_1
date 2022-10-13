@@ -24,6 +24,8 @@ import { right } from '@popperjs/core';
 })
 export class StatisticsComponent implements OnInit {
 
+  breakpoint:boolean = window.innerWidth < 1000;
+
   userData: User[] = usersData;
   mostBalance: User[] = [];
   age_male = new Array<number>(21);
