@@ -86,7 +86,7 @@
       </mat-list-item>
       <div mat-subheader class="header-nav" *ngIf="width < 1000">Account</div>
       <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary" onclick="location.href = '/log-in'" *ngIf="!isLoggedIn && width < 1000">
+        <button class="example-menu-item" mat-button color="primary" routerLink="#/log-in" *ngIf="!isLoggedIn && width < 1000">
           <mat-icon>account_box</mat-icon>
           <span class="text-nav">Log in</span>
         </button>
@@ -120,7 +120,7 @@
       <h1 class="titleAM">Account Management</h1>
       <div class="log">
         <div *ngIf="!isLoggedIn">
-          <button mat-button onclick="location.href = '/log-in';">
+          <button mat-button routerLink="#/log-in">
               <mat-icon>account_box</mat-icon>
               Log in
           </button>

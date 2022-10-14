@@ -67,6 +67,7 @@ table {
   width: 100%;
 }
 
+
 @media only screen and (min-width: 960px) {
   #large-balance{
     width: 80%;
@@ -114,4 +115,10 @@ table {
 
 :host ::ng-deep .apexcharts-legend {
   margin-left: 32px;
+}
+
+@media only screen and (min-width: 960px) {
+  :host ::ng-deep .mat-tab-content {
+    height: 100%;
+  }
 }
