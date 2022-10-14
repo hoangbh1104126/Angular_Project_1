@@ -64,8 +64,8 @@
       </mat-card-content>
       <hr />
       <mat-card-actions align="end" class="card-end">
-        <button mat-raised-button color="primary" onclick="location.href = 'register';">Register</button>
-        <button mat-raised-button color="primary" onclick="location.href = 'account_management';">Continue as Guest</button>
+        <button mat-raised-button color="primary" (click)="navigate('/register')">Register</button>
+        <button mat-raised-button color="primary" (click)="navigate('/account_management')">Continue as Guest</button>
       </mat-card-actions>
       <hr />
       </div>

@@ -153,6 +153,10 @@ export class LogInComponent implements OnInit {
     }
   }
 
+  navigate(str: string){
+    this.router.navigateByUrl(str);
+  }
+
   getErrorMessage(attribute : any) : string{
     if(this.logInForm.get(attribute)?.hasError('required')){
       return "You must enter a value!";
