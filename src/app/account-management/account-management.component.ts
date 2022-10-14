@@ -111,8 +111,8 @@ export class AccountManagementComponent implements OnInit {
     this.router.navigateByUrl('/account_management/user/' + this.userLoggedIn?.account_number);
   }
 
-  signOut(){
-    this.openSnackBar("Logged out!", "Ok")
+  signOut(open ?: boolean){
+    if(open) this.openSnackBar("Logged out!", "Ok");
     this.router.navigateByUrl('/log-in');
   }
 
