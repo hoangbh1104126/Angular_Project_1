@@ -24,11 +24,7 @@ import { right } from '@popperjs/core';
 })
 export class StatisticsComponent implements OnInit {
 
-  ngDoCheck(){
-    this.breakpoint = window.innerWidth < 1000;
-  }
-
-  breakpoint:boolean = window.innerWidth < 1000;
+  breakpoint:boolean;
 
   userData: User[] = usersData;
   mostBalance: User[] = [];
@@ -94,6 +90,7 @@ export class StatisticsComponent implements OnInit {
     };
 
   constructor(public router: Router) {
+    this.breakpoint = window.innerWidth < 1000;
     this.userData.forEach((user) => {
       if(user.gender == "M"){
         this.age_male[user.age-20] = this.age_male[user.age-20] == null ? -1: this.age_male[user.age-20] - 1;

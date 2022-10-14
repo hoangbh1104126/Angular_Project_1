@@ -30,10 +30,6 @@ export class UserDetailComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
-  ngDoCheck(){
-    this.breakpoint = (window.innerWidth <= 1000) ? 1 : 3;
-  }
-
   breakpoint: number;
 
   user$ !: Observable<User>;

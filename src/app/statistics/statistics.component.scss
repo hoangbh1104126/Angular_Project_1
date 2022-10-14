@@ -67,7 +67,6 @@ table {
   width: 100%;
 }
 
-
 @media only screen and (min-width: 960px) {
   #large-balance{
     width: 80%;
@@ -107,6 +106,9 @@ table {
   :host ::ng-deep .mat-tab-body-wrapper {
     flex: 1 1 auto;
   }
+  :host ::ng-deep .mat-tab-body{
+    height: auto;
+  }
 }
 
 #chart {
@@ -117,8 +119,3 @@ table {
   margin-left: 32px;
 }
 
-@media only screen and (min-width: 960px) {
-  :host ::ng-deep .mat-tab-content {
-    height: 100%;
-  }
-}
