@@ -23,7 +23,7 @@
 
 .example-header-image {
   border: 1px solid black;
-  background-image: url("assets/image/unknown_avatar.png");
+  background-image: url("../../assets/image/unknown_avatar.png");
   background-size: cover;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .bg-login {
-  background-image: url("assets/image/login.webp");
+  background-image: url("../../assets/image/login.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -234,7 +234,7 @@ font-family: cursive;
     max-height: 550px;
   }
   .dark {
-    background-image: url("assets/image/login.webp");
+    background-image: url("../../assets/image/login.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
