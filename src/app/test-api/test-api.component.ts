@@ -26,6 +26,7 @@ export class TestApiComponent implements OnInit {
     public router: Router,
     private _snackBar: MatSnackBar,
   ) {
+    // Replace all localhost to https://server-prj-1-angular.herokuapp.com (Method put delete post not working)
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.remakePaging(url, true);
     this.newUser =
