@@ -7,19 +7,17 @@
 
 <mat-stepper labelPosition="bottom" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+    <ng-template matStepLabel>Create table: </ng-template>
+    <button mat-button>By default (Go to last step)</button>
+    <button mat-button>Customize (Click = required (Only back remove required))</button>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" optional>
+    <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Select table mode:</ng-template>
       <mat-button-toggle-group [formControl]="fontStyleControl">
         <mat-button-toggle value="paging">Paging</mat-button-toggle>
         <mat-button-toggle value="scroll">Scroll</mat-button-toggle>
       </mat-button-toggle-group>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" optional>
-    <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Change display</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Row</mat-label>
@@ -27,6 +25,10 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Display columns</mat-label>
+        <input matInput formControlName="firstCtrl" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Show loading</mat-label>
         <input matInput formControlName="firstCtrl" required>
       </mat-form-field>
       <div>
@@ -41,7 +43,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="createTable()"></button>
+      <button mat-button (click)="createTable()">Create (Click = are you sure to create this table? (Dialog)</button>
     </div>
   </mat-step>
 </mat-stepper>
