@@ -10,8 +10,8 @@ export class LoadingComponent implements OnInit {
 
   constructor(public router: Router,) {
     setTimeout(() => {
-      this.router.navigateByUrl('/account_management/business');
-    }, 150);
+      this.router.navigateByUrl('/account_management');
+    }, 1000);
   }
 
   ngOnInit(): void {
