@@ -5,7 +5,7 @@ import { PreloadAllModules } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TestApiComponent } from './test-api/test-api.component';
+import { TableDataComponent } from './table-data/table-data.component';
 import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
