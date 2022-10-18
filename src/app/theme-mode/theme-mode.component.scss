@@ -1,0 +1,46 @@
+.text-btn {
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 40px;
+}
+
+.customize {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 2;
+
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+	-webkit-tap-highlight-color: transparent;
+
+  width: 150px;
+	height: 50px;
+	cursor: pointer;
+	font-size: 32px;
+	font-weight: bold;
+	color: white;
+  background: linear-gradient(to bottom right, #a691f0 0%, #70bfea 100%);
+	box-shadow:
+    5px 5px 0 cornflowerblue,
+		-5px -5px 0 cornflowerblue,
+		-5px 5px 0 cornflowerblue,
+		5px -5px 0 cornflowerblue;
+	transition: 500ms ease-in-out;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.customize:hover {
+	box-shadow: 15px 7.5px 0 royalblue, -15px -7.5px 0 royalblue;
+  background: linear-gradient(to top left, #a691f0 0%, #70bfea 100%);
+  transition-duration: 500ms;
+}
+
+.customize:focus {
+	outline: none;
+}
