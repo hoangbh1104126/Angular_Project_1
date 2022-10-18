@@ -1,6 +1,7 @@
 # Project 1: Account Management
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Github page live at [Angular Project 1](https://hoangbh1104126.github.io/Angular_Project_1/)
 
 ## Package used
 
