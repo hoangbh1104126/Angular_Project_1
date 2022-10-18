@@ -42,7 +42,7 @@
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="stepper.reset(); created=false">Reset</button>
       <button mat-button (click)="createTable()">Create (Click = are you sure to create this table? (Dialog)</button>
     </div>
   </mat-step>
