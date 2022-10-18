@@ -1,0 +1,220 @@
+<div *ngIf="onDisplayList.length>=8 && !isClosed" style="width: 90%; margin: 0 auto;">
+  <ngb-alert type="primary" [dismissible]="true" (closed)="isClosed=true;">
+    <mat-icon>warning</mat-icon>
+    <span style="margin-left: 10px; font-size: 16px;"><strong>Warning!</strong> You should not display more than 8
+      columns.</span>
+  </ngb-alert>
+  <hr />
+</div>
+
+<mat-grid-list cols="14" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;" class="feature-panel">
+  <mat-grid-tile colspan="2" class="feature">
+    <button mat-button [matMenuTriggerFor]="belowMenu0" *ngIf="!isFilter" style="font-size: 16px;">
+      <mat-icon>settings</mat-icon>
+      Filter
+    </button>
+    <mat-menu #belowMenu0="matMenu" yPosition="below">
+      <button mat-menu-item (click)="onFilter='id'; isFilter=true; filterSearch=''">Filter by ID</button>
+      <button mat-menu-item (click)="onFilter='email'; isFilter = true; filterSearch=''">Filter by Email</button>
+      <button mat-menu-item [matMenuTriggerFor]="genderMenu">Filter gender</button>
+    </mat-menu>
+    <mat-menu #genderMenu="matMenu" yPosition="below">
+      <button mat-menu-item (click)="filterGender('M')">Male</button>
+      <button mat-menu-item (click)="filterGender('F')">Female</button>
+    </mat-menu>
+    <button mat-button *ngIf="isFilter" (click)="resetFilter()" style="font-size: 15px;">
+      <mat-icon>settings_backup_restore</mat-icon>
+      Filter: {{onFilter | titlecase}}
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="5" class="feature2">
+    <mat-form-field appearance="standard" class="filter" style="font-size: 18px; margin-bottom: 18px; width: 95%;">
+      <mat-label>Filter</mat-label>
+      <input matInput placeholder="Filter" [(ngModel)]="filterSearch" (input)="filter_Search()">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" class="feature">
+    <button mat-button [matMenuTriggerFor]="belowMenu1">
+      <mat-icon>group_add</mat-icon>
+      Add user
+    </button>
+    <mat-menu #belowMenu1="matMenu" yPosition="below">
+      <button mat-menu-item (click)="addUser()">Custom user</button>
+      <button mat-menu-item>Random user</button>
+    </mat-menu>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" class="feature">
+    <button mat-button [matMenuTriggerFor]="belowMenu2">
+      <mat-icon>delete</mat-icon>
+      Delete user
+    </button>
+    <mat-menu #belowMenu2="matMenu" yPosition="below">
+      <button mat-menu-item (click)="deleteSelectedUser()">Selected user</button>
+      <button mat-menu-item>All new user</button>
+    </mat-menu>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" class="feature3">
+    <mat-form-field class="selectDisplay">
+      <mat-label>Display</mat-label>
+      <mat-select [formControl]="display" panelClass="display-panel" multiple [(value)]="onDisplayList"
+        (selectionChange)="refreshDisplayColumns()">
+        <mat-select-trigger>
+          {{display.value?.[0] || '' |check |titlecase}}
+          <span *ngIf="(display.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(display.value?.length || 0) - 1}} {{display.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option class="selection-display" *ngFor="let item of displayList" [value]="item"
+          [disabled]="item == 'firstname'" matTooltip="Name cannot be hide from the table" matTooltipPosition="left"
+          matTooltipHideDelay="250" [matTooltipDisabled]="item != 'firstname'">
+          {{item |check |titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div [ngClass]="modeLoading=='scroll'? 'example-container' : 'table'" (scroll)="onTableScroll($event)">
+  <div *ngIf="isLoading && showLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" [ngStyle]="!isLoading && !showLoading ? {'margin':'4px auto'} : {'margin':'auto'}">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <!--First Change ???-->
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectRow(row) : null"
+          [checked]="userSelected.includes(row.account_number)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="account_number" sticky *ngIf="displayedColumns.includes('account_number')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by id" matTooltipPosition="above"
+        (click)="sort('account_number')"> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.account_number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="balance" *ngIf="displayedColumns.includes('balance')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by Balance" matTooltipPosition="above"
+        (click)="sort('balance')"> Balance </th>
+      <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname" sticky *ngIf="displayedColumns.includes('firstname')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by Name" matTooltipPosition="above" (click)="sort('name')">
+        Name </th>
+      <td mat-cell *matCellDef="let element">
+        <span [innerHTML]="element.firstname + ' ' + element.lastname | highlightSearch: filterText"
+          (click)="viewUserDetails(element.account_number)" matTooltip="View User details">
+          {{element.firstname}} {{element.lastname}}
+        </span>
+        <mat-chip *ngIf="element.new" class="newChipUser">new</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="age" *ngIf="displayedColumns.includes('age')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by Age" matTooltipPosition="above" (click)="sort('age')">
+        Age </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender" *ngIf="displayedColumns.includes('gender')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by Gender" matTooltipPosition="above"
+        (click)="sort('gender')"> Gender </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+          <mat-chip [ngStyle]="styleGender(element)" class="chipGender">
+            {{element.gender | gender }}
+          </mat-chip>
+        </mat-chip-list>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address" *ngIf="displayedColumns.includes('address')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by Address" matTooltipPosition="above"
+        (click)="sort('address')"> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employer" *ngIf="displayedColumns.includes('employer')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by employer" matTooltipPosition="above"
+        (click)="sort('employer')"> Employer </th>
+      <td mat-cell *matCellDef="let element"> {{element.employer | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email" *ngIf="displayedColumns.includes('email')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by email" matTooltipPosition="above"
+        (click)="sort('email')"> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city" *ngIf="displayedColumns.includes('city')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by city" matTooltipPosition="above" (click)="sort('city')">
+        City </th>
+      <td mat-cell *matCellDef="let element"> {{element.city | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state" *ngIf="displayedColumns.includes('state')" (click)="sort('state')">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Sort by state" matTooltipPosition="above"> State </th>
+      <td mat-cell *matCellDef="let element"> {{element.state | noValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-stroked-button class="chipAction" (click)="$event.stopPropagation()"
+          (click)="userShowMenu=row.account_number" [matMenuTriggerFor]="belowMenu3"
+          [matMenuTriggerData]="{account_number : row.account_number}" (menuOpened)="menuOpened=true"
+          (menuClosed)="menuOpened=false">
+          Action
+          <mat-icon *ngIf="menuOpened && row.account_number == userShowMenu">expand_less</mat-icon>
+          <mat-icon *ngIf="menuOpened && row.account_number != userShowMenu">expand_more</mat-icon>
+          <mat-icon *ngIf="!menuOpened">expand_more</mat-icon>
+        </button>
+        <mat-menu #belowMenu3="matMenu" yPosition="below">
+          <ng-template matMenuContent let-account_number="account_number">
+            <button mat-menu-item (click)="editUser(account_number)"> Edit user </button>
+            <button mat-menu-item (click)="deleteUser(account_number)"> Remove user </button>
+          </ng-template>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+        <span *ngIf="filterSearch.length!==0; else noData">No data matching the filter.</span>
+        <ng-template #noData>No more user to display, <a (click)="addUser()">try to add new user</a>?</ng-template>
+      </td>
+    </tr>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" [ngClass]="modeLoading!='scroll'? 'mat-header-sticky': 'mat-header'"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="$event ? selectRow(row) : null"
+      [class.demo-row-is-clicked]="selection.isSelected(row)"></tr>
+
+  </table>
+
+  <ng-template *ngIf="isLoading && modeLoading!='scroll' && showLoading">
+    <mat-progress-bar mode="query"></mat-progress-bar>
+  </ng-template>
+
+  <div class="d-flex" *ngIf="modeLoading!='scroll'">
+    <div class="go-to-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Go to page</mat-label>
+        <input matInput type="number" [(ngModel)]="currentPage" (input)="changePage()" min="1" [max]="maxPage" />
+        <mat-hint align="end">{{currentPage}}/{{maxPage}}</mat-hint>
+        <mat-error *ngIf="currentPage>maxPage || currentPage <1">Out of range!</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-paginator [length]="userTotal" [pageSize]="currentRow" [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons
+      (page)="paging($event)" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+
+h1, h2 {
+  font-family: Fauna One;
+  color: royalblue;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin-bottom: 25px;
+}
+
+
+.custom-hr {
+  width: 80%;
+  border: 5px outset royalblue;
+  margin: auto;
+}
+
+hr.custom-hr {
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: royalblue;
+  border-width: 3px 0 0 0;
+  border-radius: 20px;
+}
+hr.custom-hr:before { /* Not really supposed to work, but does */
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+h2.title-data {
+  text-align: center;
+  font-family: 'Fauna One', serif;
+  font-size: x-large;
+  color: royalblue;
+  margin: 30px;
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

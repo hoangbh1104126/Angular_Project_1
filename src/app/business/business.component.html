@@ -1,0 +1,49 @@
+<h1>Account Management</h1>
+<h2><a href="#">Home</a> > <a>Business</a></h2>
+<hr class="custom-hr" />
+
+<h2 class="title-data">User data</h2>
+<hr />
+
+<mat-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select table mode:</ng-template>
+      <mat-button-toggle-group [formControl]="fontStyleControl">
+        <mat-button-toggle value="paging">Paging</mat-button-toggle>
+        <mat-button-toggle value="scroll">Scroll</mat-button-toggle>
+      </mat-button-toggle-group>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" optional>
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Change display</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Row</mat-label>
+        <input matInput formControlName="firstCtrl" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Display columns</mat-label>
+        <input matInput formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="createTable()"></button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+<app-table-data modeLoading="scroll" [showLoading]="false" *ngIf="created"></app-table-data>
