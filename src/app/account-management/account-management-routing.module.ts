@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountDataComponent } from '../account-data/account-data.component';
+import { BusinessComponent } from '../business/business.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PeopleComponent } from '../people/people.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
-import { TestApiComponent } from '../test-api/test-api.component';
-import { TestInfScrollComponent } from '../test-inf-scroll/test-inf-scroll.component';
+import { TableDataComponent } from '../table-data/table-data.component';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 import { AccountManagementComponent } from './account-management.component';
@@ -30,7 +30,13 @@ const routes: Routes = [
         },
         {
           path: 'business',
-          component: AccountDataComponent,
+          component: BusinessComponent,
+          children: [
+            {
+              path: 'account-data',
+              component: AccountDataComponent,
+            }
+          ]
         },
         {
           path: 'people',
@@ -41,12 +47,8 @@ const routes: Routes = [
           component: StatisticsComponent,
         },
         {
-          path: "test-api",
-          component: TestApiComponent,
-        },
-        {
-          path: "test-inf-scroll",
-          component: TestInfScrollComponent,
+          path: 'account-data',
+          component: AccountDataComponent,
         },
         {
           path: '',

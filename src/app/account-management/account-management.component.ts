@@ -117,10 +117,7 @@ export class AccountManagementComponent implements OnInit {
   }
 
   goToPage(str: string){
-    if(str.includes('business')){
-      this.router.navigateByUrl("/loading");
-    }
-    else {this.router.navigateByUrl("/account_management" + str);}
+    this.router.navigateByUrl("/account_management" + str);
     this.link = "/account_management" + str;
   }
 

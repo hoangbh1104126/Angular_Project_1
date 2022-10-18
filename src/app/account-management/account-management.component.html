@@ -34,18 +34,6 @@
             <span class="text-nav"  [ngStyle]="onDisplay('documents')">Documents</span>
         </button>
       </mat-list-item>
-      <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/test-api')">
-            <mat-icon>new_releases</mat-icon>
-            <span class="text-nav"  [ngStyle]="onDisplay('test-api')">Test</span>
-        </button>
-      </mat-list-item>
-      <mat-list-item>
-        <button class="example-menu-item" mat-button color="primary" (click)="goToPage('/test-inf-scroll')">
-            <mat-icon>open_in_new</mat-icon>
-            <span class="text-nav"  [ngStyle]="onDisplay('test-inf-scroll')">Table 2</span>
-        </button>
-      </mat-list-item>
       <div mat-subheader class="header-nav" *ngIf="isLoggedIn">User</div>
       <mat-list-item *ngIf="isLoggedIn">
         <button class="example-menu-item" mat-button color="primary" (click)="task()">
@@ -147,9 +135,7 @@
     <div id="content">
       <router-outlet></router-outlet>
     </div>
-    <div class="customize">
-      <button mat-button class="text-btn"><app-mode-switch></app-mode-switch></button>
-    </div>
+    <app-mode-switch></app-mode-switch>
   </mat-drawer-content>
 </mat-drawer-container>
 
