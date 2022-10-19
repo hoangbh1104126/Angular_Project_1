@@ -20,6 +20,8 @@ export class TableDataComponent implements OnInit {
 
   @Input() modeLoading!: string;
   @Input() showLoading!: boolean;
+  @Input() row!: string;
+  @Input() displayCol!: string[];
 
   dataSource: User[] = [];
 
@@ -52,22 +54,24 @@ export class TableDataComponent implements OnInit {
   changeRow: boolean = false;
 
   currentPage: number = 1;
-  currentRow: number = 5;
+  currentRow: number = Number(this.row);
   userTotal: number = 1000;
   maxPage:number = Math.ceil(this.userTotal/this.currentRow);
 
   users: User[] = []
   ngOnInit(): void {
-    this.currentRow = this.modeLoading == "scroll" ? 30 : 5;
+    this.currentRow = Number(this.row);
+    this.onDisplayList = this.displayCol;
+    this.display = new FormControl(this.onDisplayList);
     this.maxPage = Math.ceil(this.userTotal/this.currentRow);
-    console.log(this.currentRow);
-    console.log(this.modeLoading);
     this.isLoading = true;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.http.get<User[]>(url).subscribe((res: User[]) => {
       this.dataSource = res;
       this.isLoading = false;
     })
+    this.refreshDisplayColumns();
+    this.remakePaging(url, true);
   }
 
   onFilter: string = "";

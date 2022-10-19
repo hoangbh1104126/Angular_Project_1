@@ -5,36 +5,44 @@
 <h2 class="title-data">User data</h2>
 <hr />
 
-<mat-stepper labelPosition="bottom" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <ng-template matStepLabel>Create table: </ng-template>
-    <button mat-button>By default (Go to last step)</button>
-    <button mat-button>Customize (Click = required (Only back remove required))</button>
+<mat-stepper labelPosition="bottom" linear #stepper>
+  <mat-step [completed]="chooseType">
+    <ng-template matStepLabel>Create table</ng-template>
+    <button mat-button (click)="goToStep(2)">By default</button>
+    <button mat-button (click)="goToStep(1)">Customize</button>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" optional>
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Select table mode:</ng-template>
-      <mat-button-toggle-group [formControl]="fontStyleControl">
+  <mat-step optional [stepControl]="tableForm" errorMessage="Required">
+    <ng-template matStepLabel>Customize table</ng-template>
+    <form class="table-form" [formGroup]="tableForm" autocomplete="off">
+      <mat-button-toggle-group formControlName="modeLoading" #modeLoading (change)="onValueChange($event.value)">
         <mat-button-toggle value="paging">Paging</mat-button-toggle>
         <mat-button-toggle value="scroll">Scroll</mat-button-toggle>
       </mat-button-toggle-group>
-      <ng-template matStepLabel>Change display</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Row</mat-label>
-        <input matInput formControlName="firstCtrl" required>
+      <mat-form-field appearance="outline" hintLabel="Enter row">
+        <mat-label>Default row</mat-label>
+        <input matInput placeholder="Row" formControlName="row" #row required>
+        <mat-error *ngIf="tableForm.get('row')?.invalid">Required!</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Display columns</mat-label>
-        <input matInput formControlName="firstCtrl" required>
+      <mat-checkbox formControlName="showLoading" color="primary">Show loading bar</mat-checkbox>
+      <mat-form-field class="selectDisplay">
+        <mat-label>Display</mat-label>
+        <mat-select [formControl]="display" panelClass="display-panel" multiple [(value)]="onDisplayList">
+          <mat-select-trigger>
+            {{display.value?.[0] || '' |check |titlecase}}
+            <span *ngIf="(display.value?.length || 0) > 1" class="example-additional-selection">
+              (+{{(display.value?.length || 0) - 1}} {{display.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option class="selection-display" *ngFor="let item of displayList" [value]="item"
+            [disabled]="item == 'firstname'" matTooltip="Name cannot be hide from the table" matTooltipPosition="left"
+            matTooltipHideDelay="250" [matTooltipDisabled]="item != 'firstname'">
+            {{item |check |titlecase }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Show loading</mat-label>
-        <input matInput formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="tableForm.invalid" matStepperNext>
+        Next
+      </button>
     </form>
   </mat-step>
   <mat-step>
@@ -42,10 +50,18 @@
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset(); created=false">Reset</button>
-      <button mat-button (click)="createTable()">Create (Click = are you sure to create this table? (Dialog)</button>
+      <button mat-button (click)="resetAll()">Reset</button>
+      <button mat-button (click)="createTable()" [disabled]="created">Create</button>
     </div>
   </mat-step>
 </mat-stepper>
 
-<app-table-data modeLoading="scroll" [showLoading]="false" *ngIf="created"></app-table-data>
+<ng-template [ngIf]="created">
+<app-table-data
+  [modeLoading]="tableForm.get('modeLoading')?.value"
+  [row]="tableForm.get('row')?.value"
+  [showLoading]="tableForm.get('showLoading')?.value"
+  [displayCol]="onDisplayList"
+>
+</app-table-data>
+</ng-template>
