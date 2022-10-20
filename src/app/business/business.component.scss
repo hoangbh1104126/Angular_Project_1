@@ -52,3 +52,13 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.selection-display {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+::ng-deep .mat-option-pseudo-checkbox {
+  display: inline-flex;
+  margin-bottom: 40px;
+}

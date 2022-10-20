@@ -112,6 +112,7 @@ export class BusinessComponent implements OnInit {
   chooseType: boolean = false;
 
   resetAll() {
+    this.stepper.linear = true;
     this.tableForm.reset();
     this.stepper.reset();
     this.tableForm.get("modeLoading")?.setValue("paging");
