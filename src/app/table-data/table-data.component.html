@@ -7,7 +7,7 @@
   <hr />
 </div>
 
-<mat-grid-list cols="14" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;" class="feature-panel">
+<mat-grid-list [cols]="breakpoint" rowHeight="64" gutterSize='10px' style="width: 90%; margin: 0 auto;" class="feature-panel">
   <mat-grid-tile colspan="2" class="feature">
     <button mat-button [matMenuTriggerFor]="belowMenu0" *ngIf="!isFilter" style="font-size: 16px;">
       <mat-icon>settings</mat-icon>

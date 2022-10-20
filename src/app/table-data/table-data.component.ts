@@ -24,6 +24,7 @@ export class TableDataComponent implements OnInit {
   @Input() displayCol!: string[];
 
   dataSource: User[] = [];
+  breakpoint: number;
 
   constructor(
     private http: HttpClient,
@@ -32,6 +33,7 @@ export class TableDataComponent implements OnInit {
     private _snackBar: MatSnackBar,
   ) {
     // Replace all localhost to https://server-prj-1-angular.herokuapp.com (Method put delete post not working)
+    this.breakpoint = (window.innerWidth <= 960) ? 7 : 14;
     let url = 'http://localhost:3000/users?_page=' + this.currentPage + '&_limit=' + this.currentRow;
     this.remakePaging(url, true);
     this.newUser =
@@ -49,6 +51,10 @@ export class TableDataComponent implements OnInit {
       "state": this.randomString(Math.floor(Math.random() * (10 - 6) + 6)),
       "new": true,
     }
+  }
+
+  ngDoCheck(){
+    this.breakpoint = (window.innerWidth <= 960) ? 7 : 14;
   }
 
   changeRow: boolean = false;
