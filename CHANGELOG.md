@@ -40,3 +40,5 @@ Change log:
 - Remake dashboard.
 - Make label vertical right align in `Statistics`.
 - Fix bug, performance.
+
+- Responsive, remake `Business`. Add feature for users.

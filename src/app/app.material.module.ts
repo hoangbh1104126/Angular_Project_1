@@ -32,7 +32,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { A11yModule } from '@angular/cdk/a11y';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
@@ -70,7 +69,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatDatepickerModule,
     MatNativeDateModule,
     A11yModule, // Accessibility CDK
-    FlexLayoutModule,
     MatButtonToggleModule,
   ],
 })
