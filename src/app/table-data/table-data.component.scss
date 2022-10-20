@@ -40,7 +40,7 @@ table {
   ));
 }
 .mat-header-sticky {
-  top: 62.5px;
+  top: 0;
   position: sticky;
   z-index: 10;
 }
@@ -131,6 +131,10 @@ a:hover {
   overflow: auto;
   min-height: 350px;
   max-height: 600px;
+}
+
+.table {
+  overflow-x: auto;
 }
 
 .mat-icon {

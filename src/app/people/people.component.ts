@@ -46,6 +46,10 @@ export class PeopleComponent implements OnInit {
     this.isLoading = new Array(1000).fill(true);
   }
 
+  ngDoCheck(){
+    this.breakpoint = window.innerWidth <= 1280 ? window.innerWidth <= 600 ? 1 : 2 : 3;
+  }
+
   current = 0;
   img_load = ['assets/image/loading.gif'];
   isLoading: boolean[];

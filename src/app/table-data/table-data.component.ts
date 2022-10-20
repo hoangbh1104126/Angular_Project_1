@@ -512,6 +512,7 @@ export class TableDataComponent implements OnInit {
   addData: User[] = [];
 
   onTableScroll(e: any) {
+    if(this.modeLoading === 'paging') return;
     const tableViewHeight = e.target.offsetHeight // viewport: ~500px
     const tableScrollHeight = e.target.scrollHeight // length of all table
     const scrollLocation = e.target.scrollTop; // how far user scrolled

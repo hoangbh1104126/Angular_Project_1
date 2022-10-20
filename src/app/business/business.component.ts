@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatStepper } from '@angular/material/stepper';
+import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Observable, of } from 'rxjs';
 import { checkComponent } from '../confirm/action/check.component';
 import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.component';
@@ -13,6 +13,8 @@ import { ConfirmComponent, ConfirmDialogModel } from '../confirm/confirm.compone
   styleUrls: ['./business.component.scss']
 })
 export class BusinessComponent implements OnInit {
+
+  orientation: StepperOrientation;
 
   created: boolean = false;
 
@@ -39,7 +41,9 @@ export class BusinessComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-  ) { }
+  ) {
+    this.orientation = window.innerWidth > 960 ? 'horizontal' : 'vertical';
+  }
 
   ngOnInit(): void {
     console.log("Cilent side table mode available at routing: account-data");
@@ -110,6 +114,10 @@ export class BusinessComponent implements OnInit {
   }
 
   chooseType: boolean = false;
+
+  ngDoCheck(){
+    this.orientation = window.innerWidth > 960 ? 'horizontal' : 'vertical';
+  }
 
   resetAll() {
     this.stepper.linear = true;

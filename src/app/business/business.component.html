@@ -5,7 +5,7 @@
 <h2 class="title-data">User data</h2>
 <hr />
 
-<mat-stepper labelPosition="bottom" linear #stepper>
+<mat-stepper labelPosition="bottom" [orientation]="orientation" linear #stepper>
   <mat-step [completed]="chooseType">
     <ng-template matStepLabel>Create table</ng-template>
     <button mat-button (click)="goToStep(2)">By default</button>
