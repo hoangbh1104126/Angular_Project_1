@@ -4,14 +4,15 @@
       "account_number": 1,
       "balance": 39225,
       "firstname": "Amber",
-      "lastname": "Duke",
+      "lastname": "Duked",
       "age": 32,
       "gender": "M",
       "address": "880 Holmes Lane",
       "employer": "Pyrami",
       "email": "amberduke@pyrami.com",
       "city": "Brogan",
-      "state": "IL"
+      "state": "IL",
+      "new": null
     },
     {
       "account_number": 6,
@@ -13000,6 +13001,62 @@
       "email": "phelpsparrish@pearlessa.com",
       "city": "Brecon",
       "state": "ME"
+    }
+  ],
+  "log": [
+    {
+      "account_number": 1,
+      "username": "AmberDuked",
+      "logged_in": [
+        {
+          "location": "Vietnam",
+          "device": "Chrome - Windows",
+          "IP": "207.29.50.380",
+          "time": "2022-09-26T18:01:20.000Z",
+          "action": "login"
+        },
+        {
+          "location": "Australia",
+          "device": "Safari - iOS",
+          "IP": "207.26.29.12",
+          "time": "2022-08-22T11:20:10.000Z",
+          "action": "logout"
+        },
+        {
+          "location": "Australia",
+          "device": "Chrome - Windows",
+          "IP": "207.32.24.138",
+          "time": "2021-03-01T19:11:23.000Z",
+          "action": "expired"
+        }
+      ]
+    },
+    {
+      "account_number": 2,
+      "username": "HattiesBond",
+      "logged_in": [
+        {
+          "location": "UK",
+          "device": "Safari - iOS",
+          "IP": "207.21.12.22",
+          "time": "2022-08-12T11:30:00.000Z",
+          "action": "logout"
+        },
+        {
+          "location": "Australia",
+          "device": "Chrome - Windows",
+          "IP": "207.23.32.108",
+          "time": "2021-03-01T18:03:20.000Z",
+          "action": "expired"
+        },
+        {
+          "location": "Vietnam",
+          "device": "Chrome - Windows",
+          "IP": "207.21.30.410",
+          "time": "2022-09-26T01:20:23.000Z",
+          "action": "login"
+        }
+      ]
     }
   ]
 }

@@ -25,7 +25,7 @@ Github page live at [Angular Project 1](https://hoangbh1104126.github.io/Angular
 
 ## Development server
 
-Run `json-server --id account_number db.json` to create server.
+Run `json-server --id account_number users.json` to create server.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
